@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f7f1ea">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Train">
+<title>Love in Motion — Train</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#f7f1ea; --cream-2:#f1e8dd; --surface:#fffdfb;
+    --ink:#312824; --ink-soft:#6d5f57; --ink-faint:#9c8d83;
+    --rose:#b9536a; --rose-deep:#8f3a50; --rose-wash:#f4e3e4;
+    --euc:#74866d; --euc-wash:#e7ecdf;
+    --lilac-wash:#efe2ea;
+    --line:#e8ddd0; --line-soft:#efe6da;
+    --shadow:0 1px 2px rgba(49,40,36,.04),0 8px 24px rgba(49,40,36,.06);
+    --shadow-lg:0 10px 40px rgba(49,40,36,.16);
+    --serif:'Fraunces',Georgia,'Iowan Old Style',serif;
+    --sans:'Hanken Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--cream);color:var(--ink);font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  body{max-width:520px;margin:0 auto;min-height:100vh;
+    background:
+      radial-gradient(120% 60% at 100% 0%, var(--cream-2) 0%, transparent 60%),
+      var(--cream);
+    padding:0 18px calc(40px + env(safe-area-inset-bottom));position:relative}
+  ::selection{background:var(--rose-wash)}
+  a{color:inherit;text-decoration:none}
+
+  /* header */
+  header{padding:30px 4px 14px;position:sticky;top:0;z-index:5;
+    background:linear-gradient(var(--cream) 72%, transparent);}
+  .back{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;
+    color:var(--ink-faint);margin-bottom:12px}
+  .back .a{font-size:16px;line-height:1}
+  .brand{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+  .brand h1{font-family:var(--serif);font-weight:500;font-size:25px;
+    letter-spacing:-.01em;line-height:1}
+  .brand .heart{color:var(--rose);font-size:20px;transform:translateY(1px)}
+  .tag{font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:7px;font-weight:500}
+
+  /* countdown */
+  .count{margin-top:16px;background:var(--surface);border:1px solid var(--line);
+    border-radius:16px;padding:15px 17px;display:flex;align-items:center;
+    gap:14px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .count::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;
+    background:linear-gradient(var(--rose),var(--euc))}
+  .count .n{font-family:var(--serif);font-size:34px;font-weight:600;
+    color:var(--rose-deep);line-height:.9;font-variant-numeric:tabular-nums}
+  .count .lab{font-size:12.5px;color:var(--ink-soft);line-height:1.35}
+  .count .lab b{color:var(--ink);font-weight:600}
+
+  /* controls */
+  .controls{margin-top:20px}
+  .weeks{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;
+    scrollbar-width:none;-ms-overflow-style:none}
+  .weeks::-webkit-scrollbar{display:none}
+  .wk{flex:1 1 0;border:1px solid var(--line);background:var(--surface);
+    border-radius:11px;padding:9px 10px;font-size:13px;font-weight:600;
+    color:var(--ink-soft);cursor:pointer;transition:.18s;white-space:nowrap;text-align:center}
+  .wk .wd{display:block;font-size:10px;font-weight:500;color:var(--ink-faint);
+    margin-top:2px;letter-spacing:.02em}
+  .wk[aria-selected="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .wk[aria-selected="true"] .wd{color:rgba(255,255,255,.6)}
+
+  .plans{display:flex;gap:5px;margin-top:14px;background:var(--cream-2);
+    border-radius:13px;padding:4px}
+  .plan{flex:1;border:0;background:transparent;border-radius:10px;padding:9px 6px;
+    cursor:pointer;font-family:var(--sans);font-size:12.5px;font-weight:600;
+    color:var(--ink-soft);transition:.18s;text-align:center}
+  .plan span{display:block;font-size:10px;font-weight:500;color:var(--ink-faint);margin-top:1px}
+  .plan[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+  .plan[aria-selected="true"] span{color:var(--rose-deep)}
+
+  /* head */
+  .whead{margin:24px 2px 4px}
+  .whead .focus{font-family:var(--serif);font-size:21px;font-weight:500;letter-spacing:-.01em}
+  .whead .dates{font-size:12.5px;color:var(--ink-faint);margin-top:3px;letter-spacing:.02em}
+  .prog{margin-top:14px;display:flex;align-items:center;gap:11px}
+  .bar{flex:1;height:7px;background:var(--cream-2);border-radius:99px;overflow:hidden}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--euc),var(--rose));
+    border-radius:99px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+  .prog .pt{font-size:11.5px;color:var(--ink-soft);font-weight:600;white-space:nowrap}
+
+  /* cards */
+  .list{margin-top:16px;display:flex;flex-direction:column;gap:10px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:15px;
+    padding:14px 15px;display:flex;align-items:center;gap:13px;cursor:pointer;
+    box-shadow:var(--shadow);transition:.16s;
+    animation:rise .5s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes rise{from{opacity:0;transform:translateY(9px)}}
+  .card:active{transform:scale(.985)}
+  .card.done{background:var(--cream);border-color:var(--line-soft)}
+  .check{flex:0 0 auto;width:26px;height:26px;border-radius:50%;
+    border:1.6px solid var(--line);display:grid;place-items:center;
+    transition:.18s;background:#fff}
+  .check svg{width:13px;height:13px;stroke:#fff;stroke-width:2.6;fill:none;
+    stroke-linecap:round;stroke-linejoin:round;opacity:0;transform:scale(.4);transition:.18s}
+  .card.done .check{background:var(--euc);border-color:var(--euc)}
+  .card.done .check svg{opacity:1;transform:scale(1)}
+  .meta{flex:1;min-width:0}
+  .meta .t{font-size:14.5px;font-weight:600;letter-spacing:-.01em}
+  .card.done .meta .t{color:var(--ink-soft)}
+  .meta .s{font-size:12.5px;color:var(--ink-soft);margin-top:2px;line-height:1.4}
+  .pill{flex:0 0 auto;font-size:9.5px;font-weight:600;letter-spacing:.08em;
+    text-transform:uppercase;padding:4px 8px;border-radius:99px}
+  .pill.easy{background:var(--euc-wash);color:var(--euc)}
+  .pill.long{background:var(--rose-wash);color:var(--rose-deep)}
+  .pill.qual{background:var(--lilac-wash);color:var(--rose-deep)}
+  .pill.str{background:var(--cream-2);color:var(--ink-soft)}
+  .pill.rest{background:var(--cream-2);color:var(--ink-faint)}
+  .pill.cross{background:var(--euc-wash);color:var(--euc)}
+  .chev{flex:0 0 auto;color:var(--ink-faint);font-size:18px;line-height:1}
+
+  .cnote{margin-top:13px;font-size:12px;color:var(--ink-faint);text-align:center;
+    line-height:1.5;padding:0 10px}
+
+  /* coach notes */
+  .notes{margin-top:30px;border-top:1px solid var(--line);padding-top:8px}
+  .notes>summary{font-family:var(--serif);font-size:17px;font-weight:500;
+    padding:14px 2px;cursor:pointer;list-style:none;display:flex;
+    align-items:center;justify-content:space-between}
+  .notes>summary::-webkit-details-marker{display:none}
+  .notes>summary .x{color:var(--ink-faint);font-size:20px;transition:.2s}
+  .notes[open]>summary .x{transform:rotate(45deg)}
+  details.sub{border:1px solid var(--line);border-radius:13px;background:var(--surface);
+    margin-bottom:9px;overflow:hidden}
+  details.sub>summary{padding:13px 15px;cursor:pointer;font-size:13.5px;font-weight:600;
+    list-style:none;display:flex;align-items:center;justify-content:space-between}
+  details.sub>summary::-webkit-details-marker{display:none}
+  details.sub>summary .x{color:var(--ink-faint);transition:.2s}
+  details.sub[open]>summary .x{transform:rotate(90deg)}
+  details.sub[open]>summary{border-bottom:1px solid var(--line-soft)}
+  .body{padding:13px 15px;font-size:13px;line-height:1.62;color:var(--ink-soft)}
+  .body p+p{margin-top:9px}
+  .body b{color:var(--ink);font-weight:600}
+  .body ul{list-style:none;margin-top:4px}
+  .body li{padding:5px 0 5px 17px;position:relative}
+  .body li::before{content:"";position:absolute;left:0;top:12px;width:5px;height:5px;
+    border-radius:50%;background:var(--rose)}
+  .ex li::before{background:var(--euc)}
+
+  footer{text-align:center;margin-top:34px;padding-top:18px;border-top:1px solid var(--line)}
+  footer .fm{font-family:var(--serif);font-style:italic;font-size:14.5px;color:var(--rose-deep)}
+  footer .fs{font-size:11px;color:var(--ink-faint);margin-top:6px;letter-spacing:.04em}
+
+  /* sheet */
+  .scrim{position:fixed;inset:0;background:rgba(49,40,36,.34);opacity:0;
+    pointer-events:none;transition:.25s;z-index:20;backdrop-filter:blur(2px)}
+  .scrim.on{opacity:1;pointer-events:auto}
+  .sheet{position:fixed;left:0;right:0;bottom:0;z-index:21;max-width:520px;margin:0 auto;
+    background:var(--surface);border-radius:24px 24px 0 0;padding:8px 20px
+    calc(26px + env(safe-area-inset-bottom));transform:translateY(102%);
+    transition:transform .3s cubic-bezier(.3,.8,.3,1);box-shadow:var(--shadow-lg);
+    max-height:86vh;overflow-y:auto}
+  .sheet.on{transform:translateY(0)}
+  .grab{width:38px;height:4px;border-radius:99px;background:var(--line);margin:8px auto 16px}
+  .sheet .st{font-family:var(--serif);font-size:22px;font-weight:500;letter-spacing:-.01em}
+  .sheet .ss{font-size:13px;color:var(--ink-soft);margin-top:4px}
+  .blk{margin-top:18px}
+  .blk h4{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--rose-deep);font-weight:600;margin-bottom:7px}
+  .blk p{font-size:13.5px;line-height:1.6;color:var(--ink-soft)}
+  .blk p b{color:var(--ink)}
+  .callout{background:var(--euc-wash);border-radius:13px;padding:13px 15px;margin-top:6px}
+  .callout p{color:#4f5a48}
+  .fuelh{display:flex;align-items:center;justify-content:space-between;gap:12px;
+    margin-top:6px;background:var(--rose-wash);border-radius:13px;padding:13px 15px}
+  .fuelh p{font-size:13px;color:var(--rose-deep);line-height:1.45}
+  .fuelh .go{flex:0 0 auto;font-size:12px;font-weight:600;color:var(--rose-deep);white-space:nowrap}
+  .dobtn{margin-top:22px;width:100%;border:0;border-radius:14px;padding:15px;
+    font-family:var(--sans);font-size:14.5px;font-weight:600;cursor:pointer;
+    background:var(--ink);color:#fff;transition:.18s}
+  .dobtn.is-done{background:var(--euc-wash);color:var(--euc)}
+  .dobtn:active{transform:scale(.99)}
+</style>
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html"><span class="a">&lsaquo;</span> Love in Motion</a>
+  <div class="brand"><span class="heart">&#10084;</span><h1>Love in Motion · Train</h1></div>
+  <div class="tag">Build · To 60 km</div>
+  <div class="count">
+    <div class="n" id="cd">—</div>
+    <div class="lab" id="cdl">days to <b>Kuranda &rarr; Port Douglas</b><br>60&nbsp;km trail ultra · 23 Aug 2026</div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="weeks" id="phases" role="tablist"></div>
+  <div class="plans" id="plans" role="tablist">
+    <button class="plan" data-p="A">Plan A<span>ideal</span></button>
+    <button class="plan" data-p="B">Plan B<span>busy</span></button>
+    <button class="plan" data-p="C">Plan C<span>hospital</span></button>
+  </div>
+</div>
+
+<div class="whead">
+  <div class="focus" id="focus"></div>
+  <div class="dates" id="dates"></div>
+  <div class="prog"><div class="bar"><i id="bar"></i></div><div class="pt" id="pt"></div></div>
+</div>
+
+<div class="list" id="list"></div>
+<div class="cnote" id="cnote"></div>
+
+<details class="notes">
+  <summary>Coach notes <span class="x">+</span></summary>
+  <div id="notesbody"></div>
+</details>
+
+<footer>
+  <div class="fm">Because Love Keeps Moving</div>
+  <div class="fs">in support of the McGrath Foundation</div>
+</footer>
+
+<div class="scrim" id="scrim"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true"><div class="grab"></div><div id="sheetbody"></div></div>
+
+<script>
+"use strict";
+
+/* ---------- safe storage (works offline as a file; never crashes) ---------- */
+var store=(function(){var mem={},ok=false;
+  try{localStorage.setItem('__t','1');localStorage.removeItem('__t');ok=true;}catch(e){ok=false;}
+  return{get:function(k){try{return ok?JSON.parse(localStorage.getItem(k)):mem[k];}catch(e){return mem[k];}},
+         set:function(k,v){try{ok?localStorage.setItem(k,JSON.stringify(v)):mem[k]=v;}catch(e){mem[k]=v;}}};})();
+
+/* ---------- shared guidance ---------- */
+var EASY="Easy means conversational - you could chat the whole way, nose-breathing, no strain. Most of your running lives here. It feels too slow; that's the point. Easy running is what builds the engine without breaking you down.";
+var LONGRUN="The long run is the heart of ultra training. Build it gradually - no jump bigger than ~10-15% week to week. Keep the pace easy, walk the hills early, and practise eating and drinking on the move every single time.";
+
+/* session builders */
+function easy(t,s,detail){return{k:"easy",pill:"Easy",t:t,s:s,detail:detail};}
+function long(t,s,detail){return{k:"long",pill:"Long",t:t,s:s,detail:detail,fuelit:true};}
+function qual(t,s,detail){return{k:"qual",pill:"Quality",t:t,s:s,detail:detail};}
+function str(t,s,detail){return{k:"str",pill:"Strength",t:t,s:s,detail:detail};}
+function cross(t,s,detail){return{k:"cross",pill:"Cross",t:t,s:s,detail:detail};}
+function rest(t,s,detail){return{k:"rest",pill:"Rest",t:t,s:s,detail:detail};}
+
+/* ---------- phases × plans ---------- */
+var PHASES=[
+ {name:"Base",sub:"8–7 wks",line:"Build the aerobic engine. Mostly easy running, one longer day, and the first back-to-back. Consistency beats heroics here.",
+  A:[
+    easy("Easy run","40–50 min, flat and relaxed","Pure aerobic time on feet. Keep it conversational the whole way. If in doubt, slow down - this run builds the base everything else sits on."),
+    qual("Hills (easy)","6–8 × short hill strides on a gentle climb","Run up strong but controlled for ~20–30 sec, walk down to recover. Builds strength and trail-specific power without the pounding of speedwork. Stop while it still feels good."),
+    str("Strength","2 × 20 min: squats, lunges, calf raises, core","Strong hips, glutes and calves are your injury insurance for a hilly 60 km. Bodyweight is plenty. Single-leg work matters most for trail."),
+    long("Long run","75–90 min easy on trail or undulating road","Your weekly cornerstone. Keep it easy, walk the steep bits, and rehearse fuelling and drinking from the start. Time on feet, not pace."),
+    easy("Back-to-back","30–40 min easy the morning after the long run","Running on slightly tired legs teaches your body to keep going when fresh isn't an option - the core skill of ultra running. Keep it very gentle.")
+  ],
+  B:[
+    easy("Easy run","30–40 min, whenever it fits","One easy run banks the aerobic base. Even 30 min counts. Done beats perfect."),
+    str("Strength","One 20-min circuit","Hips, glutes, calves, core. Squeeze it in while dinner cooks if that's what today allows."),
+    long("Long run","60–75 min easy","Protect the long run above all else - it's the session that matters most. Keep it easy and fuel as you go.")
+  ],
+  C:[
+    cross("Move gently","A walk, easy spin, or mobility - whatever the day allows","On a hospital week, movement is maintenance, not training. A 20–30 min walk keeps the habit and clears the head. No targets."),
+    rest("Rest fully","Permission to do nothing","Sleep and stress recovery are training too. Stepping back for a hard week won't undo your fitness - under-recovering will. Pick it back up when life eases.")
+  ]},
+
+ {name:"Build",sub:"6–4 wks",line:"The long runs stretch out and the trail gets specific - more climbing, more time on feet, back-to-backs that bite. This is where the 60 km gets built.",
+  A:[
+    easy("Easy run","45–60 min easy","Keep the easy days genuinely easy so the hard days can be hard. This is recovery that still builds fitness."),
+    qual("Hill repeats","8–10 × 45–60 sec uphill, walk-jog down","On trail-like gradient if you can. Strong, controlled effort - this is the strength that carries you up K2PD's climbs late in the race."),
+    str("Strength + downhill","Strength circuit, plus easy downhill running","Add gentle downhill running - eccentric load is what trashes quads late in a trail ultra. Train it now so race day is nothing new."),
+    long("Long run","2–3 hr on trail with real climbing","The key session. Build steadily toward 3 hr, on terrain like race day. Walk the steep climbs, run the runnable, eat every 30–40 min, drink to thirst-plus in the heat."),
+    long("Back-to-back long","60–90 min easy the next morning","Tired-legs running is the whole game. Cumulative fatigue today is how you teach the body to handle hour 6 on race day. Keep it easy and fuelled.")
+  ],
+  B:[
+    easy("Easy run","40 min easy","Bank what you can. Aerobic consistency is the goal even on full weeks."),
+    qual("Hills or strides","Short hill efforts if there's time","Even 15 min of hills keeps the strength ticking over. Skip guilt-free if the day's gone."),
+    long("Long run","90 min–2 hr easy on trail","The one to protect. Shorter than Plan A but still on terrain, still fuelled. This single run holds your build together.")
+  ],
+  C:[
+    cross("Move gently","Walk or easy cross-train when you can","Maintenance only. A walk on the hospital grounds counts. Your fitness will keep - your wellbeing comes first this week."),
+    rest("Rest fully","No training guilt","One stepped-back week in the build won't cost you the race. Sleep, eat, care for who needs you, and return when the week eases.")
+  ]},
+
+ {name:"Peak",sub:"3–2 wks",line:"The biggest weeks - your longest back-to-back and the most race-specific running. Then you've done the work. Nothing you do now makes you fitter for race day except arriving healthy.",
+  A:[
+    easy("Easy run","45–60 min easy + strides","Stay smooth and relaxed. The hay is in the barn; protect it by not turning easy days into hard ones."),
+    qual("Race-effort segment","Within a run: 20–30 min at goal race effort","Practise the exact effort, terrain and fuelling of race day - climbs walked, descents controlled, eating on schedule. A dress rehearsal, not a time trial."),
+    long("Longest long run","3.5–4 hr (or ~35–40 km) on race-like trail","Your peak session and best confidence-builder. Heat, hills, full race-day fuelling and gear. After this, the hardest training is behind you."),
+    long("Back-to-back long","2–2.5 hr easy the next day","The biggest cumulative-fatigue day of the plan. This is the closest you'll get to the back half of K2PD. Easy pace, relentless fuelling."),
+    str("Light strength","Maintenance circuit only","Keep the muscles primed but drop the load - now is about freshness, not new strength. Mobility and activation over heavy work.")
+  ],
+  B:[
+    easy("Easy run","40 min easy","Tick over the aerobic system. Nothing fancy."),
+    long("Long run","2.5–3 hr easy on trail","Your single biggest run of a busy peak. If you only do one thing, do this - on terrain, fully fuelled."),
+    long("Back-to-back","75–90 min easy next day","If you can manage the second day, the tired-legs practice is gold. If not, an easy walk still helps.")
+  ],
+  C:[
+    cross("Move gently","Walk or gentle cross-train","Even at peak, a hospital week means maintenance. You've banked real fitness already - a quiet week protects it, it doesn't erase it."),
+    rest("Rest fully","Recover and reset","Step back without guilt and pick the plan up when you can. Arriving at the start line healthy beats arriving slightly fitter and frayed.")
+  ]},
+
+ {name:"Taper",sub:"final 10 days",line:"Volume drops, sharpness stays. You can't gain fitness now - only lose freshness. Trust the work, sleep well, eat well, and arrive light, healthy and ready.",
+  A:[
+    easy("Easy run","30–40 min easy + a few strides","Short and snappy. A few 15-sec strides keep the legs awake without adding fatigue. You may feel restless - that's the taper working."),
+    qual("Sharpener","Short run with 10 min at race effort","One brief touch of race effort to stay sharp. Keep it short. The goal is to feel ready, not to prove anything."),
+    rest("Extra rest","More sleep, less running","Recovery is the session now. Bank sleep, lower stress, let little niggles heal. Resist the urge to 'cram' - it only adds fatigue."),
+    long("Final shakeout","20–30 min very easy, day before","Loosen the legs, settle the nerves. Run gear and breakfast you'll use on race day. Then feet up - the hard work is already done."),
+    easy("Race day","60 km · Kuranda → Port Douglas","Start slow, walk the climbs early, eat and drink to plan from the first hour, and run your own race. You're ready. Enjoy every kilometre of it.")
+  ],
+  B:[
+    easy("Easy run","30 min easy","Keep the legs ticking, nothing more. Freshness is the priority."),
+    rest("Rest & sleep","Prioritise recovery","On a busy taper, doing less is exactly right. Sleep is your most powerful race-prep tool."),
+    long("Race day","60 km · the day itself","Conservative start, walk the hills, fuel early and often. Trust the work you banked and soak it in.")
+  ],
+  C:[
+    rest("Rest & arrive ready","Gentle movement, lots of recovery","However the lead-in has gone, the taper suits you: rest is the plan. Keep moving gently, sleep, and back yourself on the day."),
+    long("Race day","60 km · run your own race","Whatever the build looked like, you get to the line. Start easy, walk the climbs, fuel to plan, and let it be the celebration it is.")
+  ]}
+];
+
+var EVENT=new Date(2026,7,23);
+
+/* ---------- state ---------- */
+var state={ph:0,plan:store.get("limn_plan")||"A"};
+
+function doneKey(){return "limn_train_p"+state.ph+"_"+state.plan;}
+function getDone(){return store.get(doneKey())||{};}
+function setDone(o){store.set(doneKey(),o);}
+
+/* ---------- render ---------- */
+function cards(){return PHASES[state.ph][state.plan]||[];}
+
+function renderCount(){
+  var ms=EVENT-new Date();var d=Math.max(0,Math.ceil(ms/86400000));
+  document.getElementById("cd").textContent=d;
+  if(d===0)document.getElementById("cdl").innerHTML="<b>Today is the day</b><br>Kuranda &rarr; Port Douglas, 60 km";
+}
+function renderPhases(){
+  var w=document.getElementById("phases");w.innerHTML="";
+  PHASES.forEach(function(p,i){
+    var b=document.createElement("button");
+    b.className="wk";b.setAttribute("aria-selected",i===state.ph);
+    b.innerHTML=p.name+"<span class='wd'>"+p.sub+"</span>";
+    b.onclick=function(){state.ph=i;render();};
+    w.appendChild(b);
+  });
+}
+function renderPlans(){
+  document.querySelectorAll(".plan").forEach(function(p){
+    p.setAttribute("aria-selected",p.dataset.p===state.plan);
+    p.onclick=function(){state.plan=p.dataset.p;store.set("limn_plan",state.plan);render();};
+  });
+}
+function renderHead(){
+  var p=PHASES[state.ph];
+  document.getElementById("focus").textContent=p.name+" phase";
+  document.getElementById("dates").textContent=p.line;
+  var cs=cards(),done=getDone();
+  var n=cs.length,c=0;for(var i=0;i<n;i++){if(done[i])c++;}
+  document.getElementById("bar").style.width=n?(c/n*100)+"%":"0%";
+  document.getElementById("pt").textContent=c+" of "+n+" done";
+}
+function pillClass(k){return k;}
+function renderList(){
+  var list=document.getElementById("list");list.innerHTML="";
+  var cs=cards(),done=getDone();
+  cs.forEach(function(s,i){
+    var card=document.createElement("div");
+    card.className="card"+(done[i]?" done":"");
+    card.style.animationDelay=(i*55)+"ms";
+    card.innerHTML=
+      "<div class='check'><svg viewBox='0 0 24 24'><polyline points='4 12 10 18 20 6'/></svg></div>"+
+      "<div class='meta'><div class='t'>"+s.t+"</div><div class='s'>"+s.s+"</div></div>"+
+      "<span class='pill "+pillClass(s.k)+"'>"+s.pill+"</span>"+
+      "<span class='chev'>&rsaquo;</span>";
+    card.querySelector(".check").onclick=function(e){e.stopPropagation();toggle(i);};
+    card.onclick=function(){openSheet(i);};
+    list.appendChild(card);
+  });
+  var cn=document.getElementById("cnote"),lead;
+  if(allIn())lead="Phase complete - beautiful work. ";
+  else if(state.plan==="C")lead="This week, showing up gently is enough. Fitness keeps; you come first. ";
+  else if(state.plan==="B")lead="Protect the long run; let the rest flex around your week. ";
+  else lead="";
+  cn.textContent=lead+"Run easy on easy days so the hard days can be hard - and fuel every long run.";
+}
+function allIn(){var cs=cards(),done=getDone();if(!cs.length)return false;for(var i=0;i<cs.length;i++){if(!done[i])return false;}return true;}
+function toggle(i){var d=getDone();d[i]=!d[i];setDone(d);renderHead();renderList();}
+
+/* ---------- sheet ---------- */
+function openSheet(i){
+  var s=cards()[i],done=getDone();
+  var h="<div class='st'>"+s.t+"</div><div class='ss'>"+s.s+"</div>";
+  h+="<div class='blk'><h4>Why &amp; how</h4><p>"+s.detail+"</p></div>";
+  if(s.k==="easy"&&state.ph===0)h+="<div class='blk'><h4>What 'easy' means</h4><div class='callout'><p>"+EASY+"</p></div></div>";
+  if(s.fuelit)h+="<div class='blk'><h4>Fuel this one</h4><div class='fuelh'><p>Long days are where fuelling is the session. Open the Fuel plan for what to eat before, during and after.</p><a class='go' href='../nutrition-meal-planner/index.html'>Fuel &rsaquo;</a></div></div>";
+  if(s.k==="long")h+="<div class='blk'><h4>The long run</h4><p>"+LONGRUN+"</p></div>";
+  h+="<button class='dobtn"+(done[i]?" is-done":"")+"' id='dobtn'>"+(done[i]?"&#10003; Done - tap to undo":"Mark as done")+"</button>";
+  document.getElementById("sheetbody").innerHTML=h;
+  document.getElementById("dobtn").onclick=function(){toggle(i);openSheet(i);};
+  document.getElementById("scrim").classList.add("on");
+  document.getElementById("sheet").classList.add("on");
+}
+function closeSheet(){document.getElementById("scrim").classList.remove("on");
+  document.getElementById("sheet").classList.remove("on");}
+document.getElementById("scrim").onclick=closeSheet;
+
+/* ---------- coach notes ---------- */
+function note(title,html){return "<details class='sub'><summary>"+title+"<span class='x'>&rsaquo;</span></summary><div class='body'>"+html+"</div></details>";}
+document.getElementById("notesbody").innerHTML=
+ note("The 80/20 rule","<p><b>Run easy on easy days so you can run hard on hard days.</b> Roughly 80% of your running should be genuinely easy - conversational, nose-breathing, almost too slow. The other 20% is your hills and race-effort work.</p><p>The most common mistake is running easy days a bit too hard and hard days a bit too soft, so everything blurs into medium. Keep the easy easy and the polarisation does the work.</p>")+
+ note("The long run","<p>"+LONGRUN+"</p><ul><li>Build gradually - no weekly jump bigger than ~10–15%.</li><li>Every 3rd–4th week, pull the long run back to let the body absorb the work.</li><li><b>Time on feet</b> matters more than distance or pace on trail.</li><li>Walk the climbs from the start - everyone walks the steep stuff in a 60 km.</li></ul>")+
+ note("Hills &amp; trail skills","<ul><li><b>Uphill:</b> shorten your stride, stay relaxed, power-hike anything too steep to run efficiently.</li><li><b>Downhill:</b> practise it - quick light steps, let gravity help. Eccentric load wrecks untrained quads late in a race.</li><li>Train on terrain like K2PD: trail, roots, rock, real gradient.</li><li>Carry and use your race vest on long runs so nothing's new on the day.</li></ul>")+
+ note("Heat &amp; humidity","<p>North Queensland in August is warm and humid - respect it. Acclimatise by doing some long runs in the heat of the day in the final 2–3 weeks.</p><ul><li>Slow down - effort, not pace, is the gauge in heat.</li><li>Drink to thirst-plus and add electrolytes (sodium especially).</li><li>Practise everything on long runs so race-day heat is familiar, not a shock.</li></ul><p>The Fuel app's hydration notes pair with this.</p>")+
+ note("Strength &amp; durability","<ul><li>2× short sessions a week: squats, lunges, single-leg work, calf raises, core.</li><li>Strong hips, glutes and calves are your best defence against late-race breakdown and injury.</li><li>Bodyweight is plenty - consistency beats load.</li><li>Taper strength right down in the final 2 weeks.</li></ul>")+
+ note("Recovery &amp; staying healthy","<p>You get fitter while you recover, not while you train. Sleep is the single most powerful tool you have.</p><ul><li>Niggle that changes your gait or worsens day to day = back off and assess early.</li><li>A missed session never costs you the race; training through an injury can.</li><li>Pair training with the Fuel plan - under-fuelling is the quiet saboteur of recovery.</li></ul>")+
+ note("Tapering","<p>In the final ~10 days, <b>cut volume but keep a little intensity</b> so the legs stay sharp. You can't build fitness now - you can only arrive fresh or frayed.</p><p>Expect to feel restless, even sluggish or twitchy - that's normal and means it's working. Bank sleep, eat well, and trust the months of work.</p>")+
+ note("Race week &amp; the day","<ul><li>Nothing new: shoes, socks, vest, fuel - all tested on long runs.</li><li>Start slower than feels right; walk the early climbs.</li><li>Eat and drink to plan from the first hour, not when you're already empty.</li><li>Break 60 km into chunks - aid station to aid station.</li><li>Run your own race, and remember why you're out there.</li></ul>")+
+ note("On the horizon — the 415 km","<p>For the Love in Motion run from Attunga to Sydney, training shifts to multi-day endurance: huge weekly volume, back-to-back long days as the main event, and recovery built around running again tomorrow.</p><p>We'll build that block once K2PD is done. Every consistent week now is the foundation it stands on.</p>");
+
+/* ---------- go ---------- */
+function render(){renderPhases();renderPlans();renderHead();renderList();}
+renderCount();render();
+</script>
+</body>
+</html>

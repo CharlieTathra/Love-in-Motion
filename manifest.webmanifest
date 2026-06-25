@@ -1,0 +1,16 @@
+{
+  "name": "Love in Motion",
+  "short_name": "Love in Motion",
+  "description": "Training, fuelling and fundraising for the Love in Motion endurance journey, in support of the McGrath Foundation.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f7f1ea",
+  "theme_color": "#f7f1ea",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

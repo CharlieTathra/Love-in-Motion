@@ -11,6 +11,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <style>
   :root{
     --cream:#f7f1ea; --cream-2:#f1e8dd; --surface:#fffdfb;
@@ -31,7 +33,7 @@
     background:
       radial-gradient(120% 60% at 100% 0%, var(--cream-2) 0%, transparent 60%),
       var(--cream);
-    padding:0 18px calc(40px + env(safe-area-inset-bottom));position:relative}
+    padding:0 18px calc(88px + env(safe-area-inset-bottom));position:relative}
   ::selection{background:var(--rose-wash)}
 
   /* header */
@@ -147,6 +149,18 @@
   footer .fm{font-family:var(--serif);font-style:italic;font-size:14.5px;color:var(--rose-deep)}
   footer .fs{font-size:11px;color:var(--ink-faint);margin-top:6px;letter-spacing:.04em}
 
+  /* bottom tab bar */
+  .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:15;max-width:520px;margin:0 auto;
+    display:flex;gap:2px;background:rgba(255,253,251,.92);
+    -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+    border-top:1px solid var(--line);padding:7px 8px calc(7px + env(safe-area-inset-bottom))}
+  .tabbar .tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
+    text-decoration:none;color:var(--ink-faint);font-size:10px;font-weight:600;
+    letter-spacing:.02em;padding:5px 2px;border-radius:11px;transition:.15s}
+  .tabbar .tab .ic{font-size:18px;line-height:1}
+  .tabbar .tab:active{background:var(--cream-2)}
+  .tabbar .tab[aria-current="page"]{color:var(--rose-deep)}
+
   /* sheet */
   .scrim{position:fixed;inset:0;background:rgba(49,40,36,.34);opacity:0;
     pointer-events:none;transition:.25s;z-index:20;backdrop-filter:blur(2px)}
@@ -217,6 +231,13 @@
   <div class="fm">Because Love Keeps Moving</div>
   <div class="fs">in support of the McGrath Foundation</div>
 </footer>
+
+<nav class="tabbar" aria-label="Sections">
+  <a class="tab" href="../index.html"><span class="ic">&#127968;</span>Home</a>
+  <a class="tab" href="index.html" aria-current="page"><span class="ic">&#127869;</span>Fuel</a>
+  <a class="tab" href="../training/index.html"><span class="ic">&#128694;</span>Train</a>
+  <a class="tab" href="https://www.pinkisthecolour.com.au/fundraisers/LoveINMotion"><span class="ic">&#129655;</span>Donate</a>
+</nav>
 
 <div class="scrim" id="scrim"></div>
 <div class="sheet" id="sheet" role="dialog" aria-modal="true"><div class="grab"></div><div id="sheetbody"></div></div>

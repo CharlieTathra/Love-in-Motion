@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f7f1ea">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Fuel">
+<title>Love in Motion — Fuel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#f7f1ea; --cream-2:#f1e8dd; --surface:#fffdfb;
+    --ink:#312824; --ink-soft:#6d5f57; --ink-faint:#9c8d83;
+    --rose:#b9536a; --rose-deep:#8f3a50; --rose-wash:#f4e3e4;
+    --euc:#74866d; --euc-wash:#e7ecdf;
+    --lilac-wash:#efe2ea;
+    --line:#e8ddd0; --line-soft:#efe6da;
+    --shadow:0 1px 2px rgba(49,40,36,.04),0 8px 24px rgba(49,40,36,.06);
+    --shadow-lg:0 10px 40px rgba(49,40,36,.16);
+    --serif:'Fraunces',Georgia,'Iowan Old Style',serif;
+    --sans:'Hanken Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--cream);color:var(--ink);font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  body{max-width:520px;margin:0 auto;min-height:100vh;
+    background:
+      radial-gradient(120% 60% at 100% 0%, var(--cream-2) 0%, transparent 60%),
+      var(--cream);
+    padding:0 18px calc(40px + env(safe-area-inset-bottom));position:relative}
+  ::selection{background:var(--rose-wash)}
+
+  /* header */
+  header{padding:30px 4px 14px;position:sticky;top:0;z-index:5;
+    background:linear-gradient(var(--cream) 72%, transparent);}
+  .brand{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+  .brand h1{font-family:var(--serif);font-weight:500;font-size:25px;
+    letter-spacing:-.01em;line-height:1}
+  .brand .heart{color:var(--rose);font-size:20px;transform:translateY(1px)}
+  .tag{font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:7px;font-weight:500}
+
+  /* countdown */
+  .count{margin-top:16px;background:var(--surface);border:1px solid var(--line);
+    border-radius:16px;padding:15px 17px;display:flex;align-items:center;
+    gap:14px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .count::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;
+    background:linear-gradient(var(--rose),var(--euc))}
+  .count .n{font-family:var(--serif);font-size:34px;font-weight:600;
+    color:var(--rose-deep);line-height:.9;font-variant-numeric:tabular-nums}
+  .count .lab{font-size:12.5px;color:var(--ink-soft);line-height:1.35}
+  .count .lab b{color:var(--ink);font-weight:600}
+
+  /* controls */
+  .controls{margin-top:20px}
+  .weeks{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;
+    scrollbar-width:none;-ms-overflow-style:none}
+  .weeks::-webkit-scrollbar{display:none}
+  .wk{flex:1 1 0;border:1px solid var(--line);background:var(--surface);
+    border-radius:11px;padding:9px 10px;font-size:13px;font-weight:600;
+    color:var(--ink-soft);cursor:pointer;transition:.18s;white-space:nowrap;text-align:center}
+  .wk .wd{display:block;font-size:10px;font-weight:500;color:var(--ink-faint);
+    margin-top:2px;letter-spacing:.02em}
+  .wk[aria-selected="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .wk[aria-selected="true"] .wd{color:rgba(255,255,255,.6)}
+
+  .plans{display:flex;gap:5px;margin-top:14px;background:var(--cream-2);
+    border-radius:13px;padding:4px}
+  .plan{flex:1;border:0;background:transparent;border-radius:10px;padding:9px 6px;
+    cursor:pointer;font-family:var(--sans);font-size:12.5px;font-weight:600;
+    color:var(--ink-soft);transition:.18s;text-align:center}
+  .plan span{display:block;font-size:10px;font-weight:500;color:var(--ink-faint);margin-top:1px}
+  .plan[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+  .plan[aria-selected="true"] span{color:var(--rose-deep)}
+
+  /* head */
+  .whead{margin:24px 2px 4px}
+  .whead .focus{font-family:var(--serif);font-size:21px;font-weight:500;letter-spacing:-.01em}
+  .whead .dates{font-size:12.5px;color:var(--ink-faint);margin-top:3px;letter-spacing:.02em}
+  .prog{margin-top:14px;display:flex;align-items:center;gap:11px}
+  .bar{flex:1;height:7px;background:var(--cream-2);border-radius:99px;overflow:hidden}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--euc),var(--rose));
+    border-radius:99px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+  .prog .pt{font-size:11.5px;color:var(--ink-soft);font-weight:600;white-space:nowrap}
+
+  /* cards */
+  .list{margin-top:16px;display:flex;flex-direction:column;gap:10px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:15px;
+    padding:14px 15px;display:flex;align-items:center;gap:13px;cursor:pointer;
+    box-shadow:var(--shadow);transition:.16s;
+    animation:rise .5s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes rise{from{opacity:0;transform:translateY(9px)}}
+  .card:active{transform:scale(.985)}
+  .card.done{background:var(--cream);border-color:var(--line-soft)}
+  .check{flex:0 0 auto;width:26px;height:26px;border-radius:50%;
+    border:1.6px solid var(--line);display:grid;place-items:center;
+    transition:.18s;background:#fff}
+  .check svg{width:13px;height:13px;stroke:#fff;stroke-width:2.6;fill:none;
+    stroke-linecap:round;stroke-linejoin:round;opacity:0;transform:scale(.4);transition:.18s}
+  .card.done .check{background:var(--euc);border-color:var(--euc)}
+  .card.done .check svg{opacity:1;transform:scale(1)}
+  .meta{flex:1;min-width:0}
+  .meta .t{font-size:14.5px;font-weight:600;letter-spacing:-.01em}
+  .card.done .meta .t{color:var(--ink-soft)}
+  .meta .s{font-size:12.5px;color:var(--ink-soft);margin-top:2px;line-height:1.4}
+  .pill{flex:0 0 auto;font-size:9.5px;font-weight:600;letter-spacing:.08em;
+    text-transform:uppercase;padding:4px 8px;border-radius:99px}
+  .pill.meal{background:var(--euc-wash);color:var(--euc)}
+  .pill.fuel{background:var(--rose-wash);color:var(--rose-deep)}
+  .pill.rcv{background:var(--lilac-wash);color:var(--rose-deep)}
+  .pill.snack{background:var(--cream-2);color:var(--ink-soft)}
+  .chev{flex:0 0 auto;color:var(--ink-faint);font-size:18px;line-height:1}
+
+  .cnote{margin-top:13px;font-size:12px;color:var(--ink-faint);text-align:center;
+    line-height:1.5;padding:0 10px}
+
+  /* coach notes */
+  .notes{margin-top:30px;border-top:1px solid var(--line);padding-top:8px}
+  .notes>summary{font-family:var(--serif);font-size:17px;font-weight:500;
+    padding:14px 2px;cursor:pointer;list-style:none;display:flex;
+    align-items:center;justify-content:space-between}
+  .notes>summary::-webkit-details-marker{display:none}
+  .notes>summary .x{color:var(--ink-faint);font-size:20px;transition:.2s}
+  .notes[open]>summary .x{transform:rotate(45deg)}
+  details.sub{border:1px solid var(--line);border-radius:13px;background:var(--surface);
+    margin-bottom:9px;overflow:hidden}
+  details.sub>summary{padding:13px 15px;cursor:pointer;font-size:13.5px;font-weight:600;
+    list-style:none;display:flex;align-items:center;justify-content:space-between}
+  details.sub>summary::-webkit-details-marker{display:none}
+  details.sub>summary .x{color:var(--ink-faint);transition:.2s}
+  details.sub[open]>summary .x{transform:rotate(90deg)}
+  details.sub[open]>summary{border-bottom:1px solid var(--line-soft)}
+  .body{padding:13px 15px;font-size:13px;line-height:1.62;color:var(--ink-soft)}
+  .body p+p{margin-top:9px}
+  .body b{color:var(--ink);font-weight:600}
+  .body ul{list-style:none;margin-top:4px}
+  .body li{padding:5px 0 5px 17px;position:relative}
+  .body li::before{content:"";position:absolute;left:0;top:12px;width:5px;height:5px;
+    border-radius:50%;background:var(--rose)}
+  .ex li::before{background:var(--euc)}
+
+  footer{text-align:center;margin-top:34px;padding-top:18px;border-top:1px solid var(--line)}
+  footer .fm{font-family:var(--serif);font-style:italic;font-size:14.5px;color:var(--rose-deep)}
+  footer .fs{font-size:11px;color:var(--ink-faint);margin-top:6px;letter-spacing:.04em}
+
+  /* sheet */
+  .scrim{position:fixed;inset:0;background:rgba(49,40,36,.34);opacity:0;
+    pointer-events:none;transition:.25s;z-index:20;backdrop-filter:blur(2px)}
+  .scrim.on{opacity:1;pointer-events:auto}
+  .sheet{position:fixed;left:0;right:0;bottom:0;z-index:21;max-width:520px;margin:0 auto;
+    background:var(--surface);border-radius:24px 24px 0 0;padding:8px 20px
+    calc(26px + env(safe-area-inset-bottom));transform:translateY(102%);
+    transition:transform .3s cubic-bezier(.3,.8,.3,1);box-shadow:var(--shadow-lg);
+    max-height:86vh;overflow-y:auto}
+  .sheet.on{transform:translateY(0)}
+  .grab{width:38px;height:4px;border-radius:99px;background:var(--line);margin:8px auto 16px}
+  .sheet .st{font-family:var(--serif);font-size:22px;font-weight:500;letter-spacing:-.01em}
+  .sheet .ss{font-size:13px;color:var(--ink-soft);margin-top:4px}
+  .blk{margin-top:18px}
+  .blk h4{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--rose-deep);font-weight:600;margin-bottom:7px}
+  .blk p{font-size:13.5px;line-height:1.6;color:var(--ink-soft)}
+  .blk p b{color:var(--ink)}
+  .callout{background:var(--euc-wash);border-radius:13px;padding:13px 15px;margin-top:6px}
+  .callout p{color:#4f5a48}
+  .swaps{list-style:none}
+  .swaps li{display:flex;justify-content:space-between;gap:12px;padding:9px 0;
+    border-bottom:1px solid var(--line-soft);font-size:13.5px}
+  .swaps li:last-child{border-bottom:0}
+  .swaps .nm{color:var(--ink)}
+  .swaps .rp{color:var(--ink-faint);font-weight:600;white-space:nowrap;font-size:12.5px}
+  .dobtn{margin-top:22px;width:100%;border:0;border-radius:14px;padding:15px;
+    font-family:var(--sans);font-size:14.5px;font-weight:600;cursor:pointer;
+    background:var(--ink);color:#fff;transition:.18s}
+  .dobtn.is-done{background:var(--euc-wash);color:var(--euc)}
+  .dobtn:active{transform:scale(.99)}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><span class="heart">&#10084;</span><h1>Love in Motion · Fuel</h1></div>
+  <div class="tag">Nourish · Foundation</div>
+  <div class="count">
+    <div class="n" id="cd">—</div>
+    <div class="lab" id="cdl">days to <b>Kuranda &rarr; Port Douglas</b><br>60&nbsp;km trail ultra · 23 Aug 2026</div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="weeks" id="days" role="tablist"></div>
+  <div class="plans" id="plans" role="tablist">
+    <button class="plan" data-p="A">Plan A<span>ideal</span></button>
+    <button class="plan" data-p="B">Plan B<span>busy</span></button>
+    <button class="plan" data-p="C">Plan C<span>hospital</span></button>
+  </div>
+</div>
+
+<div class="whead">
+  <div class="focus" id="focus"></div>
+  <div class="dates" id="dates"></div>
+  <div class="prog"><div class="bar"><i id="bar"></i></div><div class="pt" id="pt"></div></div>
+</div>
+
+<div class="list" id="list"></div>
+<div class="cnote" id="cnote"></div>
+
+<details class="notes">
+  <summary>Coach notes <span class="x">+</span></summary>
+  <div id="notesbody"></div>
+</details>
+
+<footer>
+  <div class="fm">Because Love Keeps Moving</div>
+  <div class="fs">in support of the McGrath Foundation</div>
+</footer>
+
+<div class="scrim" id="scrim"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true"><div class="grab"></div><div id="sheetbody"></div></div>
+
+<script>
+"use strict";
+
+/* ---------- safe storage (works offline as a file; never crashes) ---------- */
+var store=(function(){var mem={},ok=false;
+  try{localStorage.setItem('__t','1');localStorage.removeItem('__t');ok=true;}catch(e){ok=false;}
+  return{get:function(k){try{return ok?JSON.parse(localStorage.getItem(k)):mem[k];}catch(e){return mem[k];}},
+         set:function(k,v){try{ok?localStorage.setItem(k,JSON.stringify(v)):mem[k]=v;}catch(e){mem[k]=v;}}};})();
+
+/* ---------- shared guidance ---------- */
+var ENOUGH="The aim is enough, not less. If you've trained, slept badly, or carried a big caring load, your body needs more fuel - not a smaller plate. Skipping meals to save time or energy backfires: it flattens recovery, mood and sleep.";
+var WINDOW="Within 30-60 min of a long or hard effort, carbs + protein together. Chocolate milk is the cheap classic. Then a proper meal when you can.";
+
+/* card builders */
+function meal(t,s,detail,swaps){return{k:"meal",pill:"Meal",t:t,s:s,detail:detail,swaps:swaps};}
+function snack(t,s,detail){return{k:"snack",pill:"Snack",t:t,s:s,detail:detail};}
+function fuel(t,s,detail){return{k:"fuel",pill:"Fuel",t:t,s:s,detail:detail,onrun:true};}
+function recov(t,s,detail){return{k:"rcv",pill:"Recover",t:t,s:s,detail:detail};}
+
+/* ---------- day types × plans ---------- */
+var DAYS=[
+ {name:"Training day",sub:"easy run",line:"A normal day with an easy run. Carbs around the run, protein at every meal, and don't let long gaps open up.",
+  A:[
+    meal("Breakfast","Oats, milk, banana, peanut butter, a little honey","Slow-release carbs to run on, plus protein and fats to stay full. Make it as overnight oats the night before if mornings are rushed. Berries or chia if you have them."),
+    snack("Mid-morning","Greek yoghurt + nuts, or toast + avocado","A real snack between meals keeps blood sugar and mood steady through a working morning."),
+    meal("Lunch","Wholegrain wrap: eggs / tuna / chicken + plenty of salad","Build every lunch around a protein, a wholegrain carb and as much veg as fits. A piece of fruit alongside. Your biggest rebuild meal of the working day."),
+    snack("Afternoon","Crackers + cheese, or a fruit-and-yoghurt smoothie","Bridges the gap to dinner so you're not running on empty into the evening with a child to feed and a body to recover."),
+    meal("Dinner","Mince / chicken thigh / lentils + rice or potato + lots of veg","A generous, colourful plate. Carbs to refill, protein to repair, veg for everything else. Cook extra for tomorrow's lunch.")
+  ],
+  B:[
+    meal("Breakfast","Overnight oats, or toast + PB + banana","Zero-morning-effort fuel. Prep the oats when you do the dishes the night before."),
+    meal("Lunch","Leftovers, or a pre-made wrap + tinned fish on crackers","Lean on last night's dinner. A protein + a carb + whatever veg is easy. Done is better than perfect."),
+    snack("Afternoon","Fruit, trail mix, or yoghurt","Keep a stash at work and in the car. The snack within reach is the one that happens."),
+    meal("Dinner","Stir-fry or pasta: jar sauce + frozen veg + tinned beans or pre-cooked chicken","Pantry-and-freezer dinner, ten minutes, no fresh shopping. Frozen veg counts every bit as much.")
+  ],
+  C:[
+    snack("Graze all day","Bananas, muesli bars, trail mix, crackers, cheese, yoghurt pouches","This week the only goal is to keep eating. Pack a grab-bag so there's always something within reach at the hospital. Don't let long gaps open up."),
+    meal("Easy meals","Pre-made sandwiches, cafe meals, a milk-based drink","Bought food and cafe meals absolutely count. A flavoured milk or smoothie is an easy way to get carbs and protein in when appetite is low."),
+    meal("Hot meal when you can","A warm meal whenever the day allows - even late","Whenever there's a window, a hot, comforting meal does as much for your nervous system as your muscles. No rules about timing this week.")
+  ]},
+
+ {name:"Long day",sub:"90 min +",line:"Long run or back-to-back day. Fuelling is the session today - before, during, and the recovery window after.",
+  A:[
+    meal("Before","Carb breakfast 1.5-2 hr out: oats or toast + banana + honey","Top up the tank with easy carbs. The earlier the start, the smaller and simpler it can be - even just banana and toast. Nothing new or high-fibre before a long one."),
+    fuel("During the run","From ~60-90 min: something every 20-30 min","Once past about an hour, start fuelling: roughly 30-60g of carbs an hour - a banana, a few dates, a muesli bar or a gel. Sip water the whole way, with electrolytes added in the heat. This is rehearsal; your gut trains too."),
+    recov("Straight after","Within 30-60 min: carbs + protein","Chocolate milk, or yoghurt + fruit + granola, or eggs on toast. This window is where recovery starts."),
+    meal("Proper meal","A full meal within a couple of hours","Carbs + protein + veg, a generous serve. Long efforts need more total food across the whole day, not just the recovery snack."),
+    snack("Keep grazing","Top up through the afternoon","Appetite can lag after a long run while your body still needs fuel. Graze - fruit, nuts, yoghurt, leftovers - rather than waiting for big hunger.")
+  ],
+  B:[
+    meal("Before","Banana + toast, or overnight oats","Easy carbs in before you head out. Keep it familiar."),
+    fuel("During the run","~30-60g carbs/hr - banana, dates, a bar","Even on a full week, protect this: fuel from about an hour in, and sip water with electrolytes. Everything else today can be simple."),
+    recov("After","Chocolate milk or yoghurt + fruit","The one recovery thing worth protecting. Then a real meal whenever you can get to it."),
+    meal("Dinner","Whatever's easy + a decent serve of carbs and protein","Refill properly tonight, even if it's pantry food. You ran long today.")
+  ],
+  C:[
+    fuel("Keep it short & gentle","If you run at all: a run/walk, snacks + water in your pack","On a hospital week a long run is optional. If it happens, it's gentle and short, fuelled like a normal day. Time on feet, not distance. A walk counts."),
+    recov("After","A snack with carbs + protein","Something easy afterwards, then carry on with the day. No pressure to do more.")
+  ]},
+
+ {name:"Rest day",sub:"recover",line:"Recovery is built on the days you don't run. Eat well - don't shrink the plate because you didn't train.",
+  A:[
+    meal("Breakfast","Eggs on wholegrain toast + tomato or avocado, or oats","Rest days are when you rebuild. Protein here sets up tissue repair for the day. No need to eat less - recovery is fuelled."),
+    meal("Lunch","Big bowl: grains + protein + lots of veg + olive oil","Colour and protein. What you eat on the non-running days is what you recover on."),
+    snack("Afternoon","Fruit + nuts, or dark chocolate + almonds","Magnesium-rich foods - nuts, seeds, greens, dark chocolate - support sleep and a settled nervous system."),
+    meal("Dinner","Oily fish (salmon/sardines) + potato + greens, or lentil dahl","Omega-3s help recovery and mood. A warm dinner and an early, screen-light wind-down protects your sleep.")
+  ],
+  B:[
+    meal("Breakfast","Oats or eggs on toast","Simple and solid. Rebuild starts here."),
+    meal("Lunch","Leftovers + extra veg, or a hearty sandwich","Protein + carbs + something green. Easy."),
+    snack("Afternoon","Fruit + a handful of nuts","Steady energy into the evening."),
+    meal("Dinner","Something warm with protein + carbs + veg","Nourishing, not restrictive. You're recovering today.")
+  ],
+  C:[
+    snack("Eat gently, often","Easy foods whenever you can, across the day","Full rest. Keep eating little and often - fruit, yoghurt, crackers, nuts, a hot meal when there's a window. Fuel as self-care, not performance."),
+    meal("One warm meal","Whenever the day allows","A comforting, warm meal settles both body and nervous system. That's the whole job today.")
+  ]}
+];
+
+var EVENT=new Date(2026,7,23);
+
+/* ---------- state ---------- */
+var state={day:0,plan:store.get("limn_plan")||"A"};
+
+function doneKey(){return "limn_eaten_d"+state.day+"_"+state.plan;}
+function getDone(){return store.get(doneKey())||{};}
+function setDone(o){store.set(doneKey(),o);}
+
+/* ---------- render ---------- */
+function cards(){return DAYS[state.day][state.plan]||[];}
+
+function renderCount(){
+  var ms=EVENT-new Date();var d=Math.max(0,Math.ceil(ms/86400000));
+  document.getElementById("cd").textContent=d;
+  if(d===0)document.getElementById("cdl").innerHTML="<b>Today is the day</b><br>Kuranda &rarr; Port Douglas, 60 km";
+}
+function renderDays(){
+  var w=document.getElementById("days");w.innerHTML="";
+  DAYS.forEach(function(dy,i){
+    var b=document.createElement("button");
+    b.className="wk";b.setAttribute("aria-selected",i===state.day);
+    b.innerHTML=dy.name+"<span class='wd'>"+dy.sub+"</span>";
+    b.onclick=function(){state.day=i;render();};
+    w.appendChild(b);
+  });
+}
+function renderPlans(){
+  document.querySelectorAll(".plan").forEach(function(p){
+    p.setAttribute("aria-selected",p.dataset.p===state.plan);
+    p.onclick=function(){state.plan=p.dataset.p;store.set("limn_plan",state.plan);render();};
+  });
+}
+function renderHead(){
+  var dy=DAYS[state.day];
+  document.getElementById("focus").textContent=dy.name;
+  document.getElementById("dates").textContent=dy.line;
+  var cs=cards(),done=getDone();
+  var n=cs.length,c=0;for(var i=0;i<n;i++){if(done[i])c++;}
+  document.getElementById("bar").style.width=n?(c/n*100)+"%":"0%";
+  document.getElementById("pt").textContent=c+" of "+n+" in";
+}
+function pillClass(k){return k==="meal"?"meal":k==="fuel"?"fuel":k==="rcv"?"rcv":"snack";}
+function renderList(){
+  var list=document.getElementById("list");list.innerHTML="";
+  var cs=cards(),done=getDone();
+  cs.forEach(function(s,i){
+    var card=document.createElement("div");
+    card.className="card"+(done[i]?" done":"");
+    card.style.animationDelay=(i*55)+"ms";
+    card.innerHTML=
+      "<div class='check'><svg viewBox='0 0 24 24'><polyline points='4 12 10 18 20 6'/></svg></div>"+
+      "<div class='meta'><div class='t'>"+s.t+"</div><div class='s'>"+s.s+"</div></div>"+
+      "<span class='pill "+pillClass(s.k)+"'>"+s.pill+"</span>"+
+      "<span class='chev'>&rsaquo;</span>";
+    card.querySelector(".check").onclick=function(e){e.stopPropagation();toggle(i);};
+    card.onclick=function(){openSheet(i);};
+    list.appendChild(card);
+  });
+  var cn=document.getElementById("cnote"),hydr;
+  hydr=(state.day===1)
+    ? "Hydration matters most today: sip water all day, electrolytes on the run, aim for pale-straw urine."
+    : "Sip water across the day - pale-straw urine is your simple gauge.";
+  var lead;
+  if(getDone&&allIn())lead="Beautifully fuelled today. ";
+  else if(state.plan==="C")lead="This week, eating enough is the whole job. No targets, no guilt. ";
+  else if(state.plan==="B")lead="Simple food that gets in beats perfect food that doesn't. ";
+  else lead="";
+  cn.textContent=lead+hydr;
+}
+function allIn(){var cs=cards(),done=getDone();if(!cs.length)return false;for(var i=0;i<cs.length;i++){if(!done[i])return false;}return true;}
+function toggle(i){var d=getDone();d[i]=!d[i];setDone(d);renderHead();renderList();}
+
+/* ---------- sheet ---------- */
+function openSheet(i){
+  var s=cards()[i],done=getDone();
+  var h="<div class='st'>"+s.t+"</div><div class='ss'>"+s.s+"</div>";
+  h+="<div class='blk'><h4>Why &amp; how</h4><p>"+s.detail+"</p></div>";
+  if(s.onrun)h+="<div class='blk'><h4>On race day this is rehearsal</h4><div class='callout'><p>Practise this exact fuelling on every long run. North Queensland heat and humidity mean heavier sweat losses for K2PD - get used to drinking and eating on the move now, not on the day.</p></div></div>";
+  if(s.k==="rcv")h+="<div class='blk'><h4>The recovery window</h4><p>"+WINDOW+"</p></div>";
+  h+="<button class='dobtn"+(done[i]?" is-done":"")+"' id='dobtn'>"+(done[i]?"&#10003; In - tap to undo":"Mark as eaten")+"</button>";
+  document.getElementById("sheetbody").innerHTML=h;
+  document.getElementById("dobtn").onclick=function(){toggle(i);openSheet(i);};
+  document.getElementById("scrim").classList.add("on");
+  document.getElementById("sheet").classList.add("on");
+}
+function closeSheet(){document.getElementById("scrim").classList.remove("on");
+  document.getElementById("sheet").classList.remove("on");}
+document.getElementById("scrim").onclick=closeSheet;
+
+/* ---------- coach notes ---------- */
+function note(title,html){return "<details class='sub'><summary>"+title+"<span class='x'>&rsaquo;</span></summary><div class='body'>"+html+"</div></details>";}
+document.getElementById("notesbody").innerHTML=
+ note("Eat enough - the real risk","<p>"+ENOUGH+"</p><p>For a working, parenting, caregiving athlete the danger is almost never overeating - it's quietly under-fuelling around a packed life. <b>If you trained, you need more, not less.</b></p>")+
+ note("Hydration &amp; electrolytes","<ul><li>Water steadily through the day, not all at once.</li><li>On long or hot efforts, add electrolytes - sodium especially - to your bottle.</li><li><b>Pale-straw urine</b> is your simple gauge; dark means drink more.</li><li>K2PD is humid - practise drinking on every long run so race day is nothing new.</li></ul>")+
+ note("Recovery nutrition","<p>"+WINDOW+"</p><p>It doesn't need to be fancy or expensive. Flavoured milk, a tub of yoghurt with fruit, or eggs on toast all do the job.</p>")+
+ note("Nervous system &amp; hormones","<ul><li>Regular meals steady blood sugar, mood and energy - the foundation of a settled nervous system.</li><li>Protein + slow carbs + healthy fats at each meal.</li><li>Omega-3s (oily fish, walnuts, flax) and magnesium (greens, nuts, seeds, dark chocolate) support recovery and sleep.</li><li>Go easy on caffeine late in the day to protect sleep - your most powerful recovery tool.</li></ul>")+
+ note("Iron - worth watching","<p>Endurance training plus menstruation raises iron needs. Include red meat, legumes and leafy greens, paired with vitamin C (capsicum, citrus, tomato) to absorb it.</p><p>If you're persistently flat, breathless or heavy-legged, ask your GP for a <b>ferritin check</b> - low iron is common and very fixable.</p>")+
+ note("Make it easy on yourself","<ul><li>Cook once, eat twice - always make extra dinner for lunch.</li><li>On a good week, prep for the hard one: a tub of cooked grains, a tray of roast veg, boiled eggs, pre-portioned trail mix.</li><li>Overnight oats remove all morning decisions.</li><li>Keep a grab-bag of snacks in the car and your work bag. Future-you is grateful.</li></ul>")+
+ note("On the horizon - the 415 km","<p>For the Love in Motion run from Attunga to Sydney, fuelling becomes the engine: frequent eating on the move, real food plus sports food, crew-cooked hot meals, and proper recovery each night.</p><p>We'll build a full <b>crew food list, daily fuelling plan and recovery routine</b> closer to the time - once K2PD is behind you. For now, every long run is quietly teaching your gut what it'll need then.</p>");
+
+/* ---------- go ---------- */
+function render(){renderDays();renderPlans();renderHead();renderList();}
+renderCount();render();
+</script>
+</body>
+</html>

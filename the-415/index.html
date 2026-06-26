@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f7f1ea">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="The 415">
+<title>Love in Motion — The 415</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<style>
+  :root{
+    --cream:#f7f1ea; --cream-2:#f1e8dd; --surface:#fffdfb;
+    --ink:#312824; --ink-soft:#6d5f57; --ink-faint:#9c8d83;
+    --rose:#b9536a; --rose-deep:#8f3a50; --rose-wash:#f4e3e4;
+    --euc:#74866d; --euc-wash:#e7ecdf;
+    --lilac-wash:#efe2ea;
+    --line:#e8ddd0; --line-soft:#efe6da;
+    --shadow:0 1px 2px rgba(49,40,36,.04),0 8px 24px rgba(49,40,36,.06);
+    --shadow-lg:0 10px 40px rgba(49,40,36,.16);
+    --serif:'Fraunces',Georgia,'Iowan Old Style',serif;
+    --sans:'Hanken Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--cream);color:var(--ink);font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  body{max-width:520px;margin:0 auto;min-height:100vh;
+    background:
+      radial-gradient(120% 60% at 100% 0%, var(--cream-2) 0%, transparent 60%),
+      var(--cream);
+    padding:0 18px calc(88px + env(safe-area-inset-bottom));position:relative}
+  ::selection{background:var(--rose-wash)}
+  a{color:inherit;text-decoration:none}
+
+  header{padding:30px 4px 14px;position:sticky;top:0;z-index:5;
+    background:linear-gradient(var(--cream) 72%, transparent);}
+  .back{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;
+    color:var(--ink-faint);margin-bottom:12px}
+  .back .a{font-size:16px;line-height:1}
+  .brand{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+  .brand h1{font-family:var(--serif);font-weight:500;font-size:25px;
+    letter-spacing:-.01em;line-height:1}
+  .brand .heart{color:var(--rose);font-size:20px;transform:translateY(1px)}
+  .tag{font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:7px;font-weight:500}
+
+  .count{margin-top:16px;background:var(--surface);border:1px solid var(--line);
+    border-radius:16px;padding:15px 17px;display:flex;align-items:center;
+    gap:14px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .count::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;
+    background:linear-gradient(var(--rose),var(--euc))}
+  .count .n{font-family:var(--serif);font-size:34px;font-weight:600;
+    color:var(--rose-deep);line-height:.9;font-variant-numeric:tabular-nums}
+  .count .lab{font-size:12.5px;color:var(--ink-soft);line-height:1.35}
+  .count .lab b{color:var(--ink);font-weight:600}
+
+  /* facts strip */
+  .facts{margin-top:12px;display:flex;gap:8px}
+  .fact{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:13px;
+    padding:11px 10px;text-align:center;box-shadow:var(--shadow)}
+  .fact .fn{font-family:var(--serif);font-size:19px;font-weight:600;color:var(--rose-deep);
+    line-height:1}
+  .fact .fl{font-size:10px;color:var(--ink-faint);margin-top:4px;letter-spacing:.03em;
+    text-transform:uppercase;font-weight:600}
+
+  .controls{margin-top:20px}
+  .weeks{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;
+    scrollbar-width:none;-ms-overflow-style:none}
+  .weeks::-webkit-scrollbar{display:none}
+  .wk{flex:0 0 auto;border:1px solid var(--line);background:var(--surface);
+    border-radius:11px;padding:9px 13px;font-size:13px;font-weight:600;
+    color:var(--ink-soft);cursor:pointer;transition:.18s;white-space:nowrap;text-align:center}
+  .wk .wd{display:block;font-size:10px;font-weight:500;color:var(--ink-faint);
+    margin-top:2px;letter-spacing:.02em}
+  .wk[aria-selected="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .wk[aria-selected="true"] .wd{color:rgba(255,255,255,.6)}
+
+  .plans{display:flex;gap:5px;margin-top:14px;background:var(--cream-2);
+    border-radius:13px;padding:4px}
+  .plan{flex:1;border:0;background:transparent;border-radius:10px;padding:9px 6px;
+    cursor:pointer;font-family:var(--sans);font-size:12.5px;font-weight:600;
+    color:var(--ink-soft);transition:.18s;text-align:center}
+  .plan span{display:block;font-size:10px;font-weight:500;color:var(--ink-faint);margin-top:1px}
+  .plan[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+  .plan[aria-selected="true"] span{color:var(--rose-deep)}
+
+  .whead{margin:24px 2px 4px}
+  .whead .focus{font-family:var(--serif);font-size:21px;font-weight:500;letter-spacing:-.01em}
+  .whead .dates{font-size:12.5px;color:var(--ink-faint);margin-top:3px;letter-spacing:.02em;line-height:1.5}
+
+  .list{margin-top:16px;display:flex;flex-direction:column;gap:10px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:15px;
+    padding:14px 15px;display:flex;align-items:center;gap:13px;cursor:pointer;
+    box-shadow:var(--shadow);transition:.16s;
+    animation:rise .5s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes rise{from{opacity:0;transform:translateY(9px)}}
+  .card:active{transform:scale(.985)}
+  .meta{flex:1;min-width:0}
+  .meta .t{font-size:14.5px;font-weight:600;letter-spacing:-.01em}
+  .meta .s{font-size:12.5px;color:var(--ink-soft);margin-top:2px;line-height:1.4}
+  .pill{flex:0 0 auto;font-size:9.5px;font-weight:600;letter-spacing:.08em;
+    text-transform:uppercase;padding:4px 8px;border-radius:99px}
+  .pill.vol{background:var(--euc-wash);color:var(--euc)}
+  .pill.key{background:var(--rose-wash);color:var(--rose-deep)}
+  .pill.qual{background:var(--lilac-wash);color:var(--rose-deep)}
+  .pill.str{background:var(--cream-2);color:var(--ink-soft)}
+  .pill.rest{background:var(--cream-2);color:var(--ink-faint)}
+  .pill.fuel{background:var(--rose-wash);color:var(--rose-deep)}
+  .pill.meal{background:var(--euc-wash);color:var(--euc)}
+  .pill.rcv{background:var(--lilac-wash);color:var(--rose-deep)}
+  .pill.hyd{background:var(--euc-wash);color:var(--euc)}
+  .chev{flex:0 0 auto;color:var(--ink-faint);font-size:18px;line-height:1}
+
+  .cnote{margin-top:13px;font-size:12px;color:var(--ink-faint);text-align:center;
+    line-height:1.5;padding:0 10px}
+
+  .notes{margin-top:30px;border-top:1px solid var(--line);padding-top:8px}
+  .notes>summary{font-family:var(--serif);font-size:17px;font-weight:500;
+    padding:14px 2px;cursor:pointer;list-style:none;display:flex;
+    align-items:center;justify-content:space-between}
+  .notes>summary::-webkit-details-marker{display:none}
+  .notes>summary .x{color:var(--ink-faint);font-size:20px;transition:.2s}
+  .notes[open]>summary .x{transform:rotate(45deg)}
+  details.sub{border:1px solid var(--line);border-radius:13px;background:var(--surface);
+    margin-bottom:9px;overflow:hidden}
+  details.sub>summary{padding:13px 15px;cursor:pointer;font-size:13.5px;font-weight:600;
+    list-style:none;display:flex;align-items:center;justify-content:space-between}
+  details.sub>summary::-webkit-details-marker{display:none}
+  details.sub>summary .x{color:var(--ink-faint);transition:.2s}
+  details.sub[open]>summary .x{transform:rotate(90deg)}
+  details.sub[open]>summary{border-bottom:1px solid var(--line-soft)}
+  .body{padding:13px 15px;font-size:13px;line-height:1.62;color:var(--ink-soft)}
+  .body p+p{margin-top:9px}
+  .body b{color:var(--ink);font-weight:600}
+  .body ul{list-style:none;margin-top:4px}
+  .body li{padding:5px 0 5px 17px;position:relative}
+  .body li::before{content:"";position:absolute;left:0;top:12px;width:5px;height:5px;
+    border-radius:50%;background:var(--rose)}
+
+  footer{text-align:center;margin-top:34px;padding-top:18px;border-top:1px solid var(--line)}
+  footer .fm{font-family:var(--serif);font-style:italic;font-size:14.5px;color:var(--rose-deep)}
+  footer .fs{font-size:11px;color:var(--ink-faint);margin-top:6px;letter-spacing:.04em}
+
+  .scrim{position:fixed;inset:0;background:rgba(49,40,36,.34);opacity:0;
+    pointer-events:none;transition:.25s;z-index:20;backdrop-filter:blur(2px)}
+  .scrim.on{opacity:1;pointer-events:auto}
+  .sheet{position:fixed;left:0;right:0;bottom:0;z-index:21;max-width:520px;margin:0 auto;
+    background:var(--surface);border-radius:24px 24px 0 0;padding:8px 20px
+    calc(26px + env(safe-area-inset-bottom));transform:translateY(102%);
+    transition:transform .3s cubic-bezier(.3,.8,.3,1);box-shadow:var(--shadow-lg);
+    max-height:86vh;overflow-y:auto}
+  .sheet.on{transform:translateY(0)}
+  .grab{width:38px;height:4px;border-radius:99px;background:var(--line);margin:8px auto 16px}
+  .sheet .st{font-family:var(--serif);font-size:22px;font-weight:500;letter-spacing:-.01em}
+  .sheet .ss{font-size:13px;color:var(--ink-soft);margin-top:4px}
+  .blk{margin-top:18px}
+  .blk h4{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--rose-deep);font-weight:600;margin-bottom:7px}
+  .blk p{font-size:13.5px;line-height:1.6;color:var(--ink-soft)}
+  .blk p b{color:var(--ink)}
+  .callout{background:var(--euc-wash);border-radius:13px;padding:13px 15px;margin-top:6px}
+  .callout p{color:#4f5a48}
+
+  /* bottom tab bar */
+  .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:15;max-width:520px;margin:0 auto;
+    display:flex;gap:2px;background:rgba(255,253,251,.92);
+    -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+    border-top:1px solid var(--line);padding:7px 6px calc(7px + env(safe-area-inset-bottom))}
+  .tabbar .tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
+    text-decoration:none;color:var(--ink-faint);font-size:10px;font-weight:600;
+    letter-spacing:.02em;padding:5px 2px;border-radius:11px;transition:.15s}
+  .tabbar .tab .ic{font-size:18px;line-height:1}
+  .tabbar .tab:active{background:var(--cream-2)}
+  .tabbar .tab[aria-current="page"]{color:var(--rose-deep)}
+</style>
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html"><span class="a">&lsaquo;</span> Love in Motion</a>
+  <div class="brand"><span class="heart">&#10084;</span><h1>Love in Motion · The 415</h1></div>
+  <div class="tag">The Goal · Attunga &rarr; Sydney</div>
+  <div class="count">
+    <div class="n" id="cd">—</div>
+    <div class="lab" id="cdl">days to <b>The Love in Motion Run</b><br>Attunga &rarr; Sydney · 26 Dec 2026</div>
+  </div>
+  <div class="facts">
+    <div class="fact"><div class="fn">415</div><div class="fl">km</div></div>
+    <div class="fact"><div class="fn">Multi&#8209;day</div><div class="fl">stage run</div></div>
+    <div class="fact"><div class="fn">Summer</div><div class="fl">peak heat</div></div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="weeks" id="phases" role="tablist"></div>
+  <div class="plans" id="plans" role="tablist">
+    <button class="plan" data-p="Train">Train<span>sessions</span></button>
+    <button class="plan" data-p="Fuel">Fuel<span>food &amp; crew</span></button>
+  </div>
+</div>
+
+<div class="whead">
+  <div class="focus" id="focus"></div>
+  <div class="dates" id="dates"></div>
+</div>
+
+<div class="list" id="list"></div>
+<div class="cnote" id="cnote"></div>
+
+<details class="notes">
+  <summary>Campaign notes <span class="x">+</span></summary>
+  <div id="notesbody"></div>
+</details>
+
+<footer>
+  <div class="fm">Because Love Keeps Moving</div>
+  <div class="fs">in support of the McGrath Foundation</div>
+</footer>
+
+<div class="scrim" id="scrim"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true"><div class="grab"></div><div id="sheetbody"></div></div>
+
+<nav class="tabbar" aria-label="Sections">
+  <a class="tab" href="../index.html"><span class="ic">&#127968;</span>Home</a>
+  <a class="tab" href="../nutrition-meal-planner/index.html"><span class="ic">&#127869;</span>Fuel</a>
+  <a class="tab" href="../training/index.html"><span class="ic">&#128694;</span>Train</a>
+  <a class="tab" href="index.html" aria-current="page"><span class="ic">&#127937;</span>The 415</a>
+  <a class="tab" href="../donate/index.html"><span class="ic">&#129655;</span>Donate</a>
+</nav>
+
+<script>
+"use strict";
+
+var store=(function(){var mem={},ok=false;
+  try{localStorage.setItem('__t','1');localStorage.removeItem('__t');ok=true;}catch(e){ok=false;}
+  return{get:function(k){try{return ok?JSON.parse(localStorage.getItem(k)):mem[k];}catch(e){return mem[k];}},
+         set:function(k,v){try{ok?localStorage.setItem(k,JSON.stringify(v)):mem[k]=v;}catch(e){mem[k]=v;}}};})();
+
+/* card builders: kind drives the pill colour/label */
+function C(k,pill,t,s,detail,extra){return{k:k,pill:pill,t:t,s:s,detail:detail,extra:extra};}
+
+var BTB="Back-to-back days are the whole event in miniature. Running again on tired, sore legs &mdash; fuelled and recovered enough to do it once more tomorrow &mdash; is the single most specific adaptation for a multi-day run. Everything in the plan builds toward repeating the day.";
+var HEAT="The 26th of December is peak Australian summer. Heat is the biggest risk to the whole run, so it shapes everything: start at first light, cover distance before mid-morning, rest through the worst of the afternoon, and drink and salt relentlessly. Effort &mdash; not pace &mdash; is the only honest gauge in the heat.";
+
+var PHASES=[
+ {name:"Base",sub:"months out",line:"Build a deep aerobic engine and a body that can absorb load day after day. Mostly easy running, volume rising gradually, and real strength work.",
+  Train:[
+   C("vol","Volume","Easy aerobic base","5–6 easy runs a week, weekly distance rising gradually","Almost all of it conversational and unhurried. The size of your aerobic base is what carries you across multiple days &mdash; build it patiently and avoid the temptation to run the easy days hard."),
+   C("key","Key day","First back-to-backs","Two moderate runs on consecutive days, most weekends","Plant the seed of the event now: a longer run, then another run the next morning on slightly tired legs. Keep both easy. This is the habit the whole campaign grows from."),
+   C("str","Strength","Strength 2× a week","Squats, lunges, single-leg, calves, core","Durability is injury insurance over hundreds of kilometres. Strong hips, glutes and calves keep your form together when fatigue sets in. Bodyweight is plenty; consistency matters more than load."),
+   C("rest","Rest","Recovery weeks","Every 3rd–4th week, pull the volume back","You absorb training while you recover, not while you run. Down weeks are where the fitness actually lands &mdash; and they protect you from the overuse injuries that end big campaigns.")
+  ],
+  Fuel:[
+   C("meal","Fuel to train","Eat enough, every day","Carbs around runs, protein at every meal, no under-fuelling","Rising volume needs rising food. The danger across a big build is quietly eating too little &mdash; it flattens recovery, mood and immunity. If you trained, you need more, not less."),
+   C("fuel","Practise","Train your gut now","Eat on every run over ~60 min","Your stomach is as trainable as your legs. Start taking carbs on longer runs &mdash; real food, chews, gels &mdash; so that eating on the move is second nature long before the road to Sydney."),
+   C("hyd","Hydrate","Learn your sweat & salt","Drink to thirst-plus; note how salty you run","Everyone sweats and salts differently. Use the base months to learn yours &mdash; how much you drink, how much sodium you need &mdash; so summer race-week is dialled, not guesswork.")
+  ]},
+
+ {name:"Back-to-back",sub:"engine room",line:"Consecutive long days are the most specific training you can do. Teach the body to run again on tired legs, fuelled and recovered, again and again.",
+  Train:[
+   C("key","Key day","Weekend back-to-backs","Long run one day, run again the next on tired legs","The cornerstone. The second day is the point: cumulative fatigue is what you're training. Keep both easy, walk hills early, and treat day two as the real lesson."),
+   C("vol","Volume","Lift time on feet","Add some midweek doubles &mdash; two shorter runs in a day","Splitting a day into two runs mimics the road rhythm and racks up time on feet without one crushing session. Time on feet beats pace every time here."),
+   C("qual","Hills","Strength-endurance","Rolling terrain and gentle hills, easy effort","Road running has camber and climbs. Regular undulating routes build the muscular endurance that keeps you moving late on each stage &mdash; no need for hard speedwork."),
+   C("str","Strength","Keep strength ticking","Lighter, but don't drop it","Maintain the strength base through the volume so the body stays resilient. Single-leg work and core are the priorities now.")
+  ],
+  Fuel:[
+   C("fuel","Fuel","Fuel every long day","30–60g carbs an hour, real food + sports food","Rehearse exactly what you'll eat on the road: a rotation of real food and sports food so nothing turns your stomach by hour five. Practise it on every back-to-back."),
+   C("rcv","Recover","Refuel to repeat","Carbs + protein within the hour, then a full meal","The day-two run is only as good as day-one's recovery. Get carbs and protein in straight after, then eat a proper dinner. This is the habit that makes multi-day possible."),
+   C("meal","Meal","Bigger total intake","More food across the whole day, every day","Multi-day running runs a constant deficit. You can't fully fill it, but you protect yourself by eating generously and often &mdash; three meals plus grazing, not three meals alone."),
+   C("hyd","Hydrate","Rehydrate nightly","Replace fluid and sodium each evening","Turn up to tomorrow already topped up. Salty food, electrolytes and steady drinking in the evening set up the next day's hydration before you even start.")
+  ]},
+
+ {name:"Peak",sub:"dress rehearsal",line:"Your biggest block &mdash; a mini version of the event. Several back-to-back days with the real kit, fuel, heat and crew routine. After this, the hard work is behind you.",
+  Train:[
+   C("key","Key day","Multi-day block","3–5 consecutive run days near your goal daily distance","The closest you'll get to the real thing. Run day after day with everything you'll use on the road. Finishing this block is the biggest confidence you can bank."),
+   C("vol","Volume","Run/walk strategy","Lock in the run/walk ratio you'll use to Sydney","Find the rhythm that lets you repeat days &mdash; e.g. run a set time, walk a set time, from kilometre one. Practise it under fatigue so it's automatic on the road."),
+   C("rest","Rest","Then truly absorb","A genuine down week after the block","After the peak block, back right off. The adaptation happens in the recovery &mdash; arrive at the taper healthy, not hammered.")
+  ],
+  Fuel:[
+   C("fuel","Fuel","Full event fuelling","The exact foods, timing and bottles you'll use","Treat the peak block as a fuelling dress rehearsal: same breakfast, same on-the-move foods, same electrolyte mix. Find what works while there's still time to change it."),
+   C("meal","Meal","Crew-cooked meals","Rehearse hot meals cooked on the road","Practise the camp kitchen: what the crew can cook quickly, what you actually want to eat after a hot stage, and how fast you can get a real meal in after finishing."),
+   C("rcv","Recover","Dial the evening routine","The exact sequence that lets you back up tomorrow","Refuel &rarr; rehydrate &rarr; feet &amp; legs care &rarr; dinner &rarr; sleep. Rehearse it as a fixed routine so on the road it runs on autopilot when you're exhausted.")
+  ]},
+
+ {name:"Taper",sub:"final 2–3 wks",line:"Drop the volume, keep the frequency. Heal niggles, bank sleep, finalise logistics. You can't gain fitness now &mdash; only arrive fresh, healthy and ready.",
+  Train:[
+   C("vol","Volume","Cut the volume","Reduce weekly distance, keep the legs ticking with easy runs","Trust the work. Shorter, easy runs keep you loose without adding fatigue. Restlessness is normal and means the taper is working."),
+   C("qual","Sharpen","Stay loose","A little goal-effort running to stay sharp","Brief touches of race effort keep the legs awake. Keep it short &mdash; the goal is freshness, not proving anything."),
+   C("rest","Heal","Heal & sleep","Fix small niggles now; bank sleep","Recovery is the session. Sort any niggle before the start line, and stockpile sleep &mdash; it's the most powerful tool you have for the days ahead.")
+  ],
+  Fuel:[
+   C("meal","Meal","Top up the tank","Eat well; fill glycogen in the final days; nothing new","Arrive fuelled. Steady, familiar carbs in the last days top up your stores. Don't try any new foods this close to the start."),
+   C("hyd","Hydrate","Pre-hydrate for summer","Arrive well hydrated and salted","Walk to the start line already topped up on fluid and sodium &mdash; you'll be chasing it from day one in the heat, so start ahead."),
+   C("rcv","Feet","Prep your feet & skin","Toughen feet, sort the blister & chafe kit","Feet win or lose a multi-day run. Condition them, choose proven shoes and socks, and pack a serious foot-care and anti-chafe kit. Test everything &mdash; nothing new on the road.")
+  ]},
+
+ {name:"On the road",sub:"the 415 km",line:"The daily rhythm, repeated to Sydney. Start before dawn to beat the heat, run/walk to a plan, eat and drink on the move, mind your feet, and let the crew carry the logistics.",
+  Train:[
+   C("key","Key day","Run/walk to a plan","Hold your ratio from kilometre one","Discipline early is what saves the back half. Walk from the start on your plan even when you feel fresh &mdash; managing effort on day one is what lets day nine happen."),
+   C("vol","Volume","Start at first light","Cover distance before the heat; split the day if needed","Get the bulk of each stage done in the cool of the morning. On the hottest days, break the distance into an early session and a late-afternoon one, resting through the peak."),
+   C("rest","Rest","Mid-day shade & care","Rest through peak heat; nap, cool, reset","The middle of the day is for surviving, not pushing. Find shade, cool the body, get your feet up, eat, and nap if you can. The afternoon you save is the next morning you gain."),
+   C("str","Feet","Feet at every stop","Check feet each break; tape hot spots before they blister","Treat foot care as part of the run, not an afterthought. Sort hot spots the moment you feel them, change socks, dry and re-lube. A small fix now prevents a run-ending blister later.")
+  ],
+  Fuel:[
+   C("fuel","Fuel","Eat every 30–45 min","Steady carbs on the move from the start","Don't wait to feel empty &mdash; by then it's too late. A small, constant drip of carbs (real food plus gels/chews) keeps you moving. Variety stops flavour fatigue over long days."),
+   C("hyd","Hydrate","Drink to a schedule","Fresh bottle every stop; electrolytes all day","In summer heat, drink on a schedule, not on thirst. Electrolytes &mdash; sodium especially &mdash; go in all day. The crew keeps cold bottles coming at every meeting point."),
+   C("meal","Meal","Hot lunch & dinner","Proper crew-cooked meals to refill the deficit","Real meals do what gels can't. A hot lunch at the mid-day break and a generous dinner each night claw back the daily deficit and feed your head as much as your legs."),
+   C("rcv","Recover","Recover for tomorrow","Straight after each stage: carbs + protein, legs up","The moment you stop, the next day begins. Get carbs and protein in within the window, elevate the legs, start rehydrating, then move into the evening routine. Recovery is the real race.")
+  ]},
+
+ {name:"Recovery",sub:"nightly + after",line:"The run is won overnight. Every evening resets you for tomorrow; the days and weeks after the finish let your body absorb an enormous effort.",
+  Train:[
+   C("rest","Rest","Sleep is the engine","Protect 8+ hours however you can","On a multi-day run, sleep is non-negotiable &mdash; it's where the body rebuilds enough to run again. Guard it fiercely: quiet, dark, cool, and early."),
+   C("vol","Reset","Ease back afterwards","Walks and easy movement in the weeks after Sydney","Don't rush back. Gentle movement helps you recover from a huge effort; real training can wait. Let the body and mind come down slowly.")
+  ],
+  Fuel:[
+   C("rcv","Recover","The nightly routine","Refuel, rehydrate, protein before bed, legs elevated","Run the same sequence every night: top up carbs and fluid, a protein-rich dinner, elevate the legs, and an early night. Boring and repeatable is exactly the point."),
+   C("meal","Meal","Eat generously after","Keep eating well for weeks after the finish","Recovery appetite often lags while the body still needs fuel to repair. Keep eating nourishing meals after Sydney &mdash; rebuilding from 415 km takes far longer than the run itself."),
+   C("hyd","Hydrate","Rehydrate over days","Replace the deficit gradually, with salt","You finish each day, and the whole run, in fluid debt. Rehydrate steadily over days &mdash; water plus sodium and food &mdash; rather than forcing it all at once.")
+  ]}
+];
+
+var EVENT=new Date(2026,11,26);
+
+var state={ph:0,lens:store.get("limn415_lens")||"Train"};
+
+function cards(){return PHASES[state.ph][state.lens]||[];}
+
+function renderCount(){
+  var ms=EVENT-new Date();var d=Math.max(0,Math.ceil(ms/86400000));
+  document.getElementById("cd").textContent=d;
+  if(d===0)document.getElementById("cdl").innerHTML="<b>Today is the day</b><br>The Love in Motion Run begins";
+}
+function renderPhases(){
+  var w=document.getElementById("phases");w.innerHTML="";
+  PHASES.forEach(function(p,i){
+    var b=document.createElement("button");
+    b.className="wk";b.setAttribute("aria-selected",i===state.ph);
+    b.innerHTML=p.name+"<span class='wd'>"+p.sub+"</span>";
+    b.onclick=function(){state.ph=i;render();};
+    w.appendChild(b);
+  });
+}
+function renderPlans(){
+  document.querySelectorAll(".plan").forEach(function(p){
+    p.setAttribute("aria-selected",p.dataset.p===state.lens);
+    p.onclick=function(){state.lens=p.dataset.p;store.set("limn415_lens",state.lens);render();};
+  });
+}
+function renderHead(){
+  var p=PHASES[state.ph];
+  document.getElementById("focus").textContent=p.name+(state.lens==="Fuel"?" · fuel & crew":" · training");
+  document.getElementById("dates").textContent=p.line;
+}
+function renderList(){
+  var list=document.getElementById("list");list.innerHTML="";
+  var cs=cards();
+  cs.forEach(function(s,i){
+    var card=document.createElement("div");
+    card.className="card";
+    card.style.animationDelay=(i*55)+"ms";
+    card.innerHTML=
+      "<div class='meta'><div class='t'>"+s.t+"</div><div class='s'>"+s.s+"</div></div>"+
+      "<span class='pill "+s.k+"'>"+s.pill+"</span>"+
+      "<span class='chev'>&rsaquo;</span>";
+    card.onclick=function(){openSheet(i);};
+    list.appendChild(card);
+  });
+  document.getElementById("cnote").textContent =
+    state.lens==="Fuel"
+      ? "On a multi-day run, fuelling and recovery are the engine. Eat early, eat often, recover hard."
+      : "Time on feet over pace, and the discipline to repeat the day. Back-to-backs are the whole game.";
+}
+
+function openSheet(i){
+  var s=cards()[i];
+  var h="<div class='st'>"+s.t+"</div><div class='ss'>"+s.s+"</div>";
+  h+="<div class='blk'><h4>Why &amp; how</h4><p>"+s.detail+"</p></div>";
+  if(s.k==="key")h+="<div class='blk'><h4>Back-to-back is the event</h4><div class='callout'><p>"+BTB+"</p></div></div>";
+  if(state.ph===4)h+="<div class='blk'><h4>Heat is the real challenge</h4><div class='callout'><p>"+HEAT+"</p></div></div>";
+  if(s.k==="fuel"||s.k==="rcv")h+="<div class='blk'><h4>Pairs with the Fuel plan</h4><p>The day-to-day fuelling principles &mdash; recovery window, hydration, eating enough &mdash; are in the <a href='../nutrition-meal-planner/index.html' style='color:var(--rose-deep);font-weight:600'>Fuel</a> section. This is the same thinking, scaled to the road.</p></div>";
+  document.getElementById("sheetbody").innerHTML=h;
+  document.getElementById("scrim").classList.add("on");
+  document.getElementById("sheet").classList.add("on");
+}
+function closeSheet(){document.getElementById("scrim").classList.remove("on");
+  document.getElementById("sheet").classList.remove("on");}
+document.getElementById("scrim").onclick=closeSheet;
+
+function note(title,html){return "<details class='sub'><summary>"+title+"<span class='x'>&rsaquo;</span></summary><div class='body'>"+html+"</div></details>";}
+document.getElementById("notesbody").innerHTML=
+ note("Why back-to-backs win it","<p>"+BTB+"</p><ul><li>Train the second and third day, not just the long run.</li><li>Keep every day easy &mdash; pace is the enemy of repeatability.</li><li>Recovery and fuelling are part of the training, not extras.</li></ul>")+
+ note("Heat &amp; summer survival","<p>"+HEAT+"</p><ul><li>Start before dawn; bank distance before mid-morning.</li><li>Rest in shade through the hottest hours; split stages if needed.</li><li>Electrolytes &mdash; sodium especially &mdash; all day, every day.</li><li>Cool actively: cold water, ice, wet cloth on neck and wrists.</li><li>Know the warning signs of heat illness and stop early if they appear.</li></ul>")+
+ note("Feet, skin &amp; chafing","<ul><li>Proven shoes and socks &mdash; nothing new on the road.</li><li>Lube everywhere that rubs; reapply often in the heat.</li><li>Treat hot spots the instant you feel them, before they blister.</li><li>Change socks and dry feet at breaks; carry a real foot-care kit.</li><li>Spare shoes a half-size up for swelling later in the run.</li></ul>")+
+ note("Your crew &amp; logistics","<p>A multi-day run is a team effort &mdash; the crew is your aid station, kitchen and safety net.</p><ul><li>Support vehicle meeting you at set points with cold drinks, food and kit.</li><li>Daily plan: stage distances, meeting points, water, weather, accommodation.</li><li>Road safety: hi-vis, lights, a planned route and traffic awareness.</li><li>Camp kitchen: quick hot meals and a recovery spread each night.</li><li>A simple daily checklist so nothing is forgotten when everyone's tired.</li></ul>")+
+ note("Fuelling on the move","<ul><li>Aim ~30–60g of carbs an hour, from the first hour.</li><li>Mix real food with sports food so your gut and tastebuds last.</li><li>Drink to a schedule in the heat, with electrolytes.</li><li>Hot crew-cooked meals at the mid-day break and each night.</li><li>Rehearse all of it in the peak block &mdash; nothing new on the road.</li></ul>")+
+ note("Mind &amp; morale","<ul><li>Break each day into chunks &mdash; aid point to aid point, not Sydney.</li><li>Low patches pass; eat, drink, cool down and keep moving gently.</li><li>Lean on the crew and the reason you're running when it's hard.</li><li>Celebrate finishing each stage &mdash; momentum is built daily.</li></ul>")+
+ note("Build it safely","<p>A 415&nbsp;km run is a serious undertaking. Plan it with experienced people: a coach for the training build, medical guidance for heat and load, and proper route, permit and road-safety planning.</p><p>This guide is the shape of the campaign &mdash; the detail gets tailored to you, your crew and the course as the day gets closer.</p>");
+
+function render(){renderPhases();renderPlans();renderHead();renderList();}
+renderCount();render();
+</script>
+</body>
+</html>

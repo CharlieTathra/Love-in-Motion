@@ -200,7 +200,7 @@
   <div class="tag">Nourish · Foundation</div>
   <div class="count">
     <div class="n" id="cd">—</div>
-    <div class="lab" id="cdl">days to <b>Kuranda &rarr; Port Douglas</b><br>60&nbsp;km trail ultra · 23 Aug 2026</div>
+    <div class="lab" id="cdl">days to <b>The Love in Motion Run</b><br>Boxing Day · 26 Dec 2026</div>
   </div>
 </header>
 
@@ -321,7 +321,7 @@ var DAYS=[
   ]}
 ];
 
-var EVENT=new Date(2026,7,23);
+var EVENT=new Date(2026,11,26);
 
 /* ---------- state ---------- */
 var state={day:0,plan:store.get("limn_plan")||"A"};
@@ -336,7 +336,7 @@ function cards(){return DAYS[state.day][state.plan]||[];}
 function renderCount(){
   var ms=EVENT-new Date();var d=Math.max(0,Math.ceil(ms/86400000));
   document.getElementById("cd").textContent=d;
-  if(d===0)document.getElementById("cdl").innerHTML="<b>Today is the day</b><br>Kuranda &rarr; Port Douglas, 60 km";
+  if(d===0)document.getElementById("cdl").innerHTML="<b>Today is the day</b><br>The Love in Motion Run";
 }
 function renderDays(){
   var w=document.getElementById("days");w.innerHTML="";

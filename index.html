@@ -120,6 +120,23 @@
   footer .fm{font-family:var(--serif);font-style:italic;font-size:14.5px;color:var(--rose-deep)}
   footer .fs{font-size:11px;color:var(--ink-faint);margin-top:6px;letter-spacing:.04em}
 
+  /* install prompt */
+  .install{margin-top:14px;background:var(--surface);border:1px solid var(--line);
+    border-radius:15px;padding:12px 13px;display:flex;align-items:center;gap:12px;
+    box-shadow:var(--shadow);animation:rise .5s cubic-bezier(.2,.7,.2,1) both}
+  .install[hidden]{display:none}
+  .install .ii{flex:0 0 auto;width:38px;height:38px;border-radius:11px;display:grid;
+    place-items:center;font-size:19px;background:var(--rose-wash)}
+  .install .itx{flex:1;min-width:0}
+  .install .it{font-size:14px;font-weight:600;letter-spacing:-.01em}
+  .install .is{font-size:12px;color:var(--ink-soft);margin-top:2px;line-height:1.4}
+  .install .is b{color:var(--ink);font-weight:600}
+  .install .ibtn{flex:0 0 auto;border:0;background:var(--ink);color:#fff;font-family:var(--sans);
+    font-weight:600;font-size:13px;padding:9px 15px;border-radius:11px;cursor:pointer}
+  .install .ibtn[hidden]{display:none}
+  .install .ix{flex:0 0 auto;border:0;background:transparent;color:var(--ink-faint);
+    font-size:20px;line-height:1;cursor:pointer;padding:2px 5px}
+
   /* bottom tab bar */
   .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:15;max-width:520px;margin:0 auto;
     display:flex;gap:2px;background:rgba(255,253,251,.92);
@@ -148,6 +165,16 @@
 <div class="count">
   <div class="n" id="cd">&mdash;</div>
   <div class="lab" id="cdl">days to <b>Kuranda &rarr; Port Douglas</b><br>60&nbsp;km trail ultra &middot; 23 Aug 2026</div>
+</div>
+
+<div class="install" id="install" hidden>
+  <div class="ii">&#128241;</div>
+  <div class="itx">
+    <div class="it">Add to Home Screen</div>
+    <div class="is" id="installmsg">Install the app for one-tap access.</div>
+  </div>
+  <button class="ibtn" id="installbtn" hidden>Add</button>
+  <button class="ix" id="installx" aria-label="Dismiss">&times;</button>
 </div>
 
 <div class="lab-h">Your tools</div>
@@ -220,6 +247,49 @@ var EVENT=new Date(2026,7,23);
   var ms=EVENT-new Date(),d=Math.max(0,Math.ceil(ms/86400000));
   document.getElementById("cd").textContent=d;
   if(d===0)document.getElementById("cdl").innerHTML="<b>Today is the day</b><br>Kuranda &rarr; Port Douglas, 60 km";
+})();
+
+/* Add to Home Screen prompt */
+(function(){
+  var card=document.getElementById("install"),
+      btn=document.getElementById("installbtn"),
+      msg=document.getElementById("installmsg"),
+      x=document.getElementById("installx");
+  if(!card) return;
+
+  function getDis(){try{return localStorage.getItem("limn_install_dismissed");}catch(e){return null;}}
+  function setDis(){try{localStorage.setItem("limn_install_dismissed","1");}catch(e){}}
+
+  var standalone = (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches)
+                   || window.navigator.standalone === true;
+  if(standalone || getDis()) return;   // already installed, or dismissed before
+
+  x.onclick=function(){card.hidden=true;setDis();};
+
+  /* Chrome / Edge / Android: real install button via beforeinstallprompt */
+  var deferred=null;
+  window.addEventListener("beforeinstallprompt",function(e){
+    e.preventDefault();deferred=e;
+    msg.innerHTML="Install <b>Love in Motion</b> for one-tap access.";
+    btn.hidden=false;card.hidden=false;
+  });
+  btn.onclick=function(){
+    if(!deferred) return;
+    deferred.prompt();
+    deferred.userChoice.then(function(){card.hidden=true;deferred=null;});
+  };
+  window.addEventListener("appinstalled",function(){card.hidden=true;});
+
+  /* iOS Safari: no install API — show the Share → Add to Home Screen steps */
+  var ua=window.navigator.userAgent||"";
+  var isIOS=/iphone|ipad|ipod/i.test(ua) ||
+            (navigator.platform==="MacIntel" && navigator.maxTouchPoints>1); // iPadOS
+  var inApp=/(fban|fbav|instagram|line|twitter)/i.test(ua);
+  if(isIOS && !inApp){
+    btn.hidden=true;
+    msg.innerHTML="Tap <b>Share</b> &#8593;, then <b>Add to Home Screen</b>.";
+    card.hidden=false;
+  }
 })();
 </script>
 </body>

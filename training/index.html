@@ -196,6 +196,46 @@
     background:var(--ink);color:#fff;transition:.18s}
   .dobtn.is-done{background:var(--euc-wash);color:var(--euc)}
   .dobtn:active{transform:scale(.99)}
+
+  /* week sub-tabs (days/weeks within a block) */
+  .weeks2{display:flex;gap:7px;overflow-x:auto;margin-top:15px;padding-bottom:3px;
+    scrollbar-width:none;-ms-overflow-style:none}
+  .weeks2::-webkit-scrollbar{display:none}
+  .w2{flex:0 0 auto;border:1px solid var(--line);background:var(--surface);
+    border-radius:10px;padding:7px 14px;font-size:12.5px;font-weight:600;
+    color:var(--ink-soft);cursor:pointer;transition:.16s;white-space:nowrap;
+    font-family:var(--sans)}
+  .w2 .wn{display:block;font-size:9px;font-weight:500;color:var(--ink-faint);
+    margin-top:1px;letter-spacing:.04em;text-transform:uppercase}
+  .w2[aria-selected="true"]{background:var(--rose);color:#fff;border-color:var(--rose);
+    box-shadow:var(--shadow)}
+  .w2[aria-selected="true"] .wn{color:rgba(255,255,255,.65)}
+  .w2.add{color:var(--rose-deep);border-style:dashed;border-color:var(--line);
+    padding:7px 13px;font-size:15px;line-height:1.1}
+
+  /* tiny "has note" marker on a session card */
+  .hasnote{display:inline-flex;align-items:center;gap:4px;margin-top:4px;
+    font-size:11px;font-weight:600;color:var(--rose-deep);letter-spacing:.01em}
+
+  /* week training-notes card */
+  .notewrap{margin-top:18px}
+  .notecard{background:var(--surface);border:1px solid var(--line);border-radius:15px;
+    padding:14px 15px;box-shadow:var(--shadow)}
+  .notecard .nh{display:flex;align-items:center;justify-content:space-between;
+    margin-bottom:9px}
+  .notecard .nh h4{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--rose-deep);font-weight:600}
+  .savednote{font-size:11px;color:var(--ink-faint);font-weight:500;letter-spacing:.02em;
+    opacity:0;transition:.25s}
+  .savednote.on{opacity:1}
+  textarea.note{width:100%;border:1px solid var(--line);border-radius:11px;
+    background:var(--cream);padding:11px 12px;font-family:var(--sans);font-size:13.5px;
+    line-height:1.55;color:var(--ink);resize:vertical;min-height:88px;transition:.16s}
+  textarea.note:focus{outline:none;border-color:var(--rose);background:#fff}
+  textarea.note::placeholder{color:var(--ink-faint)}
+  .rmweek{background:none;border:0;color:var(--ink-faint);font-size:11.5px;font-weight:600;
+    cursor:pointer;margin-top:11px;padding:3px 0;letter-spacing:.02em;font-family:var(--sans)}
+  .rmweek:active{color:var(--rose-deep)}
 </style>
 </head>
 <body>
@@ -221,10 +261,12 @@
 <div class="whead">
   <div class="focus" id="focus"></div>
   <div class="dates" id="dates"></div>
+  <div class="weeks2" id="weeks2" role="tablist" aria-label="Weeks in this block"></div>
   <div class="prog"><div class="bar"><i id="bar"></i></div><div class="pt" id="pt"></div></div>
 </div>
 
 <div class="list" id="list"></div>
+<div class="notewrap" id="notewrap"></div>
 <div class="cnote" id="cnote"></div>
 
 <details class="notes">
@@ -347,11 +389,32 @@ var PHASES=[
 var EVENT=new Date(2026,11,26);
 
 /* ---------- state ---------- */
-var state={ph:0,plan:store.get("limn_plan")||"A"};
+var DEFAULT_WEEKS=[2,3,2,2];          // Base, Build, Peak, Taper
+var state={ph:0,plan:store.get("limn_plan")||"A",wk:0};
 
-function doneKey(){return "limn_train_p"+state.ph+"_"+state.plan;}
-function getDone(){return store.get(doneKey())||{};}
+/* per-(phase,plan) week count - user can add weeks */
+function weekCountKey(){return "limn_train_weeks_p"+state.ph+"_"+state.plan;}
+function weekCount(){var n=store.get(weekCountKey());return (n&&n>0)?n:DEFAULT_WEEKS[state.ph];}
+function setWeekCount(n){store.set(weekCountKey(),n);}
+
+/* per-week done map (with one-time migration of legacy pre-week data into week 1) */
+function doneKey(){return "limn_train_p"+state.ph+"_"+state.plan+"_w"+state.wk;}
+function getDone(){
+  var v=store.get(doneKey());
+  if(v)return v;
+  if(state.wk===0){var legacy=store.get("limn_train_p"+state.ph+"_"+state.plan);
+    if(legacy){store.set(doneKey(),legacy);return legacy;}}
+  return {};
+}
 function setDone(o){store.set(doneKey(),o);}
+
+/* per-week training notes + per-session notes */
+function weekNoteKey(){return "limn_train_note_p"+state.ph+"_"+state.plan+"_w"+state.wk;}
+function getWeekNote(){return store.get(weekNoteKey())||"";}
+function setWeekNote(t){store.set(weekNoteKey(),t);}
+function sessNoteKey(i){return "limn_train_snote_p"+state.ph+"_"+state.plan+"_w"+state.wk+"_s"+i;}
+function getSessNote(i){return store.get(sessNoteKey(i))||"";}
+function setSessNote(i,t){store.set(sessNoteKey(i),t);}
 
 /* ---------- render ---------- */
 function cards(){return PHASES[state.ph][state.plan]||[];}
@@ -367,9 +430,28 @@ function renderPhases(){
     var b=document.createElement("button");
     b.className="wk";b.setAttribute("aria-selected",i===state.ph);
     b.innerHTML=p.name+"<span class='wd'>"+p.sub+"</span>";
-    b.onclick=function(){state.ph=i;render();};
+    b.onclick=function(){state.ph=i;state.wk=0;render();};
     w.appendChild(b);
   });
+}
+function renderWeeks(){
+  var w=document.getElementById("weeks2");w.innerHTML="";
+  var n=weekCount();
+  if(state.wk>=n)state.wk=n-1;
+  for(var i=0;i<n;i++){(function(i){
+    var b=document.createElement("button");
+    b.className="w2";b.setAttribute("aria-selected",i===state.wk);
+    b.setAttribute("role","tab");
+    b.innerHTML="Week "+(i+1)+"<span class='wn'>"+PHASES[state.ph].name+"</span>";
+    b.onclick=function(){state.wk=i;render();};
+    w.appendChild(b);
+  })(i);}
+  var add=document.createElement("button");
+  add.className="w2 add";add.textContent="+";
+  add.setAttribute("aria-label","Add a week to this block");
+  add.title="Add a week";
+  add.onclick=function(){var c=weekCount()+1;setWeekCount(c);state.wk=c-1;render();};
+  w.appendChild(add);
 }
 function renderPlans(){
   document.querySelectorAll(".plan").forEach(function(p){
@@ -394,9 +476,10 @@ function renderList(){
     var card=document.createElement("div");
     card.className="card"+(done[i]?" done":"");
     card.style.animationDelay=(i*55)+"ms";
+    var noteMark=getSessNote(i)?"<div class='hasnote'>&#9998; Note saved</div>":"";
     card.innerHTML=
       "<div class='check'><svg viewBox='0 0 24 24'><polyline points='4 12 10 18 20 6'/></svg></div>"+
-      "<div class='meta'><div class='t'>"+s.t+"</div><div class='s'>"+s.s+"</div></div>"+
+      "<div class='meta'><div class='t'>"+s.t+"</div><div class='s'>"+s.s+"</div>"+noteMark+"</div>"+
       "<span class='pill "+pillClass(s.k)+"'>"+s.pill+"</span>"+
       "<span class='chev'>&rsaquo;</span>";
     card.querySelector(".check").onclick=function(e){e.stopPropagation();toggle(i);};
@@ -413,6 +496,29 @@ function renderList(){
 function allIn(){var cs=cards(),done=getDone();if(!cs.length)return false;for(var i=0;i<cs.length;i++){if(!done[i])return false;}return true;}
 function toggle(i){var d=getDone();d[i]=!d[i];setDone(d);renderHead();renderList();}
 
+/* ---------- week training notes ---------- */
+function flashSaved(el){if(!el)return;el.classList.add("on");
+  clearTimeout(el._t);el._t=setTimeout(function(){el.classList.remove("on");},1400);}
+function renderNotes(){
+  var wrap=document.getElementById("notewrap");wrap.innerHTML="";
+  var card=document.createElement("div");card.className="notecard";
+  var canRemove=weekCount()>DEFAULT_WEEKS[state.ph]&&state.wk===weekCount()-1;
+  card.innerHTML=
+    "<div class='nh'><h4>Training notes &middot; Week "+(state.wk+1)+"</h4>"+
+    "<span class='savednote' id='wnsaved'>Saved &#10003;</span></div>"+
+    "<textarea class='note' id='wnote' placeholder='How did this week feel? Note your sessions, how the legs are, what to tweak next week…'></textarea>"+
+    (canRemove?"<button class='rmweek' id='rmweek'>Remove Week "+(state.wk+1)+"</button>":"");
+  wrap.appendChild(card);
+  var ta=card.querySelector("#wnote");ta.value=getWeekNote();
+  ta.oninput=function(){setWeekNote(ta.value);flashSaved(document.getElementById("wnsaved"));};
+  if(canRemove){card.querySelector("#rmweek").onclick=function(){
+    if(!confirm("Remove Week "+(state.wk+1)+" and its notes from this block?"))return;
+    store.set(doneKey(),null);store.set(weekNoteKey(),null);
+    var cs=cards();for(var i=0;i<cs.length;i++)store.set(sessNoteKey(i),null);
+    setWeekCount(weekCount()-1);state.wk=Math.max(0,state.wk-1);render();
+  };}
+}
+
 /* ---------- sheet ---------- */
 function openSheet(i){
   var s=cards()[i],done=getDone();
@@ -421,14 +527,21 @@ function openSheet(i){
   if(s.k==="easy"&&state.ph===0)h+="<div class='blk'><h4>What 'easy' means</h4><div class='callout'><p>"+EASY+"</p></div></div>";
   if(s.fuelit)h+="<div class='blk'><h4>Fuel this one</h4><div class='fuelh'><p>Long days are where fuelling is the session. Open the Fuel plan for what to eat before, during and after.</p><a class='go' href='../nutrition-meal-planner/index.html'>Fuel &rsaquo;</a></div></div>";
   if(s.k==="long")h+="<div class='blk'><h4>The long run</h4><p>"+LONGRUN+"</p></div>";
+  h+="<div class='blk'><h4>Your workout notes &middot; Week "+(state.wk+1)+"</h4>"+
+     "<textarea class='note' id='snote' placeholder='Log this session - distance, time, how it went, how you fuelled, anything to remember…'></textarea>"+
+     "<span class='savednote' id='snsaved' style='display:inline-block;margin-top:6px'>Saved &#10003;</span></div>";
   h+="<button class='dobtn"+(done[i]?" is-done":"")+"' id='dobtn'>"+(done[i]?"&#10003; Done - tap to undo":"Mark as done")+"</button>";
   document.getElementById("sheetbody").innerHTML=h;
-  document.getElementById("dobtn").onclick=function(){toggle(i);openSheet(i);};
+  var sta=document.getElementById("snote");sta.value=getSessNote(i);
+  sta.oninput=function(){setSessNote(i,sta.value);flashSaved(document.getElementById("snsaved"));};
+  document.getElementById("dobtn").onclick=function(){toggle(i);
+    var b=document.getElementById("dobtn");b.className="dobtn"+(getDone()[i]?" is-done":"");
+    b.innerHTML=getDone()[i]?"&#10003; Done - tap to undo":"Mark as done";};
   document.getElementById("scrim").classList.add("on");
   document.getElementById("sheet").classList.add("on");
 }
 function closeSheet(){document.getElementById("scrim").classList.remove("on");
-  document.getElementById("sheet").classList.remove("on");}
+  document.getElementById("sheet").classList.remove("on");renderList();}
 document.getElementById("scrim").onclick=closeSheet;
 
 /* ---------- coach notes ---------- */
@@ -445,7 +558,7 @@ document.getElementById("notesbody").innerHTML=
  note("On the horizon — the 415 km","<p>For the Love in Motion run from Attunga to Sydney, training shifts to multi-day endurance: huge weekly volume, back-to-back long days as the main event, and recovery built around running again tomorrow.</p><p>We'll build that block once K2PD is done. Every consistent week now is the foundation it stands on.</p>");
 
 /* ---------- go ---------- */
-function render(){renderPhases();renderPlans();renderHead();renderList();}
+function render(){renderPhases();renderPlans();renderWeeks();renderHead();renderList();renderNotes();}
 renderCount();render();
 </script>
 </body>

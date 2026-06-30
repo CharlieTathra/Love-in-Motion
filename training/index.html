@@ -197,6 +197,19 @@
   .dobtn.is-done{background:var(--euc-wash);color:var(--euc)}
   .dobtn:active{transform:scale(.99)}
 
+  /* exercise prescription list (strength sessions) */
+  .exlist{margin-top:2px}
+  .exrow{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;
+    padding:11px 0;border-bottom:1px solid var(--line-soft)}
+  .exrow:last-child{border-bottom:0}
+  .exrow:first-child{padding-top:4px}
+  .ex-l{min-width:0}
+  .exrow .en{font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
+  .exrow .ec{font-size:12.5px;color:var(--ink-soft);margin-top:3px;line-height:1.5}
+  .exrow .ed{flex:0 0 auto;font-size:12.5px;font-weight:600;color:var(--rose-deep);
+    white-space:nowrap;text-align:right;background:var(--rose-wash);border-radius:8px;
+    padding:5px 9px;letter-spacing:.01em}
+
   /* week sub-tabs (days/weeks within a block) */
   .weeks2{display:flex;gap:7px;overflow-x:auto;margin-top:15px;padding-bottom:3px;
     scrollbar-width:none;-ms-overflow-style:none}
@@ -307,7 +320,7 @@ var LONGRUN="The long run is the heart of ultra training. Build it gradually - n
 function easy(t,s,detail){return{k:"easy",pill:"Easy",t:t,s:s,detail:detail};}
 function long(t,s,detail){return{k:"long",pill:"Long",t:t,s:s,detail:detail,fuelit:true};}
 function qual(t,s,detail){return{k:"qual",pill:"Quality",t:t,s:s,detail:detail};}
-function str(t,s,detail){return{k:"str",pill:"Strength",t:t,s:s,detail:detail};}
+function str(t,s,detail,exs){return{k:"str",pill:"Strength",t:t,s:s,detail:detail,exs:exs};}
 function cross(t,s,detail){return{k:"cross",pill:"Cross",t:t,s:s,detail:detail};}
 function rest(t,s,detail){return{k:"rest",pill:"Rest",t:t,s:s,detail:detail};}
 
@@ -317,13 +330,24 @@ var PHASES=[
   A:[
     easy("Easy run","40–50 min, flat and relaxed","Pure aerobic time on feet. Keep it conversational the whole way. If in doubt, slow down - this run builds the base everything else sits on."),
     qual("Hills (easy)","6–8 × short hill strides on a gentle climb","Run up strong but controlled for ~20–30 sec, walk down to recover. Builds strength and trail-specific power without the pounding of speedwork. Stop while it still feels good."),
-    str("Strength","2 × 20 min: squats, lunges, calf raises, core","Strong hips, glutes and calves are your injury insurance for a hilly 60 km. Bodyweight is plenty. Single-leg work matters most for trail."),
+    str("Strength","2×/week · foundation phase · 2–3 sets, 10–15 reps","This is the foundation phase: teach the movements and build tissue tolerance before you load them heavy in the Build block. Keep 2–3 reps in reserve on every set, move with control (a slow 3-second lower), and add weight only once form is perfect across all sets. Two short sessions a week, on easy-run days, after you run.",
+      [["Goblet squat","3 × 12","Hold a dumbbell or kettlebell at the chest. Sit between the hips, knees tracking over the toes, 3-sec lower."],
+       ["Reverse lunge","3 × 10 / leg","Long step back, vertical shin on the front leg, drive up through the front heel. Single-leg strength is the most trail-specific."],
+       ["Romanian deadlift","3 × 12","Dumbbells or kettlebell. Hinge at the hips with soft knees and a flat back; feel the hamstrings load."],
+       ["Single-leg calf raise","3 × 15 / leg","Full range off a step, 2-sec up / 3-sec down. Builds the Achilles and calf for the climbs."],
+       ["Side plank","3 × 30–40 sec / side","Stack the hips, straight line heel to head. Hip stability that holds your form late in a run."],
+       ["Dead bug","3 × 8 / side","Low back pinned to the floor, opposite arm and leg moving slowly. Core that resists, not crunches."]]),
     long("Long run","75–90 min easy on trail or undulating road","Your weekly cornerstone. Keep it easy, walk the steep bits, and rehearse fuelling and drinking from the start. Time on feet, not pace."),
     easy("Back-to-back","30–40 min easy the morning after the long run","Running on slightly tired legs teaches your body to keep going when fresh isn't an option - the core skill of ultra running. Keep it very gentle.")
   ],
   B:[
     easy("Easy run","30–40 min, whenever it fits","One easy run banks the aerobic base. Even 30 min counts. Done beats perfect."),
-    str("Strength","One 20-min circuit","Hips, glutes, calves, core. Squeeze it in while dinner cooks if that's what today allows."),
+    str("Strength","20-min bodyweight circuit · 2–3 rounds","No gear, no excuses - move through these as a circuit with about 45 seconds rest between rounds. Two or three rounds is plenty, and even one round banks something. Squeeze it in while dinner cooks if that's what today allows.",
+      [["Bodyweight squat","2–3 × 15","Controlled, full depth, chest tall."],
+       ["Reverse lunge","2–3 × 10 / leg","Drive through the front heel; keep it steady, not rushed."],
+       ["Single-leg glute bridge","2–3 × 12 / leg","Squeeze the glute at the top - this is the engine for hills."],
+       ["Single-leg calf raise","2–3 × 15 / leg","Full range off a step if you have one. Calf and Achilles armour."],
+       ["Front plank","2–3 × 30–45 sec","Straight line, ribs down, breathe. Stop before the hips sag."]]),
     long("Long run","60–75 min easy","Protect the long run above all else - it's the session that matters most. Keep it easy and fuel as you go.")
   ],
   C:[
@@ -335,7 +359,13 @@ var PHASES=[
   A:[
     easy("Easy run","45–60 min easy","Keep the easy days genuinely easy so the hard days can be hard. This is recovery that still builds fitness."),
     qual("Hill repeats","8–10 × 45–60 sec uphill, walk-jog down","On trail-like gradient if you can. Strong, controlled effort - this is the strength that carries you up K2PD's climbs late in the race."),
-    str("Strength + downhill","Strength circuit, plus easy downhill running","Add gentle downhill running - eccentric load is what trashes quads late in a trail ultra. Train it now so race day is nothing new."),
+    str("Strength + downhill","Heavy day · 3–5 reps @ ~80–85% 1RM · 3–4 sets + downhill","This is where strength is built. Go genuinely heavy - about 80–85% of your one-rep max, 3–5 reps, long 2–3 minute rests, and never to failure (leave 1–2 reps in the tank). Heavy lifting is proven to improve running economy, so the same effort carries you further on race day. Lift on an easy-run day and keep it separate enough from the long run that neither suffers.",
+      [["Back or goblet squat","4 × 5 @ ~82%","Heavy and controlled, full rest between sets. This is strength work, not a sweat - quality over fatigue."],
+       ["Trap-bar or Romanian deadlift","4 × 5 @ ~80%","Big hip hinge, braced core, flat back. The posterior-chain power that drives you up the climbs."],
+       ["Bulgarian split squat","3 × 6 / leg","Weighted. The most race-specific lift for trail - control the descent, own the single leg."],
+       ["Weighted single-leg calf raise","3 × 8 / leg","Hold a dumbbell. Stiff, strong calves protect the Achilles on K2PD's hills."],
+       ["Eccentric downhill running","4–6 × 30–60 sec","On a moderate descent: quick, light steps, let gravity work. Trains the quads to absorb downhill load so race-day descents don't trash them."],
+       ["Pallof press","3 × 10 / side","Anti-rotation core - resist the band's pull. Holds your form together when you're tired."]]),
     long("Long run","2–3 hr on trail with real climbing","The key session. Build steadily toward 3 hr, on terrain like race day. Walk the steep climbs, run the runnable, eat every 30–40 min, drink to thirst-plus in the heat."),
     long("Back-to-back long","60–90 min easy the next morning","Tired-legs running is the whole game. Cumulative fatigue today is how you teach the body to handle hour 6 on race day. Keep it easy and fuelled.")
   ],
@@ -355,7 +385,13 @@ var PHASES=[
     qual("Race-effort segment","Within a run: 20–30 min at goal race effort","Practise the exact effort, terrain and fuelling of race day - climbs walked, descents controlled, eating on schedule. A dress rehearsal, not a time trial."),
     long("Longest long run","3.5–4 hr (or ~35–40 km) on race-like trail","Your peak session and best confidence-builder. Heat, hills, full race-day fuelling and gear. After this, the hardest training is behind you."),
     long("Back-to-back long","2–2.5 hr easy the next day","The biggest cumulative-fatigue day of the plan. This is the closest you'll get to the back half of K2PD. Easy pace, relentless fuelling."),
-    str("Light strength","Maintenance circuit only","Keep the muscles primed but drop the load - now is about freshness, not new strength. Mobility and activation over heavy work.")
+    str("Light strength","1×/week · maintenance + light plyometrics · low volume","The strength is already banked - now you protect it without adding fatigue. Cut the volume right back to a couple of crisp sets, keep movements sharp and explosive, and a little plyometric work keeps the elastic spring that makes running cheaper. Drop this session entirely if the long runs are taking everything - freshness wins at peak.",
+      [["Goblet or back squat","2 × 5 @ moderate","Just enough load to hold the strength you built. Don't chase fatigue now."],
+       ["Bulgarian split squat","2 × 6 / leg","Keep the single-leg strength ticking over."],
+       ["Pogo hops","3 × 15","Quick, stiff ankle bounces off the balls of the feet. Minimal ground contact - trains the elastic bounce."],
+       ["Squat or box jumps","3 × 5","Land soft and quiet, fully recover between sets. A little power, never to fatigue."],
+       ["Single-leg calf raise","2 × 12 / leg","Maintain the calf and Achilles stiffness for the hills."],
+       ["Plank variations","2 × 30–40 sec","Front and side. Light activation, keep it easy."]])
   ],
   B:[
     easy("Easy run","40 min easy","Tick over the aerobic system. Nothing fancy."),
@@ -523,6 +559,14 @@ function renderNotes(){
 function openSheet(i){
   var s=cards()[i],done=getDone();
   var h="<div class='st'>"+s.t+"</div><div class='ss'>"+s.s+"</div>";
+  if(s.exs){
+    h+="<div class='blk'><h4>The session</h4><div class='exlist'>";
+    s.exs.forEach(function(e){
+      h+="<div class='exrow'><div class='ex-l'><div class='en'>"+e[0]+"</div>"+
+         (e[2]?"<div class='ec'>"+e[2]+"</div>":"")+"</div><div class='ed'>"+e[1]+"</div></div>";
+    });
+    h+="</div></div>";
+  }
   h+="<div class='blk'><h4>Why &amp; how</h4><p>"+s.detail+"</p></div>";
   if(s.k==="easy"&&state.ph===0)h+="<div class='blk'><h4>What 'easy' means</h4><div class='callout'><p>"+EASY+"</p></div></div>";
   if(s.fuelit)h+="<div class='blk'><h4>Fuel this one</h4><div class='fuelh'><p>Long days are where fuelling is the session. Open the Fuel plan for what to eat before, during and after.</p><a class='go' href='../nutrition-meal-planner/index.html'>Fuel &rsaquo;</a></div></div>";
@@ -551,7 +595,7 @@ document.getElementById("notesbody").innerHTML=
  note("The long run","<p>"+LONGRUN+"</p><ul><li>Build gradually - no weekly jump bigger than ~10–15%.</li><li>Every 3rd–4th week, pull the long run back to let the body absorb the work.</li><li><b>Time on feet</b> matters more than distance or pace on trail.</li><li>Walk the climbs from the start - everyone walks the steep stuff in a 60 km.</li></ul>")+
  note("Hills &amp; trail skills","<ul><li><b>Uphill:</b> shorten your stride, stay relaxed, power-hike anything too steep to run efficiently.</li><li><b>Downhill:</b> practise it - quick light steps, let gravity help. Eccentric load wrecks untrained quads late in a race.</li><li>Train on terrain like K2PD: trail, roots, rock, real gradient.</li><li>Carry and use your race vest on long runs so nothing's new on the day.</li></ul>")+
  note("Heat &amp; humidity","<p>North Queensland in August is warm and humid - respect it. Acclimatise by doing some long runs in the heat of the day in the final 2–3 weeks.</p><ul><li>Slow down - effort, not pace, is the gauge in heat.</li><li>Drink to thirst-plus and add electrolytes (sodium especially).</li><li>Practise everything on long runs so race-day heat is familiar, not a shock.</li></ul><p>The Fuel app's hydration notes pair with this.</p>")+
- note("Strength &amp; durability","<ul><li>2× short sessions a week: squats, lunges, single-leg work, calf raises, core.</li><li>Strong hips, glutes and calves are your best defence against late-race breakdown and injury.</li><li>Bodyweight is plenty - consistency beats load.</li><li>Taper strength right down in the final 2 weeks.</li></ul>")+
+ note("Strength &amp; durability","<p>Strength work makes you more durable <b>and</b> more economical - heavy lifting is shown to improve running economy, so the same effort carries you further. Build it in phases, just like your running:</p><ul><li><b>Base - foundation:</b> 2×/week. Learn the movements, 2–3 sets of 10–15 reps at a moderate load. Build tissue tolerance first.</li><li><b>Build - max strength:</b> go heavy - 3–5 reps at ~80–85% of your max, 3–4 sets, long rests, never to failure. Add eccentric downhill running for the quads.</li><li><b>Peak - maintain &amp; spring:</b> cut volume right back, keep it crisp, add light plyometrics (pogo hops, low jumps) for elastic power.</li><li><b>Taper:</b> drop the load - light activation and mobility only.</li></ul><p>Prioritise single-leg work (split squats, lunges), the posterior chain (hinges, deadlifts) and the calves - they're your insurance against late-race breakdown on a hilly 60 km. Lift on easy days, after your run, and leave a rep or two in reserve.</p>")+
  note("Recovery &amp; staying healthy","<p>You get fitter while you recover, not while you train. Sleep is the single most powerful tool you have.</p><ul><li>Niggle that changes your gait or worsens day to day = back off and assess early.</li><li>A missed session never costs you the race; training through an injury can.</li><li>Pair training with the Fuel plan - under-fuelling is the quiet saboteur of recovery.</li></ul>")+
  note("Tapering","<p>In the final ~10 days, <b>cut volume but keep a little intensity</b> so the legs stay sharp. You can't build fitness now - you can only arrive fresh or frayed.</p><p>Expect to feel restless, even sluggish or twitchy - that's normal and means it's working. Bank sleep, eat well, and trust the months of work.</p>")+
  note("Race week &amp; the day","<ul><li>Nothing new: shoes, socks, vest, fuel - all tested on long runs.</li><li>Start slower than feels right; walk the early climbs.</li><li>Eat and drink to plan from the first hour, not when you're already empty.</li><li>Break 60 km into chunks - aid station to aid station.</li><li>Run your own race, and remember why you're out there.</li></ul>")+

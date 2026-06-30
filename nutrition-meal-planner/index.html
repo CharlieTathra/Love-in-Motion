@@ -186,7 +186,9 @@
     border-bottom:1px solid var(--line-soft);font-size:13.5px}
   .swaps li:last-child{border-bottom:0}
   .swaps .nm{color:var(--ink)}
-  .swaps .rp{color:var(--ink-faint);font-weight:600;white-space:nowrap;font-size:12.5px}
+  .swaps .rp{color:var(--rose-deep);font-weight:600;white-space:nowrap;font-size:12.5px;
+    text-align:right;background:var(--rose-wash);border-radius:8px;padding:3px 8px;margin-left:10px}
+  .fnote{font-size:11.5px;color:var(--ink-faint);line-height:1.5;margin-top:10px}
   .dobtn{margin-top:22px;width:100%;border:0;border-radius:14px;padding:15px;
     font-family:var(--sans);font-size:14.5px;font-weight:600;cursor:pointer;
     background:var(--ink);color:#fff;transition:.18s}
@@ -256,69 +258,102 @@ var store=(function(){var mem={},ok=false;
 var ENOUGH="The aim is enough, not less. If you've trained, slept badly, or carried a big caring load, your body needs more fuel - not a smaller plate. Skipping meals to save time or energy backfires: it flattens recovery, mood and sleep.";
 var WINDOW="Within 30-60 min of a long or hard effort, carbs + protein together. Chocolate milk is the cheap classic. Then a proper meal when you can.";
 
-/* card builders */
-function meal(t,s,detail,swaps){return{k:"meal",pill:"Meal",t:t,s:s,detail:detail,swaps:swaps};}
-function snack(t,s,detail){return{k:"snack",pill:"Snack",t:t,s:s,detail:detail};}
-function fuel(t,s,detail){return{k:"fuel",pill:"Fuel",t:t,s:s,detail:detail,onrun:true};}
-function recov(t,s,detail){return{k:"rcv",pill:"Recover",t:t,s:s,detail:detail};}
+/* card builders (food = measured ingredient list: [name, amount]) */
+function meal(t,s,detail,food){return{k:"meal",pill:"Meal",t:t,s:s,detail:detail,food:food};}
+function snack(t,s,detail,food){return{k:"snack",pill:"Snack",t:t,s:s,detail:detail,food:food};}
+function fuel(t,s,detail,food){return{k:"fuel",pill:"Fuel",t:t,s:s,detail:detail,onrun:true,food:food};}
+function recov(t,s,detail,food){return{k:"rcv",pill:"Recover",t:t,s:s,detail:detail,food:food};}
 
 /* ---------- day types × plans ---------- */
 var DAYS=[
  {name:"Training day",sub:"easy run",line:"A normal day with an easy run. Carbs around the run, protein at every meal, and don't let long gaps open up.",
   A:[
-    meal("Breakfast","Oats, milk, banana, peanut butter, a little honey","Slow-release carbs to run on, plus protein and fats to stay full. Make it as overnight oats the night before if mornings are rushed. Berries or chia if you have them."),
-    snack("Mid-morning","Greek yoghurt + nuts, or toast + avocado","A real snack between meals keeps blood sugar and mood steady through a working morning."),
-    meal("Lunch","Wholegrain wrap: eggs / tuna / chicken + plenty of salad","Build every lunch around a protein, a wholegrain carb and as much veg as fits. A piece of fruit alongside. Your biggest rebuild meal of the working day."),
-    snack("Afternoon","Crackers + cheese, or a fruit-and-yoghurt smoothie","Bridges the gap to dinner so you're not running on empty into the evening with a child to feed and a body to recover."),
-    meal("Dinner","Mince / chicken thigh / lentils + rice or potato + lots of veg","A generous, colourful plate. Carbs to refill, protein to repair, veg for everything else. Cook extra for tomorrow's lunch.")
+    meal("Breakfast","Oats, milk, banana, peanut butter, a little honey","Slow-release carbs to run on, plus protein and fats to stay full. Make it as overnight oats the night before if mornings are rushed. Berries or chia if you have them.",
+      [["Rolled oats","80 g dry · ~1 cup"],["Milk","250 ml"],["Banana","1 medium"],["Peanut butter","1 tbsp · 20 g"],["Honey","2 tsp · 15 g"]]),
+    snack("Mid-morning","Greek yoghurt + nuts, or toast + avocado","A real snack between meals keeps blood sugar and mood steady through a working morning.",
+      [["Greek yoghurt","170 g tub"],["Mixed nuts","30 g · small handful"],["(or) Wholegrain toast","2 slices"],["(or) Avocado","¼ · 50 g"]]),
+    meal("Lunch","Wholegrain wrap: eggs / tuna / chicken + plenty of salad","Build every lunch around a protein, a wholegrain carb and as much veg as fits. A piece of fruit alongside. Your biggest rebuild meal of the working day.",
+      [["Wholegrain wrap","1 large · 60 g"],["Tuna / chicken / eggs","95 g tin · 100 g · or 2"],["Salad veg","2 cups"],["Olive oil / dressing","1 tbsp"],["Fruit","1 piece"]]),
+    snack("Afternoon","Crackers + cheese, or a fruit-and-yoghurt smoothie","Bridges the gap to dinner so you're not running on empty into the evening with a child to feed and a body to recover.",
+      [["Wholegrain crackers","4–6 · 30 g"],["Cheese","2 slices · 40 g"],["(or smoothie) Milk + banana + yoghurt","250 ml · 1 · 100 g"]]),
+    meal("Dinner","Mince / chicken thigh / lentils + rice or potato + lots of veg","A generous, colourful plate. Carbs to refill, protein to repair, veg for everything else. Cook extra for tomorrow's lunch.",
+      [["Mince / chicken / lentils","120–150 g cooked · 1 palm"],["Rice or potato","1½ cups · 240 g cooked"],["Mixed veg","2 cups"],["Olive oil","1 tbsp"]])
   ],
   B:[
-    meal("Breakfast","Overnight oats, or toast + PB + banana","Zero-morning-effort fuel. Prep the oats when you do the dishes the night before."),
-    meal("Lunch","Leftovers, or a pre-made wrap + tinned fish on crackers","Lean on last night's dinner. A protein + a carb + whatever veg is easy. Done is better than perfect."),
-    snack("Afternoon","Fruit, trail mix, or yoghurt","Keep a stash at work and in the car. The snack within reach is the one that happens."),
-    meal("Dinner","Stir-fry or pasta: jar sauce + frozen veg + tinned beans or pre-cooked chicken","Pantry-and-freezer dinner, ten minutes, no fresh shopping. Frozen veg counts every bit as much.")
+    meal("Breakfast","Overnight oats, or toast + PB + banana","Zero-morning-effort fuel. Prep the oats when you do the dishes the night before.",
+      [["Rolled oats","80 g dry"],["Milk","250 ml"],["(or) Toast + peanut butter","2 slices · 1 tbsp"],["Banana","1 medium"]]),
+    meal("Lunch","Leftovers, or a pre-made wrap + tinned fish on crackers","Lean on last night's dinner. A protein + a carb + whatever veg is easy. Done is better than perfect.",
+      [["Leftovers","1 plate · ~150 g protein + 1½ cups carbs"],["(or) Wrap + tinned fish","1 + 95 g tin"],["Wholegrain crackers","4–6"]]),
+    snack("Afternoon","Fruit, trail mix, or yoghurt","Keep a stash at work and in the car. The snack within reach is the one that happens.",
+      [["Fruit","1 piece"],["Trail mix","30–40 g · small handful"],["(or) Yoghurt","170 g tub"]]),
+    meal("Dinner","Stir-fry or pasta: jar sauce + frozen veg + tinned beans or pre-cooked chicken","Pantry-and-freezer dinner, ten minutes, no fresh shopping. Frozen veg counts every bit as much.",
+      [["Pasta / rice","90 g dry · ~2 cups cooked"],["Jar sauce","½ jar · 150 g"],["Frozen veg","1½ cups"],["Beans or chicken","125 g"]])
   ],
   C:[
-    snack("Graze all day","Bananas, muesli bars, trail mix, crackers, cheese, yoghurt pouches","This week the only goal is to keep eating. Pack a grab-bag so there's always something within reach at the hospital. Don't let long gaps open up."),
-    meal("Easy meals","Pre-made sandwiches, cafe meals, a milk-based drink","Bought food and cafe meals absolutely count. A flavoured milk or smoothie is an easy way to get carbs and protein in when appetite is low."),
-    meal("Hot meal when you can","A warm meal whenever the day allows - even late","Whenever there's a window, a hot, comforting meal does as much for your nervous system as your muscles. No rules about timing this week.")
+    snack("Graze all day","Bananas, muesli bars, trail mix, crackers, cheese, yoghurt pouches","This week the only goal is to keep eating. Pack a grab-bag so there's always something within reach at the hospital. Don't let long gaps open up.",
+      [["Bananas","2–3 across the day"],["Muesli bars","2"],["Trail mix","2 handfuls · 60–80 g"],["Crackers","6–8"],["Cheese","2–3 slices"],["Yoghurt pouches","1–2"]]),
+    meal("Easy meals","Pre-made sandwiches, cafe meals, a milk-based drink","Bought food and cafe meals absolutely count. A flavoured milk or smoothie is an easy way to get carbs and protein in when appetite is low.",
+      [["Sandwich or roll","1"],["Flavoured milk / smoothie","300–500 ml"],["Fruit or side","1"]]),
+    meal("Hot meal when you can","A warm meal whenever the day allows - even late","Whenever there's a window, a hot, comforting meal does as much for your nervous system as your muscles. No rules about timing this week.",
+      [["Protein","1 palm · ~120 g"],["Carbs (rice/potato/pasta)","2 fists · ~2 cups"],["Veg","1–2 cups"]])
   ]},
 
  {name:"Long day",sub:"90 min +",line:"Long run or back-to-back day. Fuelling is the session today - before, during, and the recovery window after.",
   A:[
-    meal("Before","Carb breakfast 1.5-2 hr out: oats or toast + banana + honey","Top up the tank with easy carbs. The earlier the start, the smaller and simpler it can be - even just banana and toast. Nothing new or high-fibre before a long one."),
-    fuel("During the run","From ~60-90 min: something every 20-30 min","Once past about an hour, start fuelling: roughly 30-60g of carbs an hour - a banana, a few dates, a muesli bar or a gel. Sip water the whole way, with electrolytes added in the heat. This is rehearsal; your gut trains too."),
-    recov("Straight after","Within 30-60 min: carbs + protein","Chocolate milk, or yoghurt + fruit + granola, or eggs on toast. This window is where recovery starts."),
-    meal("Proper meal","A full meal within a couple of hours","Carbs + protein + veg, a generous serve. Long efforts need more total food across the whole day, not just the recovery snack."),
-    snack("Keep grazing","Top up through the afternoon","Appetite can lag after a long run while your body still needs fuel. Graze - fruit, nuts, yoghurt, leftovers - rather than waiting for big hunger.")
+    meal("Before","Carb breakfast 1.5-2 hr out: oats or toast + banana + honey","Top up the tank with easy carbs. The earlier the start, the smaller and simpler it can be - even just banana and toast. Nothing new or high-fibre before a long one.",
+      [["Rolled oats or toast","80 g dry · or 2 slices"],["Banana","1 medium"],["Honey","1 tbsp · 20 g"],["Milk or water","250 ml"]]),
+    fuel("During the run","From ~60-90 min: something every 20-30 min","Once past about an hour, start fuelling: roughly 30-60g of carbs an hour - a banana, a few dates, a muesli bar or a gel. Sip water the whole way, with electrolytes added in the heat. This is rehearsal; your gut trains too.",
+      [["Target carbs","30–60 g per hour"],["Banana","1 · ~25 g carbs"],["Dates","3 · ~45 g carbs"],["Muesli bar or gel","1 · 25–30 g carbs"],["Water","500–750 ml/hr + electrolytes"]]),
+    recov("Straight after","Within 30-60 min: carbs + protein","Chocolate milk, or yoghurt + fruit + granola, or eggs on toast. This window is where recovery starts.",
+      [["Chocolate milk","300–500 ml"],["(or) Yoghurt + fruit + granola","200 g · 1 · 40 g"],["Aim","~20 g protein + carbs"]]),
+    meal("Proper meal","A full meal within a couple of hours","Carbs + protein + veg, a generous serve. Long efforts need more total food across the whole day, not just the recovery snack.",
+      [["Protein","1 palm · 120–150 g"],["Carbs (rice/potato/pasta)","2 fists · ~2 cups"],["Veg","2 cups"],["Olive oil","1 tbsp"]]),
+    snack("Keep grazing","Top up through the afternoon","Appetite can lag after a long run while your body still needs fuel. Graze - fruit, nuts, yoghurt, leftovers - rather than waiting for big hunger.",
+      [["Fruit","1–2 pieces"],["Nuts","30 g · handful"],["Yoghurt or leftovers","as appetite allows"]])
   ],
   B:[
-    meal("Before","Banana + toast, or overnight oats","Easy carbs in before you head out. Keep it familiar."),
-    fuel("During the run","~30-60g carbs/hr - banana, dates, a bar","Even on a full week, protect this: fuel from about an hour in, and sip water with electrolytes. Everything else today can be simple."),
-    recov("After","Chocolate milk or yoghurt + fruit","The one recovery thing worth protecting. Then a real meal whenever you can get to it."),
-    meal("Dinner","Whatever's easy + a decent serve of carbs and protein","Refill properly tonight, even if it's pantry food. You ran long today.")
+    meal("Before","Banana + toast, or overnight oats","Easy carbs in before you head out. Keep it familiar.",
+      [["Banana","1 medium"],["Toast","2 slices · honey or jam"],["(or) Overnight oats","80 g + 250 ml milk"]]),
+    fuel("During the run","~30-60g carbs/hr - banana, dates, a bar","Even on a full week, protect this: fuel from about an hour in, and sip water with electrolytes. Everything else today can be simple.",
+      [["Target carbs","30–60 g per hour"],["Banana / dates / bar","1 / 3 / 1"],["Water","500 ml/hr + electrolytes"]]),
+    recov("After","Chocolate milk or yoghurt + fruit","The one recovery thing worth protecting. Then a real meal whenever you can get to it.",
+      [["Chocolate milk","300–500 ml"],["(or) Yoghurt + fruit","200 g · 1 piece"]]),
+    meal("Dinner","Whatever's easy + a decent serve of carbs and protein","Refill properly tonight, even if it's pantry food. You ran long today.",
+      [["Protein","1 palm · ~120 g"],["Carbs","2 fists · ~2 cups"],["Veg","1–2 cups"]])
   ],
   C:[
-    fuel("Keep it short & gentle","If you run at all: a run/walk, snacks + water in your pack","On a hospital week a long run is optional. If it happens, it's gentle and short, fuelled like a normal day. Time on feet, not distance. A walk counts."),
-    recov("After","A snack with carbs + protein","Something easy afterwards, then carry on with the day. No pressure to do more.")
+    fuel("Keep it short & gentle","If you run at all: a run/walk, snacks + water in your pack","On a hospital week a long run is optional. If it happens, it's gentle and short, fuelled like a normal day. Time on feet, not distance. A walk counts.",
+      [["Snacks in pack","banana · bar · trail mix 30 g"],["Water","500 ml/hr + electrolytes"]]),
+    recov("After","A snack with carbs + protein","Something easy afterwards, then carry on with the day. No pressure to do more.",
+      [["Yoghurt + fruit","200 g · 1 piece"],["(or) Chocolate milk","250 ml"]])
   ]},
 
  {name:"Rest day",sub:"recover",line:"Recovery is built on the days you don't run. Eat well - don't shrink the plate because you didn't train.",
   A:[
-    meal("Breakfast","Eggs on wholegrain toast + tomato or avocado, or oats","Rest days are when you rebuild. Protein here sets up tissue repair for the day. No need to eat less - recovery is fuelled."),
-    meal("Lunch","Big bowl: grains + protein + lots of veg + olive oil","Colour and protein. What you eat on the non-running days is what you recover on."),
-    snack("Afternoon","Fruit + nuts, or dark chocolate + almonds","Magnesium-rich foods - nuts, seeds, greens, dark chocolate - support sleep and a settled nervous system."),
-    meal("Dinner","Oily fish (salmon/sardines) + potato + greens, or lentil dahl","Omega-3s help recovery and mood. A warm dinner and an early, screen-light wind-down protects your sleep.")
+    meal("Breakfast","Eggs on wholegrain toast + tomato or avocado, or oats","Rest days are when you rebuild. Protein here sets up tissue repair for the day. No need to eat less - recovery is fuelled.",
+      [["Eggs","2–3"],["Wholegrain toast","2 slices"],["Tomato or avocado","1 · or ¼ · 50 g"]]),
+    meal("Lunch","Big bowl: grains + protein + lots of veg + olive oil","Colour and protein. What you eat on the non-running days is what you recover on.",
+      [["Cooked grains","1½ cups"],["Protein","1 palm · ~120 g"],["Veg","2 cups"],["Olive oil","1 tbsp"]]),
+    snack("Afternoon","Fruit + nuts, or dark chocolate + almonds","Magnesium-rich foods - nuts, seeds, greens, dark chocolate - support sleep and a settled nervous system.",
+      [["Fruit","1 piece"],["Nuts","30 g · handful"],["(or) Dark chocolate + almonds","30 g · 20 g"]]),
+    meal("Dinner","Oily fish (salmon/sardines) + potato + greens, or lentil dahl","Omega-3s help recovery and mood. A warm dinner and an early, screen-light wind-down protects your sleep.",
+      [["Salmon / sardines","120–150 g"],["Potato","250 g · 2 medium"],["Greens","2 cups"],["Olive oil","1 tbsp"]])
   ],
   B:[
-    meal("Breakfast","Oats or eggs on toast","Simple and solid. Rebuild starts here."),
-    meal("Lunch","Leftovers + extra veg, or a hearty sandwich","Protein + carbs + something green. Easy."),
-    snack("Afternoon","Fruit + a handful of nuts","Steady energy into the evening."),
-    meal("Dinner","Something warm with protein + carbs + veg","Nourishing, not restrictive. You're recovering today.")
+    meal("Breakfast","Oats or eggs on toast","Simple and solid. Rebuild starts here.",
+      [["Rolled oats + milk","80 g · 250 ml"],["(or) Eggs on toast","2 · 2 slices"]]),
+    meal("Lunch","Leftovers + extra veg, or a hearty sandwich","Protein + carbs + something green. Easy.",
+      [["Leftovers or sandwich","1 plate · or 1"],["Extra veg / salad","1–2 cups"],["Fruit","1 piece"]]),
+    snack("Afternoon","Fruit + a handful of nuts","Steady energy into the evening.",
+      [["Fruit","1 piece"],["Nuts","30 g · handful"]]),
+    meal("Dinner","Something warm with protein + carbs + veg","Nourishing, not restrictive. You're recovering today.",
+      [["Protein","1 palm · ~120 g"],["Carbs","2 fists · ~2 cups"],["Veg","1–2 cups"]])
   ],
   C:[
-    snack("Eat gently, often","Easy foods whenever you can, across the day","Full rest. Keep eating little and often - fruit, yoghurt, crackers, nuts, a hot meal when there's a window. Fuel as self-care, not performance."),
-    meal("One warm meal","Whenever the day allows","A comforting, warm meal settles both body and nervous system. That's the whole job today.")
+    snack("Eat gently, often","Easy foods whenever you can, across the day","Full rest. Keep eating little and often - fruit, yoghurt, crackers, nuts, a hot meal when there's a window. Fuel as self-care, not performance.",
+      [["Fruit","2 across the day"],["Yoghurt","1–2 tubs"],["Crackers","6–8"],["Nuts","30 g"]]),
+    meal("One warm meal","Whenever the day allows","A comforting, warm meal settles both body and nervous system. That's the whole job today.",
+      [["Protein","1 palm · ~120 g"],["Carbs","2 fists · ~2 cups"],["Veg","1 cup"]])
   ]}
 ];
 
@@ -399,6 +434,13 @@ function toggle(i){var d=getDone();d[i]=!d[i];setDone(d);renderHead();renderList
 function openSheet(i){
   var s=cards()[i],done=getDone();
   var h="<div class='st'>"+s.t+"</div><div class='ss'>"+s.s+"</div>";
+  if(s.food){
+    h+="<div class='blk'><h4>How much &middot; measured guide</h4><ul class='swaps'>";
+    s.food.forEach(function(f){
+      h+="<li><span class='nm'>"+f[0]+"</span><span class='rp'>"+f[1]+"</span></li>";
+    });
+    h+="</ul><p class='fnote'>Approximate serves - adjust to appetite and the day. Hands work as a scale: protein = 1 palm, carbs = 1 fist, fat = 1 thumb.</p></div>";
+  }
   h+="<div class='blk'><h4>Why &amp; how</h4><p>"+s.detail+"</p></div>";
   if(s.onrun)h+="<div class='blk'><h4>On race day this is rehearsal</h4><div class='callout'><p>Practise this exact fuelling on every long run. North Queensland heat and humidity mean heavier sweat losses for K2PD - get used to drinking and eating on the move now, not on the day.</p></div></div>";
   if(s.k==="rcv")h+="<div class='blk'><h4>The recovery window</h4><p>"+WINDOW+"</p></div>";
@@ -415,6 +457,7 @@ document.getElementById("scrim").onclick=closeSheet;
 /* ---------- coach notes ---------- */
 function note(title,html){return "<details class='sub'><summary>"+title+"<span class='x'>&rsaquo;</span></summary><div class='body'>"+html+"</div></details>";}
 document.getElementById("notesbody").innerHTML=
+ note("Your daily targets","<p>From your nutrition protocol - the numbers behind the measurements:</p><ul><li><b>~2,550 calories</b> a day to sustain top performance.</li><li><b>Protein 88 g</b> &middot; <b>Carbs 382 g</b> &middot; <b>Fats 72 g</b>.</li><li>Carbs and total calories matter most - prioritise high-carb, lower-fibre foods. Keep <b>fibre under 35 g/day</b>.</li><li>No food is off limits - a treat each night helps you hit the calories.</li></ul><p><b>Portion without scales</b> - one serve is:</p><ul><li><b>Protein:</b> 1 palm (~24 g) &middot; aim 4 serves/day</li><li><b>Carbs:</b> 1 fist (~25 g carbs) &middot; aim 15 serves/day</li><li><b>Veg / fruit:</b> 1 fist (~5 g carbs) &middot; aim 5–6 serves/day</li><li><b>Fat:</b> 1 thumb (~9 g) &middot; aim 8 serves/day</li></ul><p>Build every plate ½ carbs, ¼ protein, ¼ veg, with a thumb of healthy fat.</p>")+
  note("Eat enough - the real risk","<p>"+ENOUGH+"</p><p>For a working, parenting, caregiving athlete the danger is almost never overeating - it's quietly under-fuelling around a packed life. <b>If you trained, you need more, not less.</b></p>")+
  note("Hydration &amp; electrolytes","<ul><li>Water steadily through the day, not all at once.</li><li>On long or hot efforts, add electrolytes - sodium especially - to your bottle.</li><li><b>Pale-straw urine</b> is your simple gauge; dark means drink more.</li><li>K2PD is humid - practise drinking on every long run so race day is nothing new.</li></ul>")+
  note("Recovery nutrition","<p>"+WINDOW+"</p><p>It doesn't need to be fancy or expensive. Flavoured milk, a tub of yoghurt with fruit, or eggs on toast all do the job.</p>")+

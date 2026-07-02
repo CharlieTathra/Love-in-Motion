@@ -8,6 +8,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Fuel">
 <title>Love in Motion — Fuel</title>
+<meta name="description" content="The daily fuelling protocol for Kuranda → Port Douglas: meals, snacks, on-run fuel and recovery, with macros and measured serves across Plan A/B/C.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Love in Motion">
+<meta property="og:title" content="Love in Motion — Fuel">
+<meta property="og:description" content="Daily fuelling for Kuranda → Port Douglas: meals, snacks, on-run fuel and recovery, with macros and measured serves.">
+<meta property="og:image" content="https://charlietathra.github.io/Love-in-Motion/icon-512.png">
+<meta property="og:url" content="https://charlietathra.github.io/Love-in-Motion/nutrition-meal-planner/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Love in Motion — Fuel">
+<meta name="twitter:description" content="Daily fuelling for Kuranda → Port Douglas, with macros and measured serves.">
+<meta name="twitter:image" content="https://charlietathra.github.io/Love-in-Motion/icon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
@@ -227,7 +238,7 @@
   <div class="tag">Nourish · Foundation</div>
   <div class="count">
     <div class="n" id="cd">—</div>
-    <div class="lab" id="cdl">days to <b>The Love in Motion Run</b><br>Attunga &rarr; Sydney · 26 Dec 2026</div>
+    <div class="lab" id="cdl">days to <b>Kuranda &rarr; Port Douglas</b><br>60 km trail ultra · 23 Aug 2026</div>
   </div>
 </header>
 
@@ -386,7 +397,7 @@ var DAYS=[
   ]}
 ];
 
-var EVENT=new Date(2026,11,26);
+var EVENT=new Date(2026,7,23);
 
 /* ---------- state ---------- */
 var state={day:0,plan:store.get("limn_plan")||"A"};
@@ -401,7 +412,7 @@ function cards(){return DAYS[state.day][state.plan]||[];}
 function renderCount(){
   var ms=EVENT-new Date();var d=Math.max(0,Math.ceil(ms/86400000));
   document.getElementById("cd").textContent=d;
-  if(d===0)document.getElementById("cdl").innerHTML="<b>Today is the day</b><br>The Love in Motion Run";
+  if(d===0)document.getElementById("cdl").innerHTML="<b>Today is the day</b><br>Kuranda &rarr; Port Douglas";
 }
 function renderDays(){
   var w=document.getElementById("days");w.innerHTML="";
@@ -454,12 +465,16 @@ function renderList(){
     var macLine=s.mac?"<div class='cmac'><b>"+kcalOf(s.mac)+" kcal</b> &middot; "+
       s.mac[0]+"P / "+s.mac[1]+"C / "+s.mac[2]+"F</div>":"";
     card.innerHTML=
-      "<div class='check'><svg viewBox='0 0 24 24'><polyline points='4 12 10 18 20 6'/></svg></div>"+
+      "<div class='check' aria-hidden='true'><svg viewBox='0 0 24 24'><polyline points='4 12 10 18 20 6'/></svg></div>"+
       "<div class='meta'><div class='t'>"+s.t+"</div><div class='s'>"+s.s+"</div>"+macLine+"</div>"+
       "<span class='pill "+pillClass(s.k)+"'>"+s.pill+"</span>"+
       "<span class='chev'>&rsaquo;</span>";
+    card.setAttribute("role","button");
+    card.setAttribute("tabindex","0");
+    card.setAttribute("aria-label",s.t+" — "+s.s+". "+(done[i]?"Eaten.":"Not yet eaten.")+" Open for details.");
     card.querySelector(".check").onclick=function(e){e.stopPropagation();toggle(i);};
     card.onclick=function(){openSheet(i);};
+    card.onkeydown=function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();openSheet(i);}};
     list.appendChild(card);
   });
   var cn=document.getElementById("cnote"),hydr;
@@ -502,11 +517,17 @@ function openSheet(i){
   document.getElementById("sheetbody").innerHTML=h;
   document.getElementById("dobtn").onclick=function(){toggle(i);openSheet(i);};
   document.getElementById("scrim").classList.add("on");
-  document.getElementById("sheet").classList.add("on");
+  var sheet=document.getElementById("sheet");
+  sheet.classList.add("on");
+  sheet.setAttribute("aria-label",s.t);
+  document.body.style.overflow="hidden";
+  sheet.setAttribute("tabindex","-1");sheet.focus();
 }
 function closeSheet(){document.getElementById("scrim").classList.remove("on");
-  document.getElementById("sheet").classList.remove("on");}
+  document.getElementById("sheet").classList.remove("on");
+  document.body.style.overflow="";}
 document.getElementById("scrim").onclick=closeSheet;
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeSheet();});
 
 /* ---------- coach notes ---------- */
 function note(title,html){return "<details class='sub'><summary>"+title+"<span class='x'>&rsaquo;</span></summary><div class='body'>"+html+"</div></details>";}

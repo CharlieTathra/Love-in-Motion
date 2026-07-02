@@ -630,6 +630,9 @@ document.getElementById("notesbody").innerHTML=
 /* ---------- go ---------- */
 function render(){renderPhases();renderPlans();renderWeeks();renderHead();renderList();renderNotes();}
 renderCount();render();
+
+/* offline support */
+if("serviceWorker" in navigator){addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){});});}
 </script>
 </body>
 </html>

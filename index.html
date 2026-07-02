@@ -317,6 +317,9 @@ var EVENT=new Date(2026,11,26);
     card.hidden=false;
   }
 })();
+
+/* offline support */
+if("serviceWorker" in navigator){addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){});});}
 </script>
 </body>
 </html>

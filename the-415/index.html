@@ -429,6 +429,9 @@ document.getElementById("notesbody").innerHTML=
 
 function render(){renderPhases();renderPlans();renderHead();renderList();}
 renderCount();render();
+
+/* offline support */
+if("serviceWorker" in navigator){addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){});});}
 </script>
 </body>
 </html>

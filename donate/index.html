@@ -201,5 +201,10 @@
   <a class="tab" href="../the-415/index.html"><span class="ic">&#127937;</span>The 415</a>
   <a class="tab" href="index.html" aria-current="page"><span class="ic">&#129655;</span>Donate</a>
 </nav>
+
+<script>
+/* offline support */
+if("serviceWorker" in navigator){addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){});});}
+</script>
 </body>
 </html>

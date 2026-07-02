@@ -8,6 +8,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Fuel">
 <title>Love in Motion — Fuel</title>
+<meta name="description" content="The daily fuelling protocol for Kuranda → Port Douglas: meals, snacks, on-run fuel and recovery, with macros and measured serves across Plan A/B/C.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Love in Motion">
+<meta property="og:title" content="Love in Motion — Fuel">
+<meta property="og:description" content="Daily fuelling for Kuranda → Port Douglas: meals, snacks, on-run fuel and recovery, with macros and measured serves.">
+<meta property="og:image" content="https://charlietathra.github.io/Love-in-Motion/icon-512.png">
+<meta property="og:url" content="https://charlietathra.github.io/Love-in-Motion/nutrition-meal-planner/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Love in Motion — Fuel">
+<meta name="twitter:description" content="Daily fuelling for Kuranda → Port Douglas, with macros and measured serves.">
+<meta name="twitter:image" content="https://charlietathra.github.io/Love-in-Motion/icon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
@@ -227,7 +238,7 @@
   <div class="tag">Nourish · Foundation</div>
   <div class="count">
     <div class="n" id="cd">—</div>
-    <div class="lab" id="cdl">days to <b>The Love in Motion Run</b><br>Attunga &rarr; Sydney · 26 Dec 2026</div>
+    <div class="lab" id="cdl">days to <b>Kuranda &rarr; Port Douglas</b><br>60 km trail ultra · 23 Aug 2026</div>
   </div>
 </header>
 
@@ -297,8 +308,8 @@ function kcalOf(m){return Math.round(4*m[0]+4*m[1]+9*m[2]);}
 var DAYS=[
  {name:"Training day",sub:"easy run",line:"A normal day with an easy run. Carbs around the run, protein at every meal, and don't let long gaps open up.",
   A:[
-    meal("Breakfast","Oats, milk, banana, peanut butter, honey + a Milo & black coffee","Slow-release carbs to run on, plus protein and fats to stay full. Make it as overnight oats the night before if mornings are rushed. Berries or chia if you have them. A Milo made with Norco lactose-free milk and a black coffee round it out - the Milo adds about 208 kcal (8 P / 25 C / 8 F) and the black coffee is essentially free.",
-      [["Rolled oats","60 g dry · ¾ cup"],["Milk","250 ml"],["Banana","1 medium"],["Peanut butter","1 tbsp · 20 g"],["Honey","1 tbsp · 20 g"],["Milo · in 200 ml Norco lactose-free milk","3 tsp · 20 g"],["Black coffee","1 cup · unsweetened"]],[31,119,26]),
+    meal("Breakfast","Oats, milk, banana, peanut butter + a Milo & black coffee","Slow-release carbs to run on, plus protein and fats to stay full. Make it as overnight oats the night before if mornings are rushed. Berries or chia if you have them. The Milo (with Norco lactose-free milk) and a black coffee replace the honey and a little of the oats here, so the day holds near target - the Milo adds about 208 kcal (8 P / 25 C / 8 F) and the black coffee is essentially free.",
+      [["Rolled oats","30 g dry · ⅓ cup"],["Milk","250 ml"],["Banana","1 medium"],["Peanut butter","1 tbsp · 20 g"],["Milo · in 200 ml Norco lactose-free milk","3 tsp · 20 g"],["Black coffee","1 cup · unsweetened"]],[27,85,24]),
     snack("Mid-morning","Greek yoghurt + banana + a little honey","A real snack between meals keeps blood sugar and mood steady through a working morning. Kept carb-forward here to sit it near the protocol's pre-fuel.",
       [["Greek yoghurt","100 g"],["Banana","1 medium"],["Honey","1 tsp · 7 g"],["(or) Wholegrain toast + jam","2 slices"]],[10,38,4]),
     meal("Lunch","Wholegrain wrap: eggs / tuna / chicken + salad + fruit & juice","Build every lunch around a protein, a wholegrain carb and as much veg as fits. Fruit and a juice push the carbs up toward your target. Your biggest rebuild meal of the working day.",
@@ -329,8 +340,8 @@ var DAYS=[
 
  {name:"Long day",sub:"90 min +",line:"Long run or back-to-back day. Fuelling is the session today - before, during, and the recovery window after. Eat more than a normal day.",
   A:[
-    meal("Before","Carb breakfast 1.5-2 hr out: oats or toast + banana + honey, + a Milo & coffee","Top up the tank with easy carbs. The earlier the start, the smaller and simpler it can be - even just banana and toast. Nothing new or high-fibre before a long one. A Milo with Norco lactose-free milk and a black coffee add about 208 kcal (8 P / 25 C / 8 F) - both well tested for you, so fine before a long run.",
-      [["Rolled oats or toast","80 g dry · or 2 slices"],["Banana","1 medium"],["Honey","1 tbsp · 20 g"],["Milk or water","250 ml"],["Milo · in 200 ml Norco lactose-free milk","3 tsp · 20 g"],["Black coffee","1 cup · unsweetened"]],[28,128,17]),
+    meal("Before","Carb breakfast 1.5-2 hr out: oats or toast + banana, + a Milo & coffee","Top up the tank with easy carbs. The earlier the start, the smaller and simpler it can be - even just banana and toast. Nothing new or high-fibre before a long one. The Milo (with Norco lactose-free milk) and a black coffee replace the honey and a little of the oats - both well tested for you, so fine before a long run. The Milo adds about 208 kcal (8 P / 25 C / 8 F).",
+      [["Rolled oats or toast","50 g dry · or 1½ slices"],["Banana","1 medium"],["Milk or water","250 ml"],["Milo · in 200 ml Norco lactose-free milk","3 tsp · 20 g"],["Black coffee","1 cup · unsweetened"]],[24,94,15]),
     fuel("During the run","From ~60-90 min: something every 20-30 min","Once past about an hour, start fuelling: roughly 30-60g of carbs an hour - a banana, a few dates, a muesli bar or a gel. Sip water the whole way, with electrolytes added in the heat. This is rehearsal; your gut trains too.",
       [["Target carbs","30–60 g per hour"],["Banana","1 · ~25 g carbs"],["Dates","3 · ~45 g carbs"],["Muesli bar or gel","1 · 25–30 g carbs"],["Water","500–750 ml/hr + electrolytes"]],[4,98,5]),
     recov("Straight after","Within 30-60 min: carbs + protein","Chocolate milk, or yoghurt + fruit + granola, or eggs on toast. This window is where recovery starts.",
@@ -386,7 +397,7 @@ var DAYS=[
   ]}
 ];
 
-var EVENT=new Date(2026,11,26);
+var EVENT=new Date(2026,7,23);
 
 /* ---------- state ---------- */
 var state={day:0,plan:store.get("limn_plan")||"A"};
@@ -401,7 +412,7 @@ function cards(){return DAYS[state.day][state.plan]||[];}
 function renderCount(){
   var ms=EVENT-new Date();var d=Math.max(0,Math.ceil(ms/86400000));
   document.getElementById("cd").textContent=d;
-  if(d===0)document.getElementById("cdl").innerHTML="<b>Today is the day</b><br>The Love in Motion Run";
+  if(d===0)document.getElementById("cdl").innerHTML="<b>Today is the day</b><br>Kuranda &rarr; Port Douglas";
 }
 function renderDays(){
   var w=document.getElementById("days");w.innerHTML="";
@@ -454,12 +465,16 @@ function renderList(){
     var macLine=s.mac?"<div class='cmac'><b>"+kcalOf(s.mac)+" kcal</b> &middot; "+
       s.mac[0]+"P / "+s.mac[1]+"C / "+s.mac[2]+"F</div>":"";
     card.innerHTML=
-      "<div class='check'><svg viewBox='0 0 24 24'><polyline points='4 12 10 18 20 6'/></svg></div>"+
+      "<div class='check' aria-hidden='true'><svg viewBox='0 0 24 24'><polyline points='4 12 10 18 20 6'/></svg></div>"+
       "<div class='meta'><div class='t'>"+s.t+"</div><div class='s'>"+s.s+"</div>"+macLine+"</div>"+
       "<span class='pill "+pillClass(s.k)+"'>"+s.pill+"</span>"+
       "<span class='chev'>&rsaquo;</span>";
+    card.setAttribute("role","button");
+    card.setAttribute("tabindex","0");
+    card.setAttribute("aria-label",s.t+" — "+s.s+". "+(done[i]?"Eaten.":"Not yet eaten.")+" Open for details.");
     card.querySelector(".check").onclick=function(e){e.stopPropagation();toggle(i);};
     card.onclick=function(){openSheet(i);};
+    card.onkeydown=function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();openSheet(i);}};
     list.appendChild(card);
   });
   var cn=document.getElementById("cnote"),hydr;
@@ -502,11 +517,17 @@ function openSheet(i){
   document.getElementById("sheetbody").innerHTML=h;
   document.getElementById("dobtn").onclick=function(){toggle(i);openSheet(i);};
   document.getElementById("scrim").classList.add("on");
-  document.getElementById("sheet").classList.add("on");
+  var sheet=document.getElementById("sheet");
+  sheet.classList.add("on");
+  sheet.setAttribute("aria-label",s.t);
+  document.body.style.overflow="hidden";
+  sheet.setAttribute("tabindex","-1");sheet.focus();
 }
 function closeSheet(){document.getElementById("scrim").classList.remove("on");
-  document.getElementById("sheet").classList.remove("on");}
+  document.getElementById("sheet").classList.remove("on");
+  document.body.style.overflow="";}
 document.getElementById("scrim").onclick=closeSheet;
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeSheet();});
 
 /* ---------- coach notes ---------- */
 function note(title,html){return "<details class='sub'><summary>"+title+"<span class='x'>&rsaquo;</span></summary><div class='body'>"+html+"</div></details>";}
@@ -523,6 +544,9 @@ document.getElementById("notesbody").innerHTML=
 /* ---------- go ---------- */
 function render(){renderDays();renderPlans();renderHead();renderList();}
 renderCount();render();
+
+/* offline support */
+if("serviceWorker" in navigator){addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){});});}
 </script>
 </body>
 </html>

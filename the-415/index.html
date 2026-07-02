@@ -8,6 +8,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="The 415">
 <title>Love in Motion — The 415</title>
+<meta name="description" content="The Attunga → Sydney campaign: multi-day training, on-the-road fuelling, crew and recovery for the 415 km run in support of the McGrath Foundation.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Love in Motion">
+<meta property="og:title" content="Love in Motion — The 415">
+<meta property="og:description" content="The Attunga → Sydney campaign: multi-day training, on-the-road fuelling, crew and recovery for the 415 km.">
+<meta property="og:image" content="https://charlietathra.github.io/Love-in-Motion/icon-512.png">
+<meta property="og:url" content="https://charlietathra.github.io/Love-in-Motion/the-415/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Love in Motion — The 415">
+<meta name="twitter:description" content="The Attunga → Sydney campaign: multi-day training, fuelling, crew and recovery for the 415 km.">
+<meta name="twitter:image" content="https://charlietathra.github.io/Love-in-Motion/icon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
@@ -372,7 +383,11 @@ function renderList(){
       "<div class='meta'><div class='t'>"+s.t+"</div><div class='s'>"+s.s+"</div></div>"+
       "<span class='pill "+s.k+"'>"+s.pill+"</span>"+
       "<span class='chev'>&rsaquo;</span>";
+    card.setAttribute("role","button");
+    card.setAttribute("tabindex","0");
+    card.setAttribute("aria-label",s.t+" — "+s.s+". Open for details.");
     card.onclick=function(){openSheet(i);};
+    card.onkeydown=function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();openSheet(i);}};
     list.appendChild(card);
   });
   document.getElementById("cnote").textContent =
@@ -390,11 +405,17 @@ function openSheet(i){
   if(s.k==="fuel"||s.k==="rcv")h+="<div class='blk'><h4>Pairs with the Fuel plan</h4><p>The day-to-day fuelling principles &mdash; recovery window, hydration, eating enough &mdash; are in the <a href='../nutrition-meal-planner/index.html' style='color:var(--rose-deep);font-weight:600'>Fuel</a> section. This is the same thinking, scaled to the road.</p></div>";
   document.getElementById("sheetbody").innerHTML=h;
   document.getElementById("scrim").classList.add("on");
-  document.getElementById("sheet").classList.add("on");
+  var sheet=document.getElementById("sheet");
+  sheet.classList.add("on");
+  sheet.setAttribute("aria-label",s.t);
+  document.body.style.overflow="hidden";
+  sheet.setAttribute("tabindex","-1");sheet.focus();
 }
 function closeSheet(){document.getElementById("scrim").classList.remove("on");
-  document.getElementById("sheet").classList.remove("on");}
+  document.getElementById("sheet").classList.remove("on");
+  document.body.style.overflow="";}
 document.getElementById("scrim").onclick=closeSheet;
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeSheet();});
 
 function note(title,html){return "<details class='sub'><summary>"+title+"<span class='x'>&rsaquo;</span></summary><div class='body'>"+html+"</div></details>";}
 document.getElementById("notesbody").innerHTML=
@@ -408,6 +429,9 @@ document.getElementById("notesbody").innerHTML=
 
 function render(){renderPhases();renderPlans();renderHead();renderList();}
 renderCount();render();
+
+/* offline support */
+if("serviceWorker" in navigator){addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){});});}
 </script>
 </body>
 </html>

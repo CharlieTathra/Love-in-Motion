@@ -156,11 +156,11 @@
   .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:15;max-width:520px;margin:0 auto;
     display:flex;gap:2px;background:rgba(255,253,251,.92);
     -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
-    border-top:1px solid var(--line);padding:7px 8px calc(7px + env(safe-area-inset-bottom))}
+    border-top:1px solid var(--line);padding:7px 6px calc(7px + env(safe-area-inset-bottom))}
   .tabbar .tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
-    text-decoration:none;color:var(--ink-faint);font-size:10px;font-weight:600;
-    letter-spacing:.02em;padding:5px 2px;border-radius:11px;transition:.15s}
-  .tabbar .tab .ic{font-size:18px;line-height:1}
+    text-decoration:none;color:var(--ink-faint);font-size:9.5px;font-weight:600;
+    letter-spacing:.01em;padding:5px 1px;border-radius:11px;transition:.15s}
+  .tabbar .tab .ic{font-size:17px;line-height:1}
   .tabbar .tab:active{background:var(--cream-2)}
   .tabbar .tab[aria-current="page"]{color:var(--rose-deep)}
 </style>
@@ -199,6 +199,15 @@
     <div class="nmeta">
       <div class="t">Fuel <span class="badge">Live</span></div>
       <div class="s">The daily fuelling protocol for K2PD &mdash; meals, snacks, on-run fuel and recovery, with plans for ideal, busy and hospital weeks.</div>
+    </div>
+    <span class="chev">&rsaquo;</span>
+  </a>
+
+  <a class="navcard" href="meals/index.html">
+    <div class="ico" style="background:var(--euc-wash)">&#129367;</div>
+    <div class="nmeta">
+      <div class="t">Meals <span class="badge">Nourish</span></div>
+      <div class="s">Build breakfast, lunch, dinner &amp; snacks by serves &mdash; hit your daily protein, carbs, veggies &amp; fat with no scales or counting.</div>
     </div>
     <span class="chev">&rsaquo;</span>
   </a>
@@ -260,8 +269,9 @@
 <nav class="tabbar" aria-label="Sections">
   <a class="tab" href="index.html" aria-current="page"><span class="ic">&#127968;</span>Home</a>
   <a class="tab" href="nutrition-meal-planner/index.html"><span class="ic">&#127869;</span>Fuel</a>
+  <a class="tab" href="meals/index.html"><span class="ic">&#129367;</span>Meals</a>
   <a class="tab" href="training/index.html"><span class="ic">&#128694;</span>Train</a>
-  <a class="tab" href="the-415/index.html"><span class="ic">&#127937;</span>The 415</a>
+  <a class="tab" href="the-415/index.html"><span class="ic">&#127937;</span>415</a>
   <a class="tab" href="donate/index.html"><span class="ic">&#129655;</span>Donate</a>
 </nav>
 

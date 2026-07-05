@@ -237,13 +237,16 @@
   <a class="tab" href="../donate/index.html"><span class="ic">&#129655;</span>Donate</a>
 </nav>
 
+<script src="../supabase-sync.js"></script>
 <script>
 "use strict";
 
-var store=(function(){var mem={},ok=false;
-  try{localStorage.setItem('__t','1');localStorage.removeItem('__t');ok=true;}catch(e){ok=false;}
-  return{get:function(k){try{return ok?JSON.parse(localStorage.getItem(k)):mem[k];}catch(e){return mem[k];}},
-         set:function(k,v){try{ok?localStorage.setItem(k,JSON.stringify(v)):mem[k]=v;}catch(e){mem[k]=v;}}};})();
+var store=window.LIMStorage
+  ? window.LIMStorage.create("app",function(){if(typeof render==="function")render();})
+  : (function(){var mem={},ok=false;
+      try{localStorage.setItem('__t','1');localStorage.removeItem('__t');ok=true;}catch(e){ok=false;}
+      return{get:function(k){try{return ok?JSON.parse(localStorage.getItem(k)):mem[k];}catch(e){return mem[k];}},
+             set:function(k,v){try{ok?localStorage.setItem(k,JSON.stringify(v)):mem[k]=v;}catch(e){mem[k]=v;}}};})();
 
 /* card builders: kind drives the pill colour/label */
 function C(k,pill,t,s,detail,extra){return{k:k,pill:pill,t:t,s:s,detail:detail,extra:extra};}

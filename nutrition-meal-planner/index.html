@@ -283,14 +283,17 @@
 <div class="scrim" id="scrim"></div>
 <div class="sheet" id="sheet" role="dialog" aria-modal="true"><div class="grab"></div><div id="sheetbody"></div></div>
 
+<script src="../supabase-sync.js"></script>
 <script>
 "use strict";
 
 /* ---------- safe storage (works offline as a file; never crashes) ---------- */
-var store=(function(){var mem={},ok=false;
-  try{localStorage.setItem('__t','1');localStorage.removeItem('__t');ok=true;}catch(e){ok=false;}
-  return{get:function(k){try{return ok?JSON.parse(localStorage.getItem(k)):mem[k];}catch(e){return mem[k];}},
-         set:function(k,v){try{ok?localStorage.setItem(k,JSON.stringify(v)):mem[k]=v;}catch(e){mem[k]=v;}}};})();
+var store=window.LIMStorage
+  ? window.LIMStorage.create("app",function(){if(typeof render==="function")render();})
+  : (function(){var mem={},ok=false;
+      try{localStorage.setItem('__t','1');localStorage.removeItem('__t');ok=true;}catch(e){ok=false;}
+      return{get:function(k){try{return ok?JSON.parse(localStorage.getItem(k)):mem[k];}catch(e){return mem[k];}},
+             set:function(k,v){try{ok?localStorage.setItem(k,JSON.stringify(v)):mem[k]=v;}catch(e){mem[k]=v;}}};})();
 
 /* ---------- shared guidance ---------- */
 var ENOUGH="The aim is enough, not less. If you've trained, slept badly, or carried a big caring load, your body needs more fuel - not a smaller plate. Skipping meals to save time or energy backfires: it flattens recovery, mood and sleep.";

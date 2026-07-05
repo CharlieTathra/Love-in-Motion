@@ -8,6 +8,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Love in Motion">
 <title>Love in Motion</title>
+<meta name="description" content="An endurance journey for the McGrath Foundation — training, fuelling and fundraising for Kuranda → Port Douglas (60 km) and the 415 km to Sydney.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Love in Motion">
+<meta property="og:title" content="Love in Motion">
+<meta property="og:description" content="An endurance journey for the McGrath Foundation — because love keeps moving.">
+<meta property="og:image" content="https://charlietathra.github.io/Love-in-Motion/icon-512.png">
+<meta property="og:url" content="https://charlietathra.github.io/Love-in-Motion/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Love in Motion">
+<meta name="twitter:description" content="An endurance journey for the McGrath Foundation — because love keeps moving.">
+<meta name="twitter:image" content="https://charlietathra.github.io/Love-in-Motion/icon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
@@ -256,7 +267,7 @@
 
 <script>
 "use strict";
-/* live countdown to K2PD — mirrors the Fuel app */
+/* live countdown to the Love in Motion Run — the 415 km, Attunga → Sydney */
 var EVENT=new Date(2026,11,26);
 (function(){
   var ms=EVENT-new Date(),d=Math.max(0,Math.ceil(ms/86400000));
@@ -306,6 +317,9 @@ var EVENT=new Date(2026,11,26);
     card.hidden=false;
   }
 })();
+
+/* offline support */
+if("serviceWorker" in navigator){addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){});});}
 </script>
 </body>
 </html>

@@ -8,6 +8,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Donate">
 <title>Love in Motion — Donate</title>
+<meta name="description" content="Support the McGrath Foundation — breast care nurses for families facing breast cancer, at no cost to them. Every dollar from the Love in Motion run goes to the cause.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Love in Motion">
+<meta property="og:title" content="Love in Motion — Donate">
+<meta property="og:description" content="Support the McGrath Foundation — breast care nurses for families who need them most. Every dollar goes to the cause.">
+<meta property="og:image" content="https://charlietathra.github.io/Love-in-Motion/icon-512.png">
+<meta property="og:url" content="https://charlietathra.github.io/Love-in-Motion/donate/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Love in Motion — Donate">
+<meta name="twitter:description" content="Support the McGrath Foundation — breast care nurses for families who need them most.">
+<meta name="twitter:image" content="https://charlietathra.github.io/Love-in-Motion/icon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
@@ -190,5 +201,10 @@
   <a class="tab" href="../the-415/index.html"><span class="ic">&#127937;</span>The 415</a>
   <a class="tab" href="index.html" aria-current="page"><span class="ic">&#129655;</span>Donate</a>
 </nav>
+
+<script>
+/* offline support */
+if("serviceWorker" in navigator){addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){});});}
+</script>
 </body>
 </html>

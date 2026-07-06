@@ -9,16 +9,16 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Train">
 <title>Love in Motion — Train</title>
-<meta name="description" content="The 12-week build to the 45 km Attunga loop practice run — Foundation, Build, Peak, Taper — with weekly sessions, prescribed strength, saved notes and coach guidance. A stepping stone to the 415 km to Sydney.">
+<meta name="description" content="The 17-week build to the 45 km Attunga loop practice run — Foundation, Build, Peak, Taper — with weekly sessions, prescribed strength, saved notes and coach guidance. A stepping stone to the 415 km to Sydney.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Love in Motion">
 <meta property="og:title" content="Love in Motion — Train">
-<meta property="og:description" content="The 12-week build to the 45 km practice run — Foundation, Build, Peak, Taper — with weekly sessions, strength and saved notes.">
+<meta property="og:description" content="The 17-week build to the 45 km practice run — Foundation, Build, Peak, Taper — with weekly sessions, strength and saved notes.">
 <meta property="og:image" content="https://charlietathra.github.io/Love-in-Motion/icon-512.png">
 <meta property="og:url" content="https://charlietathra.github.io/Love-in-Motion/training/">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Love in Motion — Train">
-<meta name="twitter:description" content="The 12-week build to the 45 km practice run, with weekly sessions, strength and saved notes.">
+<meta name="twitter:description" content="The 17-week build to the 45 km practice run, with weekly sessions, strength and saved notes.">
 <meta name="twitter:image" content="https://charlietathra.github.io/Love-in-Motion/icon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -81,6 +81,7 @@
   .whead .focus{font-family:var(--serif);font-size:21px;font-weight:500;letter-spacing:-.01em}
   .phase{display:inline-block;font-size:9.5px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;
     padding:3px 9px;border-radius:99px;margin:8px 8px 0 0;vertical-align:middle}
+  .pf-Base{background:var(--cream-2);color:var(--ink-soft)}
   .pf-Foundation{background:var(--euc-wash);color:var(--euc)}
   .pf-Build{background:var(--rose-wash);color:var(--rose-deep)}
   .pf-Peak{background:var(--rose-deep);color:#fff}
@@ -193,7 +194,7 @@
 <body>
 <header>
   <div class="brand"><span class="heart">&#10084;</span><h1>Love in Motion · Train</h1></div>
-  <div class="tag" id="tag">12-week build</div>
+  <div class="tag" id="tag">17-week build</div>
   <div class="count">
     <div class="n" id="cd">—</div>
     <div class="lab" id="cdl">days to <b>Attunga 45 km loop</b><br>practice run · 1 Nov 2026</div>
@@ -289,62 +290,86 @@ function walkC(){return rec("Walk / run-walk","15-20 min · 1-2 times","A gentle
 function drC(){return rec("Downregulate","Daily · 10 min",DR);}
 
 var WEEKS=[
- {ph:"Foundation",focus:"Settle in & find your rhythm",dates:"Week 1 · 10-16 Aug",start:new Date(2026,7,10),wknote:"Show up gently. This month is about rhythm and durability, not distance.",
+ {ph:"Base",focus:"Start the habit",dates:"Week 1 · 6-12 Jul",start:new Date(2026,6,6),wknote:"Week one. Small and steady beats big and sporadic \u2014 just get the runs in.",
+  A:[run("Easy run","25 min"),run("Easy run","25-30 min"),run("Long easy","40 min","Nice and gentle, flat or rolling.",{long:true,pill:"Long"}),strA(),rec("Mobility","Most days · 5-10 min","Easy mobility after runs: hips, calves, ankles, upper back.")],
+  B:[run("Easy run","25 min"),run("Long easy","40 min",null,{long:true,pill:"Long"}),strA("Strength (1 session)")],
+  C:[walkC(),drC()]},
+
+ {ph:"Base",focus:"Build the habit",dates:"Week 2 · 13-19 Jul",start:new Date(2026,6,13),wknote:"Three easy runs is a great week. Keep every one conversational.",
+  A:[run("Easy run","30 min"),run("Easy run","30 min"),run("Long easy","45 min",null,{long:true,pill:"Long"}),strA(),strB()],
+  B:[run("Easy run","30 min"),run("Long easy","45 min",null,{long:true,pill:"Long"}),strA("Strength (1 session)")],
+  C:[walkC(),drC()]},
+
+ {ph:"Base",focus:"A little more",dates:"Week 3 · 20-26 Jul",start:new Date(2026,6,20),wknote:"The long run nudges up by minutes. No rush.",
+  A:[run("Easy run","30 min"),run("Easy run","30-35 min"),run("Long easy","50 min","Onto some gentle hills if you can.",{long:true,pill:"Long"}),strA(),strB()],
+  B:[run("Easy run","30 min"),run("Long easy","50 min",null,{long:true,pill:"Long"}),strA("Strength (1 session)")],
+  C:[walkC(),drC()]},
+
+ {ph:"Base",focus:"Ease & absorb",dates:"Week 4 · 27 Jul-2 Aug · deload",start:new Date(2026,6,27),wknote:"First deload. Pull back and let the body soak it up.",
+  A:[run("Easy run","25 min"),run("Easy run","30 min"),run("Long easy","40 min","Gentle - consolidate, don\'t build.",{long:true,pill:"Long"}),strA("Strength A (lighter)"),rec("Restore","Extra sleep + mobility","Rest is the session this week.")],
+  B:[run("Easy run","25 min"),run("Easy run","30 min"),rec("Mobility","Gentle","Mobility and rest. Keep the thread.")],
+  C:[rec("Walk / regulation","As you can","Walks and downregulation. Full rest if needed - no guilt."),drC()]},
+
+ {ph:"Base",focus:"Into the build",dates:"Week 5 · 3-9 Aug",start:new Date(2026,7,3),wknote:"Last base week - you have a foundation to grow from now.",
+  A:[run("Easy run","35 min"),run("Easy + strides","30 min + 4 &times; 20s","After an easy 30 min, add 4 relaxed 20-second pick-ups on the flat, full walk recovery between."),run("Long easy","55-60 min",null,{long:true,pill:"Long"}),strA(),strB()],
+  B:[run("Easy run","30 min"),run("Long easy","55 min",null,{long:true,pill:"Long"}),strA("Strength (1 session)")],
+  C:[walkC(),drC()]},
+ {ph:"Foundation",focus:"Settle in & find your rhythm",dates:"Week 6 · 10-16 Aug",start:new Date(2026,7,10),wknote:"Show up gently. This month is about rhythm and durability, not distance.",
   A:[run("Easy run","30 min"),run("Easy run","30-35 min"),run("Long easy","60 min","Get onto trail or undulating ground if you can.",{long:true,pill:"Long"}),strA(),strB(),rec("Mobility","Most days · 5-10 min","Easy mobility after runs: hips, calves, ankles, upper back.")],
   B:[run("Easy run","30 min"),run("Long easy","60 min",null,{long:true,pill:"Long"}),strA("Strength (1 session)")],
   C:[walkC(),drC()]},
 
- {ph:"Foundation",focus:"Extend the long run, find hills",dates:"Week 2 · 17-23 Aug",start:new Date(2026,7,17),wknote:"The long run grows by minutes, not leaps.",
+ {ph:"Foundation",focus:"Extend the long run, find hills",dates:"Week 7 · 17-23 Aug",start:new Date(2026,7,17),wknote:"The long run grows by minutes, not leaps.",
   A:[run("Easy run","35 min"),run("Easy run","30 min"),run("Long run/walk","75-90 min","On undulating ground or trail - walk every climb at an all-day effort.",{long:true,pill:"Long"}),strA(),strB()],
   B:[run("Easy run","30 min"),run("Long run/walk","75 min",null,{long:true,pill:"Long"}),strA("Strength (1 session)")],
   C:[walkC(),drC()]},
 
- {ph:"Foundation",focus:"Build & descending practice",dates:"Week 3 · 24-30 Aug",start:new Date(2026,7,24),wknote:"First taste of relaxed descending. Light feet, quiet steps.",
+ {ph:"Foundation",focus:"Build & descending practice",dates:"Week 8 · 24-30 Aug",start:new Date(2026,7,24),wknote:"First taste of relaxed descending. Light feet, quiet steps.",
   A:[run("Easy run + strides","35 min + 4 &times; 20s","After an easy 35 min, add 4 relaxed 20-second pick-ups on the flat, full walk recovery between. Smooth and quick, never a sprint."),run("Easy run","35 min"),run("Long run/walk","~1 hr 45","On rolling ground with some runnable downhill - practise relaxed descending. Walk the steep climbs.",{long:true,pill:"Long"}),strA(),strB()],
   B:[run("Easy run","35 min"),run("Long run/walk","~1 hr 30",null,{long:true,pill:"Long"}),strA("Strength (1 session)")],
   C:[walkC(),drC()]},
 
- {ph:"Foundation",focus:"Ease & absorb",dates:"Week 4 · 31 Aug-6 Sep · deload",start:new Date(2026,7,31),wknote:"A deload is deliberate. Let the work land - this is where you get fitter.",
+ {ph:"Foundation",focus:"Ease & absorb",dates:"Week 9 · 31 Aug-6 Sep · deload",start:new Date(2026,7,31),wknote:"A deload is deliberate. Let the work land - this is where you get fitter.",
   A:[run("Easy run","30 min"),run("Easy run","30 min"),run("Long easy","60-70 min","Keep it gentle - consolidate, don't build.",{long:true,pill:"Long"}),strA("Strength A (lighter)"),rec("Restore","Extra sleep + yoga nidra","Rest and restoration are the session this week.")],
   B:[run("Easy run","25 min"),run("Easy run","30 min"),rec("Mobility","Gentle","Mobility and rest. Keep the thread, no pressure.")],
   C:[rec("Walk / regulation","As you can","Walks and downregulation. Full rest if the week calls for it - no guilt."),drC()]},
 
- {ph:"Build",focus:"Back-to-backs begin",dates:"Week 5 · 7-13 Sep",start:new Date(2026,8,7),wknote:"New this block: a short, easy run the day after your long one. Tired legs are the whole point.",
+ {ph:"Build",focus:"Back-to-backs begin",dates:"Week 10 · 7-13 Sep",start:new Date(2026,8,7),wknote:"New this block: a short, easy run the day after your long one. Tired legs are the whole point.",
   A:[run("Easy run","35 min"),run("Easy run","35 min"),run("Long run/walk","~2 hr","On trail, walk the climbs.",{long:true,pill:"Long"}),run("Back-to-back","Easy 30 min","The morning after your long run, on tired legs. Very gentle - this is the exact skill the 415 asks of you.",{pill:"B2B"}),strA(),strB()],
   B:[run("Easy run","35 min"),run("Long run/walk","~1 hr 45",null,{long:true,pill:"Long"}),strA("Strength (1 session)")],
   C:[walkC(),drC()]},
 
- {ph:"Build",focus:"Lengthen the back-to-back",dates:"Week 6 · 14-20 Sep",start:new Date(2026,8,14),wknote:"The long run grows, and the next-day run grows with it.",
+ {ph:"Build",focus:"Lengthen the back-to-back",dates:"Week 11 · 14-20 Sep",start:new Date(2026,8,14),wknote:"The long run grows, and the next-day run grows with it.",
   A:[run("Easy run","40 min"),run("Easy + strides","35 min + 4 &times; 20s","Easy, then 4 relaxed pick-ups on the flat."),run("Long run/walk","~2 hr 30","Rolling ground with some descending. Walk the climbs, eat as you go.",{long:true,pill:"Long"}),run("Back-to-back","Easy 40 min","On tired legs. Slow and steady.",{pill:"B2B"}),strA(),strB()],
   B:[run("Easy run","35 min"),run("Long run/walk","~2 hr",null,{long:true,pill:"Long"}),strA("Strength (1 session)")],
   C:[walkC(),drC()]},
 
- {ph:"Build",focus:"Biggest of the block",dates:"Week 7 · 21-27 Sep",start:new Date(2026,8,21),wknote:"Peak of this block - then we ease.",
+ {ph:"Build",focus:"Biggest of the block",dates:"Week 12 · 21-27 Sep",start:new Date(2026,8,21),wknote:"Peak of this block - then we ease.",
   A:[run("Easy run","40 min"),run("Easy run","40 min"),run("Long run/walk","~2 hr 45","Trail, plenty of descending practice. Walk climbs, fuel steadily.",{long:true,pill:"Long"}),run("Back-to-back","Run/walk 50-60 min","On tired legs - your longest second day yet.",{pill:"B2B",long:true}),strA(),strB()],
   B:[run("Easy run","40 min"),run("Long run/walk","~2 hr 15",null,{long:true,pill:"Long"}),strA("Strength (1 session)")],
   C:[walkC(),drC()]},
 
- {ph:"Build",focus:"Ease & absorb",dates:"Week 8 · 28 Sep-4 Oct · deload",start:new Date(2026,8,28),wknote:"Deload. Let the block land. Sleep is the headline session.",
+ {ph:"Build",focus:"Ease & absorb",dates:"Week 13 · 28 Sep-4 Oct · deload",start:new Date(2026,8,28),wknote:"Deload. Let the block land. Sleep is the headline session.",
   A:[run("Easy run","30 min"),run("Easy run","35 min"),run("Long easy","~90 min","Gentle, flat-ish, no pressure.",{long:true,pill:"Long"}),strA("Strength A (lighter)"),rec("Restore","Extra sleep + yoga nidra","Restoration is the work this week.")],
   B:[run("Easy run","30 min"),run("Easy run","30 min"),rec("Mobility","Gentle","Mobility and rest.")],
   C:[rec("Walk / regulation","As you can","Walks and downregulation. Rest fully if needed."),drC()]},
 
- {ph:"Peak",focus:"Rehearse everything",dates:"Week 9 · 5-11 Oct",start:new Date(2026,9,5),wknote:"Peak block. Dial in kit, fuelling and the descent in run-like conditions.",
+ {ph:"Peak",focus:"Rehearse everything",dates:"Week 14 · 5-11 Oct",start:new Date(2026,9,5),wknote:"Peak block. Dial in kit, fuelling and the descent in run-like conditions.",
   A:[run("Easy run","40 min"),run("Easy + strides","40 min + 4 &times; 20s","Easy, then relaxed pick-ups."),run("Long run/walk","~3 hr","Full kit. Eat every 20-30 min, practise the descent, walk the climbs.",{long:true,pill:"Long"}),run("Back-to-back","Run/walk ~60 min","On tired legs.",{pill:"B2B",long:true}),strA("Strength A (light)")],
   B:[run("Easy run","35 min"),run("Long run/walk","~2 hr 30",null,{long:true,pill:"Long"}),rec("Mobility","Gentle","Mobility and sleep.")],
   C:[walkC(),drC()]},
 
- {ph:"Peak",focus:"Dress rehearsal · ~3 weeks out",dates:"Week 10 · 12-18 Oct",start:new Date(2026,9,12),wknote:"The biggest effort of the build, then we taper. This weekend is your full rehearsal.",
-  A:[run("Easy run","35 min"),run("Easy run","40 min"),run("Long run/walk","~3 hr 30","Your big day: exact shoes, socks, pack and food. Walk every climb, practise the descent, eat ~200-300 cal/hr.",{long:true,pill:"Long"}),run("Back-to-back","Run/walk ~2 hr","A second long day on tired legs - the heart of multi-day prep for the 415.",{pill:"B2B",long:true}),rec("Light strength","Early week only","One easy session early, then let the legs recover for the weekend.")],
+ {ph:"Peak",focus:"Dress rehearsal · ~3 weeks out",dates:"Week 15 · 12-18 Oct",start:new Date(2026,9,12),wknote:"The biggest effort of the build: the full 45 km loop, then 21 km the next day. Then we taper.",
+  A:[run("Easy run","35 min"),run("Easy run","40 min"),run("Dress rehearsal","45 km \u00b7 the full loop","The whole 45 km loop, run exactly as you will on the day - same shoes, socks, pack, food and crew plan. Walk the climbs, eat ~200-300 cal/hr. Finishing this puts real confidence in the bank.",{long:true,pill:"Long"}),run("Back-to-back","21 km on tired legs","The morning after the full loop: a solid 21 km on heavy legs. This is the whole point - to feel what long back-to-backs are like, the exact skill the 415 asks of you. Easy pace, fuel from the start.",{pill:"B2B",long:true}),rec("Light strength","Early week only","One easy session early, then let the legs recover for the weekend.")],
   B:[run("Easy run","30 min"),run("Long run/walk","~2 hr 45",null,{long:true,pill:"Long"}),run("Back-to-back","~75 min",null,{pill:"B2B",long:true})],
   C:[rec("Protect & adjust","As you can","If a hard week lands on the rehearsal, a shorter run or a walk becomes the smart call. No guilt - we adapt."),drC()]},
 
- {ph:"Taper",focus:"Pull back, stay sharp",dates:"Week 11 · 19-25 Oct",start:new Date(2026,9,19),wknote:"Taper begins. Fresh beats fit now - volume drops, freshness rises.",
+ {ph:"Taper",focus:"Pull back, stay sharp",dates:"Week 16 · 19-25 Oct",start:new Date(2026,9,19),wknote:"Taper begins. Fresh beats fit now - volume drops, freshness rises.",
   A:[run("Easy run","35 min"),run("Easy run","30 min"),run("Long run/walk","~2 hr","Keep some trail and gentle descending, all easy.",{long:true,pill:"Long"}),rec("Light strength","Early week","Short and easy. Nothing taxing from here on.")],
   B:[run("Easy run","30 min"),run("Long run/walk","~90 min",null,{long:true,pill:"Long"}),rec("Mobility","Gentle","Mobility and sleep.")],
   C:[walkC(),drC()]},
 
- {ph:"Taper",focus:"Run week",dates:"Week 12 · 26 Oct-1 Nov · run week",start:new Date(2026,9,26),wknote:"Nothing this week makes you fitter - but too much makes you tired. Arrive fresh.",
+ {ph:"Taper",focus:"Run week",dates:"Week 17 · 26 Oct-1 Nov · run week",start:new Date(2026,9,26),wknote:"Nothing this week makes you fitter - but too much makes you tired. Arrive fresh.",
   A:[run("Easy run","Mon/Tue · 25-30 min"),run("Strides","Wed · 20 min + 4 &times; 20s","A few relaxed pick-ups to stay snappy. Nothing hard."),run("Shakeout","Fri · 15 min easy","Optional. Loosen the legs, then rest."),rec("Rest + prep","Thu & Sat","Legs up, sleep, hydrate. Set up crew points, food and gear the day before."),race()],
   B:[run("Easy run","1-2 &times; 25 min"),rec("Rest + prep","Most of the week","Sleep, hydrate, ready the crew plan."),race()],
   C:[rec("Rest fully","All week","Sleep and regulation. Arrive at the start line gently; shorten the run if you need to."),race()]}
@@ -427,7 +452,7 @@ document.getElementById("scrim").onclick=closeSheet;
 
 function note(t,html){return "<details class='sub'><summary>"+t+"<span class='x'>&rsaquo;</span></summary><div class='body'>"+html+"</div></details>";}
 document.getElementById("notesbody").innerHTML=
- note("How the 12 weeks flow","<p><b>Foundation</b> (Aug) builds your aerobic base and gets you onto trail. <b>Build</b> (Sep) adds back-to-back long days. <b>Peak</b> (Oct) is your dress rehearsal. <b>Taper</b> (late Oct) drops the volume so you arrive fresh for the 45 km.</p><p>The goal stays the same: <b>complete the 45 km as a strong day on your feet</b> - a rehearsal for the 415, not a race.</p>")+
+ note("How the 17 weeks flow","<p><b>Base</b> (Jul) builds the running habit and gentle aerobic volume. <b>Foundation</b> (Aug) grows the long run and gets you onto trail. <b>Build</b> (Sep) adds back-to-back long days. <b>Peak</b> (Oct) is your dress rehearsal. <b>Taper</b> (late Oct) drops the volume so you arrive fresh for the 45 km.</p><p>The goal stays the same: <b>complete the 45 km as a strong day on your feet</b> - a rehearsal for the 415, not a race.</p>")+
  note("Back-to-back runs · why","<p>A shorter, easy run the morning after your long run teaches your body and mind to keep moving on tired legs - exactly what the <a href='../the-415/index.html'>415 km to Sydney</a> asks of you.</p><p>It builds that resilience <b>without</b> the injury risk of one enormous run. Keep the second day genuinely easy; the fatigue is the training.</p>")+
  note("The practice-run day","<p>Treat the 45 km as a full dress rehearsal. Start slower than feels right; walk every hill from the first. Eat and drink before you're hungry or thirsty - aim ~200-300 cal/hr of tested food plus water with electrolytes.</p><p>Run it self-crewed: plan meeting points, carry what you need, and rehearse the exact food, gear and crew routine you'll use to Sydney. Fix hot spots the instant you feel them. A calm call to shorten or stop is wise, never a failure.</p>")+
  note("Heat &amp; conditions","<p>Practise drinking on every long run, and do some runs in the warmer part of the day. The 45 km is early summer; the <b>415 in late December is peak heat</b>, so heat practice now pays off twice.</p><ul><li>Slow down in the heat - effort, not pace, is the gauge.</li><li>Electrolytes, sodium especially, on long or hot efforts.</li><li>Scout your route, water and crew points ahead of time.</li></ul>")+

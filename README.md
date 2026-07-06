@@ -5,7 +5,7 @@
 **🌐 Live site:** https://charlietathra.github.io/Love-in-Motion/
 
 A small hub of self-contained web apps supporting the training and fuelling for
-a **50 km practice run** (Tamworth → Nundle · 1 Nov 2026) and the **415 km**
+a **50 km practice run** (Attunga loop · 1 Nov 2026) and the **415 km**
 Attunga → Sydney run — the Love in Motion Run (26 Dec 2026).
 
 ## Pages

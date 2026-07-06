@@ -10,10 +10,10 @@ permissions:
   pages: write
   id-token: write
 
-# Allow one concurrent deployment; don't cancel an in-progress run.
+# Allow one concurrent deployment; cancel any queued run when a newer one arrives.
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   deploy:
@@ -36,6 +36,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
+          overwrite: true
 
       - name: Deploy to GitHub Pages
         id: deployment

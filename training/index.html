@@ -9,16 +9,16 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Train">
 <title>Love in Motion — Train</title>
-<meta name="description" content="The 12-week build to the 50 km Attunga loop practice run — Foundation, Build, Peak, Taper — with weekly sessions, prescribed strength, saved notes and coach guidance. A stepping stone to the 415 km to Sydney.">
+<meta name="description" content="The 12-week build to the 45 km Attunga loop practice run — Foundation, Build, Peak, Taper — with weekly sessions, prescribed strength, saved notes and coach guidance. A stepping stone to the 415 km to Sydney.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Love in Motion">
 <meta property="og:title" content="Love in Motion — Train">
-<meta property="og:description" content="The 12-week build to the 50 km practice run — Foundation, Build, Peak, Taper — with weekly sessions, strength and saved notes.">
+<meta property="og:description" content="The 12-week build to the 45 km practice run — Foundation, Build, Peak, Taper — with weekly sessions, strength and saved notes.">
 <meta property="og:image" content="https://charlietathra.github.io/Love-in-Motion/icon-512.png">
 <meta property="og:url" content="https://charlietathra.github.io/Love-in-Motion/training/">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Love in Motion — Train">
-<meta name="twitter:description" content="The 12-week build to the 50 km practice run, with weekly sessions, strength and saved notes.">
+<meta name="twitter:description" content="The 12-week build to the 45 km practice run, with weekly sessions, strength and saved notes.">
 <meta name="twitter:image" content="https://charlietathra.github.io/Love-in-Motion/icon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -196,7 +196,7 @@
   <div class="tag" id="tag">12-week build</div>
   <div class="count">
     <div class="n" id="cd">—</div>
-    <div class="lab" id="cdl">days to <b>Attunga 50 km loop</b><br>practice run · 1 Nov 2026</div>
+    <div class="lab" id="cdl">days to <b>Attunga 45 km loop</b><br>practice run · 1 Nov 2026</div>
   </div>
 </header>
 
@@ -259,7 +259,7 @@ var store=window.LIMStorage.create("train",function(){
 
 var EASY="Easy means a full-sentence conversation (the talk test), effort 3-4 out of 10, breathable through your nose. If you can't talk, slow down or walk. Run/walk is the strategy, not a compromise.";
 var FUEL_SHORT="Under ~90 min, water is enough. Eat normally before and after.";
-var FUEL_LONG="Over ~90 min: sip water regularly and take a few bites of real food every 20-30 min, building toward ~200-300 cal/hr. Add electrolytes. This rehearses the fuelling you'll live on across the 50 km and the 415.";
+var FUEL_LONG="Over ~90 min: sip water regularly and take a few bites of real food every 20-30 min, building toward ~200-300 cal/hr. Add electrolytes. This rehearses the fuelling you'll live on across the 45 km and the 415.";
 
 var STR_A=[["Glute bridge &rarr; single-leg when ready","2-3 &times; 8-12 /side"],
   ["Slow tempo reverse lunge / split squat (3s down)","2-3 &times; 6-10 /side"],
@@ -279,7 +279,7 @@ function run(t,s,note,o){o=o||{};return{k:"run",pill:o.pill||"Run",t:t,s:s,
 function strA(t){return{k:"str",pill:"Strength",t:t||"Strength A",s:"~25 min · posterior chain & single-leg",ex:STR_A,exlab:"Session A",detail:"Controlled and light - insurance against injury, not a workout to survive. Lean into the slow lowering on the lunges and step-downs; that's what protects your knees on long descents."};}
 function strB(t){return{k:"str",pill:"Strength",t:t||"Strength B",s:"~25 min · core, feet & balance",ex:STR_B,exlab:"Session B",detail:"Controlled and light. Strong feet, ankles and core keep you steady on uneven ground and camber when you're tired."};}
 function rec(t,s,note){return{k:"rec",pill:"Recover",t:t,s:s,detail:note};}
-function race(){return{k:"race",pill:"The 50",t:"Practice run · 50 km",s:"Sunday 1 Nov · Attunga 50 km loop",
+function race(){return{k:"race",pill:"The 45",t:"Practice run · 45 km",s:"Sunday 1 Nov · Attunga 45 km loop",
   detail:"Your dress rehearsal for the 415. Start slower than feels right and walk the hills from the first one. Eat and drink before you're hungry or thirsty - ~200-300 cal/hr of tested food, plus water with electrolytes. Sort hot spots the moment you feel them. Run it self-crewed: plan your aid/meeting points, carry what you need, and rehearse the exact fuelling, gear and crew routine you'll use to Sydney. There's no official cut-off - a calm decision to shorten or stop is always wise, never a failure. This is a stepping stone, not the finish line."};}
 
 var DR="10 min of something downregulating - breathwork, yoga nidra, or legs-up-the-wall. Protect your nervous system first; there are no targets this week.";
@@ -363,7 +363,7 @@ function noteKey(){return "limn_train_note_w"+state.week+"_"+state.plan;}
 
 function renderCount(){var d=Math.max(0,Math.ceil((EVENT-new Date())/86400000));
   document.getElementById("cd").textContent=d;
-  if(d===0)document.getElementById("cdl").innerHTML="<b>Today is the day</b><br>The Attunga 50 km loop";}
+  if(d===0)document.getElementById("cdl").innerHTML="<b>Today is the day</b><br>The Attunga 45 km loop";}
 function renderWeeks(){var w=document.getElementById("weeks");w.innerHTML="";
   WEEKS.forEach(function(wk,i){var b=document.createElement("button");
     b.className="wk"+(i===nowWeek?" is-now":"");b.setAttribute("aria-selected",i===state.week);
@@ -381,7 +381,7 @@ function renderWeek(){var wk=WEEKS[state.week];
   var ss=sessions(),done=getDone(),n=ss.length,c=0;for(var i=0;i<n;i++){if(done[i])c++;}
   document.getElementById("bar").style.width=n?(c/n*100)+"%":"0%";
   document.getElementById("pt").textContent=c+" of "+n+" done";}
-function pillClass(s){if(s.pill==="B2B")return "b2b";if(s.pill==="Strength")return "str";if(s.pill==="The 50")return "race";if(s.k==="rec")return "rec";return "run";}
+function pillClass(s){if(s.pill==="B2B")return "b2b";if(s.pill==="Strength")return "str";if(s.pill==="The 45")return "race";if(s.k==="rec")return "rec";return "run";}
 function renderList(){var list=document.getElementById("list");list.innerHTML="";
   var ss=sessions(),done=getDone();
   ss.forEach(function(s,i){var card=document.createElement("div");
@@ -425,15 +425,15 @@ document.getElementById("scrim").onclick=closeSheet;
 
 function note(t,html){return "<details class='sub'><summary>"+t+"<span class='x'>&rsaquo;</span></summary><div class='body'>"+html+"</div></details>";}
 document.getElementById("notesbody").innerHTML=
- note("How the 12 weeks flow","<p><b>Foundation</b> (Aug) builds your aerobic base and gets you onto trail. <b>Build</b> (Sep) adds back-to-back long days. <b>Peak</b> (Oct) is your dress rehearsal. <b>Taper</b> (late Oct) drops the volume so you arrive fresh for the 50 km.</p><p>The goal stays the same: <b>complete the 50 km as a strong day on your feet</b> - a rehearsal for the 415, not a race.</p>")+
+ note("How the 12 weeks flow","<p><b>Foundation</b> (Aug) builds your aerobic base and gets you onto trail. <b>Build</b> (Sep) adds back-to-back long days. <b>Peak</b> (Oct) is your dress rehearsal. <b>Taper</b> (late Oct) drops the volume so you arrive fresh for the 45 km.</p><p>The goal stays the same: <b>complete the 45 km as a strong day on your feet</b> - a rehearsal for the 415, not a race.</p>")+
  note("Back-to-back runs · why","<p>A shorter, easy run the morning after your long run teaches your body and mind to keep moving on tired legs - exactly what the <a href='../the-415/index.html'>415 km to Sydney</a> asks of you.</p><p>It builds that resilience <b>without</b> the injury risk of one enormous run. Keep the second day genuinely easy; the fatigue is the training.</p>")+
- note("The practice-run day","<p>Treat the 50 km as a full dress rehearsal. Start slower than feels right; walk every hill from the first. Eat and drink before you're hungry or thirsty - aim ~200-300 cal/hr of tested food plus water with electrolytes.</p><p>Run it self-crewed: plan meeting points, carry what you need, and rehearse the exact food, gear and crew routine you'll use to Sydney. Fix hot spots the instant you feel them. A calm call to shorten or stop is wise, never a failure.</p>")+
- note("Heat &amp; conditions","<p>Practise drinking on every long run, and do some runs in the warmer part of the day. The 50 km is early summer; the <b>415 in late December is peak heat</b>, so heat practice now pays off twice.</p><ul><li>Slow down in the heat - effort, not pace, is the gauge.</li><li>Electrolytes, sodium especially, on long or hot efforts.</li><li>Scout your route, water and crew points ahead of time.</li></ul>")+
+ note("The practice-run day","<p>Treat the 45 km as a full dress rehearsal. Start slower than feels right; walk every hill from the first. Eat and drink before you're hungry or thirsty - aim ~200-300 cal/hr of tested food plus water with electrolytes.</p><p>Run it self-crewed: plan meeting points, carry what you need, and rehearse the exact food, gear and crew routine you'll use to Sydney. Fix hot spots the instant you feel them. A calm call to shorten or stop is wise, never a failure.</p>")+
+ note("Heat &amp; conditions","<p>Practise drinking on every long run, and do some runs in the warmer part of the day. The 45 km is early summer; the <b>415 in late December is peak heat</b>, so heat practice now pays off twice.</p><ul><li>Slow down in the heat - effort, not pace, is the gauge.</li><li>Electrolytes, sodium especially, on long or hot efforts.</li><li>Scout your route, water and crew points ahead of time.</li></ul>")+
  note("How to gauge easy","<p>"+EASY+"</p><p><b>On hills, walk the climbs from the very first one.</b> Time on your feet matters more than pace.</p>")+
  note("Weekly check-in","<p>Before choosing the week's plan, rate each <b>1-5</b>:</p><ul><li>Sleep</li><li>Stress / mental load</li><li>Body & niggles</li><li>Mood & energy</li><li>Family + caregiving load</li></ul><p>Two or more low &rarr; choose <b>Plan B or C</b>. No guilt - that's the system doing its job, especially through a heavy caring season.</p>")+
  note("When to back off","<ul><li>A niggle sharpens <b>during</b> a run, or changes how you move &rarr; stop, walk home.</li><li>Pain alters your gait or lingers &rarr; rest, see a physio.</li><li>Soreness hasn't eased after 48 hrs, resting heart rate is up, or the emotional tank is empty.</li></ul>")+
  note("Practical notes","<ul><li><b>Trail shoes with grip</b> - never debut new shoes on run day.</li><li><b>Carry water</b> and practise drinking on every long run.</li><li><b>Get onto trail & hills</b> early so feet, ankles and quads adapt.</li><li>Pair training with the <a href='../nutrition-meal-planner/index.html'>Fuel</a> and <a href='../meals/index.html'>Meals</a> tabs - under-fuelling is the quiet saboteur of a big build.</li><li><b>Log every week</b> in the notes box above - it's what shapes the plan.</li></ul>")+
- note("Beyond the 50 — the 415","<p>The 50 km is the stepping stone. After it, the focus shifts to multi-day endurance for <a href='../the-415/index.html'>Attunga &rarr; Sydney</a>: bigger weekly volume, back-to-back long days as the main event, and recovery built around running again tomorrow.</p><p>Everything you build here is the foundation that block stands on.</p>")+
+ note("Beyond the 45 — the 415","<p>The 45 km is the stepping stone. After it, the focus shifts to multi-day endurance for <a href='../the-415/index.html'>Attunga &rarr; Sydney</a>: bigger weekly volume, back-to-back long days as the main event, and recovery built around running again tomorrow.</p><p>Everything you build here is the foundation that block stands on.</p>")+
  note("Strength A · exercises","<ul class='ex'>"+STR_A.map(function(e){return "<li>"+e[0]+" — <b>"+e[1]+"</b></li>";}).join("")+"</ul>")+
  note("Strength B · exercises","<ul class='ex'>"+STR_B.map(function(e){return "<li>"+e[0]+" — <b>"+e[1]+"</b></li>";}).join("")+"</ul>");
 

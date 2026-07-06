@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Train">
 <title>Love in Motion — Train</title>
-<meta name="description" content="The 12-week build to the 50 km Tamworth → Nundle practice run — Foundation, Build, Peak, Taper — with weekly sessions, prescribed strength, saved notes and coach guidance. A stepping stone to the 415 km to Sydney.">
+<meta name="description" content="The 12-week build to the 50 km Attunga loop practice run — Foundation, Build, Peak, Taper — with weekly sessions, prescribed strength, saved notes and coach guidance. A stepping stone to the 415 km to Sydney.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Love in Motion">
 <meta property="og:title" content="Love in Motion — Train">
@@ -196,7 +196,7 @@
   <div class="tag" id="tag">12-week build</div>
   <div class="count">
     <div class="n" id="cd">—</div>
-    <div class="lab" id="cdl">days to <b>Tamworth &rarr; Nundle</b><br>50&nbsp;km practice run · 1 Nov 2026</div>
+    <div class="lab" id="cdl">days to <b>Attunga 50 km loop</b><br>practice run · 1 Nov 2026</div>
   </div>
 </header>
 
@@ -279,7 +279,7 @@ function run(t,s,note,o){o=o||{};return{k:"run",pill:o.pill||"Run",t:t,s:s,
 function strA(t){return{k:"str",pill:"Strength",t:t||"Strength A",s:"~25 min · posterior chain & single-leg",ex:STR_A,exlab:"Session A",detail:"Controlled and light - insurance against injury, not a workout to survive. Lean into the slow lowering on the lunges and step-downs; that's what protects your knees on long descents."};}
 function strB(t){return{k:"str",pill:"Strength",t:t||"Strength B",s:"~25 min · core, feet & balance",ex:STR_B,exlab:"Session B",detail:"Controlled and light. Strong feet, ankles and core keep you steady on uneven ground and camber when you're tired."};}
 function rec(t,s,note){return{k:"rec",pill:"Recover",t:t,s:s,detail:note};}
-function race(){return{k:"race",pill:"The 50",t:"Practice run · 50 km",s:"Sunday 1 Nov · Tamworth &rarr; Nundle",
+function race(){return{k:"race",pill:"The 50",t:"Practice run · 50 km",s:"Sunday 1 Nov · Attunga 50 km loop",
   detail:"Your dress rehearsal for the 415. Start slower than feels right and walk the hills from the first one. Eat and drink before you're hungry or thirsty - ~200-300 cal/hr of tested food, plus water with electrolytes. Sort hot spots the moment you feel them. Run it self-crewed: plan your aid/meeting points, carry what you need, and rehearse the exact fuelling, gear and crew routine you'll use to Sydney. There's no official cut-off - a calm decision to shorten or stop is always wise, never a failure. This is a stepping stone, not the finish line."};}
 
 var DR="10 min of something downregulating - breathwork, yoga nidra, or legs-up-the-wall. Protect your nervous system first; there are no targets this week.";
@@ -363,7 +363,7 @@ function noteKey(){return "limn_train_note_w"+state.week+"_"+state.plan;}
 
 function renderCount(){var d=Math.max(0,Math.ceil((EVENT-new Date())/86400000));
   document.getElementById("cd").textContent=d;
-  if(d===0)document.getElementById("cdl").innerHTML="<b>Today is the day</b><br>Tamworth &rarr; Nundle · 50 km";}
+  if(d===0)document.getElementById("cdl").innerHTML="<b>Today is the day</b><br>The Attunga 50 km loop";}
 function renderWeeks(){var w=document.getElementById("weeks");w.innerHTML="";
   WEEKS.forEach(function(wk,i){var b=document.createElement("button");
     b.className="wk"+(i===nowWeek?" is-now":"");b.setAttribute("aria-selected",i===state.week);

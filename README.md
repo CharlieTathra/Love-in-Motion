@@ -5,8 +5,8 @@
 **🌐 Live site:** https://charlietathra.github.io/Love-in-Motion/
 
 A small hub of self-contained web apps supporting the training and fuelling for
-**Kuranda → Port Douglas** (60 km trail ultra · 23 Aug 2026), with the 415 km
-Attunga → Sydney run on the horizon.
+a **50 km practice run** (Attunga loop · 1 Nov 2026) and the **415 km**
+Attunga → Sydney run — the Love in Motion Run (26 Dec 2026).
 
 ## Pages
 
@@ -14,14 +14,15 @@ Attunga → Sydney run on the horizon.
 | --- | --- | --- |
 | **Home** | https://charlietathra.github.io/Love-in-Motion/ | Countdown, journey timeline, and links to everything below |
 | **Fuel** | https://charlietathra.github.io/Love-in-Motion/nutrition-meal-planner/ | Daily fuelling protocol — meals with measured serves and macros, snacks, on-run fuel and recovery, across Plan A/B/C |
-| **Train** | https://charlietathra.github.io/Love-in-Motion/training/ | Phase-by-phase build to 60 km — Base / Build / Peak / Taper — with week tabs, prescribed strength workouts and saved training notes |
+| **Meals** | https://charlietathra.github.io/Love-in-Motion/meals/ | Serve-based meal builder — tap foods into breakfast/lunch/dinner/snack and track serves + macros against the daily targets |
+| **Train** | https://charlietathra.github.io/Love-in-Motion/training/ | The 12-week build to the 50 km practice run — Foundation / Build / Peak / Taper — with week tabs, prescribed strength workouts and saved training notes |
 | **The 415** | https://charlietathra.github.io/Love-in-Motion/the-415/ | The Attunga → Sydney campaign — multi-day training, on-the-road fuelling, crew and recovery for the 415 km |
 | **Donate** | https://charlietathra.github.io/Love-in-Motion/donate/ | The fundraiser, in support of the McGrath Foundation |
 
 ## How it works
 
-- Five standalone `index.html` files (home, `nutrition-meal-planner/`,
-  `training/`, `the-415/`, `donate/`).
+- Six standalone `index.html` files (home, `nutrition-meal-planner/`,
+  `meals/`, `training/`, `the-415/`, `donate/`).
 - No build step — each file works opened directly in a browser and offline.
 - Progress (meals eaten, sessions done) and training notes are saved in the
   browser, with an in-memory fallback when storage is unavailable. The Plan

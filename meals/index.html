@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f7f1ea">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Meals">
+<title>Love in Motion — Meals</title>
+<meta name="description" content="Build each meal by serves — hit your daily protein, carbs, veggies and fat with no scales or calorie counting. Part of Love in Motion, in support of the McGrath Foundation.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Love in Motion">
+<meta property="og:title" content="Love in Motion — Meals">
+<meta property="og:description" content="Build each meal by serves — protein, carbs, veggies and fat, no scales or counting.">
+<meta property="og:image" content="https://charlietathra.github.io/Love-in-Motion/icon-512.png">
+<meta property="og:url" content="https://charlietathra.github.io/Love-in-Motion/meals/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Love in Motion — Meals">
+<meta name="twitter:description" content="Build each meal by serves — protein, carbs, veggies and fat, no scales.">
+<meta name="twitter:image" content="https://charlietathra.github.io/Love-in-Motion/icon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<style>
+  :root{
+    --cream:#f7f1ea; --cream-2:#f1e8dd; --surface:#fffdfb;
+    --ink:#312824; --ink-soft:#6d5f57; --ink-faint:#9c8d83;
+    --rose:#b9536a; --rose-deep:#8f3a50; --rose-wash:#f4e3e4;
+    --euc:#74866d; --euc-wash:#e7ecdf;
+    --clay:#bf7a4e; --clay-wash:#f1e4d6; --clay-deep:#9a5a2e;
+    --honey:#c4953c; --honey-wash:#f4ead2;
+    --line:#e8ddd0; --line-soft:#efe6da;
+    --shadow:0 1px 2px rgba(49,40,36,.04),0 8px 24px rgba(49,40,36,.06);
+    --shadow-lg:0 10px 40px rgba(49,40,36,.16);
+    --serif:'Fraunces',Georgia,'Iowan Old Style',serif;
+    --sans:'Hanken Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--cream);color:var(--ink);font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  body{max-width:520px;margin:0 auto;min-height:100vh;
+    background:radial-gradient(120% 60% at 100% 0%, var(--cream-2) 0%, transparent 60%),var(--cream);
+    padding:0 18px calc(88px + env(safe-area-inset-bottom));position:relative}
+  ::selection{background:var(--rose-wash)}
+
+  header{padding:30px 4px 14px;position:sticky;top:0;z-index:5;
+    background:linear-gradient(var(--cream) 72%, transparent);}
+  .brand{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+  .brand h1{font-family:var(--serif);font-weight:500;font-size:25px;letter-spacing:-.01em;line-height:1}
+  .brand .heart{color:var(--rose);font-size:20px;transform:translateY(1px)}
+  .tag{font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-faint);margin-top:7px;font-weight:500}
+  .count{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:16px;
+    padding:15px 17px;display:flex;align-items:center;gap:14px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .count::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(var(--rose),var(--euc))}
+  .count .n{font-family:var(--serif);font-size:34px;font-weight:600;color:var(--rose-deep);line-height:.9;font-variant-numeric:tabular-nums}
+  .count .lab{font-size:12.5px;color:var(--ink-soft);line-height:1.35}
+  .count .lab b{color:var(--ink);font-weight:600}
+
+  .intro{margin:20px 2px 0;font-size:13px;color:var(--ink-soft);line-height:1.55}
+  .intro b{color:var(--ink);font-weight:600}
+
+  /* daily serves */
+  .daily{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 17px;box-shadow:var(--shadow)}
+  .daily-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:14px}
+  .daily-head h3{font-family:var(--serif);font-weight:500;font-size:19px}
+  .daily-head span{font-size:11px;color:var(--ink-faint)}
+  .macros{display:grid;grid-template-columns:1fr 1fr;gap:16px 14px}
+  .macro .lbl{font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);display:flex;align-items:center;gap:6px}
+  .dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex:0 0 auto}
+  .macro .val{font-family:var(--serif);font-size:24px;font-weight:600;margin-top:3px;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1}
+  .macro .val small{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--ink-faint)}
+  .macro .sub{font-size:11px;color:var(--ink-faint);margin-top:3px}
+  .bar2{height:6px;border-radius:99px;background:var(--cream-2);margin-top:7px;overflow:hidden}
+  .bar2 i{display:block;height:100%;border-radius:99px;background:var(--ink-faint);transition:width .4s cubic-bezier(.4,0,.2,1)}
+  .macro.on .bar2 i{background:var(--euc)}
+  .macro.over .bar2 i{background:var(--rose)}
+  .macro .status{font-size:10.5px;margin-top:5px;font-weight:600;color:var(--ink-faint);min-height:13px}
+  .macro.on .status{color:var(--euc)}
+  .macro.over .status{color:var(--rose-deep)}
+
+  .plate-card{display:flex;gap:15px;align-items:center;margin-top:12px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:15px 16px;box-shadow:var(--shadow)}
+  .plate{width:80px;height:80px;border-radius:50%;flex:none;
+    background:conic-gradient(var(--euc) 0 50%,var(--rose) 50% 75%,var(--clay) 75% 100%);
+    box-shadow:inset 0 0 0 5px var(--surface),0 0 0 1px var(--line)}
+  .plate-card h3{font-family:var(--serif);font-weight:500;font-size:17px;margin-bottom:4px}
+  .plate-card p{font-size:12.5px;color:var(--ink-soft);line-height:1.5}
+  .plate-card p b{color:var(--ink)}
+  .legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;font-size:11.5px;font-weight:600;color:var(--ink-soft)}
+  .legend span{display:flex;align-items:center;gap:5px}
+
+  .meal{margin-top:12px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:15px 16px;box-shadow:var(--shadow)}
+  .meal-head h3{font-family:var(--serif);font-weight:500;font-size:19px}
+  .targets{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+  .chip{font-size:11px;font-weight:600;padding:3px 9px;border-radius:99px;white-space:nowrap}
+  .chip.p{background:var(--rose-wash);color:var(--rose-deep)}
+  .chip.c{background:var(--clay-wash);color:var(--clay-deep)}
+  .chip.f{background:var(--honey-wash);color:#8a6a1e}
+  .chip.met{box-shadow:inset 0 0 0 1.5px currentColor}
+  .items{list-style:none;margin:13px 0 0;display:flex;flex-direction:column;gap:7px}
+  .item{display:flex;align-items:center;gap:9px;background:var(--cream);border-radius:11px;padding:7px 8px 7px 12px}
+  .item .name{flex:1;font-size:13px;font-weight:500;min-width:0}
+  .item .tags{display:flex;gap:4px;flex:0 0 auto}
+  .t{font-size:9.5px;font-weight:700;padding:1px 6px;border-radius:6px}
+  .t.p{background:var(--rose-wash);color:var(--rose-deep)}
+  .t.c{background:var(--clay-wash);color:var(--clay-deep)}
+  .t.f{background:var(--honey-wash);color:#8a6a1e}
+  .t.v{background:var(--euc-wash);color:var(--euc)}
+  .step{display:flex;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow:hidden;flex:0 0 auto}
+  .step button{border:0;background:transparent;width:26px;height:26px;font-size:16px;cursor:pointer;color:var(--rose-deep);font-weight:700;line-height:1}
+  .step button:active{background:var(--rose-wash)}
+  .step .q{min-width:20px;text-align:center;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
+  .rm{border:0;background:transparent;cursor:pointer;color:var(--ink-faint);font-size:17px;width:24px;height:26px;border-radius:7px;line-height:1;flex:0 0 auto}
+  .rm:active{background:var(--rose-wash);color:var(--rose-deep)}
+  .empty{color:var(--ink-faint);font-size:12.5px;font-style:italic;margin:12px 0 2px}
+  .meal-foot{display:flex;justify-content:space-between;align-items:center;margin-top:13px;gap:10px;flex-wrap:wrap}
+  .totals{display:flex;gap:11px;font-size:11.5px;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+  .totals b{color:var(--ink);font-weight:600}
+  .add{border:1.5px dashed var(--euc);background:transparent;color:var(--euc);font-family:var(--sans);font-weight:600;font-size:13px;padding:8px 15px;border-radius:10px;cursor:pointer;transition:.16s}
+  .add:active{background:var(--euc-wash)}
+
+  .toolbar{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}
+  .ghost{border:1px solid var(--line);background:var(--surface);color:var(--ink-soft);font-family:var(--sans);font-weight:600;font-size:12.5px;padding:8px 14px;border-radius:10px;cursor:pointer}
+  .ghost:active{border-color:var(--euc);color:var(--euc)}
+
+  footer{text-align:center;margin-top:30px;padding-top:18px;border-top:1px solid var(--line)}
+  footer .fm{font-family:var(--serif);font-style:italic;font-size:14.5px;color:var(--rose-deep)}
+  footer .fs{font-size:11px;color:var(--ink-faint);margin-top:6px;letter-spacing:.04em}
+
+  /* bottom tab bar */
+  .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:15;max-width:520px;margin:0 auto;
+    display:flex;gap:2px;background:rgba(255,253,251,.92);
+    -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+    border-top:1px solid var(--line);padding:7px 6px calc(7px + env(safe-area-inset-bottom))}
+  .tabbar .tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
+    text-decoration:none;color:var(--ink-faint);font-size:9.5px;font-weight:600;
+    letter-spacing:.01em;padding:5px 1px;border-radius:11px;transition:.15s}
+  .tabbar .tab .ic{font-size:17px;line-height:1}
+  .tabbar .tab:active{background:var(--cream-2)}
+  .tabbar .tab[aria-current="page"]{color:var(--rose-deep)}
+
+  /* picker sheet */
+  .scrim{position:fixed;inset:0;background:rgba(49,40,36,.34);opacity:0;pointer-events:none;transition:.25s;z-index:20;backdrop-filter:blur(2px)}
+  .scrim.on{opacity:1;pointer-events:auto}
+  .sheet{position:fixed;left:0;right:0;bottom:0;z-index:21;max-width:520px;margin:0 auto;background:var(--surface);
+    border-radius:24px 24px 0 0;padding:8px 18px calc(24px + env(safe-area-inset-bottom));transform:translateY(102%);
+    transition:transform .3s cubic-bezier(.3,.8,.3,1);box-shadow:var(--shadow-lg);max-height:86vh;overflow-y:auto}
+  .sheet.on{transform:translateY(0)}
+  .grab{width:38px;height:4px;border-radius:99px;background:var(--line);margin:8px auto 16px}
+  .sheet-head{padding:2px 2px 12px;border-bottom:1px solid var(--line);margin-bottom:6px}
+  .st{font-family:var(--serif);font-size:21px;font-weight:500}
+  .ss{font-size:12px;color:var(--ink-soft);margin-top:3px}
+  .grp{font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-soft);margin:16px 4px 8px;display:flex;align-items:center;gap:7px}
+  .food-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .food{display:flex;justify-content:space-between;align-items:center;gap:8px;background:var(--cream);border:1px solid var(--line);border-radius:12px;padding:10px 12px;cursor:pointer;text-align:left;font-family:var(--sans);transition:.14s}
+  .food:active{border-color:var(--euc);background:var(--euc-wash)}
+  .food>span:first-child{display:flex;flex-direction:column;gap:2px;min-width:0}
+  .fn{font-size:12.5px;font-weight:600;line-height:1.25;color:var(--ink)}
+  .fmeta{font-size:10.5px;color:var(--ink-faint)}
+  .plus{font-size:19px;color:var(--euc);font-weight:700;flex:0 0 auto}
+  @media(max-width:430px){.food-grid{grid-template-columns:1fr}}
+
+  @media print{.tabbar,.add,.step,.rm,.toolbar,.scrim,.sheet{display:none!important}
+    .meal,.daily,.plate-card{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><span class="heart">&#10084;</span><h1>Love in Motion &middot; Meals</h1></div>
+  <div class="tag">Nourish &middot; build by serves</div>
+  <div class="count">
+    <div class="n" id="cd">&mdash;</div>
+    <div class="lab" id="cdl">days to <b>Attunga &rarr; Sydney</b><br>Love in Motion run &middot; 415&nbsp;km &middot; 26 Dec 2026</div>
+  </div>
+</header>
+
+<p class="intro">Build each meal by <b>serves</b> &mdash; no scales, no calorie counting. Fuel the work, recover faster. The aim is <b>enough</b>, not less.</p>
+
+<div class="daily">
+  <div class="daily-head"><h3>Today's serves</h3><span id="daily-sub">Aim for the daily ranges</span></div>
+  <div class="macros" id="macros"></div>
+</div>
+
+<div class="plate-card">
+  <div class="plate"></div>
+  <div>
+    <h3>Your plate</h3>
+    <p>Fill <b>&frac12;</b> with colourful veggies, <b>&frac14;</b> with lean protein, <b>&frac14;</b> with quality carbs &mdash; then add a little healthy fat.</p>
+    <div class="legend">
+      <span><i class="dot" style="background:var(--euc)"></i>&frac12; Veg</span>
+      <span><i class="dot" style="background:var(--rose)"></i>&frac14; Protein</span>
+      <span><i class="dot" style="background:var(--clay)"></i>&frac14; Carbs</span>
+    </div>
+  </div>
+</div>
+
+<div id="meals"></div>
+
+<div class="toolbar">
+  <button class="ghost" id="print">Print</button>
+  <button class="ghost" id="clear">Clear day</button>
+</div>
+
+<footer>
+  <div class="fm">Because Love Keeps Moving</div>
+  <div class="fs">in support of the McGrath Foundation</div>
+</footer>
+
+<nav class="tabbar" aria-label="Sections">
+  <a class="tab" href="../index.html"><span class="ic">&#127968;</span>Home</a>
+  <a class="tab" href="../nutrition-meal-planner/index.html"><span class="ic">&#127869;</span>Fuel</a>
+  <a class="tab" href="index.html" aria-current="page"><span class="ic">&#129367;</span>Meals</a>
+  <a class="tab" href="../training/index.html"><span class="ic">&#128694;</span>Train</a>
+  <a class="tab" href="../the-415/index.html"><span class="ic">&#127937;</span>415</a>
+  <a class="tab" href="../donate/index.html"><span class="ic">&#129655;</span>Donate</a>
+</nav>
+
+<div class="scrim" id="scrim"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true">
+  <div class="grab"></div>
+  <div class="sheet-head"><div class="st" id="sheet-title">Add food</div><div class="ss" id="sheet-sub"></div></div>
+  <div id="sheet-body"></div>
+</div>
+
+<script src="../supabase-sync.js"></script>
+<script>
+"use strict";
+var store=window.LIMStorage.create("meals",function(){
+  plan=store.get("limn_meal_plan")||{};
+  ["breakfast","lunch","dinner","snack"].forEach(function(k){if(!plan[k])plan[k]=[];});
+  renderAll();
+});
+
+/* countdown to the 415 (matches sibling pages) */
+var EVENT=new Date(2026,11,26);
+(function(){var d=Math.max(0,Math.ceil((EVENT-new Date())/86400000));
+  document.getElementById('cd').textContent=d;
+  if(d===0)document.getElementById('cdl').innerHTML="<b>Today is the day</b><br>Attunga &rarr; Sydney";})();
+
+/* ---- per-serve nutrition (Nutrition Protocol Meal Builder) ---- */
+var G={protein:24,carbs:25,veg:5,fat:9};
+var BREAKFAST={
+  carbs:[
+    {id:'b_oats',name:'½ cup oats (~45g)',s:{carbs:1}},
+    {id:'b_banana',name:'1 banana',s:{carbs:1}},
+    {id:'b_berry',name:'½ cup berries',s:{carbs:.5}},
+    {id:'b_stone',name:'1 nectarine or peach',s:{carbs:.5}},
+    {id:'b_weet',name:'2 Weet-Bix',s:{carbs:1}},
+    {id:'b_bread',name:'2 slices bread',s:{carbs:1}},
+    {id:'b_wrap',name:'1 large wrap',s:{carbs:1}}
+  ],
+  protein:[
+    {id:'b_whey',name:'1 scoop protein powder',s:{protein:1}},
+    {id:'b_greek',name:'250g Greek yoghurt',s:{protein:1}},
+    {id:'b_eggs',name:'2 eggs + 2 egg whites',s:{protein:1,fat:1}},
+    {id:'b_milk',name:'1 cup low-fat milk',s:{protein:.33,carbs:.5}}
+  ],
+  fat:[
+    {id:'b_avo',name:'⅓ avocado (~60g)',s:{fat:1}},
+    {id:'b_pb',name:'1 tbsp peanut butter',s:{fat:1}},
+    {id:'b_evoo',name:'10 mL olive oil',s:{fat:1}},
+    {id:'b_butter',name:'2 tsp butter (~10g)',s:{fat:1}},
+    {id:'b_cheese',name:'25g shredded cheese',s:{fat:1}},
+    {id:'b_nuts',name:'20g mixed nuts',s:{fat:1}},
+    {id:'b_mayo',name:'2 tbsp mayonnaise',s:{fat:1}}
+  ],
+  veg:[{id:'b_veg',name:'1 serve veggies',s:{veg:1}}]
+};
+var MAIN={
+  carbs:[
+    {id:'m_bread',name:'2 slices bread',s:{carbs:1}},
+    {id:'m_wrap',name:'1 large wrap',s:{carbs:1}},
+    {id:'m_rice',name:'½ cup cooked rice',s:{carbs:1}},
+    {id:'m_pasta',name:'¾ cup cooked pasta',s:{carbs:1}},
+    {id:'m_noodle',name:'30g rice noodles (dry)',s:{carbs:1}},
+    {id:'m_potato',name:'150g potato (raw)',s:{carbs:1}},
+    {id:'m_quinoa',name:'¾ cup cooked quinoa',s:{carbs:1}},
+    {id:'m_lentil',name:'¾ cup cooked lentils',s:{carbs:1,protein:.75}},
+    {id:'m_roll',name:'1 bread roll',s:{carbs:1.5}}
+  ],
+  protein:[
+    {id:'m_chick',name:'100g chicken breast',s:{protein:1}},
+    {id:'m_salmon',name:'100–120g salmon',s:{protein:1,fat:2}},
+    {id:'m_beef',name:'100g lean beef mince',s:{protein:1}},
+    {id:'m_pork',name:'100g lean pork mince',s:{protein:1}},
+    {id:'m_steak',name:'100–120g rump steak',s:{protein:1}},
+    {id:'m_thigh',name:'100–120g chicken thigh',s:{protein:1,fat:1}},
+    {id:'m_eggs',name:'2 eggs + 100g egg whites',s:{protein:1,fat:1}},
+    {id:'m_ham',name:'4 slices shaved ham',s:{protein:.33}}
+  ],
+  fat:[
+    {id:'m_avo',name:'⅓ avocado',s:{fat:1}},
+    {id:'m_evoo',name:'10 mL olive oil',s:{fat:1}},
+    {id:'m_butter',name:'2 tsp butter (~10g)',s:{fat:1}},
+    {id:'m_cheese',name:'25g shredded cheese',s:{fat:1,protein:.25}},
+    {id:'m_mayo',name:'2 tbsp mayonnaise',s:{fat:1}}
+  ],
+  veg:[{id:'m_veg',name:'1 serve veggies',s:{veg:1}}]
+};
+var MEALS=[
+  {key:'breakfast',name:'Breakfast',lib:BREAKFAST,t:{carbs:[1.5,2],protein:[1.5,1.5],fat:[2,2]}},
+  {key:'lunch',name:'Lunch',lib:MAIN,t:{carbs:[1.5,2],protein:[1.5,1.5],fat:[2,2]}},
+  {key:'dinner',name:'Dinner',lib:MAIN,t:{carbs:[1.5,2],protein:[1.5,1.5],fat:[2,2]}},
+  {key:'snack',name:'Snack',lib:MAIN,t:{carbs:[1,1.5],protein:[.5,1],fat:[.5,1]}}
+];
+var DAILY={protein:[6,6.5],carbs:[7,7.5],veg:[5,6],fat:[8,8.5]};
+var MM={protein:{l:'Protein',c:'var(--rose)',t:'p'},carbs:{l:'Carbs',c:'var(--clay)',t:'c'},veg:{l:'Veggies',c:'var(--euc)',t:'v'},fat:{l:'Fats',c:'var(--honey)',t:'f'}};
+var ALL={};
+[BREAKFAST,MAIN].forEach(function(lib){for(var k in lib){lib[k].forEach(function(f){ALL[f.id]=f;});}});
+
+var plan=store.get('limn_meal_plan')||{};
+['breakfast','lunch','dinner','snack'].forEach(function(k){if(!plan[k])plan[k]=[];});
+function savePlan(){store.set('limn_meal_plan',plan);}
+function r2(n){return Math.round(n*100)/100;}
+function fmt(n){return ''+r2(n);}
+function sumServes(items){var t={protein:0,carbs:0,veg:0,fat:0};items.forEach(function(it){var f=ALL[it.id];if(!f)return;for(var k in f.s)t[k]+=f.s[k]*it.qty;});return t;}
+
+function renderDaily(){
+  var t={protein:0,carbs:0,veg:0,fat:0};
+  MEALS.forEach(function(m){var s=sumServes(plan[m.key]);for(var k in s)t[k]+=s[k];});
+  var box=document.getElementById('macros');box.innerHTML='';var on=0;
+  ['protein','carbs','veg','fat'].forEach(function(k){
+    var min=DAILY[k][0],max=DAILY[k][1],v=t[k];
+    var pct=Math.min(100,max?(v/max*100):0),cls='',status='';
+    if(v>max+0.001){cls='over';status='Over range';}
+    else if(v>=min-0.001&&v>0){cls='on';status='On target ✓';on++;}
+    else if(v>0){status=fmt(min-v)+' to go';}
+    var grams=Math.round(v*G[k]);
+    box.insertAdjacentHTML('beforeend',
+      '<div class="macro '+cls+'">'+
+      '<div class="lbl"><i class="dot" style="background:'+MM[k].c+'"></i>'+MM[k].l+'</div>'+
+      '<div class="val">'+fmt(v)+'<small> / '+min+'–'+max+'</small></div>'+
+      '<div class="sub">≈ '+grams+'g · serves</div>'+
+      '<div class="bar2"><i style="width:'+pct+'%"></i></div>'+
+      '<div class="status">'+status+'</div></div>');
+  });
+  document.getElementById('daily-sub').textContent=(on===4)?'All four on target — nice':'Aim for the daily ranges';
+}
+
+function renderMeals(){
+  var wrap=document.getElementById('meals');wrap.innerHTML='';
+  MEALS.forEach(function(m){
+    var items=plan[m.key],tot=sumServes(items);
+    var chips=['carbs','protein','fat'].map(function(k){
+      var min=m.t[k][0],max=m.t[k][1],v=tot[k];
+      var met=(v>=min-0.001&&v<=max+0.001&&v>0);
+      var rng=(min===max)?(''+min):(min+'–'+max);
+      return '<span class="chip '+MM[k].t+(met?' met':'')+'">'+MM[k].l+' '+fmt(v)+'/'+rng+'</span>';
+    }).join('');
+    var inner;
+    if(!items.length){
+      inner='<div class="empty">No foods yet — tap “Add food” to build this meal.</div>';
+    }else{
+      inner='<ul class="items">'+items.map(function(it,i){
+        var f=ALL[it.id];
+        var tags=Object.keys(f.s).map(function(k){return '<span class="t '+MM[k].t+'">'+MM[k].l.charAt(0)+fmt(f.s[k]*it.qty)+'</span>';}).join('');
+        return '<li class="item"><span class="name">'+f.name+'</span><span class="tags">'+tags+'</span>'+
+          '<span class="step"><button data-act="dec" data-meal="'+m.key+'" data-idx="'+i+'">−</button>'+
+          '<span class="q">'+it.qty+'</span>'+
+          '<button data-act="inc" data-meal="'+m.key+'" data-idx="'+i+'">+</button></span>'+
+          '<button class="rm" data-act="rm" data-meal="'+m.key+'" data-idx="'+i+'" title="Remove">×</button></li>';
+      }).join('')+'</ul>';
+    }
+    wrap.insertAdjacentHTML('beforeend',
+      '<div class="meal"><div class="meal-head"><h3>'+m.name+'</h3><div class="targets">'+chips+'</div></div>'+
+      inner+
+      '<div class="meal-foot"><div class="totals">'+
+      '<span><b>'+fmt(tot.carbs)+'</b> carb</span><span><b>'+fmt(tot.protein)+'</b> prot</span>'+
+      '<span><b>'+fmt(tot.fat)+'</b> fat</span><span><b>'+fmt(tot.veg)+'</b> veg</span></div>'+
+      '<button class="add" data-act="add" data-meal="'+m.key+'">+ Add food</button></div></div>');
+  });
+}
+function renderAll(){renderDaily();renderMeals();}
+
+function bump(meal,idx,d){
+  var items=plan[meal];
+  if(d===-99){items.splice(idx,1);}
+  else{items[idx].qty+=d;if(items[idx].qty<=0)items.splice(idx,1);}
+  savePlan();renderAll();
+}
+var pickerMeal=null;
+function addFood(meal,fid){
+  var items=plan[meal],ex=null;
+  items.forEach(function(it){if(it.id===fid)ex=it;});
+  if(ex)ex.qty++;else items.push({id:fid,qty:1});
+  savePlan();renderAll();flash(fid);
+}
+function flash(fid){
+  var el=document.querySelector('.food[data-fid="'+fid+'"]');
+  if(el){el.style.borderColor='var(--euc)';el.style.background='var(--euc-wash)';
+    setTimeout(function(){el.style.borderColor='';el.style.background='';},200);}
+}
+function openPicker(meal){
+  pickerMeal=meal;
+  var m=null;MEALS.forEach(function(x){if(x.key===meal)m=x;});
+  document.getElementById('sheet-title').textContent='Add to '+m.name;
+  function rng(a){return (a[0]===a[1])?(''+a[0]):(a[0]+'–'+a[1]);}
+  document.getElementById('sheet-sub').textContent='Target: '+rng(m.t.carbs)+' carb · '+rng(m.t.protein)+' protein · '+rng(m.t.fat)+' fat';
+  var body=document.getElementById('sheet-body');body.innerHTML='';
+  [['protein','Protein'],['carbs','Carbs'],['fat','Fats'],['veg','Veggies']].forEach(function(pair){
+    var k=pair[0],foods=m.lib[k];if(!foods||!foods.length)return;
+    var html='<div class="grp"><i class="dot" style="background:'+MM[k].c+'"></i>'+pair[1]+'</div><div class="food-grid">';
+    html+=foods.map(function(f){
+      var meta=Object.keys(f.s).map(function(kk){return fmt(f.s[kk])+' '+MM[kk].l.toLowerCase();}).join(' · ');
+      return '<button class="food" data-fid="'+f.id+'" data-meal="'+meal+'"><span><span class="fn">'+f.name+'</span><span class="fmeta">'+meta+'</span></span><span class="plus">+</span></button>';
+    }).join('')+'</div>';
+    body.insertAdjacentHTML('beforeend',html);
+  });
+  document.getElementById('scrim').classList.add('on');
+  document.getElementById('sheet').classList.add('on');
+}
+function closePicker(){document.getElementById('scrim').classList.remove('on');document.getElementById('sheet').classList.remove('on');}
+
+document.getElementById('meals').addEventListener('click',function(e){
+  var b=e.target.closest('[data-act]');if(!b)return;
+  var act=b.getAttribute('data-act'),meal=b.getAttribute('data-meal'),idx=+b.getAttribute('data-idx');
+  if(act==='add')openPicker(meal);
+  else if(act==='inc')bump(meal,idx,1);
+  else if(act==='dec')bump(meal,idx,-1);
+  else if(act==='rm')bump(meal,idx,-99);
+});
+document.getElementById('sheet-body').addEventListener('click',function(e){
+  var b=e.target.closest('.food');if(!b)return;addFood(b.getAttribute('data-meal'),b.getAttribute('data-fid'));
+});
+document.getElementById('scrim').addEventListener('click',closePicker);
+document.getElementById('clear').addEventListener('click',function(){
+  if(confirm('Clear all foods from today’s plan?')){plan={breakfast:[],lunch:[],dinner:[],snack:[]};savePlan();renderAll();}
+});
+document.getElementById('print').addEventListener('click',function(){window.print();});
+
+renderAll();
+
+if("serviceWorker" in navigator){addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){});});}
+</script>
+</body>
+</html>

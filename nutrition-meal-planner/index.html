@@ -8,16 +8,16 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Fuel">
 <title>Love in Motion — Fuel</title>
-<meta name="description" content="The daily fuelling protocol for Kuranda → Port Douglas: meals, snacks, on-run fuel and recovery, with macros and measured serves across Plan A/B/C.">
+<meta name="description" content="The daily fuelling protocol for the Love in Motion run: meals, snacks, on-run fuel and recovery, with macros and measured serves across Plan A/B/C.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Love in Motion">
 <meta property="og:title" content="Love in Motion — Fuel">
-<meta property="og:description" content="Daily fuelling for Kuranda → Port Douglas: meals, snacks, on-run fuel and recovery, with macros and measured serves.">
+<meta property="og:description" content="Daily fuelling for the Love in Motion run: meals, snacks, on-run fuel and recovery, with macros and measured serves.">
 <meta property="og:image" content="https://charlietathra.github.io/Love-in-Motion/icon-512.png">
 <meta property="og:url" content="https://charlietathra.github.io/Love-in-Motion/nutrition-meal-planner/">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Love in Motion — Fuel">
-<meta name="twitter:description" content="Daily fuelling for Kuranda → Port Douglas, with macros and measured serves.">
+<meta name="twitter:description" content="Daily fuelling for the Love in Motion run, with macros and measured serves.">
 <meta name="twitter:image" content="https://charlietathra.github.io/Love-in-Motion/icon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -181,11 +181,11 @@
   .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:15;max-width:520px;margin:0 auto;
     display:flex;gap:2px;background:rgba(255,253,251,.92);
     -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
-    border-top:1px solid var(--line);padding:7px 8px calc(7px + env(safe-area-inset-bottom))}
+    border-top:1px solid var(--line);padding:7px 6px calc(7px + env(safe-area-inset-bottom))}
   .tabbar .tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
-    text-decoration:none;color:var(--ink-faint);font-size:10px;font-weight:600;
-    letter-spacing:.02em;padding:5px 2px;border-radius:11px;transition:.15s}
-  .tabbar .tab .ic{font-size:18px;line-height:1}
+    text-decoration:none;color:var(--ink-faint);font-size:9.5px;font-weight:600;
+    letter-spacing:.01em;padding:5px 1px;border-radius:11px;transition:.15s}
+  .tabbar .tab .ic{font-size:17px;line-height:1}
   .tabbar .tab:active{background:var(--cream-2)}
   .tabbar .tab[aria-current="page"]{color:var(--rose-deep)}
 
@@ -238,9 +238,11 @@
   <div class="tag">Nourish · Foundation</div>
   <div class="count">
     <div class="n" id="cd">—</div>
-    <div class="lab" id="cdl">days to <b>Kuranda &rarr; Port Douglas</b><br>60 km trail ultra · 23 Aug 2026</div>
+    <div class="lab" id="cdl">days to <b>Attunga &rarr; Sydney</b><br>Love in Motion run · 415 km · 26 Dec 2026</div>
   </div>
 </header>
+
+<a href="../meals/index.html" style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;background:var(--euc-wash);border-radius:13px;padding:12px 15px;text-decoration:none;color:#4f5a48;box-shadow:var(--shadow)"><span style="font-size:13px;font-weight:600">&#129367; Build today's meals by serves</span><span style="font-weight:700;font-size:15px">&rsaquo;</span></a>
 
 <div class="controls">
   <div class="weeks" id="days" role="tablist"></div>
@@ -275,8 +277,9 @@
 <nav class="tabbar" aria-label="Sections">
   <a class="tab" href="../index.html"><span class="ic">&#127968;</span>Home</a>
   <a class="tab" href="index.html" aria-current="page"><span class="ic">&#127869;</span>Fuel</a>
+  <a class="tab" href="../meals/index.html"><span class="ic">&#129367;</span>Meals</a>
   <a class="tab" href="../training/index.html"><span class="ic">&#128694;</span>Train</a>
-  <a class="tab" href="../the-415/index.html"><span class="ic">&#127937;</span>The 415</a>
+  <a class="tab" href="../the-415/index.html"><span class="ic">&#127937;</span>415</a>
   <a class="tab" href="../donate/index.html"><span class="ic">&#129655;</span>Donate</a>
 </nav>
 
@@ -400,7 +403,7 @@ var DAYS=[
   ]}
 ];
 
-var EVENT=new Date(2026,7,23);
+var EVENT=new Date(2026,11,26);
 
 /* ---------- state ---------- */
 var state={day:0,plan:store.get("limn_plan")||"A"};
@@ -415,7 +418,7 @@ function cards(){return DAYS[state.day][state.plan]||[];}
 function renderCount(){
   var ms=EVENT-new Date();var d=Math.max(0,Math.ceil(ms/86400000));
   document.getElementById("cd").textContent=d;
-  if(d===0)document.getElementById("cdl").innerHTML="<b>Today is the day</b><br>Kuranda &rarr; Port Douglas";
+  if(d===0)document.getElementById("cdl").innerHTML="<b>Today is the day</b><br>Attunga &rarr; Sydney";
 }
 function renderDays(){
   var w=document.getElementById("days");w.innerHTML="";
@@ -514,7 +517,7 @@ function openSheet(i){
     h+="</ul><p class='fnote'>Approximate serves - adjust to appetite and the day. Hands work as a scale: protein = 1 palm, carbs = 1 fist, fat = 1 thumb.</p></div>";
   }
   h+="<div class='blk'><h4>Why &amp; how</h4><p>"+s.detail+"</p></div>";
-  if(s.onrun)h+="<div class='blk'><h4>On race day this is rehearsal</h4><div class='callout'><p>Practise this exact fuelling on every long run. North Queensland heat and humidity mean heavier sweat losses for K2PD - get used to drinking and eating on the move now, not on the day.</p></div></div>";
+  if(s.onrun)h+="<div class='blk'><h4>On race day this is rehearsal</h4><div class='callout'><p>Practise this exact fuelling on every long run - dial in what your stomach handles on the move now, not on the day. Summer heat means heavier sweat losses, so rehearse drinking too.</p></div></div>";
   if(s.k==="rcv")h+="<div class='blk'><h4>The recovery window</h4><p>"+WINDOW+"</p></div>";
   h+="<button class='dobtn"+(done[i]?" is-done":"")+"' id='dobtn'>"+(done[i]?"&#10003; In - tap to undo":"Mark as eaten")+"</button>";
   document.getElementById("sheetbody").innerHTML=h;
@@ -537,12 +540,12 @@ function note(title,html){return "<details class='sub'><summary>"+title+"<span c
 document.getElementById("notesbody").innerHTML=
  note("Your daily targets","<p>From your nutrition protocol - the numbers behind the measurements:</p><ul><li><b>~2,550 calories</b> a day to sustain top performance.</li><li><b>Protein 88 g</b> &middot; <b>Carbs 382 g</b> &middot; <b>Fats 72 g</b>.</li><li>Carbs and total calories matter most - prioritise high-carb, lower-fibre foods. Keep <b>fibre under 35 g/day</b>.</li><li>No food is off limits - a treat each night helps you hit the calories.</li></ul><p><b>Portion without scales</b> - one serve is:</p><ul><li><b>Protein:</b> 1 palm (~24 g) &middot; aim 4 serves/day</li><li><b>Carbs:</b> 1 fist (~25 g carbs) &middot; aim 15 serves/day</li><li><b>Veg / fruit:</b> 1 fist (~5 g carbs) &middot; aim 5–6 serves/day</li><li><b>Fat:</b> 1 thumb (~9 g) &middot; aim 8 serves/day</li></ul><p>Build every plate ½ carbs, ¼ protein, ¼ veg, with a thumb of healthy fat.</p><p><b>Per-meal split in your protocol:</b></p><ul><li>Meal 1 &middot; 22 P / 75 C / 18 F &middot; ~550 kcal</li><li>Meal 2 &middot; 21 P / 95 C / 22 F &middot; ~660 kcal</li><li>Meal 3 &middot; 20 P / 97 C / 25 F &middot; ~693 kcal</li><li>Pre-workout &middot; 5 P / 45 C / 2 F &middot; ~220 kcal</li><li>Post-workout &middot; 20 P / 70 C / 5 F &middot; ~405 kcal</li></ul><p>Each meal here shows its own macros, and the day total sits under the progress bar. Built from real, whole-food meals, the days land close on carbs and calories but a little higher in protein than the headline split - which is no bad thing for an endurance athlete. Carbs and total calories are what matter most.</p>")+
  note("Eat enough - the real risk","<p>"+ENOUGH+"</p><p>For a working, parenting, caregiving athlete the danger is almost never overeating - it's quietly under-fuelling around a packed life. <b>If you trained, you need more, not less.</b></p>")+
- note("Hydration &amp; electrolytes","<ul><li>Water steadily through the day, not all at once.</li><li>On long or hot efforts, add electrolytes - sodium especially - to your bottle.</li><li><b>Pale-straw urine</b> is your simple gauge; dark means drink more.</li><li>K2PD is humid - practise drinking on every long run so race day is nothing new.</li></ul>")+
+ note("Hydration &amp; electrolytes","<ul><li>Water steadily through the day, not all at once.</li><li>On long or hot efforts, add electrolytes - sodium especially - to your bottle.</li><li><b>Pale-straw urine</b> is your simple gauge; dark means drink more.</li><li>Summer running is hot - practise drinking on every long run so race day is nothing new.</li></ul>")+
  note("Recovery nutrition","<p>"+WINDOW+"</p><p>It doesn't need to be fancy or expensive. Flavoured milk, a tub of yoghurt with fruit, or eggs on toast all do the job.</p>")+
  note("Nervous system &amp; hormones","<ul><li>Regular meals steady blood sugar, mood and energy - the foundation of a settled nervous system.</li><li>Protein + slow carbs + healthy fats at each meal.</li><li>Omega-3s (oily fish, walnuts, flax) and magnesium (greens, nuts, seeds, dark chocolate) support recovery and sleep.</li><li>Go easy on caffeine late in the day to protect sleep - your most powerful recovery tool.</li></ul>")+
  note("Iron - worth watching","<p>Endurance training plus menstruation raises iron needs. Include red meat, legumes and leafy greens, paired with vitamin C (capsicum, citrus, tomato) to absorb it.</p><p>If you're persistently flat, breathless or heavy-legged, ask your GP for a <b>ferritin check</b> - low iron is common and very fixable.</p>")+
  note("Make it easy on yourself","<ul><li>Cook once, eat twice - always make extra dinner for lunch.</li><li>On a good week, prep for the hard one: a tub of cooked grains, a tray of roast veg, boiled eggs, pre-portioned trail mix.</li><li>Overnight oats remove all morning decisions.</li><li>Keep a grab-bag of snacks in the car and your work bag. Future-you is grateful.</li></ul>")+
- note("On the horizon - the 415 km","<p>For the Love in Motion run from Attunga to Sydney, fuelling becomes the engine: frequent eating on the move, real food plus sports food, crew-cooked hot meals, and proper recovery each night.</p><p>We'll build a full <b>crew food list, daily fuelling plan and recovery routine</b> closer to the time - once K2PD is behind you. For now, every long run is quietly teaching your gut what it'll need then.</p>");
+ note("On the horizon - the 415 km","<p>For the Love in Motion run from Attunga to Sydney, fuelling becomes the engine: frequent eating on the move, real food plus sports food, crew-cooked hot meals, and proper recovery each night.</p><p>We'll build a full <b>crew food list, daily fuelling plan and recovery routine</b> closer to the time - once the 50&nbsp;km practice run is behind you. For now, every long run is quietly teaching your gut what it'll need then.</p>");
 
 /* ---------- go ---------- */
 function render(){renderDays();renderPlans();renderHead();renderList();}

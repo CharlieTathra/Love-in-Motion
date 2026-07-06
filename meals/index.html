@@ -129,6 +129,10 @@
   footer{text-align:center;margin-top:30px;padding-top:18px;border-top:1px solid var(--line)}
   footer .fm{font-family:var(--serif);font-style:italic;font-size:14.5px;color:var(--rose-deep)}
   footer .fs{font-size:11px;color:var(--ink-faint);margin-top:6px;letter-spacing:.04em}
+  .sig{margin-top:17px;display:flex;align-items:center;justify-content:center;gap:11px}
+  .sig::before,.sig::after{content:"";height:1px;width:30px;background:var(--line)}
+  .sig-mark{font-family:var(--serif);font-weight:500;font-size:15px;letter-spacing:.34em;
+    text-transform:uppercase;color:var(--ink);padding-left:.34em}
 
   /* bottom tab bar */
   .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:15;max-width:520px;margin:0 auto;
@@ -209,6 +213,7 @@
 <footer>
   <div class="fm">Because Love Keeps Moving</div>
   <div class="fs">in support of the McGrath Foundation</div>
+  <div class="sig" aria-label="Tathra"><span class="sig-mark">Tathra</span></div>
 </footer>
 
 <nav class="tabbar" aria-label="Sections">

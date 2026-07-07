@@ -130,6 +130,34 @@
   .cnote{margin-top:13px;font-size:12px;color:var(--ink-faint);text-align:center;
     line-height:1.5;padding:0 10px}
 
+  /* route & crew camps */
+  .route{margin-top:32px}
+  .rhead{margin:0 2px 4px}
+  .rhead h2{font-family:var(--serif);font-size:22px;font-weight:500;letter-spacing:-.01em}
+  .rhead p{font-size:12.5px;color:var(--ink-faint);margin-top:3px;letter-spacing:.02em}
+  .draft{margin-top:12px;background:var(--rose-wash);border-radius:12px;padding:11px 14px;
+    font-size:11.5px;line-height:1.55;color:var(--rose-deep);font-weight:500}
+  .draft b{font-weight:700;letter-spacing:.07em}
+  .stages{list-style:none;margin-top:18px;position:relative;padding-left:26px}
+  .stages::before{content:"";position:absolute;left:9px;top:6px;bottom:12px;width:2px;
+    background:linear-gradient(var(--rose),var(--euc))}
+  .stage{position:relative;margin-bottom:11px;animation:rise .5s cubic-bezier(.2,.7,.2,1) both}
+  .stage::before{content:"";position:absolute;left:-22px;top:15px;width:11px;height:11px;
+    border-radius:50%;background:var(--surface);border:2px solid var(--rose);z-index:1}
+  .stage.fin::before{background:var(--rose);border-color:var(--rose-deep)}
+  .sc{background:var(--surface);border:1px solid var(--line);border-radius:14px;
+    padding:13px 15px;box-shadow:var(--shadow)}
+  .sd{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);
+    font-weight:600;margin-bottom:3px}
+  .sr{font-size:15px;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
+  .sw{font-size:12px;color:var(--ink-soft);margin-top:6px;line-height:1.6}
+  .scamp{margin-top:10px;padding-top:10px;border-top:1px solid var(--line-soft);
+    font-size:12.5px;color:var(--ink);display:flex;align-items:baseline;gap:7px;flex-wrap:wrap}
+  .scamp .ci{font-size:14px;transform:translateY(1px)}
+  .scamp b{font-weight:600}
+  .scamp .ct{color:var(--ink-faint);font-size:11.5px;flex-basis:100%;margin-left:21px}
+  .rfoot{margin-top:14px;font-size:11.5px;color:var(--ink-faint);line-height:1.6;padding:0 4px}
+
   .notes{margin-top:30px;border-top:1px solid var(--line);padding-top:8px}
   .notes>summary{font-family:var(--serif);font-size:17px;font-weight:500;
     padding:14px 2px;cursor:pointer;list-style:none;display:flex;
@@ -225,6 +253,16 @@
 
 <div class="list" id="list"></div>
 <div class="cnote" id="cnote"></div>
+
+<section class="route" aria-labelledby="routeh">
+  <div class="rhead">
+    <h2 id="routeh">The route</h2>
+    <p>Attunga &rarr; Sydney Cricket Ground · the planned line</p>
+  </div>
+  <div class="draft"><b>DRAFT</b> &mdash; the waypoints below are the planned route. Daily stages, distances and every crew camp still need confirming for bookings, access and road safety as the run gets closer.</div>
+  <ol class="stages" id="stages"></ol>
+  <div class="rfoot">Camps are grouped by natural overnight towns &mdash; showgrounds and caravan parks along the corridor. Confirm each one directly before the run; in peak summer heat some legs may split into two shorter days.</div>
+</section>
 
 <details class="notes">
   <summary>Campaign notes <span class="x">+</span></summary>
@@ -431,8 +469,52 @@ document.getElementById("notesbody").innerHTML=
  note("Mind &amp; morale","<ul><li>Break each day into chunks &mdash; aid point to aid point, not Sydney.</li><li>Low patches pass; eat, drink, cool down and keep moving gently.</li><li>Lean on the crew and the reason you're running when it's hard.</li><li>Celebrate finishing each stage &mdash; momentum is built daily.</li></ul>")+
  note("Build it safely","<p>A 415&nbsp;km run is a serious undertaking. Plan it with experienced people: a coach for the training build, medical guidance for heat and load, and proper route, permit and road-safety planning.</p><p>This guide is the shape of the campaign &mdash; the detail gets tailored to you, your crew and the course as the day gets closer.</p>");
 
+/* the route — Attunga → Sydney, grouped into overnight stages with crew camps.
+   Waypoints are Charlie's planned line; distances/camps are DRAFT, to confirm. */
+var STAGES=[
+ {n:"1",leg:"Attunga &rarr; Tamworth",via:["Attunga","Tamworth"],
+  camp:"Tamworth",campt:"showground &amp; caravan parks"},
+ {n:"2",leg:"Tamworth &rarr; Murrurundi",via:["Nemingha","Moonbi","Bendemeer","Wallabadah","Willow Tree","Murrurundi"],
+  camp:"Murrurundi",campt:"showground / Wilson Memorial Park"},
+ {n:"3",leg:"Murrurundi &rarr; Scone",via:["Scone"],
+  camp:"Scone",campt:"caravan park · free 48-hr RV parking in town"},
+ {n:"4",leg:"Scone &rarr; Muswellbrook",via:["Muswellbrook"],
+  camp:"Muswellbrook",campt:"showground · powered sites, water &amp; showers"},
+ {n:"5",leg:"Muswellbrook &rarr; Singleton",via:["Denman Rd (where appropriate)","Singleton"],
+  camp:"Singleton",campt:"showground / riverside caravan park"},
+ {n:"6",leg:"Singleton &rarr; Maitland",via:["Branxton","Greta","Lochinvar","Maitland"],
+  camp:"Maitland",campt:"showground / caravan parks"},
+ {n:"7",leg:"Maitland &rarr; Lake Macquarie",via:["Thornton","Tarro","Hexham","Shortland","Jesmond","Wallsend","Glendale","Cardiff","Speers Point","Belmont","Swansea"],
+  camp:"Belmont / Swansea",campt:"lakeside holiday parks"},
+ {n:"8",leg:"Lake Macquarie &rarr; Central Coast",via:["Catherine Hill Bay","Lake Munmorah","Budgewoi","The Entrance"],
+  camp:"The Entrance / Budgewoi",campt:"beachside holiday parks"},
+ {n:"9",leg:"Central Coast &rarr; Brooklyn",via:["Gosford","Kariong","Brooklyn"],
+  camp:"Gosford / Brooklyn",campt:"limited near the water — confirm ahead"},
+ {n:"10",leg:"Brooklyn &rarr; Sydney Cricket Ground",via:["Hornsby","Lane Cove National Park","North Sydney","Sydney Harbour Bridge","The Rocks","Circular Quay","Mrs Macquarie's Road","Sydney Cricket Ground"],
+  camp:"FINISH",campt:"the finish line"}
+];
+function renderRoute(){
+  var el=document.getElementById("stages");if(!el)return;el.innerHTML="";
+  STAGES.forEach(function(s,i){
+    var li=document.createElement("li");
+    li.className="stage"+(s.camp==="FINISH"?" fin":"");
+    li.style.animationDelay=(i*45)+"ms";
+    var camp=s.camp==="FINISH"
+      ? "<span class='ci'>&#127937;</span><b>Finish</b> &mdash; Sydney Cricket Ground"
+      : "<span class='ci'>&#9978;</span>Crew camp &mdash; <b>"+s.camp+"</b><span class='ct'>"+s.campt+"</span>";
+    li.innerHTML=
+      "<div class='sc'>"+
+        "<div class='sd'>Stage "+s.n+"</div>"+
+        "<div class='sr'>"+s.leg+"</div>"+
+        "<div class='sw'>"+s.via.join(" &middot; ")+"</div>"+
+        "<div class='scamp'>"+camp+"</div>"+
+      "</div>";
+    el.appendChild(li);
+  });
+}
+
 function render(){renderPhases();renderPlans();renderHead();renderList();}
-renderCount();render();
+renderCount();render();renderRoute();
 
 /* offline support */
 if("serviceWorker" in navigator){addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){});});}

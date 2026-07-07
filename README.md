@@ -16,7 +16,7 @@ Attunga → Sydney run — the Love in Motion Run (26 Dec 2026).
 | **Fuel** | https://charlietathra.github.io/Love-in-Motion/nutrition-meal-planner/ | Daily fuelling protocol — meals with measured serves and macros, snacks, on-run fuel and recovery, across Plan A/B/C |
 | **Meals** | https://charlietathra.github.io/Love-in-Motion/meals/ | Serve-based meal builder — tap foods into breakfast/lunch/dinner/snack and track serves + macros against the daily targets |
 | **Train** | https://charlietathra.github.io/Love-in-Motion/training/ | The 17-week build to the 45 km practice run — Base / Foundation / Build / Peak / Taper — with week tabs, prescribed strength workouts and saved training notes |
-| **The 415** | https://charlietathra.github.io/Love-in-Motion/the-415/ | The Attunga → Sydney campaign — multi-day training, on-the-road fuelling, crew and recovery for the 415 km |
+| **The 415** | https://charlietathra.github.io/Love-in-Motion/the-415/ | The Attunga → Sydney campaign — multi-day training, on-the-road fuelling, crew and recovery for the 415 km, plus the planned route and crew camps |
 | **Donate** | https://charlietathra.github.io/Love-in-Motion/donate/ | The fundraiser, in support of the McGrath Foundation |
 
 ## How it works

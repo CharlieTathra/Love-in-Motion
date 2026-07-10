@@ -131,6 +131,15 @@
   .savednote{font-size:11px;color:var(--euc);font-weight:600;letter-spacing:.02em;margin-top:6px;opacity:0;transition:.3s}
   .savednote.on{opacity:1}
 
+  .dl{margin-top:18px;display:flex;align-items:center;gap:13px;background:var(--surface);
+    border:1px solid var(--line);border-radius:15px;padding:14px 16px;box-shadow:var(--shadow);
+    transition:.16s}
+  .dl:active{transform:scale(.99)}
+  .dlic{font-size:22px;line-height:1}
+  .dltx{flex:1;min-width:0;display:flex;flex-direction:column}
+  .dltx b{font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
+  .dltx span{font-size:11.5px;color:var(--ink-faint);margin-top:2px}
+  .dlar{flex:0 0 auto;font-size:17px;color:var(--rose-deep);font-weight:700}
   .notes{margin-top:30px;border-top:1px solid var(--line);padding-top:8px}
   .notes>summary{font-family:var(--serif);font-size:17px;font-weight:500;padding:14px 2px;cursor:pointer;
     list-style:none;display:flex;align-items:center;justify-content:space-between}
@@ -206,6 +215,12 @@
     <div class="lab" id="cdl">days to <b>Attunga 45 km loop</b><br>practice run · 1 Nov 2026</div>
   </div>
 </header>
+
+<a class="dl" href="../Love-in-Motion-Training-Plan.docx" download>
+  <span class="dlic">&#128196;</span>
+  <span class="dltx"><b>Download the full plan</b><span>Word document &middot; all 24 weeks &amp; coach notes</span></span>
+  <span class="dlar">&#8595;</span>
+</a>
 
 <div class="controls">
   <div class="weeks" id="weeks" role="tablist"></div>

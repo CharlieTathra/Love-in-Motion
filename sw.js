@@ -3,7 +3,7 @@
    of the precached shell after changing any of the files below. */
 "use strict";
 
-var VER = "limn-v4";
+var VER = "limn-v6";
 
 /* Same-origin app shell. Paths are relative to this file (the site root),
    so it works both at the domain root and under /Love-in-Motion/. */
@@ -15,6 +15,7 @@ var PRECACHE = [
   "./training/index.html",
   "./the-415/index.html",
   "./donate/index.html",
+  "./Love-in-Motion-Training-Plan.docx",
   "./supabase-sync.js",
   "./manifest.webmanifest",
   "./icon-192.png",

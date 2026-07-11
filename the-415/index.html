@@ -162,7 +162,18 @@
   .finish p{font-size:12.5px;line-height:1.6;color:var(--ink-soft)}
   .finish .fline{margin-top:8px;color:var(--ink);font-weight:500}
   .finish .fline b{color:var(--rose-deep);font-weight:700}
+  .finish.warn{background:#f6ecdd;border:1px solid #e6cfa6}
+  .finish.warn .fh{color:var(--clay,#bf7a4e)}
   .rfoot{margin-top:14px;font-size:11.5px;color:var(--ink-faint);line-height:1.6;padding:0 4px}
+  .dl{margin-top:16px;display:flex;align-items:center;gap:13px;background:var(--surface);
+    border:1px solid var(--line);border-radius:15px;padding:14px 16px;box-shadow:var(--shadow);
+    transition:.16s}
+  .dl:active{transform:scale(.99)}
+  .dlic{font-size:22px;line-height:1}
+  .dltx{flex:1;min-width:0;display:flex;flex-direction:column}
+  .dltx b{font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
+  .dltx span{font-size:11.5px;color:var(--ink-faint);margin-top:2px}
+  .dlar{flex:0 0 auto;font-size:17px;color:var(--rose-deep);font-weight:700}
 
   .notes{margin-top:30px;border-top:1px solid var(--line);padding-top:8px}
   .notes>summary{font-family:var(--serif);font-size:17px;font-weight:500;
@@ -235,11 +246,11 @@
   <div class="tag">The Goal · Attunga &rarr; Sydney</div>
   <div class="count">
     <div class="n" id="cd">—</div>
-    <div class="lab" id="cdl">days to <b>The Love in Motion Run</b><br>Attunga &rarr; Sydney · 26 Dec 2026</div>
+    <div class="lab" id="cdl">days to <b>The Love in Motion Run</b><br>Attunga &rarr; Sydney · 23 Dec 2026</div>
   </div>
   <div class="facts">
     <div class="fact"><div class="fn">415</div><div class="fl">km</div></div>
-    <div class="fact"><div class="fn">12&#8211;14</div><div class="fl">days</div></div>
+    <div class="fact"><div class="fn">13</div><div class="fl">days</div></div>
     <div class="fact"><div class="fn">Summer</div><div class="fl">peak heat</div></div>
   </div>
 </header>
@@ -263,16 +274,25 @@
 <section class="route" aria-labelledby="routeh">
   <div class="rhead">
     <h2 id="routeh">The route</h2>
-    <p>Attunga &rarr; Sydney Cricket Ground · ~410&ndash;430 km over 12&ndash;14 days</p>
+    <p>Attunga &rarr; Sydney Cricket Ground · ~484 km over 13 days · finish Mon 4 Jan 2027 (Pink Test)</p>
   </div>
-  <div class="draft"><b>DRAFT</b> &mdash; the towns and daily distances below are the planned line, chosen for safer roads, regular towns for support, accommodation every night and no freeways. The exact roads, shoulders, bridges and pedestrian access still need verifying (Transport for NSW quieter-roads tools), and each night's stay booked, before the run.</div>
+  <div class="draft"><b>DRAFT</b> &mdash; this is the safety-audited line: south down the <b>New England Highway</b> to the Hunter, then the coast through <b>Newcastle, the Fernleigh Track and the Central Coast</b>, and the <b>Old Pacific Highway</b> into Sydney &mdash; the safest legal route (the M1 can&rsquo;t be run). Towns and daily distances are the plan; the audit&rsquo;s &#9888; items still need a route-planner / Street&nbsp;View / on-ground check, and each night&rsquo;s stay booked, before locking. (&ldquo;The&nbsp;415&rdquo; is the campaign name &mdash; the mapped route measures about 484&nbsp;km.)</div>
   <ol class="stages" id="stages"></ol>
-  <div class="finish">
-    <div class="fh">&#127937; The Sydney finish</div>
-    <p>The last ~10 km is the iconic stretch &mdash; kept off the Pacific Highway and routed for supporters, media and fundraising:</p>
-    <p class="fline">Hornsby &rarr; Lane Cove National Park &rarr; Chatswood &rarr; North Sydney &rarr; Harbour Bridge pedestrian path &rarr; Circular Quay &rarr; Royal Botanic Garden &rarr; Mrs Macquarie's Chair &rarr; Art Gallery Road &rarr; The Domain &rarr; Moore Park &rarr; <b>Sydney Cricket Ground</b>.</p>
+  <div class="finish warn">
+    <div class="fh">&#9888;&#65039; Biggest safety checks (from the audit)</div>
+    <p><b>Day&nbsp;2</b> (Tamworth&nbsp;&rarr;&nbsp;Wallabadah, ~54&nbsp;km) is the longest and least-mapped &mdash; a Street&nbsp;View pass and all-day vehicle shadowing are essential. Chainage-mark the shoulder gaps on <b>Days&nbsp;2&ndash;4 and&nbsp;6</b>; keep <b>Day&nbsp;7</b> off the Hunter Expressway (a motorway &mdash; verified) and confirm the <b>Hexham bridge</b> pinch (Day&nbsp;8). The <b>Hexham</b> crossing (Day&nbsp;8) has shared paths and the <b>Hawkesbury</b> crossing (Day&nbsp;12) has a footpath (Peats Ferry Bridge) &mdash; both confirmed walkable. Everything from <b>Newcastle south</b> is well protected &mdash; Fernleigh Track, coastal shared paths and the Old Pacific Highway.</p>
   </div>
-  <div class="rfoot">Overnight stops are real towns with accommodation and services. In peak summer heat, some longer legs may split into two shorter days &mdash; hence 12&ndash;14 days. A full route book (turn-by-turn roads, GPX, support-vehicle rendezvous, water, food, medical and contingency routes) comes next.</div>
+  <div class="rfoot">Estimated ~484&nbsp;km, finishing at the Sydney Cricket Ground on <b>Monday 4 January 2027</b>, in time for the <b>Pink Test</b> &mdash; via the Old Pacific Highway, Hornsby and the Harbour Bridge walkway. Full detail and the verify list are in the route safety audit and route book below.</div>
+  <a class="dl" href="../Love-in-Motion-Route-Book.docx" download>
+    <span class="dlic">&#128214;</span>
+    <span class="dltx"><b>Download the route book</b><span>Word doc &middot; stages, rendezvous, risk, medical &amp; Street-View checklist &middot; DRAFT</span></span>
+    <span class="dlar">&#8595;</span>
+  </a>
+  <a class="dl" href="../Love-in-Motion-Route-Safety-Audit.pdf" download>
+    <span class="dlic">&#128736;&#65039;</span>
+    <span class="dltx"><b>Route safety audit</b><span>PDF &middot; corridor decision, shoulder gaps &amp; verify list &middot; DRAFT v1</span></span>
+    <span class="dlar">&#8595;</span>
+  </a>
 </section>
 
 <details class="notes">
@@ -393,7 +413,7 @@ var PHASES=[
   ]}
 ];
 
-var EVENT=new Date(2026,11,26);
+var EVENT=new Date(2026,11,23);
 
 var state={ph:0,lens:store.get("limn415_lens")||"Train"};
 
@@ -475,28 +495,29 @@ document.getElementById("notesbody").innerHTML=
  note("Why back-to-backs win it","<p>"+BTB+"</p><ul><li>Train the second and third day, not just the long run.</li><li>Keep every day easy &mdash; pace is the enemy of repeatability.</li><li>Recovery and fuelling are part of the training, not extras.</li></ul>")+
  note("Heat &amp; summer survival","<p>"+HEAT+"</p><ul><li>Start before dawn; bank distance before mid-morning.</li><li>Rest in shade through the hottest hours; split stages if needed.</li><li>Electrolytes &mdash; sodium especially &mdash; all day, every day.</li><li>Cool actively: cold water, ice, wet cloth on neck and wrists.</li><li>Know the warning signs of heat illness and stop early if they appear.</li></ul>")+
  note("Feet, skin &amp; chafing","<ul><li>Proven shoes and socks &mdash; nothing new on the road.</li><li>Lube everywhere that rubs; reapply often in the heat.</li><li>Treat hot spots the instant you feel them, before they blister.</li><li>Change socks and dry feet at breaks; carry a real foot-care kit.</li><li>Spare shoes a half-size up for swelling later in the run.</li></ul>")+
+ note("Camping &amp; stays","<p>Researched camping / caravan options for every overnight town are in the <b>route book</b> &mdash; to confirm and book (peak summer, so book early). A quick picture:</p><ul><li><b>Tamworth</b> &mdash; Paceway (old showground). <b>Wallabadah</b> &mdash; Wallabadah Park free camp. <b>Murrurundi</b> &mdash; Murrurundi Caravan Park.</li><li><b>Scone</b> &mdash; caravan parks (confirm). <b>Muswellbrook</b> &amp; <b>Singleton</b> &mdash; showgrounds. <b>Maitland</b> &mdash; Coachstop / showground.</li><li><b>Newcastle</b> &mdash; Stockton Beach Holiday Park. <b>Budgewoi</b> &mdash; NRMA Budgewoi (Lake Munmorah).</li><li><b>Gosford</b> &mdash; limited, check nearby. <b>Mooney Mooney</b> &mdash; riverside rest area. <b>Hornsby</b> &mdash; Lane Cove River Tourist Park (last night before the SCG).</li></ul><p>Confirm powered sites, tent policy and price, and log the booking on each stage sheet.</p>")+
  note("Your crew &amp; logistics","<p>A multi-day run is a team effort &mdash; the crew is your aid station, kitchen and safety net.</p><ul><li>Support vehicle meeting you at set points with cold drinks, food and kit.</li><li>Daily plan: stage distances, meeting points, water, weather, accommodation.</li><li>Road safety: hi-vis, lights, a planned route and traffic awareness.</li><li>Camp kitchen: quick hot meals and a recovery spread each night.</li><li>A simple daily checklist so nothing is forgotten when everyone's tired.</li></ul>")+
  note("Fuelling on the move","<ul><li>Aim ~30–60g of carbs an hour, from the first hour.</li><li>Mix real food with sports food so your gut and tastebuds last.</li><li>Drink to a schedule in the heat, with electrolytes.</li><li>Hot crew-cooked meals at the mid-day break and each night.</li><li>Rehearse all of it in the peak block &mdash; nothing new on the road.</li></ul>")+
  note("Mind &amp; morale","<ul><li>Break each day into chunks &mdash; aid point to aid point, not Sydney.</li><li>Low patches pass; eat, drink, cool down and keep moving gently.</li><li>Lean on the crew and the reason you're running when it's hard.</li><li>Celebrate finishing each stage &mdash; momentum is built daily.</li></ul>")+
+ note("Route safety audit","<p>A route safety audit (v1) checked the whole line for the safest legal corridor. Its key findings:</p><ul><li>Recommends the <b>New England Highway</b> south to the Hunter, then the coast through <b>Newcastle, the Fernleigh Track and the Central Coast</b>, then the <b>Old Pacific Highway</b> into Sydney &mdash; sealed shoulders, towns every 12&ndash;54&nbsp;km, hospitals near the route.</li><li>Advises <b>against remote roads</b> (e.g. Thunderbolts Way &mdash; and by the same logic the Putty Road): narrow, no shoulder, big service gaps and mobile blackspots are a worse risk for a supported runner.</li><li>You <b>can&rsquo;t run on the M1</b>, so south of the Hunter the legal route diverts via Newcastle and the coast anyway.</li><li>Verified leg-by-leg, the safe route is <b>~480&ndash;490&nbsp;km</b> (not ~415) &mdash; worth deciding the campaign wording.</li><li>Items marked &#9888; (shoulder gaps on Days 2&ndash;4, 6, 7; several leg distances) still need a route-planner / Street View / on-ground check before locking.</li></ul><p>This audited corridor is now the planned route above. Full detail and the &#9888; verify list are in the <b>Route safety audit</b> PDF above.</p><p><b>Verified so far:</b> the Hawkesbury (Peats Ferry Bridge footpath) and Hexham crossings are walkable; the Hunter Expressway is a motorway (use the old highway); and the key distances match the audit &mdash; Tamworth&ndash;Wallabadah 54&nbsp;km, Newcastle&ndash;Budgewoi ~49&nbsp;km, Brooklyn&ndash;Hornsby ~27&nbsp;km. Still to do: shoulder-gap chainages (Days 2&ndash;4, 6) &mdash; use the <b>Street&nbsp;View checklist</b> in the route book. The run finishes at the <b>SCG</b> (the audit&rsquo;s draft ends at the Opera House).</p>")+
  note("Build it safely","<p>A 415&nbsp;km run is a serious undertaking. Plan it with experienced people: a coach for the training build, medical guidance for heat and load, and proper route, permit and road-safety planning.</p><p>This guide is the shape of the campaign &mdash; the detail gets tailored to you, your crew and the course as the day gets closer.</p>");
 
 /* the route — Attunga → Sydney, 12–14 day stage plan (Charlie's draft route).
    Towns & daily distances are the planned line; exact roads/stays are DRAFT, to verify. */
 var STAGES=[
- {d:"1",leg:"Attunga &rarr; Gunnedah",km:"36&ndash;40 km",stop:"Gunnedah"},
- {d:"2",leg:"Gunnedah &rarr; Carroll",km:"30&ndash;35 km",stop:"Carroll"},
- {d:"3",leg:"Carroll &rarr; Quirindi",km:"32&ndash;36 km",stop:"Quirindi"},
- {d:"4",leg:"Quirindi &rarr; Willow Tree",km:"30&ndash;34 km",stop:"Willow Tree"},
- {d:"5",leg:"Willow Tree &rarr; Murrurundi",km:"34&ndash;38 km",stop:"Murrurundi"},
- {d:"6",leg:"Murrurundi &rarr; Scone",km:"~40 km",stop:"Scone"},
- {d:"7",leg:"Scone &rarr; Muswellbrook",km:"~37 km",stop:"Muswellbrook"},
- {d:"8",leg:"Muswellbrook &rarr; Singleton",km:"~43 km",stop:"Singleton"},
- {d:"9",leg:"Singleton &rarr; Broke",km:"~25&ndash;30 km",via:"through the Hunter vineyards, quieter roads",stop:"Broke"},
- {d:"10",leg:"Broke &rarr; Cessnock",km:"~28&ndash;32 km",via:"via Pokolbin wine country",stop:"Cessnock"},
- {d:"11",leg:"Cessnock &rarr; Gosford",km:"35&ndash;40 km",via:"quieter Hunter &amp; Central Coast roads",stop:"Gosford"},
- {d:"12",leg:"Gosford &rarr; Brooklyn",km:"30&ndash;35 km",stop:"Brooklyn"},
- {d:"13",leg:"Brooklyn &rarr; Hornsby",km:"28&ndash;32 km",stop:"Hornsby"},
- {d:"14",leg:"Hornsby &rarr; Sydney Cricket Ground",km:"30&ndash;35 km",via:"the iconic Sydney finish",stop:"FINISH"}
+ {d:"1",leg:"Attunga &rarr; Tamworth",km:"~20 km",via:"launch day",stop:"Tamworth"},
+ {d:"2",leg:"Tamworth &rarr; Wallabadah",km:"~54 km",via:"longest day &mdash; 54 km confirmed (&#10003;), shoulders still to verify",stop:"Wallabadah"},
+ {d:"3",leg:"Wallabadah &rarr; Murrurundi",km:"~38 km",via:"via Willow Tree &middot; &#9888; pass-country gaps",stop:"Murrurundi"},
+ {d:"4",leg:"Murrurundi &rarr; Scone",km:"~40 km",via:"Murrurundi Gap climb",stop:"Scone"},
+ {d:"5",leg:"Scone &rarr; Muswellbrook",km:"~26 km",via:"recovery day",stop:"Muswellbrook"},
+ {d:"6",leg:"Muswellbrook &rarr; Singleton",km:"~47 km",via:"&#9888; coal-traffic corridor",stop:"Singleton"},
+ {d:"7",leg:"Singleton &rarr; Maitland",km:"~49 km",via:"via Branxton &middot; Hunter Expressway is a motorway &mdash; use the old highway (&#10003;)",stop:"Maitland"},
+ {d:"8",leg:"Maitland &rarr; Newcastle",km:"~35 km",via:"Hexham has shared paths (&#10003;) &mdash; low path can flood, check on the day",stop:"Newcastle"},
+ {d:"9",leg:"Newcastle &rarr; Budgewoi",km:"~50 km",via:"Fernleigh Track + coastal paths &mdash; best-protected day",stop:"Budgewoi"},
+ {d:"10",leg:"Budgewoi &rarr; Gosford",km:"~38 km",via:"Central Coast shared paths",stop:"Gosford"},
+ {d:"11",leg:"Gosford &rarr; Mooney Mooney",km:"~28 km",via:"onto the Old Pacific Hwy",stop:"Mooney Mooney"},
+ {d:"12",leg:"Mooney Mooney &rarr; Hornsby",km:"~35 km",via:"via Brooklyn &middot; Hawkesbury crossing has a footpath (&#10003; Peats Ferry Bridge)",stop:"Hornsby"},
+ {d:"13",leg:"Hornsby &rarr; Sydney Cricket Ground",km:"~30 km",via:"Harbour Bridge walkway &middot; arrive Mon 4 Jan 2027",stop:"FINISH"}
 ];
 function renderRoute(){
   var el=document.getElementById("stages");if(!el)return;el.innerHTML="";

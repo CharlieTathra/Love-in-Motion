@@ -162,6 +162,8 @@
   .finish p{font-size:12.5px;line-height:1.6;color:var(--ink-soft)}
   .finish .fline{margin-top:8px;color:var(--ink);font-weight:500}
   .finish .fline b{color:var(--rose-deep);font-weight:700}
+  .finish.warn{background:#f6ecdd;border:1px solid #e6cfa6}
+  .finish.warn .fh{color:var(--clay,#bf7a4e)}
   .rfoot{margin-top:14px;font-size:11.5px;color:var(--ink-faint);line-height:1.6;padding:0 4px}
   .dl{margin-top:16px;display:flex;align-items:center;gap:13px;background:var(--surface);
     border:1px solid var(--line);border-radius:15px;padding:14px 16px;box-shadow:var(--shadow);
@@ -248,7 +250,7 @@
   </div>
   <div class="facts">
     <div class="fact"><div class="fn">415</div><div class="fl">km</div></div>
-    <div class="fact"><div class="fn">12&#8211;14</div><div class="fl">days</div></div>
+    <div class="fact"><div class="fn">14</div><div class="fl">days</div></div>
     <div class="fact"><div class="fn">Summer</div><div class="fl">peak heat</div></div>
   </div>
 </header>
@@ -272,16 +274,15 @@
 <section class="route" aria-labelledby="routeh">
   <div class="rhead">
     <h2 id="routeh">The route</h2>
-    <p>Attunga &rarr; Sydney Cricket Ground · ~410&ndash;430 km over 12&ndash;14 days</p>
+    <p>Attunga &rarr; Sydney Cricket Ground · ~490 km over 14 days · arrive Sun 4 Jan 2027</p>
   </div>
-  <div class="draft"><b>DRAFT</b> &mdash; the towns and daily distances below are the planned line, chosen for safer roads, regular towns for support, accommodation every night and no freeways. The exact roads, shoulders, bridges and pedestrian access still need verifying (Transport for NSW quieter-roads tools), and each night's stay booked, before the run.</div>
+  <div class="draft"><b>DRAFT</b> &mdash; the planned line runs south down the New England Highway, through the Hunter Valley and Wollombi, then over the remote Putty Road into Sydney. Towns and daily distances are the plan; exact roads, shoulders, bridges and pedestrian access still need verifying, and each night's stay booked, before the run. (&ldquo;The&nbsp;415&rdquo; is the campaign name &mdash; the mapped route now measures about 490&nbsp;km.)</div>
   <ol class="stages" id="stages"></ol>
-  <div class="finish">
-    <div class="fh">&#127937; The Sydney finish</div>
-    <p>The last ~10 km is the iconic stretch &mdash; kept off the Pacific Highway and routed for supporters, media and fundraising:</p>
-    <p class="fline">Hornsby &rarr; Lane Cove National Park &rarr; Chatswood &rarr; North Sydney &rarr; Harbour Bridge pedestrian path &rarr; Circular Quay &rarr; Royal Botanic Garden &rarr; Mrs Macquarie's Chair &rarr; Art Gallery Road &rarr; The Domain &rarr; Moore Park &rarr; <b>Sydney Cricket Ground</b>.</p>
+  <div class="finish warn">
+    <div class="fh">&#9888;&#65039; The remote stretch &mdash; Putty Road</div>
+    <p>Days&nbsp;11&ndash;12 cross the <b>Putty Road</b>: remote, winding, and popular with fast motorcycles, with the <b>Grey Gum Caf&eacute; the only stop in ~160&nbsp;km</b> between Windsor and Singleton. There are no towns &mdash; these days run on pre-arranged support-vehicle stops for water, food and camping, and need tight road-safety cover (vehicle escort, hi-vis, no night running). This is the highest-risk section &mdash; verify it carefully or plan an alternative.</p>
   </div>
-  <div class="rfoot">Overnight stops are real towns with accommodation and services. In peak summer heat, some longer legs may split into two shorter days &mdash; hence 12&ndash;14 days.</div>
+  <div class="rfoot">Estimated ~490&nbsp;km, finishing at the Sydney Cricket Ground on <b>4 January 2027</b>. The final approach into the SCG (from the north-west via Windsor) and the media/supporter finish are still to be designed and verified. Full detail is in the route book below.</div>
   <a class="dl" href="../Love-in-Motion-Route-Book.docx" download>
     <span class="dlic">&#128214;</span>
     <span class="dltx"><b>Download the route book</b><span>Word doc &middot; per-day stages, rendezvous, risk &amp; medical &middot; DRAFT</span></span>
@@ -497,20 +498,20 @@ document.getElementById("notesbody").innerHTML=
 /* the route — Attunga → Sydney, 12–14 day stage plan (Charlie's draft route).
    Towns & daily distances are the planned line; exact roads/stays are DRAFT, to verify. */
 var STAGES=[
- {d:"1",leg:"Attunga &rarr; Gunnedah",km:"36&ndash;40 km",stop:"Gunnedah"},
- {d:"2",leg:"Gunnedah &rarr; Carroll",km:"30&ndash;35 km",stop:"Carroll"},
- {d:"3",leg:"Carroll &rarr; Quirindi",km:"32&ndash;36 km",stop:"Quirindi"},
- {d:"4",leg:"Quirindi &rarr; Willow Tree",km:"30&ndash;34 km",stop:"Willow Tree"},
- {d:"5",leg:"Willow Tree &rarr; Murrurundi",km:"34&ndash;38 km",stop:"Murrurundi"},
- {d:"6",leg:"Murrurundi &rarr; Scone",km:"~40 km",stop:"Scone"},
- {d:"7",leg:"Scone &rarr; Muswellbrook",km:"~37 km",stop:"Muswellbrook"},
- {d:"8",leg:"Muswellbrook &rarr; Singleton",km:"~43 km",stop:"Singleton"},
- {d:"9",leg:"Singleton &rarr; Broke",km:"~25&ndash;30 km",via:"through the Hunter vineyards, quieter roads",stop:"Broke"},
- {d:"10",leg:"Broke &rarr; Cessnock",km:"~28&ndash;32 km",via:"via Pokolbin wine country",stop:"Cessnock"},
- {d:"11",leg:"Cessnock &rarr; Gosford",km:"35&ndash;40 km",via:"quieter Hunter &amp; Central Coast roads",stop:"Gosford"},
- {d:"12",leg:"Gosford &rarr; Brooklyn",km:"30&ndash;35 km",stop:"Brooklyn"},
- {d:"13",leg:"Brooklyn &rarr; Hornsby",km:"28&ndash;32 km",stop:"Hornsby"},
- {d:"14",leg:"Hornsby &rarr; Sydney Cricket Ground",km:"30&ndash;35 km",via:"the iconic Sydney finish",stop:"FINISH"}
+ {d:"1",leg:"Attunga &rarr; Tamworth",km:"~30 km",stop:"Tamworth"},
+ {d:"2",leg:"Tamworth &rarr; Wallabadah",km:"~36 km",via:"New England Hwy, heading south",stop:"Wallabadah"},
+ {d:"3",leg:"Wallabadah &rarr; Murrurundi",km:"~38 km",via:"via Willow Tree",stop:"Murrurundi"},
+ {d:"4",leg:"Murrurundi &rarr; Scone",km:"~39 km",stop:"Scone"},
+ {d:"5",leg:"Scone &rarr; Muswellbrook",km:"~36 km",stop:"Muswellbrook"},
+ {d:"6",leg:"Muswellbrook &rarr; Singleton",km:"~43 km",stop:"Singleton"},
+ {d:"7",leg:"Singleton &rarr; Broke",km:"~28 km",via:"into the Hunter vineyards",stop:"Broke"},
+ {d:"8",leg:"Broke &rarr; Pokolbin",km:"~27 km",via:"Pokolbin wine country",stop:"Pokolbin"},
+ {d:"9",leg:"Pokolbin &rarr; Cessnock",km:"~22 km",stop:"Cessnock"},
+ {d:"10",leg:"Cessnock &rarr; Wollombi",km:"~38 km",stop:"Wollombi"},
+ {d:"11",leg:"Wollombi &rarr; Putty Road",km:"~35 km",via:"remote &mdash; planned support stop, no town",stop:"Putty Road support camp"},
+ {d:"12",leg:"Putty Road &rarr; Colo Heights",km:"~35 km",via:"remote &mdash; Grey Gum Caf&eacute; is the only stop",stop:"Colo Heights"},
+ {d:"13",leg:"Colo Heights &rarr; Windsor",km:"~39 km",stop:"Windsor"},
+ {d:"14",leg:"Windsor &rarr; Sydney Cricket Ground",km:"~44 km",via:"arrive Sun 4 Jan 2027",stop:"FINISH"}
 ];
 function renderRoute(){
   var el=document.getElementById("stages");if(!el)return;el.innerHTML="";

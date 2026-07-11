@@ -15,14 +15,15 @@ palette; *Love* **IN MOTION** lockup; ochre → pink route motif; colour strip).
 ## Logo-mockup versions (`*-logo.png`)
 
 The `-logo` variants seat the **McGrath Foundation logo** in a white
-partner-logo chip in place of the reserved slot. These are **proofs**:
+partner-logo chip in place of the reserved slot.
 
+- Logo use is **approved** — these are the published assets, and the site's
+  social-preview (`og:image`) uses `love-in-motion-hero-16x9-logo.png`.
 - The supplied logo was a small (119×48) web thumbnail, so it renders a
   little soft at hero scale — swap in the **vector (SVG/EPS) or a high-res
-  PNG** from McGrath's brand pack for print/final.
-- **Do not publish** logo versions until McGrath's brand/partnership use is
-  approved. The reserved-slot versions (no `-logo`) are the correct
-  pre-approval assets.
+  PNG** from McGrath's brand pack and re-render for print/final sharpness.
+- The reserved-slot versions (no `-logo`) remain available as a
+  logo-free alternative.
 
 ## Notes, per the design system's rules:
 

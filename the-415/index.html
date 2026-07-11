@@ -156,6 +156,12 @@
   .scamp .ci{font-size:14px;transform:translateY(1px)}
   .scamp b{font-weight:600}
   .scamp .ct{color:var(--ink-faint);font-size:11.5px;flex-basis:100%;margin-left:21px}
+  .finish{margin-top:16px;background:var(--rose-wash);border-radius:14px;padding:15px 17px}
+  .finish .fh{font-family:var(--serif);font-size:16px;font-weight:600;color:var(--rose-deep);
+    margin-bottom:7px}
+  .finish p{font-size:12.5px;line-height:1.6;color:var(--ink-soft)}
+  .finish .fline{margin-top:8px;color:var(--ink);font-weight:500}
+  .finish .fline b{color:var(--rose-deep);font-weight:700}
   .rfoot{margin-top:14px;font-size:11.5px;color:var(--ink-faint);line-height:1.6;padding:0 4px}
 
   .notes{margin-top:30px;border-top:1px solid var(--line);padding-top:8px}
@@ -233,7 +239,7 @@
   </div>
   <div class="facts">
     <div class="fact"><div class="fn">415</div><div class="fl">km</div></div>
-    <div class="fact"><div class="fn">Multi&#8209;day</div><div class="fl">stage run</div></div>
+    <div class="fact"><div class="fn">12&#8211;14</div><div class="fl">days</div></div>
     <div class="fact"><div class="fn">Summer</div><div class="fl">peak heat</div></div>
   </div>
 </header>
@@ -257,11 +263,16 @@
 <section class="route" aria-labelledby="routeh">
   <div class="rhead">
     <h2 id="routeh">The route</h2>
-    <p>Attunga &rarr; Sydney Cricket Ground · the planned line</p>
+    <p>Attunga &rarr; Sydney Cricket Ground · ~410&ndash;430 km over 12&ndash;14 days</p>
   </div>
-  <div class="draft"><b>DRAFT</b> &mdash; the waypoints below are the planned route. Daily stages, distances and every crew camp still need confirming for bookings, access and road safety as the run gets closer.</div>
+  <div class="draft"><b>DRAFT</b> &mdash; the towns and daily distances below are the planned line, chosen for safer roads, regular towns for support, accommodation every night and no freeways. The exact roads, shoulders, bridges and pedestrian access still need verifying (Transport for NSW quieter-roads tools), and each night's stay booked, before the run.</div>
   <ol class="stages" id="stages"></ol>
-  <div class="rfoot">Camps are grouped by natural overnight towns &mdash; showgrounds and caravan parks along the corridor. Confirm each one directly before the run; in peak summer heat some legs may split into two shorter days.</div>
+  <div class="finish">
+    <div class="fh">&#127937; The Sydney finish</div>
+    <p>The last ~10 km is the iconic stretch &mdash; kept off the Pacific Highway and routed for supporters, media and fundraising:</p>
+    <p class="fline">Hornsby &rarr; Lane Cove National Park &rarr; Chatswood &rarr; North Sydney &rarr; Harbour Bridge pedestrian path &rarr; Circular Quay &rarr; Royal Botanic Garden &rarr; Mrs Macquarie's Chair &rarr; Art Gallery Road &rarr; The Domain &rarr; Moore Park &rarr; <b>Sydney Cricket Ground</b>.</p>
+  </div>
+  <div class="rfoot">Overnight stops are real towns with accommodation and services. In peak summer heat, some longer legs may split into two shorter days &mdash; hence 12&ndash;14 days. A full route book (turn-by-turn roads, GPX, support-vehicle rendezvous, water, food, medical and contingency routes) comes next.</div>
 </section>
 
 <details class="notes">
@@ -469,45 +480,40 @@ document.getElementById("notesbody").innerHTML=
  note("Mind &amp; morale","<ul><li>Break each day into chunks &mdash; aid point to aid point, not Sydney.</li><li>Low patches pass; eat, drink, cool down and keep moving gently.</li><li>Lean on the crew and the reason you're running when it's hard.</li><li>Celebrate finishing each stage &mdash; momentum is built daily.</li></ul>")+
  note("Build it safely","<p>A 415&nbsp;km run is a serious undertaking. Plan it with experienced people: a coach for the training build, medical guidance for heat and load, and proper route, permit and road-safety planning.</p><p>This guide is the shape of the campaign &mdash; the detail gets tailored to you, your crew and the course as the day gets closer.</p>");
 
-/* the route — Attunga → Sydney, grouped into overnight stages with crew camps.
-   Waypoints are Charlie's planned line; distances/camps are DRAFT, to confirm. */
+/* the route — Attunga → Sydney, 12–14 day stage plan (Charlie's draft route).
+   Towns & daily distances are the planned line; exact roads/stays are DRAFT, to verify. */
 var STAGES=[
- {n:"1",leg:"Attunga &rarr; Tamworth",via:["Attunga","Tamworth"],
-  camp:"Tamworth",campt:"showground &amp; caravan parks"},
- {n:"2",leg:"Tamworth &rarr; Murrurundi",via:["Nemingha","Moonbi","Bendemeer","Wallabadah","Willow Tree","Murrurundi"],
-  camp:"Murrurundi",campt:"showground / Wilson Memorial Park"},
- {n:"3",leg:"Murrurundi &rarr; Scone",via:["Scone"],
-  camp:"Scone",campt:"caravan park · free 48-hr RV parking in town"},
- {n:"4",leg:"Scone &rarr; Muswellbrook",via:["Muswellbrook"],
-  camp:"Muswellbrook",campt:"showground · powered sites, water &amp; showers"},
- {n:"5",leg:"Muswellbrook &rarr; Singleton",via:["Denman Rd (where appropriate)","Singleton"],
-  camp:"Singleton",campt:"showground / riverside caravan park"},
- {n:"6",leg:"Singleton &rarr; Maitland",via:["Branxton","Greta","Lochinvar","Maitland"],
-  camp:"Maitland",campt:"showground / caravan parks"},
- {n:"7",leg:"Maitland &rarr; Lake Macquarie",via:["Thornton","Tarro","Hexham","Shortland","Jesmond","Wallsend","Glendale","Cardiff","Speers Point","Belmont","Swansea"],
-  camp:"Belmont / Swansea",campt:"lakeside holiday parks"},
- {n:"8",leg:"Lake Macquarie &rarr; Central Coast",via:["Catherine Hill Bay","Lake Munmorah","Budgewoi","The Entrance"],
-  camp:"The Entrance / Budgewoi",campt:"beachside holiday parks"},
- {n:"9",leg:"Central Coast &rarr; Brooklyn",via:["Gosford","Kariong","Brooklyn"],
-  camp:"Gosford / Brooklyn",campt:"limited near the water — confirm ahead"},
- {n:"10",leg:"Brooklyn &rarr; Sydney Cricket Ground",via:["Hornsby","Lane Cove National Park","North Sydney","Sydney Harbour Bridge","The Rocks","Circular Quay","Mrs Macquarie's Road","Sydney Cricket Ground"],
-  camp:"FINISH",campt:"the finish line"}
+ {d:"1",leg:"Attunga &rarr; Gunnedah",km:"36&ndash;40 km",stop:"Gunnedah"},
+ {d:"2",leg:"Gunnedah &rarr; Carroll",km:"30&ndash;35 km",stop:"Carroll"},
+ {d:"3",leg:"Carroll &rarr; Quirindi",km:"32&ndash;36 km",stop:"Quirindi"},
+ {d:"4",leg:"Quirindi &rarr; Willow Tree",km:"30&ndash;34 km",stop:"Willow Tree"},
+ {d:"5",leg:"Willow Tree &rarr; Murrurundi",km:"34&ndash;38 km",stop:"Murrurundi"},
+ {d:"6",leg:"Murrurundi &rarr; Scone",km:"~40 km",stop:"Scone"},
+ {d:"7",leg:"Scone &rarr; Muswellbrook",km:"~37 km",stop:"Muswellbrook"},
+ {d:"8",leg:"Muswellbrook &rarr; Singleton",km:"~43 km",stop:"Singleton"},
+ {d:"9",leg:"Singleton &rarr; Broke",km:"~25&ndash;30 km",via:"through the Hunter vineyards, quieter roads",stop:"Broke"},
+ {d:"10",leg:"Broke &rarr; Cessnock",km:"~28&ndash;32 km",via:"via Pokolbin wine country",stop:"Cessnock"},
+ {d:"11",leg:"Cessnock &rarr; Gosford",km:"35&ndash;40 km",via:"quieter Hunter &amp; Central Coast roads",stop:"Gosford"},
+ {d:"12",leg:"Gosford &rarr; Brooklyn",km:"30&ndash;35 km",stop:"Brooklyn"},
+ {d:"13",leg:"Brooklyn &rarr; Hornsby",km:"28&ndash;32 km",stop:"Hornsby"},
+ {d:"14",leg:"Hornsby &rarr; Sydney Cricket Ground",km:"30&ndash;35 km",via:"the iconic Sydney finish",stop:"FINISH"}
 ];
 function renderRoute(){
   var el=document.getElementById("stages");if(!el)return;el.innerHTML="";
   STAGES.forEach(function(s,i){
     var li=document.createElement("li");
-    li.className="stage"+(s.camp==="FINISH"?" fin":"");
-    li.style.animationDelay=(i*45)+"ms";
-    var camp=s.camp==="FINISH"
+    li.className="stage"+(s.stop==="FINISH"?" fin":"");
+    li.style.animationDelay=(i*40)+"ms";
+    var foot=s.stop==="FINISH"
       ? "<span class='ci'>&#127937;</span><b>Finish</b> &mdash; Sydney Cricket Ground"
-      : "<span class='ci'>&#9978;</span>Crew camp &mdash; <b>"+s.camp+"</b><span class='ct'>"+s.campt+"</span>";
+      : "<span class='ci'>&#127968;</span>Overnight &mdash; <b>"+s.stop+"</b>";
+    var sub="<b>"+s.km+"</b>"+(s.via?" &middot; "+s.via:"");
     li.innerHTML=
       "<div class='sc'>"+
-        "<div class='sd'>Stage "+s.n+"</div>"+
+        "<div class='sd'>Day "+s.d+"</div>"+
         "<div class='sr'>"+s.leg+"</div>"+
-        "<div class='sw'>"+s.via.join(" &middot; ")+"</div>"+
-        "<div class='scamp'>"+camp+"</div>"+
+        "<div class='sw'>"+sub+"</div>"+
+        "<div class='scamp'>"+foot+"</div>"+
       "</div>";
     el.appendChild(li);
   });

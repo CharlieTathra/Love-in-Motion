@@ -246,7 +246,7 @@
   <div class="tag">The Goal · Attunga &rarr; Sydney</div>
   <div class="count">
     <div class="n" id="cd">—</div>
-    <div class="lab" id="cdl">days to <b>The Love in Motion Run</b><br>Attunga &rarr; Sydney · 26 Dec 2026</div>
+    <div class="lab" id="cdl">days to <b>The Love in Motion Run</b><br>Attunga &rarr; Sydney · 23 Dec 2026</div>
   </div>
   <div class="facts">
     <div class="fact"><div class="fn">415</div><div class="fl">km</div></div>
@@ -274,15 +274,15 @@
 <section class="route" aria-labelledby="routeh">
   <div class="rhead">
     <h2 id="routeh">The route</h2>
-    <p>Attunga &rarr; Sydney Cricket Ground · ~484 km over 13 days · arrive Sun 4 Jan 2027</p>
+    <p>Attunga &rarr; Sydney Cricket Ground · ~484 km over 13 days · finish Mon 4 Jan 2027 (Pink Test)</p>
   </div>
   <div class="draft"><b>DRAFT</b> &mdash; this is the safety-audited line: south down the <b>New England Highway</b> to the Hunter, then the coast through <b>Newcastle, the Fernleigh Track and the Central Coast</b>, and the <b>Old Pacific Highway</b> into Sydney &mdash; the safest legal route (the M1 can&rsquo;t be run). Towns and daily distances are the plan; the audit&rsquo;s &#9888; items still need a route-planner / Street&nbsp;View / on-ground check, and each night&rsquo;s stay booked, before locking. (&ldquo;The&nbsp;415&rdquo; is the campaign name &mdash; the mapped route measures about 484&nbsp;km.)</div>
   <ol class="stages" id="stages"></ol>
   <div class="finish warn">
     <div class="fh">&#9888;&#65039; Biggest safety checks (from the audit)</div>
-    <p><b>Day&nbsp;2</b> (Tamworth&nbsp;&rarr;&nbsp;Wallabadah, ~54&nbsp;km) is the longest and least-mapped &mdash; a Street&nbsp;View pass and all-day vehicle shadowing are essential. Chainage-mark the shoulder gaps on <b>Days&nbsp;2&ndash;4 and&nbsp;6</b>; keep <b>Day&nbsp;7</b> off the Hunter Expressway (running excluded) and confirm the <b>Hexham bridge</b> pinch (Day&nbsp;8) and the <b>Hawkesbury crossing</b> (Day&nbsp;12). Everything from <b>Newcastle south</b> is well protected &mdash; Fernleigh Track, coastal shared paths and the Old Pacific Highway.</p>
+    <p><b>Day&nbsp;2</b> (Tamworth&nbsp;&rarr;&nbsp;Wallabadah, ~54&nbsp;km) is the longest and least-mapped &mdash; a Street&nbsp;View pass and all-day vehicle shadowing are essential. Chainage-mark the shoulder gaps on <b>Days&nbsp;2&ndash;4 and&nbsp;6</b>; keep <b>Day&nbsp;7</b> off the Hunter Expressway (a motorway &mdash; verified) and confirm the <b>Hexham bridge</b> pinch (Day&nbsp;8). The <b>Hawkesbury crossing</b> (Day&nbsp;12) is confirmed walkable &mdash; the Peats Ferry Bridge has a footpath. Everything from <b>Newcastle south</b> is well protected &mdash; Fernleigh Track, coastal shared paths and the Old Pacific Highway.</p>
   </div>
-  <div class="rfoot">Estimated ~484&nbsp;km, finishing at the Sydney Cricket Ground on <b>4 January 2027</b> &mdash; via the Old Pacific Highway, Hornsby and the Harbour Bridge walkway. Full detail and the verify list are in the route safety audit and route book below.</div>
+  <div class="rfoot">Estimated ~484&nbsp;km, finishing at the Sydney Cricket Ground on <b>Monday 4 January 2027</b>, in time for the <b>Pink Test</b> &mdash; via the Old Pacific Highway, Hornsby and the Harbour Bridge walkway. Full detail and the verify list are in the route safety audit and route book below.</div>
   <a class="dl" href="../Love-in-Motion-Route-Book.docx" download>
     <span class="dlic">&#128214;</span>
     <span class="dltx"><b>Download the route book</b><span>Word doc &middot; per-day stages, rendezvous, risk &amp; medical &middot; DRAFT</span></span>
@@ -413,7 +413,7 @@ var PHASES=[
   ]}
 ];
 
-var EVENT=new Date(2026,11,26);
+var EVENT=new Date(2026,11,23);
 
 var state={ph:0,lens:store.get("limn415_lens")||"Train"};
 
@@ -510,13 +510,13 @@ var STAGES=[
  {d:"4",leg:"Murrurundi &rarr; Scone",km:"~40 km",via:"Murrurundi Gap climb",stop:"Scone"},
  {d:"5",leg:"Scone &rarr; Muswellbrook",km:"~26 km",via:"recovery day",stop:"Muswellbrook"},
  {d:"6",leg:"Muswellbrook &rarr; Singleton",km:"~47 km",via:"&#9888; coal-traffic corridor",stop:"Singleton"},
- {d:"7",leg:"Singleton &rarr; Maitland",km:"~49 km",via:"via Branxton &middot; stay off the Hunter Expressway",stop:"Maitland"},
+ {d:"7",leg:"Singleton &rarr; Maitland",km:"~49 km",via:"via Branxton &middot; Hunter Expressway is a motorway &mdash; use the old highway (&#10003;)",stop:"Maitland"},
  {d:"8",leg:"Maitland &rarr; Newcastle",km:"~35 km",via:"&#9888; Hexham bridge pinch point",stop:"Newcastle"},
  {d:"9",leg:"Newcastle &rarr; Budgewoi",km:"~50 km",via:"Fernleigh Track + coastal paths &mdash; best-protected day",stop:"Budgewoi"},
  {d:"10",leg:"Budgewoi &rarr; Gosford",km:"~38 km",via:"Central Coast shared paths",stop:"Gosford"},
  {d:"11",leg:"Gosford &rarr; Mooney Mooney",km:"~28 km",via:"onto the Old Pacific Hwy",stop:"Mooney Mooney"},
- {d:"12",leg:"Mooney Mooney &rarr; Hornsby",km:"~35 km",via:"via Brooklyn &middot; Old Pac cycling corridor",stop:"Hornsby"},
- {d:"13",leg:"Hornsby &rarr; Sydney Cricket Ground",km:"~30 km",via:"Harbour Bridge walkway &middot; arrive Sun 4 Jan 2027",stop:"FINISH"}
+ {d:"12",leg:"Mooney Mooney &rarr; Hornsby",km:"~35 km",via:"via Brooklyn &middot; Hawkesbury crossing has a footpath (&#10003; Peats Ferry Bridge)",stop:"Hornsby"},
+ {d:"13",leg:"Hornsby &rarr; Sydney Cricket Ground",km:"~30 km",via:"Harbour Bridge walkway &middot; arrive Mon 4 Jan 2027",stop:"FINISH"}
 ];
 function renderRoute(){
   var el=document.getElementById("stages");if(!el)return;el.innerHTML="";

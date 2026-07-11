@@ -110,6 +110,40 @@
   .fineprint{margin-top:14px;font-size:11.5px;color:var(--ink-faint);text-align:center;
     line-height:1.55;padding:0 8px}
 
+  /* sponsor the run (businesses) */
+  .sponsor{margin-top:26px;background:radial-gradient(122% 88% at 88% -8%,#3a2617 0%,#26190f 54%);
+    border-radius:20px;padding:24px 20px 22px;color:#f6efe2;position:relative;overflow:hidden;
+    box-shadow:var(--shadow)}
+  .sponsor .sey{font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:#d89a4e;font-weight:600}
+  .sponsor h2{font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.18;
+    letter-spacing:-.015em;margin-top:9px}
+  .sponsor h2 em{font-style:italic;color:#c05a33}
+  .sponsor .sp{font-size:13px;line-height:1.62;color:rgba(246,239,226,.82);margin-top:11px}
+  .sponsor .sp b{color:#f6efe2;font-weight:600}
+  .tiers{display:flex;flex-direction:column;gap:9px;margin-top:16px}
+  .tier{background:rgba(246,239,226,.06);border:1px solid rgba(246,239,226,.16);
+    border-radius:14px;padding:13px 14px;display:flex;align-items:flex-start;gap:12px}
+  .tier .tn{flex:0 0 auto;min-width:64px;font-family:var(--serif);font-weight:600;
+    font-size:17px;color:#d89a4e;line-height:1.15;text-align:left}
+  .tier .tn small{display:block;font-family:var(--sans);font-weight:600;font-size:9px;
+    letter-spacing:.08em;text-transform:uppercase;color:rgba(246,239,226,.5);margin-top:3px}
+  .tier .tt{font-size:13.5px;font-weight:600;letter-spacing:-.01em;color:#f6efe2}
+  .tier .ts{font-size:12px;color:rgba(246,239,226,.72);margin-top:3px;line-height:1.5}
+  .spledge{margin-top:14px;border-left:3px solid #e14d87;padding:8px 12px;
+    font-size:12px;line-height:1.55;color:rgba(246,239,226,.85);
+    background:rgba(225,77,135,.10);border-radius:0 10px 10px 0}
+  .spledge b{color:#f6d2df}
+  .sbtns{display:flex;flex-direction:column;gap:9px;margin-top:16px}
+  .sbtn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;
+    border-radius:14px;padding:14px;font-size:14.5px;font-weight:600;transition:.16s;
+    border:0;cursor:pointer}
+  .sbtn:active{transform:scale(.99)}
+  .sbtn.hot{background:#c05a33;color:#fff;box-shadow:0 8px 22px rgba(192,90,51,.4)}
+  .sbtn.ghost{background:transparent;color:#f6efe2;border:1.5px solid rgba(246,239,226,.32)}
+  .sstrip{display:flex;height:10px;margin:20px -20px -22px}
+  .sstrip i{flex:1}
+
   footer{text-align:center;margin-top:30px;padding-top:18px;border-top:1px solid var(--line)}
   footer .fm{font-family:var(--serif);font-style:italic;font-size:14.5px;color:var(--rose-deep)}
   footer .fs{font-size:11px;color:var(--ink-faint);margin-top:6px;letter-spacing:.04em}
@@ -187,6 +221,59 @@
 
 <p class="fineprint">Pink Is The Colour is the McGrath Foundation's official fundraising
   platform. Donations are handled by them &mdash; this page just points you there.</p>
+
+<section class="sponsor" aria-label="Sponsor the run — for businesses">
+  <div class="sey">For businesses &middot; Sponsor the run</div>
+  <h2>Donations fund the cause. <em>Sponsors fund the road.</em></h2>
+  <p class="sp">Thirteen days on foot needs a support crew, thirteen nights of accommodation,
+    three pairs of shoes, road-safety gear, insurance and 6,000&nbsp;calories a day &mdash; about
+    <b>$9,500</b> of road costs, kept completely separate from donations. Sponsoring covers that,
+    and puts your business inside a 13-day story that ends at the SCG on Pink&nbsp;Test day.</p>
+  <div class="tiers">
+    <div class="tier">
+      <div class="tn">$2,500<small>1 avail.</small></div>
+      <div>
+        <div class="tt">Presenting Partner</div>
+        <div class="ts">&ldquo;Presented by&rdquo; naming &mdash; logo on the site, the crew
+          vehicle, the finish banner and the kit; tagged in all 13 stage posts.</div>
+      </div>
+    </div>
+    <div class="tier">
+      <div class="tn">$500<small>13 avail.</small></div>
+      <div>
+        <div class="tt">Stage Partner</div>
+        <div class="ts">Power one named day &mdash; &ldquo;Day 4 &middot; Murrurundi &rarr; Scone,
+          powered by you&rdquo; &mdash; with a dedicated post filmed on your stage.</div>
+      </div>
+    </div>
+    <div class="tier">
+      <div class="tn">$25<small>per km</small></div>
+      <div>
+        <div class="tt">Kilometre Club</div>
+        <div class="ts">Your name &mdash; or a dedication to someone you love &mdash; on one of
+          the 500 kilometres, ticked off as it's run.</div>
+      </div>
+    </div>
+    <div class="tier">
+      <div class="tn">In-kind<small>open</small></div>
+      <div>
+        <div class="tt">Crew Partner</div>
+        <div class="ts">Shoes, nutrition, park nights, physio, vehicle or food &mdash; matched to
+          the equivalent tier and credited the same way.</div>
+      </div>
+    </div>
+  </div>
+  <div class="spledge"><b>The pledge:</b> if sponsorship raises more than the run costs, the
+    surplus is donated straight to the McGrath Foundation &mdash; and every sponsor gets a wrap
+    report showing where each dollar went.</div>
+  <div class="sbtns">
+    <a class="sbtn hot" href="mailto:admin@charlieabra.com?subject=Sponsoring%20Love%20in%20Motion">
+      &#9993;&#65039; Talk about sponsoring</a>
+    <a class="sbtn ghost" href="../Love-in-Motion-Sponsorship-Prospectus.docx" download>
+      &#8595; Download the sponsorship prospectus</a>
+  </div>
+  <div class="sstrip"><i style="background:#c05a33"></i><i style="background:#d89a4e"></i><i style="background:#e14d87"></i><i style="background:#7e8b72"></i></div>
+</section>
 
 <footer>
   <div class="fm">Because Love Keeps Moving</div>

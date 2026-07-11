@@ -5,7 +5,7 @@
 **🌐 Live site:** https://charlietathra.github.io/Love-in-Motion/
 
 A small hub of self-contained web apps supporting the training and fuelling for
-a **45 km practice run** (Attunga loop · 1 Nov 2026) and the **415 km**
+a **45 km practice run** (Attunga loop · 1 Nov 2026) and the **500 km**
 Attunga → Sydney run — the Love in Motion Run (23 Dec 2026).
 
 ## Pages
@@ -15,14 +15,14 @@ Attunga → Sydney run — the Love in Motion Run (23 Dec 2026).
 | **Home** | https://charlietathra.github.io/Love-in-Motion/ | Countdown, journey timeline, and links to everything below |
 | **Fuel** | https://charlietathra.github.io/Love-in-Motion/nutrition-meal-planner/ | Daily fuelling protocol — meals with measured serves and macros, snacks, on-run fuel and recovery, across Plan A/B/C |
 | **Meals** | https://charlietathra.github.io/Love-in-Motion/meals/ | Serve-based meal builder — tap foods into breakfast/lunch/dinner/snack and track serves + macros against the daily targets |
-| **Train** | https://charlietathra.github.io/Love-in-Motion/training/ | The 24-week build to the 45 km rehearsal (1 Nov) and the 415 km to Sydney (23 Dec) — Base / Foundation / Build / Peak / Recover / The 415 / Taper — with week tabs, every session prescribed (runs, gym strength, HYROX) and saved training notes |
-| **The 415** | https://charlietathra.github.io/Love-in-Motion/the-415/ | The Attunga → Sydney campaign — multi-day training, on-the-road fuelling, crew and recovery for the 415 km, plus the planned route and crew camps |
+| **Train** | https://charlietathra.github.io/Love-in-Motion/training/ | The 24-week build to the 45 km rehearsal (1 Nov) and the 500 km to Sydney (23 Dec) — Base / Foundation / Build / Peak / Recover / The 500 / Taper — with week tabs, every session prescribed (runs, gym strength, HYROX) and saved training notes |
+| **The 500** | https://charlietathra.github.io/Love-in-Motion/the-500/ | The Attunga → Sydney campaign — multi-day training, on-the-road fuelling, crew and recovery for the 500 km, plus the planned route and crew camps |
 | **Donate** | https://charlietathra.github.io/Love-in-Motion/donate/ | The fundraiser, in support of the McGrath Foundation |
 
 ## How it works
 
 - Six standalone `index.html` files (home, `nutrition-meal-planner/`,
-  `meals/`, `training/`, `the-415/`, `donate/`).
+  `meals/`, `training/`, `the-500/`, `donate/`).
 - No build step — each file works opened directly in a browser and offline.
 - Progress (meals eaten, sessions done) and training notes are saved in the
   browser, with an in-memory fallback when storage is unavailable. The Plan

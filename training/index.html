@@ -912,10 +912,48 @@ function bwBlock(s){
   return h;
 }
 
+/* ---- skip-rope substitutes for run sessions ----
+   Jump-rope work 2-4x/wk improved 3-km time-trial performance,
+   lower-limb reactivity and foot-arch stiffness in endurance runners
+   (Garcia-Pinillos 2020). Moderate skipping costs ~20-40% more energy
+   per minute than easy running, and the limiter is calf/Achilles load
+   - so skip totals run ~40-45% of the scheduled run minutes, in
+   3-min-on / 1-min-walk intervals. */
+var SKIP_WHY="<p class='bwwhy'>Why this works: jump-rope training improved 3-km time-trial performance, lower-limb reactivity and foot-arch stiffness in endurance runners (Garc&iacute;a-Pinillos 2020) &mdash; the same spring-stiffness stimulus as the pogo hops in the travel strength plan. Moderate skipping burns ~20&ndash;40% more energy per minute than your easy pace, so the shorter skip total matches the run's aerobic dose while sparing the calves. And a few days off-plan loses no fitness &mdash; aerobic fitness holds for ~2 weeks &mdash; so this is about ticking over, not rescue.</p>";
+var SKIP_FORM="<p><b>Form:</b> alternate-foot &ldquo;boxer step&rdquo; (like running on the spot &mdash; not two-foot bouncing) &middot; rope ~120&ndash;140 turns/min &middot; effort conversational &middot; soft midfoot landings, low hops, just clearing the rope.</p><p><b>First time in a while?</b> Cap day one at 12&ndash;15 min of skipping (4&ndash;5 rounds) and see how the calves pull up tomorrow before building.</p>";
+function skipBlock(s){
+  if(s.k!=="run")return "";
+  var t=s.t,m=parseInt((s.s.match(/~(\d+)\s*min/)||[])[1]||"45",10);
+  var h="<details class='sub bwd'><summary>&#129698; No track? Skip-rope version<span class='x'>&rsaquo;</span></summary><div class='body'>";
+  if(/Long Run/.test(t)){
+    h+="<p><b>Don't replicate a long run with the rope</b> &mdash; "+Math.round(m*0.45)+"+ min of skipping is injury bait. In order of preference:</p>"+
+       "<ul class='exlist'><li><span class='nm'>Brisk hike / walk, hills if you have them &mdash; long aerobic time-on-feet is the point</span><span class='rp'>~"+m+" min</span></li>"+
+       "<li><span class='nm'>Or shift the long run to the day you're back &mdash; sliding it a day or two costs nothing</span><span class='rp'>&nbsp;</span></li>"+
+       "<li><span class='nm'>Last resort: 10 min skip + 10 min walk, repeated &mdash; stop if the calves bark</span><span class='rp'>3 rounds</span></li></ul>";
+  }else if(/Back-to-Back/.test(t)){
+    h+="<p><b>The goal of this session is time on tired legs</b> &mdash; walking counts. Best substitute: a brisk hike (~"+m+" min) the morning after yesterday's session. If the rope is all you have, cap it:</p>"+
+       "<ul class='exlist'><li><span class='nm'>Brisk walk warm-up</span><span class='rp'>5 min</span></li>"+
+       "<li><span class='nm'>Skip 3 min / walk 1 min &mdash; then keep walking to fill the session</span><span class='rp'>5 rounds</span></li>"+
+       "<li><span class='nm'>Walk down</span><span class='rp'>5 min</span></li></ul>"+SKIP_FORM;
+  }else if(/Shakeout/.test(t)){
+    h+="<p>Shakeout only &mdash; keep it tiny:</p>"+
+       "<ul class='exlist'><li><span class='nm'>Easy skip / walk, springy and relaxed</span><span class='rp'>8&ndash;10 min</span></li></ul>"+SKIP_FORM;
+  }else{ // easy runs
+    var rounds=Math.max(4,Math.min(7,Math.round(m/9))),skip=rounds*3,total=5+rounds*4-1+5;
+    h+="<ul class='exlist'>"+
+       "<li><span class='nm'>Brisk walk warm-up</span><span class='rp'>5 min</span></li>"+
+       "<li><span class='nm'>Skip 3 min / walk 1 min</span><span class='rp'>"+rounds+" rounds</span></li>"+
+       "<li><span class='nm'>Walk down + calf stretch</span><span class='rp'>5 min</span></li></ul>"+
+       "<p>That's <b>~"+skip+" min of skipping</b> in a ~"+total+"-min session &mdash; the substitute dose for this "+m+"-min easy run. Don't match it time-for-time: skipping is denser work and a big calf load.</p>"+SKIP_FORM;
+  }
+  h+=SKIP_WHY+"</div></details>";
+  return h;
+}
+
 function openSheet(i){var s=sessions()[i],done=getDone();
   var h="<div class='st'>"+s.t+"</div><div class='ss'>"+s.s+"</div>";
   h+="<div class='blk'><h4>"+(s.k==="race"?"On the day":s.k==="rec"?"How to approach it":"How to run this")+"</h4><p>"+s.detail+"</p></div>";
-  h+=bwBlock(s);
+  h+=bwBlock(s)+skipBlock(s);
   if(s.long)h+="<div class='blk'><h4>Fuelling</h4><div class='callout'><p>"+s.fuel+"</p></div></div>";
   else if(s.k==="run")h+="<div class='blk'><h4>Fuelling</h4><p>"+s.fuel+"</p></div>";
   if(s.ex){h+="<div class='blk'><h4>"+s.exlab+" · exercises</h4><ul class='exlist'>";

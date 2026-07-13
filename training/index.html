@@ -189,6 +189,18 @@
   .exlist li:last-child{border-bottom:0}
   .exlist .nm{color:var(--ink)}
   .exlist .rp{color:var(--ink-faint);font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums;font-size:12.5px}
+  /* bodyweight travel version */
+  .bwd{margin-top:16px;border-color:var(--euc)!important;background:var(--euc-wash)!important}
+  .bwd>summary{color:#4f5a48}
+  .bwd .body{background:var(--surface)}
+  .bwd .body p{margin-bottom:9px}
+  .bwd .body p:last-child{margin-bottom:0}
+  .bwd .exlist{margin:2px 0 10px}
+  .bwd .exlist li{align-items:baseline;padding:9px 0}
+  .bwd .exlist li::before{display:none}
+  .bwd .exlist .nm{font-size:13px}
+  .bwwhy{font-size:11.5px;color:var(--ink-faint);border-top:1px solid var(--line-soft);
+    padding-top:9px;line-height:1.55}
   .dobtn{margin-top:22px;width:100%;border:0;border-radius:14px;padding:15px;font-family:var(--sans);font-size:14.5px;font-weight:600;cursor:pointer;background:var(--ink);color:#fff;transition:.18s}
   .dobtn.is-done{background:var(--euc-wash);color:var(--euc)}
   .dobtn:active{transform:scale(.99)}
@@ -817,9 +829,87 @@ noteEl.addEventListener("input",function(){
   },500);
 });
 
+/* ---- bodyweight / travel versions for strength sessions ----
+   Built from studied strength protocols for runners:
+   strength work improves running economy 2-8% (Blagrove 2018 review;
+   Balsalobre-Fernandez 2016 meta); light loads only build strength when
+   sets go near failure (Schoenfeld 2017 meta) - hence the RPE 8-9 rule;
+   plyometrics alone improved running economy in 6 weeks (Spurrs 2003);
+   band-at-ankle walks & single-leg work top glute-med EMG (DiStefano 2009). */
+var BW_RULES="<p><b>Make it count:</b> with no weights, strength only builds when sets finish hard &mdash; take each set to <b>RPE 8&ndash;9</b> (about 2 reps left in the tank), lower for <b>3 seconds</b>, and pick the single-leg / single-arm version over the two-limb one. Kit: booty band + long resistance band, a sturdy chair, a wall.</p>";
+var BW_WHY="<p class='bwwhy'>Why it's built this way: strength work improves running economy 2&ndash;8% (Blagrove 2018; Balsalobre-Fern&aacute;ndez 2016). Light loads only build strength taken close to failure &mdash; hence RPE&nbsp;8&ndash;9 (Schoenfeld 2017). Plyometric hops improved running economy in 6 weeks with zero equipment (Spurrs 2003). Band-at-the-<i>ankles</i> walks and single-leg work top the glute-medius EMG charts (DiStefano 2009). And the calves drive more propulsion than any other muscle group in running, so single-leg heel raises get their own slot.</p>";
+var BW={
+ push:{time:"~30 min",ex:[
+   ["Push-ups &mdash; progress: feet on chair, then band across the back","4 x 8&ndash;15"],
+   ["Pike push-up (shoulders) &mdash; feet on chair to progress","3 x 8&ndash;12"],
+   ["Band overhead press &mdash; stand on the band","3 x 12"],
+   ["Band lateral raise","3 x 15&ndash;20"],
+   ["Band overhead triceps extension","3 x 12"],
+   ["Band triceps pushdown &mdash; band over a door","3 x 15"]],
+  end:"Finish: 5 min shoulder + thoracic mobility, same as the gym version."},
+ pull:{time:"~30 min",ex:[
+   ["Inverted row under a sturdy table &mdash; or band bent-over row","4 x 8&ndash;12"],
+   ["Band lat pulldown &mdash; anchor the band high over a door","3 x 12&ndash;15"],
+   ["Single-arm band row &mdash; slow 3-sec return","3 x 12 each side"],
+   ["Band face pull","3 x 15&ndash;20"],
+   ["Band pull-apart","2 x 20"],
+   ["Prone Y-T-W raises &mdash; chest on the floor, thumbs up","3 x 8 each letter"],
+   ["Band good morning (hinge &mdash; posterior chain)","3 x 12&ndash;15"],
+   ["Band curl &mdash; slow lower","3 x 15"]]},
+ lower:{time:"~40 min",ex:[
+   ["Pogo hops &mdash; first, while fresh: stiff ankles, quiet springy landings","3 x 20"],
+   ["Squat jumps &mdash; soft, silent landings; quality over count","3 x 6"],
+   ["Bulgarian split squat &mdash; rear foot on chair or bed, 3-sec lower","3 x 8&ndash;12 each leg"],
+   ["Step-ups on a sturdy chair &mdash; drive through mid-foot","3 x 10 each leg"],
+   ["Single-leg Romanian deadlift &mdash; slow, long hamstrings","3 x 10 each leg"],
+   ["Band good morning","3 x 12"],
+   ["Single-leg hip thrust &mdash; shoulders on couch or bed","3 x 10&ndash;12 each leg"],
+   ["Booty band lateral walk &mdash; band at the ankles, stay low","3 x 12 steps each way"],
+   ["Booty band monster walk","2 x 12 steps"],
+   ["Single-leg calf raise &mdash; straight knee, slow, full range","3 x 15&ndash;20 each leg"],
+   ["Single-leg calf raise &mdash; bent knee (soleus, running's engine)","2 x 12&ndash;15 each leg"],
+   ["Side plank","2 x 30&ndash;45 sec each side"]],
+  end:"Same rule as the gym session: keep the next morning's run genuinely easy."},
+ full:{time:"~25 min",ex:[
+   ["2 easy rounds, RPE 6: push-ups","x 10"],
+   ["Band row","x 12"],
+   ["Split squat &mdash; slow","x 10 each leg"],
+   ["Single-leg calf raise","x 12 each leg"],
+   ["Band good morning","x 12"],
+   ["Booty band lateral walk","x 10 steps each way"],
+   ["Side plank","30 sec each side"]],
+  end:"This is a light day &mdash; move well, finish fresher than you started."},
+ hyrox:{time:"~35 min",ex:[
+   ["3&ndash;4 rounds for quality, 60&ndash;90 sec rest between rounds:",""],
+   ["Run 400 m &mdash; or 2 min brisk stair / step-ups","&nbsp;"],
+   ["Burpees","x 10"],
+   ["Jump lunges &mdash; soft landings","x 12"],
+   ["Band bent-over row","x 15"],
+   ["Push-ups","x 12"],
+   ["Band good morning","x 15"],
+   ["Pogo hops","x 20"]],
+  end:"Finish: 5 min easy walk. Keep every round crisp &mdash; stop a round early rather than getting sloppy."}
+};
+function bwBlock(s){
+  if(s.k!=="str")return "";
+  var t=s.t,key=/HYROX/.test(t)?"hyrox":/Push/.test(t)?"push":/Pull/.test(t)?"pull":/Lower/.test(t)?"lower":/Full-Body/.test(t)?"full":null;
+  if(!key)return "";
+  var b=BW[key],easy=/Deload|Light|Maintenance/.test(t);
+  var h="<details class='sub bwd'><summary>&#9992;&#65039; Travelling or no gym? Bodyweight version &middot; "+b.time+"<span class='x'>&rsaquo;</span></summary><div class='body'>";
+  h+=BW_RULES;
+  if(easy&&key!=="full")h+="<p><b>Easy week:</b> cap it at 2 sets per exercise, everything at RPE 6, ~25 min &mdash; crisp, never grinding. Skip the jumps; keep pogo hops light and springy.</p>";
+  h+="<ul class='exlist'>";
+  b.ex.forEach(function(e){h+="<li><span class='nm'>"+e[0]+"</span><span class='rp'>"+e[1]+"</span></li>";});
+  h+="</ul>";
+  if(b.end)h+="<p>"+b.end+"</p>";
+  h+=BW_WHY+"</div></details>";
+  return h;
+}
+
 function openSheet(i){var s=sessions()[i],done=getDone();
   var h="<div class='st'>"+s.t+"</div><div class='ss'>"+s.s+"</div>";
   h+="<div class='blk'><h4>"+(s.k==="race"?"On the day":s.k==="rec"?"How to approach it":"How to run this")+"</h4><p>"+s.detail+"</p></div>";
+  h+=bwBlock(s);
   if(s.long)h+="<div class='blk'><h4>Fuelling</h4><div class='callout'><p>"+s.fuel+"</p></div></div>";
   else if(s.k==="run")h+="<div class='blk'><h4>Fuelling</h4><p>"+s.fuel+"</p></div>";
   if(s.ex){h+="<div class='blk'><h4>"+s.exlab+" · exercises</h4><ul class='exlist'>";

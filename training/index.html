@@ -140,6 +140,19 @@
   .dltx b{font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
   .dltx span{font-size:11.5px;color:var(--ink-faint);margin-top:2px}
   .dlar{flex:0 0 auto;font-size:17px;color:var(--rose-deep);font-weight:700}
+  /* easy-pace calibration */
+  .pacebar{margin-top:14px;background:var(--surface);border:1px solid var(--line);
+    border-radius:15px;padding:13px 16px;box-shadow:var(--shadow)}
+  .pacerow{display:flex;align-items:center;gap:12px}
+  .ptx{flex:1;min-width:0;display:flex;flex-direction:column}
+  .ptx b{font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
+  .ptx span{font-size:12.5px;color:var(--rose-deep);font-weight:600;margin-top:2px;
+    font-variant-numeric:tabular-nums}
+  .pbtn{flex:0 0 auto;width:38px;height:38px;border-radius:12px;border:1px solid var(--line);
+    background:var(--cream);color:var(--ink);font-size:20px;line-height:1;cursor:pointer;
+    font-family:var(--sans);font-weight:600;transition:.15s}
+  .pbtn:active{transform:scale(.94);background:var(--cream-2)}
+  .pnote{font-size:11px;color:var(--ink-faint);margin-top:8px;line-height:1.45}
   .notes{margin-top:30px;border-top:1px solid var(--line);padding-top:8px}
   .notes>summary{font-family:var(--serif);font-size:17px;font-weight:500;padding:14px 2px;cursor:pointer;
     list-style:none;display:flex;align-items:center;justify-content:space-between}
@@ -240,6 +253,17 @@
   <span class="dlar">&#8595;</span>
 </a>
 
+<div class="pacebar">
+  <div class="pacerow">
+    <div class="ptx"><b>Your easy pace</b><span id="pacelab">&mdash;</span></div>
+    <button class="pbtn" id="pminus" aria-label="Slower">&minus;</button>
+    <button class="pbtn" id="pplus" aria-label="Faster">+</button>
+  </div>
+  <div class="pnote">Sets the ~time estimates on every run. The distance is the target &mdash;
+    easy means conversational (full sentences), whatever the treadmill says. Nudge this up as
+    fitness builds.</div>
+</div>
+
 <div class="controls">
   <div class="weeks" id="weeks" role="tablist"></div>
   <div class="plans" id="plans" role="tablist">
@@ -297,6 +321,7 @@
 
 var store=window.LIMStorage.create("train",function(){
   state.plan=store.get("limn_plan")||state.plan;
+  if(typeof paceApply==="function")paceApply();
   render();
 });
 
@@ -976,7 +1001,33 @@ document.getElementById("notesbody").innerHTML=
  note("Beyond the 45 \u2014 the 500","<p>The 45 km is the stepping stone. The weeks after it are the point: The 500 block stacks the biggest back-to-backs of the plan, then the taper delivers you to <a href='../the-500/index.html'>Attunga &rarr; Sydney</a> fresh. Thirteen days down the New England Highway, through the Hunter and along the coast, finishing at the SCG on 4 January.</p>");
 
 function render(){renderWeeks();renderPlans();renderWeek();renderList();loadNote();}
-renderCount();render();
+/* ---- easy-pace calibration: rewrite run ~time estimates to your pace ----
+   The plan's distances are the prescription; the ~min figures were estimates
+   at an assumed pace. Easy is defined by effort (conversational), so the
+   clock adapts to you - not the other way round. */
+var PACE_MIN=5.0,PACE_MAX=12.0,PACE_DEF=7.2;
+function getPace(){var p=parseFloat(store.get("limn_pace"));return (p>=PACE_MIN&&p<=PACE_MAX)?p:PACE_DEF;}
+function paceApply(){
+  var kmh=getPace();
+  WEEKS.forEach(function(wk){["A","B","C"].forEach(function(pl){(wk[pl]||[]).forEach(function(s){
+    if((s.k==="run"||s.k==="race")&&/[\d.]+\s*km\s*·\s*~\d+\s*min/.test(s.s)){
+      var km=parseFloat(s.s.match(/([\d.]+)\s*km/)[1]);
+      s.s=s.s.replace(/~\d+\s*min/,"~"+Math.round(km*60/kmh)+" min");
+    }});});});
+  var lab=document.getElementById("pacelab");
+  if(lab){var mpk=60/kmh,mm=Math.floor(mpk),ss=Math.round((mpk-mm)*60);
+    if(ss===60){mm++;ss=0;}
+    lab.textContent=kmh.toFixed(1)+" km/h · "+mm+":"+(ss<10?"0":"")+ss+" min/km";}
+}
+function paceNudge(d){
+  var p=Math.round((getPace()+d)*10)/10;
+  p=Math.max(PACE_MIN,Math.min(PACE_MAX,p));
+  store.set("limn_pace",String(p));paceApply();render();
+}
+document.getElementById("pminus").onclick=function(){paceNudge(-0.1);};
+document.getElementById("pplus").onclick=function(){paceNudge(0.1);};
+
+paceApply();renderCount();render();
 
 if("serviceWorker" in navigator){addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){});});}
 </script>

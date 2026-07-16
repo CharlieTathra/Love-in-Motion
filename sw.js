@@ -3,7 +3,7 @@
    of the precached shell after changing any of the files below. */
 "use strict";
 
-var VER = "limn-v27";
+var VER = "limn-v28";
 
 /* Same-origin app shell. Paths are relative to this file (the site root),
    so it works both at the domain root and under /Love-in-Motion/. */

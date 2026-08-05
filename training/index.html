@@ -265,11 +265,9 @@
 </header>
 
 <div class="alert">
-  <span class="lbl">One decision open</span>
-  Marathon confirmed for <b>1 November</b> &mdash; the Coopah block runs exactly as written and
-  November rebuilds around your recovery. Still to lock: the <b>start date</b>. The audited stage
-  plan says <b>23 December</b> to reach the SCG by 4 Jan &mdash; and Christmas on the road is a
-  family conversation before it is a logistics one.
+  <span class="lbl">The run, as it now stands</span>
+  Start at the <b>SCG on 6 January</b>, mid Pink Test. Home to <b>Tamworth by 19 January</b>.
+  About <b>430 km over 14 days &mdash; roughly 31 km a day</b>. Christmas is yours.
 </div>
 
 <a class="dl" href="../Love-in-Motion-Training-Plan.docx" download>
@@ -555,9 +553,9 @@ var WEEKS=[
      E("Thu 29","Easy Run: 30 min + strides","~4.7 km"),
      R("Fri 30"),
      E("Sat 31","Easy Run: 20 min + strides","~3.3 km","Shake-out. Short and light."),
-     RC("Sun 1 Nov","Marathon day","42.2 km - the dress rehearsal","Confirmed: this is your marathon. Trust the taper, fuel from the first hour, and bank every lesson - kit, food, pacing, nerves - for December. This race is the rehearsal the road needed. See Coach notes.")],
+     RC("Sun 1 Nov","Coopah's target day","Race day, as the app has it","This is a textbook marathon race-week taper and it points at Sunday 1 November. Coopah has built the whole 87-day block toward this date. Do you have a race that day? It changes what happens next - see Coach notes.")],
   B:[E("Mon 26","Easy Run: 5 km","~37 min"),E("Thu 29","Easy Run: 30 min","~4.7 km"),
-     RC("Sun 1 Nov","Marathon day","See Plan A")],
+     RC("Sun 1 Nov","Coopah's target day","See Plan A")],
   C:planC()},
 
 /* ============================================================
@@ -642,33 +640,59 @@ var WEEKS=[
      BB("Sun 13","Rehearsal: day 3","~2 h 20 · 20 km")],
   C:planC()},
 
- {focus:"Come down",dates:"Week 20 · 14-20 Dec · taper",start:new Date(2026,11,14),src:"lim",
-  vol:"~38 km · taper begins",
+  {focus:"Absorb the block",dates:"Week 20 · 14-20 Dec · deload",start:new Date(2026,11,14),src:"lim",
+  vol:"~38 km · deload after the rehearsal",
   A:[RC("Mon 14","Full rest","Sleep in if you can","After three days back-to-back, this is non-negotiable."),
      RC("Tue 15","Walk","40-50 min gentle"),
      E("Wed 16","Easy Run: 8 km","~55 min"),
      MO("Thu 17","Mobility: Full Body","~20 min"),
      R("Fri 18"),
-     L("Sat 19","Long Run: 18 km","~2 h 05","Last meaningful long run. Comfortable throughout."),
-     RC("Sun 20","Restore","Yoga nidra + legs up the wall","Fitness is banked. From here the job is to arrive fresh.")],
-  B:[RC("Mon 14","Full rest","Sleep"),E("Wed 16","Easy Run: 6 km","~40 min"),L("Sat 19","Long Run: 14 km","~1 h 40")],
+     L("Sat 19","Long Run: 18 km","~2 h 05","Last long run of the build. Comfortable throughout."),
+     RC("Sun 20","Restore","Yoga nidra + legs up the wall","Fitness is banked from here. The rest of the job is arriving fresh.")],
+  B:[RC("Mon 14","Full rest","Sleep"),E("Wed 16","Easy Run: 6 km","~43 min"),L("Sat 19","Long Run: 14 km","~1 h 40")],
   C:planC()},
 
- {focus:"Sharpen &amp; pack",dates:"Week 21 · 21-22 Dec · final taper",start:new Date(2026,11,21),src:"lim",
-  vol:"~10 km · legs fresh, logistics locked",
-  A:[E("Mon 21","Easy Run: 8 km","~55 min","Legs should feel springy and under-used. That is correct."),
-     RC("Tue 22","Shake-out + kit check","20-30 min very easy","Short and light, every item laid out - nothing new on day one, not shoes, not socks, not food. Then eat well and sleep early. Tomorrow: Attunga.")],
-  B:[E("Mon 21","Easy Run: 6 km","~40 min"),RC("Tue 22","Shake-out + kit check","20 min very easy")],
+ {focus:"Christmas &mdash; yours",dates:"Week 21 · 21-27 Dec · family",start:new Date(2026,11,21),src:"lim",
+  vol:"~28 km · deliberately light · family first",
+  A:[E("Mon 21","Easy Run: 8 km","~55 min"),
+     SA("Tue 22","Strength A (light)","~20 min"),
+     E("Wed 23","Easy Run: 6 km","~43 min"),
+     RC("Thu 24","Rest","Christmas Eve","Nothing. Be where you are."),
+     RC("Fri 25","Rest","Christmas Day","This is the whole reason the route flipped. Enjoy it."),
+     E("Sat 26","Easy Run: 6 km","~43 min","Only if you want to. A walk is equally fine."),
+     L("Sun 27","Long Run: 14 km","~1 h 40","Gentle. Keeping the thread, nothing more.")],
+  B:[E("Mon 21","Easy Run: 6 km","~43 min"),E("Sat 26","Easy Run: 6 km","~43 min"),L("Sun 27","Long Run: 12 km","~1 h 25")],
+  C:planC()},
+
+ {focus:"Taper &amp; pack",dates:"Week 22 · 28 Dec-3 Jan · taper",start:new Date(2026,11,28),src:"lim",
+  vol:"~26 km · legs fresh, logistics locked",
+  A:[E("Mon 28","Easy Run: 8 km","~55 min"),
+     RC("Tue 29","Kit lay-out","~45 min","Every item out on the floor. Nothing new on day one - not shoes, not socks, not food, not a pack."),
+     E("Wed 30","Easy Run: 6 km","~43 min"),
+     MO("Thu 31","Mobility: Full Body","~20 min"),
+     RC("Fri 1 Jan","Rest","New Year's Day"),
+     E("Sat 2","Easy Run: 6 km","~43 min","Legs should feel springy and under-used. That is correct."),
+     RC("Sun 3","Crew briefing + rest","Roles, meeting points, radios","Everyone who will be on the road knows the plan for day one before anyone travels.")],
+  B:[E("Mon 28","Easy Run: 6 km","~43 min"),E("Sat 2","Easy Run: 5 km","~36 min"),RC("Sun 3","Crew briefing","Roles and meeting points")],
   C:[RC("Daily","Walk + downregulate","20 min",DOWNREG)]},
 
- {focus:"Love in Motion",dates:"23 Dec - 4 Jan · Attunga &rarr; SCG",start:new Date(2026,11,23),src:"lim",
-  vol:"~484 km · The 500 · 13 stages",
-  A:[RC("Each morning","Move early","Start before the heat","Break each day into segments between crew meets, never think about the whole distance."),
+ {focus:"Travel &amp; the Test",dates:"Week 23 · 4-5 Jan · Sydney",start:new Date(2027,0,4),src:"lim",
+  vol:"Travel down · shake-out only",
+  A:[RC("Mon 4","Travel to Sydney","Pink Test day 1","Arrive early enough to sleep properly. Media and McGrath Foundation contact happens here, not on the morning you leave."),
+     E("Tue 5","Shake-out: 20-30 min","Very easy","Short and light on unfamiliar ground. Then eat well and sleep early.")],
+  B:[RC("Mon 4","Travel to Sydney","Pink Test day 1"),E("Tue 5","Shake-out: 20 min","Very easy")],
+  C:[RC("Both days","Travel + rest","Downregulate",DOWNREG)]},
+
+ {focus:"Love in Motion",dates:"6-19 Jan · SCG &rarr; Tamworth",start:new Date(2027,0,6),src:"lim",
+  vol:"~430 km · 14 days · ~31 km a day",
+  A:[RC("Day 1 · 6 Jan","Leave the SCG","Mid Pink Test, pink everywhere","You start inside the biggest breast cancer moment on the Australian calendar. Take the send-off - it is the campaign's loudest day."),
+     RC("Each morning","Move early","Start before the heat","January on the New England Highway is hot. Break each day into segments between crew meets and never think about the whole distance."),
      RC("Every 20-30 min","Eat and drink","Before you feel like it",FUEL_B2B),
-     RC("Each evening","Feet, food, sleep","The real work between days","Feet checked and dry, a proper meal within 30 min of stopping, legs elevated, lights out early. Recovery between days is what gets you to the SCG."),
-     RC("Daily","Regulate","10 min breathwork or nidra","You know this work better than any coach. Use it - the nervous system load of 13 days on the road is as real as the physical load."),
-     RC("Anytime","Walk without guilt","Walking is part of the plan","Every multi-day runner walks. Walking early and often is what makes day nine possible.")],
-  B:[RC("&mdash;","See Plan A","The run itself","Plan B and C do not apply once you are on the road - the daily distances flex instead. The stage plan lives on The 500 page.")],
+     RC("Each evening","Feet, food, sleep","The real work between days","Feet checked and dry, a proper meal within 30 min of stopping, legs elevated, lights out early. Recovery between days is what gets you home."),
+     RC("Daily","Regulate","10 min breathwork or nidra","You know this work better than any coach. The nervous system load of fourteen days on the road is as real as the physical load."),
+     RC("Anytime","Walk without guilt","Walking is part of the plan","At ~31 km a day you have room. Every multi-day runner walks - walking early and often is what makes day twelve possible."),
+     RC("Day 14 · 19 Jan","Home","Into Tamworth","Finishing on Country, in your own community. Plan this arrival properly - it is the shot the whole documentary builds toward.")],
+  B:[RC("&mdash;","See Plan A","The run itself","Plan B and C do not apply once you are on the road - the daily distances flex instead. We will build the stage plan separately.")],
   C:[RC("&mdash;","See Plan A","The run itself","Plan B and C do not apply once you are on the road - the daily distances flex instead.")]}
 ];
 
@@ -679,9 +703,42 @@ WEEKS.forEach(function(wk){["A","B"].forEach(function(pl){(wk[pl]||[]).forEach(f
     s.t="Rest &middot; Yoga &amp; Breathwork";s.s="rest day &middot; optional ~30&ndash;45 min";s.yoga=true;
   }});});});
 
+
+/* ---- HYROX stays in the plan (user request): one circuit a week as intensity
+   cross-training, first session to drop on a heavy week ---- */
+var HYROX_NOTE=" This is the week's intensity cross-training. If the weekly check-in says the load is heavy, this is the FIRST session to drop - the runs and back-to-backs matter more for January.";
+var HYX_A="4 rounds, moderate: 600 m run &bull; 12 wall balls &bull; 15 walking lunges &bull; 30 kettlebell swings. Engine maintenance, not a beasting."+HYROX_NOTE;
+var HYX_B="4 rounds, moderate: 500 m run &bull; sled push (or heavy-backpack push) 3 x 12.5 m &bull; farmers carry 2 x 30 m &bull; 12 burpee broad jumps. Stations day."+HYROX_NOTE;
+var HYX_L="3 easy rounds: 500 m run &bull; 10 wall balls (light) &bull; 15 bodyweight lunges &bull; 20 kettlebell swings. Movement quality only."+HYROX_NOTE;
+function hyxCard(title,dur,detail){return {d:"Tue (PM)",k:"str",pill:"HYROX",t:title,s:dur,detail:detail};}
+WEEKS.forEach(function(wk,wi){
+  var card=null;
+  if(wi>=1&&wi<=9)card=hyxCard(wi%2?"HYROX Circuit A &mdash; Engine":"HYROX Circuit B &mdash; Stations","~45 min",wi%2?HYX_A:HYX_B);
+  else if(wi===10||wi===11)card=hyxCard("HYROX Circuit &mdash; Light","~35 min",HYX_L);
+  else if(wi>=14&&wi<=17)card=hyxCard("HYROX Circuit &mdash; Light","~35 min",HYX_L);
+  if(!card)return;
+  var A=wk.A||[],pos=-1;
+  for(var i=0;i<A.length;i++){if(/^Tue/.test(A[i].d||"")){pos=i;break;}}
+  if(pos>=0)A.splice(pos+1,0,card);else A.push(card);
+});
+function hyroxTravel(s){
+  if(s.pill!=="HYROX")return "";
+  return "<details class='sub bwd'><summary>&#9992;&#65039; No gym? Bodyweight circuit<span class='x'>&rsaquo;</span></summary><div class='body'>"+
+    "<ul class='exlist'><li><span class='nm'>3&ndash;4 rounds for quality &mdash; rest 60&ndash;90 s</span><span class='rp'>&nbsp;</span></li>"+
+    "<li><span class='nm'>Run 400 m &mdash; or 2 min brisk stairs</span><span class='rp'>&nbsp;</span></li>"+
+    "<li><span class='nm'>Burpees</span><span class='rp'>x 10</span></li>"+
+    "<li><span class='nm'>Jump lunges &mdash; soft landings</span><span class='rp'>x 12</span></li>"+
+    "<li><span class='nm'>Band bent-over row</span><span class='rp'>x 15</span></li>"+
+    "<li><span class='nm'>Push-ups</span><span class='rp'>x 12</span></li>"+
+    "<li><span class='nm'>Band good morning</span><span class='rp'>x 15</span></li>"+
+    "<li><span class='nm'>Pogo hops</span><span class='rp'>x 20</span></li></ul>"+
+    "<p>Stop a round early rather than getting sloppy. Finish: 5 min easy walk.</p></div></details>";
+}
+
 var MARA=new Date(2026,10,1);
-var EVENT=new Date(2026,11,23);
-var SCG=new Date(2027,0,4);
+var EVENT=new Date(2027,0,6);
+var HOME=new Date(2027,0,19);
+
 
 function currentWeek(){var now=new Date();var idx=0;
   for(var i=0;i<WEEKS.length;i++){if(now>=WEEKS[i].start)idx=i;}
@@ -753,12 +810,12 @@ function skipBlock(s){
 
 function renderCount(){
   var now=new Date(),cd=document.getElementById("cd"),cdl=document.getElementById("cdl");
-  var dm=Math.ceil((MARA-now)/864e5),dr=Math.ceil((EVENT-now)/864e5),ds=Math.ceil((SCG-now)/864e5);
-  if(dm>0){cd.textContent=dm;cdl.innerHTML="days to <b>the marathon</b><br>dress rehearsal &middot; Sun 1 Nov &middot; then the 500 on 23 Dec";}
+  var dm=Math.ceil((MARA-now)/864e5),dr=Math.ceil((EVENT-now)/864e5),dh=Math.ceil((HOME-now)/864e5);
+  if(dm>0){cd.textContent=dm;cdl.innerHTML="days to <b>the marathon</b><br>dress rehearsal &middot; Sun 1 Nov &middot; then SCG &rarr; Tamworth from 6 Jan";}
   else if(dm===0){cd.textContent=0;cdl.innerHTML="<b>Marathon day</b><br>Trust the taper. Bank every lesson.";}
-  else if(dr>0){cd.textContent=dr;cdl.innerHTML="days to <b>The Love in Motion Run</b><br>Attunga &rarr; SCG &middot; 23 Dec 2026";}
-  else if(ds>0){cd.textContent=ds;cdl.innerHTML="<b>On the road</b><br>SCG &middot; Pink Test &middot; Mon 4 Jan 2027";}
-  else{cd.textContent=0;cdl.innerHTML="<b>The SCG.</b><br>Because love keeps moving.";}
+  else if(dr>0){cd.textContent=dr;cdl.innerHTML="days to <b>the start line at the SCG</b><br>Sydney &rarr; Tamworth &middot; 6&ndash;19 Jan 2027";}
+  else if(dh>=0){cd.textContent=Math.max(0,dh);cdl.innerHTML="<b>On the road</b><br>Sydney &rarr; Tamworth &middot; home 19 Jan";}
+  else{cd.textContent=0;cdl.innerHTML="<b>Home.</b><br>Because love keeps moving.";}
 }
 function renderWeeks(){
   var w=document.getElementById("weeks");w.innerHTML="";
@@ -789,8 +846,8 @@ function renderWeek(){
   var n=ss.length,c=0;for(var i=0;i<n;i++){if(done[i])c++;}
   document.getElementById("bar").style.width=n?(c/n*100)+"%":"0%";
   document.getElementById("pt").textContent=c+" of "+n+" done";
-  var ph=wk.src==="coopah"?"Base &middot; Coopah block":
-    state.week>=WEEKS.length-1?"The run &middot; Attunga &rarr; SCG":"Ultra block &middot; Love in Motion";
+  var ph=wk.src==="coopah"?"Marathon block &middot; Coopah":
+    state.week>=WEEKS.length-1?"SCG &rarr; Tamworth":"Ultra block &middot; Love in Motion";
   document.getElementById("phase").innerHTML=ph;
 }
 function pillClass(k){return k==="long"?"long":k==="spd"?"spd":k==="run"?"run":k==="str"?"str":"rec";}
@@ -823,7 +880,7 @@ function openSheet(i){
   var h="<div class='st'>"+s.t+"</div><div class='ss'>"+(s.d?s.d+" &middot; ":"")+s.s+"</div>";
   h+="<div class='blk'><h4>How to run this</h4><p>"+s.detail+"</p></div>";
   if(s.yoga)h+="<div class='blk'><h4>Optional &middot; yoga &amp; breathwork</h4><div class='callout'><p>"+YOPT+"</p></div></div>";
-  h+=skipBlock(s);
+  h+=skipBlock(s)+hyroxTravel(s);
   if(s.long)h+="<div class='blk'><h4>Fuelling</h4><div class='callout'><p>"+s.fuel+"</p></div></div>";
   else if(s.fuel)h+="<div class='blk'><h4>Fuelling</h4><p>"+s.fuel+"</p></div>";
   if(s.ex){h+="<div class='blk'><h4>"+s.exlab+" &middot; exercises</h4><ul class='exlist'>";
@@ -844,13 +901,13 @@ function note(title,html,cls){return "<details class='sub"+(cls?" "+cls:"")+"'><
 document.getElementById("notesbody").innerHTML=
  note("The marathon changes the shape of November","<p><b>Confirmed: marathon on Sunday 1 November.</b> That settles it - the Coopah block runs exactly as written, all thirteen weeks, no edits. Follow the app through to race day.</p><p>It is also good news for Love in Motion. That marathon is the dress rehearsal K2PD was going to be, and better in one way: crowds, timing, nerves, and a real forced taper. You will arrive at November with genuine marathon fitness in the bank.</p><p><b>But it costs you a week, and I have rebuilt November around that.</b> A marathon leaves real muscle damage - running hard on it too soon is how people arrive at the start line already broken. So:</p><ul><li><b>Week 14 (2-8 Nov) is recovery only.</b> Walks, two short jogs, no long run. Resist it - this is the week that protects December.</li><li><b>Week 15 (9-15 Nov)</b> rebuilds easy volume with one 14 km long run. No quality work at all.</li><li><b>Back-to-backs now start 21-22 November</b>, a fortnight later than my first draft, and the block is tighter for it.</li></ul><p>Because the window is compressed, the December sessions matter more than ever. The peak weekend and the three-day rehearsal are the two things worth protecting above everything else in the calendar.</p><p>One practical question: <b>where is the marathon?</b> If it is interstate, travel and a night in a strange bed add to the recovery cost, and week 14 may need to be gentler still.</p>")+
 
- note("From marathon fitness to multi-day durability","<p>Worth being clear about what the November and December block is actually for, because it is not more fitness.</p><p>The marathon on 1 November <b>is</b> your fitness peak. Everything after it converts that engine into something different: the ability to run ~38 km, sleep, eat, and get up and do it again. That is a separate skill, and it is trained at a much lower intensity than anything Coopah has you doing.</p><p>So from 9 November onward: <b>no tempo, no intervals, no target pace.</b> Every run is easy. What increases is time on your feet and how often you run on tired legs. If you find yourself checking pace on a back-to-back weekend, you have misunderstood the session.</p>")+
+ note("From marathon fitness to multi-day durability","<p>Worth being clear about what the November and December block is actually for, because it is not more fitness.</p><p>The marathon on 1 November <b>is</b> your fitness peak. Everything after it converts that engine into something different: the ability to run 40-50 km, sleep, eat, and get up and do it again. That is a separate skill, and it is trained at a much lower intensity than anything Coopah has you doing.</p><p>So from 9 November onward: <b>no tempo, no intervals, no target pace.</b> Every run is easy. What increases is time on your feet and how often you run on tired legs. If you find yourself checking pace on a back-to-back weekend, you have misunderstood the session.</p>")+
 
- note("&#9888; The decision still open &middot; the run falls over Christmas","<p>The Pink Test is confirmed: <b>4-8 January 2027, Australia v New Zealand at the SCG</b>. To arrive for day one, the audited route (~484 km - hence The 500) gives:</p><ul><li>The audited stage plan: <b>13 days, ~38 km/day</b> &rarr; start <b>Wed 23 December</b>, arrive <b>Mon 4 January</b> for day one of the Test.</li></ul><p>Either way you are on the road across <b>Christmas and New Year</b>, with a six-year-old at home and Kel still recovering. That is a family conversation before it is a logistics one, and it shapes crew availability, accommodation and costs across the busiest week of the Australian year.</p><p>If Christmas on the road is not workable, the alternative is finishing <b>into</b> the Test rather than before it - arriving on day three or four, 6-7 January, and starting around 28-29 December.</p>","warn")+
+ note("The route flipped - and it is a better campaign","<p><b>Sydney to Tamworth, not Attunga to Sydney.</b> Start at the SCG on 6 January, mid Pink Test, and run home. Fourteen days, roughly 430 km, about <b>31 km a day</b>.</p><p>Three things this fixes at once:</p><ul><li><b>You launch inside the Pink Test.</b> The one week of the year the McGrath Foundation has the country's attention, with media already assembled and pink everywhere. You leave as part of that moment rather than arriving to compete with it.</li><li><b>Christmas is yours.</b> No running on 24 December. You are home with Kel and your girl, you travel down after New Year, and you start fresh.</li><li><b>You finish on Country.</b> Into Tamworth, in your own community, with people who know you. A far stronger final scene than a stadium full of strangers - for the documentary, for the fundraising push, and for you.</li></ul><p>It also drops the daily load meaningfully. The old plan needed 40-50 km a day; this needs about 31, with room to walk. That is a far kinder ask of a body that will have run a marathon nine weeks earlier.</p><p><b>Still to confirm:</b> the 6th versus the 7th for the send-off, and whether 19 January is a hard deadline or your best guess. A fifteenth day would bring the daily average under 29 km.</p>")+
 
- note("Kuranda &rarr; Port Douglas is off - what that changes","<p><b>K2PD is not going ahead.</b> The August block is now clean, uninterrupted Coopah - no taper needed around 23 August, no race week to build around. That is simpler and it is good.</p><p>But it removes something too. K2PD would have been your one full dress rehearsal under real conditions: a long day on tired legs, with crew, kit and fuelling all tested for real before the road.</p><p>Without it, <b>two weekends in this plan carry that weight instead</b> - and they are no longer optional:</p><ul><li><b>Sat 5 &amp; Sun 6 December</b> - the 35 km / 28 km peak weekend. Full kit, full fuelling, crew practising alongside you.</li><li><b>Fri 11 - Sun 13 December</b> - the three-day rehearsal. This is the closest thing to Love in Motion you will run before Attunga.</li></ul><p>If life forces a choice later in the year, protect these two weekends over everything else in the block.</p>")+
+ note("Kuranda &rarr; Port Douglas is off - what that changes","<p><b>K2PD is not going ahead.</b> The August block is now clean, uninterrupted Coopah - no taper needed around 23 August, no race week to build around. That is simpler and it is good.</p><p>But it removes something too. K2PD would have been your one full dress rehearsal under real conditions: a long day on tired legs, with crew, kit and fuelling all tested for real before the road.</p><p>Without it, <b>two weekends in this plan carry that weight instead</b> - and they are no longer optional:</p><ul><li><b>Sat 5 &amp; Sun 6 December</b> - the 35 km / 28 km peak weekend. Full kit, full fuelling, crew practising alongside you.</li><li><b>Fri 11 - Sun 13 December</b> - the three-day rehearsal. This is the closest thing to Love in Motion you will run before the road.</li></ul><p>If life forces a choice later in the year, protect these two weekends over everything else in the block.</p>")+
 
- note("Why the Coopah plan alone won't get you there","<p>Coopah is building you a very good <b>marathon</b>. Love in Motion is not a marathon.</p><p>Across the full thirteen weeks, the peak is <b>60 km in a week</b> with a 32 km long run, and <b>every single long run is preceded by a rest or easy day</b>. There is not one back-to-back long weekend anywhere in the block.</p><p>The run asks you to cover roughly <b>38 km a day for thirteen days</b>. The adaptation that makes that possible - running on legs that already ran yesterday, eating and sleeping well enough to go again - is exactly what a marathon plan never trains.</p><p><b>So: keep Coopah through October.</b> It builds the aerobic engine and the durability honestly, and the named sessions are good. Then from early November the Love in Motion block takes over and does the specific work. That is the merge you are looking at.</p>")+
+ note("Why the Coopah plan alone won't get you there","<p>Coopah is building you a very good <b>marathon</b>. Love in Motion is not a marathon.</p><p>Across the full thirteen weeks, the peak is <b>60 km in a week</b> with a 32 km long run, and <b>every single long run is preceded by a rest or easy day</b>. There is not one back-to-back long weekend anywhere in the block.</p><p>The run asks you to cover roughly <b>31 km a day for fourteen days straight</b>. The adaptation that makes that possible - running on legs that already ran yesterday, eating and sleeping well enough to go again, fourteen times over - is exactly what a marathon plan never trains. Single-day distance is not the problem here; <b>consecutive days are</b>.</p><p><b>So: keep Coopah through October.</b> It builds the aerobic engine and the durability honestly, and the named sessions are good. Then from early November the Love in Motion block takes over and does the specific work. That is the merge you are looking at.</p>")+
 
  note("Where you actually are right now","<p>Straight from Strava, not from the plan:</p><ul><li><b>Last logged run: 13 July.</b> Twenty-three days ago.</li><li>2026 has been light - roughly 17 runs since April.</li><li>Longest run this year: <b>20.8 km on 7 June</b>.</li><li>Easy pace sits around <b>7:00-7:30/km</b>, which is a sensible all-day effort.</li></ul><p>Coopah's week 1 at 15 km is a fair re-entry. <b>Week 2 at 33 km is a big jump</b> off a three-week break. If the first week feels harder than it should, repeat week 1 rather than pushing into week 2. Nothing is lost.</p><p>One thing worth remembering: between <b>28 December 2023 and 5 January 2024 you ran roughly 21 km a day, nine days straight</b>. About 190 km in nine days. You have done a version of this before. Your body has the file.</p>")+
 

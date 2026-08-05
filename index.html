@@ -252,12 +252,12 @@
 <section class="hero">
   <div class="ey">In support of the McGrath Foundation</div>
   <h2>Every kilometre is a way of saying <em>I love you</em>.</h2>
-  <p>An endurance journey raising support for the McGrath Foundation &mdash; a marathon dress rehearsal on 1&nbsp;November, the long road to Sydney ahead. This is the home for the training, the fuelling, and the why.</p>
+  <p>An endurance journey raising support for the McGrath Foundation &mdash; a marathon dress rehearsal on 1&nbsp;November, then the long road home &mdash; SCG to Tamworth &mdash; in January. This is the home for the training, the fuelling, and the why.</p>
 </section>
 
 <div class="count">
   <div class="n" id="cd">&mdash;</div>
-  <div class="lab" id="cdl">days to <b>The Love in Motion Run</b><br>Attunga &rarr; Sydney &middot; 23 Dec 2026</div>
+  <div class="lab" id="cdl">days to <b>the marathon</b><br>dress rehearsal &middot; Sun 1 Nov &middot; then SCG &rarr; Tamworth in Jan</div>
 </div>
 
 <div class="install" id="install" hidden>
@@ -355,12 +355,16 @@
 
 <script>
 "use strict";
-/* live countdown to the Love in Motion Run — the 500 km, Attunga → Sydney */
-var EVENT=new Date(2026,11,23);
+/* live countdown — marathon first, then the run home */
+var MARA=new Date(2026,10,1),EVENT=new Date(2027,0,6),HOME=new Date(2027,0,19);
 (function(){
-  var ms=EVENT-new Date(),d=Math.max(0,Math.ceil(ms/86400000));
-  document.getElementById("cd").textContent=d;
-  if(d===0)document.getElementById("cdl").innerHTML="<b>Today is the day</b><br>The Love in Motion Run";
+  var now=new Date(),cd=document.getElementById("cd"),cdl=document.getElementById("cdl");
+  var dm=Math.ceil((MARA-now)/864e5),dr=Math.ceil((EVENT-now)/864e5),dh=Math.ceil((HOME-now)/864e5);
+  if(dm>0){cd.textContent=dm;}
+  else if(dm===0){cd.textContent=0;cdl.innerHTML="<b>Marathon day</b><br>Trust the taper. Bank every lesson.";}
+  else if(dr>0){cd.textContent=dr;cdl.innerHTML="days to <b>The Love in Motion Run</b><br>SCG &rarr; Tamworth &middot; 6 Jan 2027";}
+  else if(dh>=0){cd.textContent=Math.max(0,dh);cdl.innerHTML="<b>On the road</b><br>Sydney &rarr; Tamworth &middot; home 19 Jan";}
+  else{cd.textContent=0;cdl.innerHTML="<b>Home.</b><br>Because love keeps moving.";}
 })();
 
 /* Add to Home Screen prompt */

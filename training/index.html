@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Train">
 <title>Love in Motion — Train</title>
-<meta name="description" content="The 24-week build to the 45 km Attunga loop rehearsal and the 500 km to Sydney — morning runs, gym strength, HYROX circuits, back-to-back long days — with every session prescribed, saved notes and coach guidance.">
+<meta name="description" content="The build to the 1 November marathon and the 500 km to Sydney — the Coopah block, the ultra block, back-to-back weekends and the run itself, with saved progress and coach notes.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Love in Motion">
 <meta property="og:title" content="Love in Motion — Train">
@@ -229,21 +229,52 @@
   .tabbar .tab .ic{font-size:17px;line-height:1}
   .tabbar .tab:active{background:var(--cream-2)}
   .tabbar .tab[aria-current="page"]{color:var(--rose-deep)}
+
+  /* merged-plan additions */
+  .alert{margin-top:12px;background:#f6ecd9;border:1px solid #e6d4b4;border-radius:14px;
+    padding:13px 15px;font-size:12.5px;line-height:1.55;color:#6b4d1c}
+  .alert b{color:#4d3712;font-weight:600}
+  .alert .lbl{color:#4d3712;font-weight:600;display:block;margin-bottom:3px;
+    font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+  .src{display:inline-block;font-size:9.5px;font-weight:600;letter-spacing:.08em;
+    text-transform:uppercase;padding:3px 7px;border-radius:99px;margin-top:8px}
+  .src.coopah{background:#e4e9f5;color:#3d4d78}
+  .src.lim{background:var(--rose-wash);color:var(--rose-deep)}
+  .prog{margin-top:14px;display:flex;align-items:center;gap:11px}
+  .bar{flex:1;height:7px;background:var(--cream-2);border-radius:99px;overflow:hidden}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--euc),var(--rose));
+    border-radius:99px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+  .prog .pt{font-size:11.5px;color:var(--ink-soft);font-weight:600;white-space:nowrap}
+  .vol{font-size:11.5px;color:var(--ink-faint);margin-top:9px;letter-spacing:.02em}
+  .meta .d{font-size:10.5px;color:var(--ink-faint);margin-top:3px;
+    letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+  .pill.long{background:#ece4f0;color:#6b4a7d}
+  .pill.spd{background:#dfe4f2;color:#3d4d78}
+  .wk.is-now::after{content:"·";color:var(--rose);font-weight:900;margin-left:5px}
 </style>
 </head>
 <body>
 <header>
-  <div class="brand"><span class="heart">&#10084;</span><h1>Love in Motion · Train</h1></div>
-  <div class="tag" id="tag">24-week build</div>
+  <a class="back" href="../index.html"><span class="a">&lsaquo;</span> Love in Motion</a>
+  <div class="brand"><span class="heart">&#10084;</span><h1>Love in Motion &middot; Train</h1></div>
+  <div class="tag" id="phase">Base &middot; Coopah block</div>
   <div class="count">
-    <div class="n" id="cd">—</div>
-    <div class="lab" id="cdl">days to <b>Attunga 45 km loop</b><br>practice run · 1 Nov 2026</div>
+    <div class="n" id="cd">&mdash;</div>
+    <div class="lab" id="cdl">days to <b>the marathon</b><br>dress rehearsal &middot; Sun 1 Nov</div>
   </div>
 </header>
 
+<div class="alert">
+  <span class="lbl">One decision open</span>
+  Marathon confirmed for <b>1 November</b> &mdash; the Coopah block runs exactly as written and
+  November rebuilds around your recovery. Still to lock: the <b>start date</b>. The audited stage
+  plan says <b>23 December</b> to reach the SCG by 4 Jan &mdash; and Christmas on the road is a
+  family conversation before it is a logistics one.
+</div>
+
 <a class="dl" href="../Love-in-Motion-Training-Plan.docx" download>
   <span class="dlic">&#128196;</span>
-  <span class="dltx"><b>Download the full plan</b><span>Word document &middot; all 24 weeks &amp; coach notes</span></span>
+  <span class="dltx"><b>Download the full plan</b><span>Word document &middot; Coopah block + ultra block &amp; coach notes</span></span>
   <span class="dlar">&#8595;</span>
 </a>
 
@@ -259,9 +290,9 @@
     <button class="pbtn" id="pminus" aria-label="Slower">&minus;</button>
     <button class="pbtn" id="pplus" aria-label="Faster">+</button>
   </div>
-  <div class="pnote">Sets the ~time estimates on every run. The distance is the target &mdash;
-    easy means conversational (full sentences), whatever the treadmill says. Nudge this up as
-    fitness builds.</div>
+  <div class="pnote">Sets the ~time estimates on easy, long and back-to-back runs. The distance is
+    the target &mdash; easy means conversational (full sentences), whatever the treadmill says.
+    Coopah&rsquo;s named sessions keep their own targets. Nudge this up as fitness builds.</div>
 </div>
 
 <div class="controls">
@@ -275,27 +306,19 @@
 
 <div class="whead">
   <div class="focus" id="focus"></div>
-  <span class="phase" id="phase"></span>
   <div class="dates" id="dates"></div>
-  <div class="wknote" id="wknote"></div>
+  <div id="srcwrap"></div>
   <div class="prog"><div class="bar"><i id="bar"></i></div><div class="pt" id="pt"></div></div>
+  <div class="vol" id="vol"></div>
 </div>
 
 <div class="list" id="list"></div>
 <div class="cnote" id="cnote"></div>
 
-<div class="tnote">
-  <label for="wknoteInput">This week's notes</label>
-  <textarea id="wknoteInput" placeholder="How did the week go? Energy, sleep, niggles, wins, what to adjust next week…"></textarea>
-  <div class="savednote" id="savedNote">Saved &#10003;</div>
-</div>
-
-<details class="notes">
+<details class="notes" open>
   <summary>Coach notes <span class="x">+</span></summary>
   <div id="notesbody"></div>
 </details>
-
-<p style="margin-top:22px;font-size:11px;color:var(--ink-faint);text-align:center;line-height:1.55;padding:0 12px">&#128274; Private to this device &mdash; what you enter here saves only in this browser and is never shared with anyone else.</p>
 
 <footer>
   <div class="fm">Because Love Keeps Moving</div>
@@ -325,690 +348,526 @@ var store=window.LIMStorage.create("train",function(){
   render();
 });
 
+var EASY="Easy means a full-sentence conversation - the talk test. Effort 3-4 out of 10, breathable through your nose. If you can't talk, slow down or walk. Run/walk is the strategy, not a compromise.";
+var STEADY="Steady is comfortably hard but still controlled - effort 5-6 out of 10, short sentences only. You should finish feeling you could have done a bit more.";
+var SPEED="Coopah's named sessions are threshold and interval work. Warm up properly, and treat the target pace as a ceiling not a floor. If your legs or your nervous system say no on the day, run this as an easy run instead - you lose almost nothing.";
+var B2B="This is the session that actually prepares you for Love in Motion. Running tired, on legs that already ran yesterday, is the specific adaptation a marathon plan never builds. Go slower than feels necessary. Walk the hills from the first one.";
+var FUEL_SHORT="Under ~90 min, water is enough. Eat normally before and after.";
+var FUEL_LONG="Past 90 min: sip water regularly and take a few bites of real food - banana, dates, a bar - every 20-30 min. This rehearses expedition fuelling.";
+var FUEL_B2B="Fuel as you would on the road: eat early, eat often, don't wait for hunger. Then eat again within 30 min of finishing. Recovery between days is the whole skill.";
+
+var STR_A=[["Glute bridge &rarr; single-leg when ready","2-3 &times; 8-12 /side"],
+  ["Slow tempo reverse lunge / split squat (3s down)","2-3 &times; 6-10 /side"],
+  ["Calf raises, double &rarr; single leg","2-3 &times; 12-15"],
+  ["Side-lying hip abduction / clamshell","2 &times; 12-15 /side"],
+  ["Bird-dog","2 &times; 8 /side"],
+  ["Single-leg balance","30-45s /side &times;2"]];
+var STR_B=[["Single-leg Romanian deadlift (bodyweight)","2-3 &times; 8 /side"],
+  ["Step-down off a low step, slow &amp; controlled","2 &times; 8 /side"],
+  ["Dead bug","2-3 &times; 8 /side"],
+  ["Side plank","2 &times; 20-40s /side"],
+  ["Heel walks + toe walks","2 &times; 20 steps"],
+  ["Plank","2 &times; 20-40s"]];
+var MOB=[["Couch stretch / hip flexor","60-90s /side"],
+  ["Figure-4 glute stretch","60s /side"],
+  ["Calf &amp; soleus on a step","45-60s /side"],
+  ["Thoracic rotation, side-lying","8 /side"],
+  ["Hamstring float, gentle","45s /side"],
+  ["Legs up the wall to finish","3-5 min"]];
+
+function E(d,t,s,note){return{d:d,k:"run",pill:"Easy",t:t,s:s,detail:EASY+(note?" "+note:""),fuel:FUEL_SHORT};}
+function L(d,t,s,note){return{d:d,k:"long",pill:"Long",t:t,s:s,detail:EASY+(note?" "+note:""),fuel:FUEL_LONG,long:true};}
+function BB(d,t,s,note){return{d:d,k:"long",pill:"B2B",t:t,s:s,detail:B2B+(note?" "+note:""),fuel:FUEL_B2B,long:true};}
+function SP(d,t,s,note){return{d:d,k:"spd",pill:"Session",t:t,s:s,detail:SPEED+(note?" "+note:""),fuel:FUEL_SHORT};}
+function ST(d,t,s,note){return{d:d,k:"run",pill:"Steady",t:t,s:s,detail:STEADY+(note?" "+note:""),fuel:FUEL_SHORT};}
+function SA(d,t,s){return{d:d,k:"str",pill:"Strength",t:t,s:s||"~25 min",ex:STR_A,exlab:"Session A",detail:"Controlled and light. This is insurance against injury, not a workout to survive. Lean into the slow lowering - that's what protects your knees on long descents."};}
+function SB(d,t,s){return{d:d,k:"str",pill:"Strength",t:t,s:s||"~25 min",ex:STR_B,exlab:"Session B",detail:"Controlled and light. Strong feet, ankles and core keep you steady on tired legs late in a long day."};}
+function MO(d,t,s){return{d:d,k:"rec",pill:"Mobility",t:t,s:s||"~20 min",ex:MOB,exlab:"Mobility",detail:"Slow and unhurried. Breathe out into each position rather than forcing it."};}
+function R(d,note){return{d:d,k:"rec",pill:"Rest",t:"Rest",s:"Full rest day",detail:note||"A real rest day. Not a walk you turn into a run. This is where the training lands."};}
+function RC(d,t,s,note){return{d:d,k:"rec",pill:"Recover",t:t,s:s,detail:note};}
+
+var DOWNREG="10 min of something downregulating - breathwork, yoga nidra, or legs-up-the-wall. Protect your nervous system first; there are no targets this week.";
+function planC(){return[RC("Most days","Walk or run-walk","15-25 min, as energy allows","Movement is medicine this week, not a target. If a walk is all there is, a walk is enough."),
+  RC("Daily","Downregulate","10 min",DOWNREG)];}
+
+/* ============================================================
+   PHASE 1 - COOPAH BLOCK (transcribed from the app, 6 Aug - 27 Sep)
+   Weekly totals cross-checked against Coopah's own week headers.
+   ============================================================ */
 var WEEKS=[
- {ph:"Base",focus:"Start the block",dates:"Week 1 · 13-19 Jul",start:new Date(2026,6,13),wknote:"Week one of the block. Easy runs stay conversational; strength at RPE 7 — leave reps in the tank.",
-  A:[{k:"run",pill:"Run",t:"Mon · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 1 &mdash; BASE. Easy Zone 2, conversational pace. Finish with 4 x 20 sec relaxed strides.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Chest, Triceps, Shoulders",s:"~60 min",detail:"<p>WEEK 1 &mdash; BASE (all working sets @ RPE 7, rest 90 sec)</p><ul><li>Barbell bench press 3 x 8</li><li>Incline DB press 3 x 10</li><li>Seated DB shoulder press 3 x 10</li><li>DB lateral raise 3 x 15</li><li>Band chest fly 3 x 12</li><li>Band overhead triceps extension 3 x 12</li><li>Band triceps pushdown 3 x 15</li></ul><p>Finish: 5 min shoulder + thoracic mobility.</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 1 &mdash; BASE. Easy Zone 2, conversational pace.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"HYROX",t:"Tue · PM HYROX Circuit A &mdash; Engine",s:"~50 min",detail:"<p>WEEK 1 &mdash; BASE</p><p>4 rounds:</p><ul><li>800 m run (moderate)</li><li>15 wall balls (6&ndash;9 kg)</li><li>20 walking lunges with sandbag or KB</li><li>10 burpee broad jumps</li><li>40 kettlebell swings</li></ul><p>Rest 2 min between rounds. Finish with easy 400 m flush jog.</p>"},
-     {k:"run",pill:"Run",t:"Wed · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 1 &mdash; BASE. Easy Zone 2, conversational pace.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Wed · PM Lower Body Strength",s:"~60 min",detail:"<p>WEEK 1 &mdash; BASE (all working sets @ RPE 7, rest 2 min on squats)</p><ul><li>Back squat 3 x 8</li><li>Box jumps 4 x 4 &mdash; explosive, soft landing, step down (never jump down)</li><li>Box step-ups 3 x 10 each leg &mdash; loaded, drive through mid-foot</li><li>Romanian deadlift 3 x 10</li><li>Bulgarian split squat 3 x 8 each leg</li><li>Hip thrust 3 x 10</li><li>Standing calf raise 4 x 15</li><li>Core: 3 x 45 sec plank + 15 back extensions</li></ul><p>Note: keep Friday&rsquo;s run genuinely easy &mdash; legs will be heavy.</p>"},
-     {k:"rec",pill:"Yoga",t:"Thu &middot; Yoga &amp; Breathwork",s:"~45 min",detail:"<p>WEEK 1 &mdash; THURSDAY RESET. 30&ndash;35 min runner&rsquo;s yoga + 10 min breathwork.</p><ul><li>Flow &mdash; long holds, no forcing: downward dog with calf pedals &middot; low lunge &amp; half splits (hamstrings) &middot; pigeon (glutes) &middot; couch stretch (hip flexors) &middot; thoracic twists &middot; finish legs-up-the-wall</li><li>Breathwork: 5 min exhale-focused cyclic sighing (double inhale through the nose, long slow sigh out) &mdash; the best-tested protocol for mood and downregulation (Balban 2023) &mdash; then ~6 breaths/min slow nasal breathing for 5 min</li></ul><p>This is recovery, not another workout &mdash; leave looser and calmer than you arrived.</p>"},
-     {k:"run",pill:"Run",t:"Fri · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 1 &mdash; BASE. Easy Zone 2, conversational pace.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"HYROX",t:"Fri · PM HYROX Circuit B &mdash; Stations",s:"~50 min",detail:"<p>WEEK 1 &mdash; BASE</p><p>3 rounds:</p><ul><li>500 m run</li><li>Sled push 4 x 12.5 m (moderate load)</li><li>Sled pull 4 x 12.5 m</li><li>Farmers carry 2 x 40 m (heavy)</li><li>60 sec plank</li></ul><p>Finish: 1 km easy run flush.</p>"},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 13 km (8 mi)",s:"13 km · ~75 min",detail:"<p>WEEK 1 &mdash; BASE. Long run: 60+ min. Easy aerobic effort throughout &mdash; practise fuelling: water + 30&ndash;60 g carbs per hour.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true},
-     {k:"rec",pill:"Rest",t:"Sun · Rest Day",s:"rest day",detail:"<p>Full rest. Gentle walk, stretching or a magnesium soak if the body asks for it. Sleep is the training today.</p>"}],
-  B:[{k:"run",pill:"Run",t:"Mon · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 1 &mdash; BASE. Easy Zone 2, conversational pace. Finish with 4 x 20 sec relaxed strides.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Chest, Triceps, Shoulders",s:"~60 min",detail:"<p>WEEK 1 &mdash; BASE (all working sets @ RPE 7, rest 90 sec)</p><ul><li>Barbell bench press 3 x 8</li><li>Incline DB press 3 x 10</li><li>Seated DB shoulder press 3 x 10</li><li>DB lateral raise 3 x 15</li><li>Band chest fly 3 x 12</li><li>Band overhead triceps extension 3 x 12</li><li>Band triceps pushdown 3 x 15</li></ul><p>Finish: 5 min shoulder + thoracic mobility.</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 1 &mdash; BASE. Easy Zone 2, conversational pace.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 13 km (8 mi)",s:"13 km · ~75 min",detail:"<p>WEEK 1 &mdash; BASE. Long run: 60+ min. Easy aerobic effort throughout &mdash; practise fuelling: water + 30&ndash;60 g carbs per hour.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true}],
-  C:[{k:"rec",pill:"Rest",t:"Walk / run-walk",s:"15-20 min · 1-2 times",detail:"<p>A gentle walk or run-walk, only as energy allows. Movement is medicine, not a target.</p>"},
-     {k:"rec",pill:"Rest",t:"Downregulate",s:"Daily · 10 min",detail:"<p>10 min of something downregulating &mdash; breathwork, yoga nidra, or legs-up-the-wall. Protect your nervous system first; there are no targets this week.</p>"}]
- },
- {ph:"Base",focus:"Add a little",dates:"Week 2 · 20-26 Jul",start:new Date(2026,6,20),wknote:"Loads nudge up, long run grows. Nothing heroic.",
-  A:[{k:"run",pill:"Run",t:"Mon · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 2 &mdash; BUILD. Easy Zone 2, conversational. Finish with 4 x 20 sec strides.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Chest, Triceps, Shoulders",s:"~65 min",detail:"<p>WEEK 2 &mdash; BUILD (add ~2.5 kg to primaries from Week 1, RPE 7&ndash;8)</p><ul><li>Barbell bench press 4 x 6&ndash;8</li><li>Incline DB press 3 x 8&ndash;10</li><li>Seated DB shoulder press 4 x 8</li><li>DB lateral raise 3 x 15</li><li>Band chest fly 3 x 12</li><li>Band overhead triceps extension 3 x 12</li><li>Band triceps pushdown 3 x 15</li></ul><p>Finish: 5 min shoulder + thoracic mobility.</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 2 &mdash; BUILD. Easy Zone 2, conversational pace.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"HYROX",t:"Tue · PM HYROX Circuit A &mdash; Engine",s:"~55 min",detail:"<p>WEEK 2 &mdash; BUILD</p><p>5 rounds:</p><ul><li>800 m run (moderate)</li><li>15 wall balls (6&ndash;9 kg)</li><li>20 walking lunges with sandbag or KB</li><li>10 burpee broad jumps</li><li>40 kettlebell swings</li></ul><p>Rest 2 min between rounds. Finish with easy 400 m flush jog.</p>"},
-     {k:"run",pill:"Run",t:"Wed · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 2 &mdash; BUILD. Easy Zone 2, conversational pace.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Wed · PM Lower Body Strength",s:"~65 min",detail:"<p>WEEK 2 &mdash; BUILD (add ~2.5&ndash;5 kg to squat and RDL, RPE 7&ndash;8)</p><ul><li>Back squat 4 x 6&ndash;8</li><li>Box jumps 4 x 4 &mdash; explosive, soft landing, step down (never jump down)</li><li>Box step-ups 3 x 10 each leg &mdash; loaded, drive through mid-foot</li><li>Romanian deadlift 3 x 8&ndash;10</li><li>Bulgarian split squat 3 x 8 each leg</li><li>Hip thrust 3 x 10 (heavier)</li><li>Standing calf raise 4 x 15</li><li>Core: 3 x 60 sec plank + 15 back extensions</li></ul><p>Note: keep Friday&rsquo;s run genuinely easy.</p>"},
-     {k:"rec",pill:"Yoga",t:"Thu &middot; Yoga &amp; Breathwork",s:"~45 min",detail:"<p>WEEK 2 &mdash; THURSDAY RESET. 30&ndash;35 min runner&rsquo;s yoga + 10 min breathwork.</p><ul><li>Flow &mdash; long holds, no forcing: downward dog with calf pedals &middot; low lunge &amp; half splits (hamstrings) &middot; pigeon (glutes) &middot; couch stretch (hip flexors) &middot; thoracic twists &middot; finish legs-up-the-wall</li><li>Breathwork: 5 min exhale-focused cyclic sighing (double inhale through the nose, long slow sigh out) &mdash; the best-tested protocol for mood and downregulation (Balban 2023) &mdash; then ~6 breaths/min slow nasal breathing for 5 min</li></ul><p>This is recovery, not another workout &mdash; leave looser and calmer than you arrived.</p>"},
-     {k:"run",pill:"Run",t:"Fri · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 2 &mdash; BUILD. Easy Zone 2, conversational pace.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"HYROX",t:"Fri · PM HYROX Circuit B &mdash; Stations",s:"~55 min",detail:"<p>WEEK 2 &mdash; BUILD</p><p>4 rounds:</p><ul><li>500 m run</li><li>Sled push 4 x 12.5 m (add load from Week 1)</li><li>Sled pull 4 x 12.5 m</li><li>Farmers carry 2 x 40 m (heavy)</li><li>60 sec plank</li></ul><p>Finish: 1 km easy run flush.</p>"},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 14.5 km (9 mi)",s:"14.5 km · ~84 min",detail:"<p>WEEK 2 &mdash; BUILD. Easy aerobic effort. Practise fuelling: water + 30&ndash;60 g carbs per hour. Last 10 min: pick up to steady if legs feel good.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true},
-     {k:"rec",pill:"Rest",t:"Sun · Rest Day",s:"rest day",detail:"<p>Full rest. Gentle walk, stretching or a magnesium soak if the body asks for it.</p>"}],
-  B:[{k:"run",pill:"Run",t:"Mon · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 2 &mdash; BUILD. Easy Zone 2, conversational. Finish with 4 x 20 sec strides.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Chest, Triceps, Shoulders",s:"~65 min",detail:"<p>WEEK 2 &mdash; BUILD (add ~2.5 kg to primaries from Week 1, RPE 7&ndash;8)</p><ul><li>Barbell bench press 4 x 6&ndash;8</li><li>Incline DB press 3 x 8&ndash;10</li><li>Seated DB shoulder press 4 x 8</li><li>DB lateral raise 3 x 15</li><li>Band chest fly 3 x 12</li><li>Band overhead triceps extension 3 x 12</li><li>Band triceps pushdown 3 x 15</li></ul><p>Finish: 5 min shoulder + thoracic mobility.</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 2 &mdash; BUILD. Easy Zone 2, conversational pace.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 14.5 km (9 mi)",s:"14.5 km · ~84 min",detail:"<p>WEEK 2 &mdash; BUILD. Easy aerobic effort. Practise fuelling: water + 30&ndash;60 g carbs per hour. Last 10 min: pick up to steady if legs feel good.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true}],
-  C:[{k:"rec",pill:"Rest",t:"Walk / run-walk",s:"15-20 min · 1-2 times",detail:"<p>A gentle walk or run-walk, only as energy allows. Movement is medicine, not a target.</p>"},
-     {k:"rec",pill:"Rest",t:"Downregulate",s:"Daily · 10 min",detail:"<p>10 min of something downregulating &mdash; breathwork, yoga nidra, or legs-up-the-wall. Protect your nervous system first; there are no targets this week.</p>"}]
- },
- {ph:"Base",focus:"Peak of the block",dates:"Week 3 · 27 Jul-2 Aug",start:new Date(2026,6,27),wknote:"Heaviest week of the block — then we ease.",
-  A:[{k:"run",pill:"Run",t:"Mon · AM Run &mdash; Easy 9.5 km (6 mi)",s:"9.5 km · ~54 min",detail:"<p>WEEK 3 &mdash; PEAK. Easy Zone 2, conversational. Finish with 4 x 20 sec strides.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Chest, Triceps, Shoulders",s:"~65 min",detail:"<p>WEEK 3 &mdash; PEAK (heaviest week: top sets @ RPE 8&ndash;9, rest 2 min on primaries)</p><ul><li>Barbell bench press 4 x 6 (heavy)</li><li>Incline DB press 4 x 8</li><li>Seated DB shoulder press 4 x 8</li><li>DB lateral raise 4 x 12&ndash;15</li><li>Band chest fly 3 x 12</li><li>Band overhead triceps extension 3 x 10</li><li>Band triceps pushdown 3 x 12</li></ul><p>Finish: 5 min shoulder + thoracic mobility.</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 9.5 km (6 mi)",s:"9.5 km · ~54 min",detail:"<p>WEEK 3 &mdash; PEAK. Easy Zone 2, conversational pace.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"HYROX",t:"Tue · PM HYROX Circuit A &mdash; Engine",s:"~60 min",detail:"<p>WEEK 3 &mdash; PEAK</p><p>5 rounds, minimal rest (90 sec between rounds):</p><ul><li>1000 m run (moderate-strong)</li><li>20 wall balls (6&ndash;9 kg)</li><li>20 walking lunges with sandbag or KB</li><li>10 burpee broad jumps</li><li>40 kettlebell swings</li></ul><p>Finish with easy 400 m flush jog. This is the hardest circuit of the block &mdash; pace the first two rounds.</p>"},
-     {k:"run",pill:"Run",t:"Wed · AM Run &mdash; Easy 9.5 km (6 mi)",s:"9.5 km · ~54 min",detail:"<p>WEEK 3 &mdash; PEAK. Easy Zone 2, conversational pace.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Wed · PM Lower Body Strength",s:"~65 min",detail:"<p>WEEK 3 &mdash; PEAK (heaviest week: top sets @ RPE 8&ndash;9)</p><ul><li>Back squat 4 x 5&ndash;6 (heavy)</li><li>Box jumps 4 x 4 &mdash; explosive, soft landing, step down (never jump down)</li><li>Box step-ups 3 x 10 each leg &mdash; loaded, drive through mid-foot</li><li>Romanian deadlift 4 x 8</li><li>Bulgarian split squat 3 x 8 each leg</li><li>Hip thrust 3 x 8 (heavy)</li><li>Standing calf raise 4 x 15</li><li>Core: 3 x 60 sec plank + 15 back extensions</li></ul><p>Note: keep Friday&rsquo;s run genuinely easy.</p>"},
-     {k:"rec",pill:"Yoga",t:"Thu &middot; Yoga &amp; Breathwork",s:"~45 min",detail:"<p>WEEK 3 &mdash; THURSDAY RESET. 30&ndash;35 min runner&rsquo;s yoga + 10 min breathwork.</p><ul><li>Flow &mdash; long holds, no forcing: downward dog with calf pedals &middot; low lunge &amp; half splits (hamstrings) &middot; pigeon (glutes) &middot; couch stretch (hip flexors) &middot; thoracic twists &middot; finish legs-up-the-wall</li><li>Breathwork: 5 min exhale-focused cyclic sighing (double inhale through the nose, long slow sigh out) &mdash; the best-tested protocol for mood and downregulation (Balban 2023) &mdash; then ~6 breaths/min slow nasal breathing for 5 min</li></ul><p>This is recovery, not another workout &mdash; leave looser and calmer than you arrived.</p>"},
-     {k:"run",pill:"Run",t:"Fri · AM Run &mdash; Easy 9.5 km (6 mi)",s:"9.5 km · ~54 min",detail:"<p>WEEK 3 &mdash; PEAK. Easy Zone 2, conversational pace.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"HYROX",t:"Fri · PM HYROX Circuit B &mdash; Stations",s:"~60 min",detail:"<p>WEEK 3 &mdash; PEAK</p><p>4 rounds:</p><ul><li>500 m run</li><li>Sled push 5 x 12.5 m (heaviest load of block)</li><li>Sled pull 5 x 12.5 m</li><li>Farmers carry 2 x 50 m (heavy)</li><li>15 sandbag squats</li><li>60 sec plank</li></ul><p>Finish: 1 km easy run flush.</p>"},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 16 km (10 mi)",s:"16 km · ~92 min",detail:"<p>WEEK 3 &mdash; PEAK. Longest run of the block. Easy aerobic effort &mdash; do not race it. Fuel from 30 min: 30&ndash;60 g carbs per hour + electrolytes. Note how the body holds up over 90 min; this is the data that matters for the expedition.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true},
-     {k:"rec",pill:"Rest",t:"Sun · Rest Day",s:"rest day",detail:"<p>Full rest after the biggest week. Gentle walk, stretching or a magnesium soak. Notice what the body is telling you before deload week.</p>"}],
-  B:[{k:"run",pill:"Run",t:"Mon · AM Run &mdash; Easy 9.5 km (6 mi)",s:"9.5 km · ~54 min",detail:"<p>WEEK 3 &mdash; PEAK. Easy Zone 2, conversational. Finish with 4 x 20 sec strides.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Chest, Triceps, Shoulders",s:"~65 min",detail:"<p>WEEK 3 &mdash; PEAK (heaviest week: top sets @ RPE 8&ndash;9, rest 2 min on primaries)</p><ul><li>Barbell bench press 4 x 6 (heavy)</li><li>Incline DB press 4 x 8</li><li>Seated DB shoulder press 4 x 8</li><li>DB lateral raise 4 x 12&ndash;15</li><li>Band chest fly 3 x 12</li><li>Band overhead triceps extension 3 x 10</li><li>Band triceps pushdown 3 x 12</li></ul><p>Finish: 5 min shoulder + thoracic mobility.</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 9.5 km (6 mi)",s:"9.5 km · ~54 min",detail:"<p>WEEK 3 &mdash; PEAK. Easy Zone 2, conversational pace.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 16 km (10 mi)",s:"16 km · ~92 min",detail:"<p>WEEK 3 &mdash; PEAK. Longest run of the block. Easy aerobic effort &mdash; do not race it. Fuel from 30 min: 30&ndash;60 g carbs per hour + electrolytes. Note how the body holds up over 90 min; this is the data that matters for the expedition.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true}],
-  C:[{k:"rec",pill:"Rest",t:"Walk / run-walk",s:"15-20 min · 1-2 times",detail:"<p>A gentle walk or run-walk, only as energy allows. Movement is medicine, not a target.</p>"},
-     {k:"rec",pill:"Rest",t:"Downregulate",s:"Daily · 10 min",detail:"<p>10 min of something downregulating &mdash; breathwork, yoga nidra, or legs-up-the-wall. Protect your nervous system first; there are no targets this week.</p>"}]
- },
- {ph:"Base",focus:"Ease & absorb · deload",dates:"Week 4 · 3-9 Aug",start:new Date(2026,7,3),wknote:"Deload. Pull back and let the body soak it up — this is where you get fitter.",
-  A:[{k:"run",pill:"Run",t:"Mon · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 4 &mdash; DELOAD. Very easy Zone 1&ndash;2. Let the body absorb the last three weeks.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Deload",s:"~45 min",detail:"<p>WEEK 4 &mdash; DELOAD (70&ndash;80% of Week 3 loads, everything @ RPE 6, crisp and easy)</p><ul><li>Barbell bench press 2 x 8</li><li>Incline DB press 2 x 10</li><li>Seated DB shoulder press 2 x 10</li><li>DB lateral raise 2 x 15</li><li>Band triceps pushdown 2 x 15</li></ul><p>Finish: 10 min full mobility flow.</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 4 &mdash; DELOAD. Very easy, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"HYROX",t:"Tue · PM HYROX Circuit &mdash; Light",s:"~35 min",detail:"<p>WEEK 4 &mdash; DELOAD</p><p>3 rounds, easy tempo:</p><ul><li>500 m run</li><li>10 wall balls (light)</li><li>15 walking lunges (bodyweight)</li><li>20 kettlebell swings</li></ul><p>Rest as needed. Movement quality over intensity.</p>"},
-     {k:"run",pill:"Run",t:"Wed · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 4 &mdash; DELOAD. Very easy, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Wed · PM Lower Body &mdash; Deload",s:"~45 min",detail:"<p>WEEK 4 &mdash; DELOAD (70&ndash;80% of Week 3 loads, RPE 6)</p><ul><li>Back squat 2 x 8</li><li>Box step-ups 2 x 10 each leg &mdash; loaded, controlled</li><li>Eccentric box step-downs 2 x 8 each leg &mdash; 3-sec lower, downhill armour</li><li>Romanian deadlift 2 x 10</li><li>Hip thrust 2 x 10</li><li>Standing calf raise 3 x 15</li><li>Core: 2 x 45 sec plank</li></ul><p>Finish: 10 min hip mobility.</p>"},
-     {k:"rec",pill:"Yoga",t:"Thu &middot; Yoga &amp; Breathwork",s:"~45 min",detail:"<p>WEEK 4 &mdash; THURSDAY RESET. 30&ndash;35 min runner&rsquo;s yoga + 10 min breathwork. Deload week &mdash; extra gentle, yin pace.</p><ul><li>Flow &mdash; long holds, no forcing: downward dog with calf pedals &middot; low lunge &amp; half splits (hamstrings) &middot; pigeon (glutes) &middot; couch stretch (hip flexors) &middot; thoracic twists &middot; finish legs-up-the-wall</li><li>Breathwork: 5 min exhale-focused cyclic sighing (double inhale through the nose, long slow sigh out) &mdash; the best-tested protocol for mood and downregulation (Balban 2023) &mdash; then ~6 breaths/min slow nasal breathing for 5 min</li></ul><p>This is recovery, not another workout &mdash; leave looser and calmer than you arrived.</p>"},
-     {k:"run",pill:"Run",t:"Fri · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 4 &mdash; DELOAD. Very easy, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"HYROX",t:"Fri · PM HYROX Circuit &mdash; Light",s:"~35 min",detail:"<p>WEEK 4 &mdash; DELOAD</p><p>3 rounds, easy tempo:</p><ul><li>500 m run</li><li>Sled push 3 x 12.5 m (light)</li><li>Farmers carry 2 x 30 m (moderate)</li><li>45 sec plank</li></ul><p>Finish: 800 m easy flush.</p>"},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 13 km (8 mi)",s:"13 km · ~75 min",detail:"<p>WEEK 4 &mdash; DELOAD. Minimum long run: 60+ min, easy throughout. Should finish feeling like you could keep going &mdash; that is the point.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true},
-     {k:"rec",pill:"Rest",t:"Sun · Rest Day &mdash; End of Block",s:"rest day",detail:"<p>Full rest. End of the 4-week block &mdash; review the log: energy, sleep, legs across the block, then set Week 5 loads from Week 3 numbers.</p>"}],
-  B:[{k:"run",pill:"Run",t:"Mon · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 4 &mdash; DELOAD. Very easy Zone 1&ndash;2. Let the body absorb the last three weeks.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Deload",s:"~45 min",detail:"<p>WEEK 4 &mdash; DELOAD (70&ndash;80% of Week 3 loads, everything @ RPE 6, crisp and easy)</p><ul><li>Barbell bench press 2 x 8</li><li>Incline DB press 2 x 10</li><li>Seated DB shoulder press 2 x 10</li><li>DB lateral raise 2 x 15</li><li>Band triceps pushdown 2 x 15</li></ul><p>Finish: 10 min full mobility flow.</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 4 &mdash; DELOAD. Very easy, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 13 km (8 mi)",s:"13 km · ~75 min",detail:"<p>WEEK 4 &mdash; DELOAD. Minimum long run: 60+ min, easy throughout. Should finish feeling like you could keep going &mdash; that is the point.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true}],
-  C:[{k:"rec",pill:"Rest",t:"Walk / run-walk",s:"15-20 min · 1-2 times",detail:"<p>A gentle walk or run-walk, only as energy allows. Movement is medicine, not a target.</p>"},
-     {k:"rec",pill:"Rest",t:"Downregulate",s:"Daily · 10 min",detail:"<p>10 min of something downregulating &mdash; breathwork, yoga nidra, or legs-up-the-wall. Protect your nervous system first; there are no targets this week.</p>"}]
- },
- {ph:"Foundation",focus:"Into Build I",dates:"Week 5 · 10-16 Aug",start:new Date(2026,7,10),wknote:"New block. Start loads just above Week 2 and build again.",
-  A:[{k:"run",pill:"Run",t:"Mon · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 5 &mdash; BUILD I. Easy Zone 2. Finish with 4 x 20 sec strides.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Chest, Triceps, Shoulders",s:"~65 min",detail:"<p>WEEK 5 &mdash; BUILD I (start ~2.5 kg above Week 2 loads, RPE 7&ndash;8)</p><ul><li>Barbell bench press 4 x 6&ndash;8</li><li>Incline DB press 3 x 8&ndash;10</li><li>Seated DB shoulder press 4 x 8</li><li>DB lateral raise 3 x 15</li><li>Band chest fly 3 x 12</li><li>Band overhead triceps extension 3 x 12</li><li>Band triceps pushdown 3 x 15</li></ul>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 5 &mdash; BUILD I. Easy Zone 2, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"HYROX",t:"Tue · PM HYROX Circuit A &mdash; Engine",s:"~55 min",detail:"<p>WEEK 5 &mdash; BUILD I</p><p>4 rounds: 800 m run • 15 wall balls • 20 sandbag/KB lunges • 10 burpee broad jumps • 40 kettlebell swings. Rest 2 min between rounds.</p>"},
-     {k:"run",pill:"Run",t:"Wed · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 5 &mdash; BUILD I. Easy Zone 2, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Wed · PM Lower Body Strength",s:"~65 min",detail:"<p>WEEK 5 &mdash; BUILD I (RPE 7&ndash;8)</p><ul><li>Back squat 4 x 6&ndash;8</li><li>Box jumps 4 x 4 &mdash; explosive, soft landing, step down (never jump down)</li><li>Box step-ups 3 x 10 each leg &mdash; loaded, drive through mid-foot</li><li>Romanian deadlift 3 x 8&ndash;10</li><li>Bulgarian split squat 3 x 8 each leg</li><li>Hip thrust 3 x 10</li><li>Standing calf raise 4 x 15</li><li>Core: 3 x 60 sec plank</li></ul>"},
-     {k:"rec",pill:"Yoga",t:"Thu &middot; Yoga &amp; Breathwork",s:"~45 min",detail:"<p>WEEK 5 &mdash; THURSDAY RESET. 30&ndash;35 min runner&rsquo;s yoga + 10 min breathwork.</p><ul><li>Flow &mdash; long holds, no forcing: downward dog with calf pedals &middot; low lunge &amp; half splits (hamstrings) &middot; pigeon (glutes) &middot; couch stretch (hip flexors) &middot; thoracic twists &middot; finish legs-up-the-wall</li><li>Breathwork: 5 min exhale-focused cyclic sighing (double inhale through the nose, long slow sigh out) &mdash; the best-tested protocol for mood and downregulation (Balban 2023) &mdash; then ~6 breaths/min slow nasal breathing for 5 min</li></ul><p>This is recovery, not another workout &mdash; leave looser and calmer than you arrived.</p>"},
-     {k:"run",pill:"Run",t:"Fri · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 5 &mdash; BUILD I. Easy Zone 2, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"HYROX",t:"Fri · PM HYROX Circuit B &mdash; Stations",s:"~55 min",detail:"<p>WEEK 5 &mdash; BUILD I</p><p>4 rounds: 500 m run • sled push 4 x 12.5 m • sled pull 4 x 12.5 m • farmers carry 2 x 40 m • 60 sec plank. Finish: 1 km flush.</p>"},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 16 km (10 mi)",s:"16 km · ~92 min",detail:"<p>WEEK 5 &mdash; BUILD I. Easy aerobic. Fuel from 30 min: 30&ndash;60 g carbs/hr + electrolytes.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true},
-     {k:"rec",pill:"Rest",t:"Sun · Rest Day",s:"rest day",detail:"<p>Full rest. Gentle walk or magnesium soak if the body asks.</p>"}],
-  B:[{k:"run",pill:"Run",t:"Mon · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 5 &mdash; BUILD I. Easy Zone 2. Finish with 4 x 20 sec strides.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Chest, Triceps, Shoulders",s:"~65 min",detail:"<p>WEEK 5 &mdash; BUILD I (start ~2.5 kg above Week 2 loads, RPE 7&ndash;8)</p><ul><li>Barbell bench press 4 x 6&ndash;8</li><li>Incline DB press 3 x 8&ndash;10</li><li>Seated DB shoulder press 4 x 8</li><li>DB lateral raise 3 x 15</li><li>Band chest fly 3 x 12</li><li>Band overhead triceps extension 3 x 12</li><li>Band triceps pushdown 3 x 15</li></ul>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 5 &mdash; BUILD I. Easy Zone 2, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 16 km (10 mi)",s:"16 km · ~92 min",detail:"<p>WEEK 5 &mdash; BUILD I. Easy aerobic. Fuel from 30 min: 30&ndash;60 g carbs/hr + electrolytes.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true}],
-  C:[{k:"rec",pill:"Rest",t:"Walk / run-walk",s:"15-20 min · 1-2 times",detail:"<p>A gentle walk or run-walk, only as energy allows. Movement is medicine, not a target.</p>"},
-     {k:"rec",pill:"Rest",t:"Downregulate",s:"Daily · 10 min",detail:"<p>10 min of something downregulating &mdash; breathwork, yoga nidra, or legs-up-the-wall. Protect your nervous system first; there are no targets this week.</p>"}]
- },
- {ph:"Foundation",focus:"Keep growing",dates:"Week 6 · 17-23 Aug",start:new Date(2026,7,17),wknote:"Long run 18 km — start testing the expedition vest.",
-  A:[{k:"run",pill:"Run",t:"Mon · AM Run &mdash; Easy 9.5 km (6 mi)",s:"9.5 km · ~54 min",detail:"<p>WEEK 6 &mdash; BUILD I. Easy Zone 2. 4 x 20 sec strides.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Chest, Triceps, Shoulders",s:"~65 min",detail:"<p>WEEK 6 &mdash; BUILD I (RPE 8 &mdash; add load where last week felt strong)</p><p>Same structure as Week 5: bench 4 x 6&ndash;8 • incline DB 3 x 8&ndash;10 • shoulder press 4 x 8 • lateral raise 3 x 15 • band fly 3 x 12 • band OH triceps 3 x 12 • band pushdown 3 x 15</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 9.5 km (6 mi)",s:"9.5 km · ~54 min",detail:"<p>WEEK 6 &mdash; BUILD I. Easy Zone 2, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"HYROX",t:"Tue · PM HYROX Circuit A &mdash; Engine",s:"~60 min",detail:"<p>WEEK 6 &mdash; BUILD I</p><p>5 rounds: 800 m run • 15 wall balls • 20 lunges • 10 burpee broad jumps • 40 kettlebell swings. Rest 2 min.</p>"},
-     {k:"run",pill:"Run",t:"Wed · AM Run &mdash; Easy 9.5 km (6 mi)",s:"9.5 km · ~54 min",detail:"<p>WEEK 6 &mdash; BUILD I. Easy Zone 2, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Wed · PM Lower Body Strength",s:"~65 min",detail:"<p>WEEK 6 &mdash; BUILD I (RPE 8)</p><p>Squat 4 x 6&ndash;8 • Box jumps 4 x 4 • Box step-ups 3 x 10/leg • RDL 3 x 8&ndash;10 • Bulgarian split squat 3 x 8/leg • hip thrust 3 x 10 • calf raise 4 x 15 • core. Keep Friday&rsquo;s run easy.</p>"},
-     {k:"rec",pill:"Yoga",t:"Thu &middot; Yoga &amp; Breathwork",s:"~45 min",detail:"<p>WEEK 6 &mdash; THURSDAY RESET. 30&ndash;35 min runner&rsquo;s yoga + 10 min breathwork.</p><ul><li>Flow &mdash; long holds, no forcing: downward dog with calf pedals &middot; low lunge &amp; half splits (hamstrings) &middot; pigeon (glutes) &middot; couch stretch (hip flexors) &middot; thoracic twists &middot; finish legs-up-the-wall</li><li>Breathwork: 5 min exhale-focused cyclic sighing (double inhale through the nose, long slow sigh out) &mdash; the best-tested protocol for mood and downregulation (Balban 2023) &mdash; then ~6 breaths/min slow nasal breathing for 5 min</li></ul><p>This is recovery, not another workout &mdash; leave looser and calmer than you arrived.</p>"},
-     {k:"run",pill:"Run",t:"Fri · AM Run &mdash; Easy 9.5 km (6 mi)",s:"9.5 km · ~54 min",detail:"<p>WEEK 6 &mdash; BUILD I. Easy Zone 2, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"HYROX",t:"Fri · PM HYROX Circuit B &mdash; Stations",s:"~60 min",detail:"<p>WEEK 6 &mdash; BUILD I</p><p>4 rounds: 500 m run • sled push 5 x 12.5 m • sled pull 5 x 12.5 m • farmers carry 2 x 50 m • 15 sandbag squats • 60 sec plank.</p>"},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 18 km (11 mi)",s:"18 km · ~104 min",detail:"<p>WEEK 6 &mdash; BUILD I. Easy aerobic. Start testing the hydration vest you'll wear on the expedition. Fuel 45&ndash;60 g carbs/hr.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true},
-     {k:"rec",pill:"Rest",t:"Sun · Rest Day",s:"rest day",detail:"<p>Full rest.</p>"}],
-  B:[{k:"run",pill:"Run",t:"Mon · AM Run &mdash; Easy 9.5 km (6 mi)",s:"9.5 km · ~54 min",detail:"<p>WEEK 6 &mdash; BUILD I. Easy Zone 2. 4 x 20 sec strides.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Chest, Triceps, Shoulders",s:"~65 min",detail:"<p>WEEK 6 &mdash; BUILD I (RPE 8 &mdash; add load where last week felt strong)</p><p>Same structure as Week 5: bench 4 x 6&ndash;8 • incline DB 3 x 8&ndash;10 • shoulder press 4 x 8 • lateral raise 3 x 15 • band fly 3 x 12 • band OH triceps 3 x 12 • band pushdown 3 x 15</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 9.5 km (6 mi)",s:"9.5 km · ~54 min",detail:"<p>WEEK 6 &mdash; BUILD I. Easy Zone 2, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 18 km (11 mi)",s:"18 km · ~104 min",detail:"<p>WEEK 6 &mdash; BUILD I. Easy aerobic. Start testing the hydration vest you'll wear on the expedition. Fuel 45&ndash;60 g carbs/hr.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true}],
-  C:[{k:"rec",pill:"Rest",t:"Walk / run-walk",s:"15-20 min · 1-2 times",detail:"<p>A gentle walk or run-walk, only as energy allows. Movement is medicine, not a target.</p>"},
-     {k:"rec",pill:"Rest",t:"Downregulate",s:"Daily · 10 min",detail:"<p>10 min of something downregulating &mdash; breathwork, yoga nidra, or legs-up-the-wall. Protect your nervous system first; there are no targets this week.</p>"}]
- },
- {ph:"Foundation",focus:"Peak of the block",dates:"Week 7 · 24-30 Aug",start:new Date(2026,7,24),wknote:"Biggest week so far. 20 km long run — full fuelling rehearsal.",
-  A:[{k:"run",pill:"Run",t:"Mon · AM Run &mdash; Easy 9.5 km (6 mi)",s:"9.5 km · ~54 min",detail:"<p>WEEK 7 &mdash; PEAK OF BLOCK. Easy Zone 2. 4 x 20 sec strides.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Chest, Triceps, Shoulders",s:"~65 min",detail:"<p>WEEK 7 &mdash; PEAK (top sets RPE 8&ndash;9, rest 2 min on primaries)</p><p>Bench 4 x 6 heavy • incline DB 4 x 8 • shoulder press 4 x 8 • lateral raise 4 x 12&ndash;15 • band fly 3 x 12 • band OH triceps 3 x 10 • band pushdown 3 x 12</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 9.5 km (6 mi)",s:"9.5 km · ~54 min",detail:"<p>WEEK 7 &mdash; PEAK. Easy Zone 2, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"HYROX",t:"Tue · PM HYROX Circuit A &mdash; Engine",s:"~60 min",detail:"<p>WEEK 7 &mdash; PEAK</p><p>5 rounds, 90 sec rest: 1000 m run • 20 wall balls • 20 lunges • 10 burpee broad jumps • 40 kettlebell swings. Pace the first two rounds.</p>"},
-     {k:"run",pill:"Run",t:"Wed · AM Run &mdash; Easy 9.5 km (6 mi)",s:"9.5 km · ~54 min",detail:"<p>WEEK 7 &mdash; PEAK. Easy Zone 2, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Wed · PM Lower Body Strength",s:"~65 min",detail:"<p>WEEK 7 &mdash; PEAK (top sets RPE 8&ndash;9)</p><p>Squat 4 x 5&ndash;6 heavy • Box jumps 4 x 4 • Box step-ups 3 x 10/leg • RDL 4 x 8 • Bulgarian split squat 3 x 8/leg • hip thrust 3 x 8 heavy • calf raise 4 x 15 • core.</p>"},
-     {k:"rec",pill:"Yoga",t:"Thu &middot; Yoga &amp; Breathwork",s:"~45 min",detail:"<p>WEEK 7 &mdash; THURSDAY RESET. 30&ndash;35 min runner&rsquo;s yoga + 10 min breathwork.</p><ul><li>Flow &mdash; long holds, no forcing: downward dog with calf pedals &middot; low lunge &amp; half splits (hamstrings) &middot; pigeon (glutes) &middot; couch stretch (hip flexors) &middot; thoracic twists &middot; finish legs-up-the-wall</li><li>Breathwork: 5 min exhale-focused cyclic sighing (double inhale through the nose, long slow sigh out) &mdash; the best-tested protocol for mood and downregulation (Balban 2023) &mdash; then ~6 breaths/min slow nasal breathing for 5 min</li></ul><p>This is recovery, not another workout &mdash; leave looser and calmer than you arrived.</p>"},
-     {k:"run",pill:"Run",t:"Fri · AM Run &mdash; Easy 9.5 km (6 mi)",s:"9.5 km · ~54 min",detail:"<p>WEEK 7 &mdash; PEAK. Easy Zone 2, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"HYROX",t:"Fri · PM HYROX Circuit B &mdash; Stations",s:"~60 min",detail:"<p>WEEK 7 &mdash; PEAK</p><p>4 rounds: 500 m run • sled push 5 x 12.5 m (heaviest) • sled pull 5 x 12.5 m • farmers carry 2 x 50 m • 15 sandbag squats • 60 sec plank.</p>"},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 20 km (12.5 mi)",s:"20 km · ~115 min",detail:"<p>WEEK 7 &mdash; PEAK. Easy aerobic &mdash; do not race it. Full fuelling rehearsal: 60 g carbs/hr + electrolytes. Note anything that rubs or chafes at 2 hrs.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true},
-     {k:"rec",pill:"Rest",t:"Sun · Rest Day",s:"rest day",detail:"<p>Full rest after the biggest week so far.</p>"}],
-  B:[{k:"run",pill:"Run",t:"Mon · AM Run &mdash; Easy 9.5 km (6 mi)",s:"9.5 km · ~54 min",detail:"<p>WEEK 7 &mdash; PEAK OF BLOCK. Easy Zone 2. 4 x 20 sec strides.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Chest, Triceps, Shoulders",s:"~65 min",detail:"<p>WEEK 7 &mdash; PEAK (top sets RPE 8&ndash;9, rest 2 min on primaries)</p><p>Bench 4 x 6 heavy • incline DB 4 x 8 • shoulder press 4 x 8 • lateral raise 4 x 12&ndash;15 • band fly 3 x 12 • band OH triceps 3 x 10 • band pushdown 3 x 12</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 9.5 km (6 mi)",s:"9.5 km · ~54 min",detail:"<p>WEEK 7 &mdash; PEAK. Easy Zone 2, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 20 km (12.5 mi)",s:"20 km · ~115 min",detail:"<p>WEEK 7 &mdash; PEAK. Easy aerobic &mdash; do not race it. Full fuelling rehearsal: 60 g carbs/hr + electrolytes. Note anything that rubs or chafes at 2 hrs.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true}],
-  C:[{k:"rec",pill:"Rest",t:"Walk / run-walk",s:"15-20 min · 1-2 times",detail:"<p>A gentle walk or run-walk, only as energy allows. Movement is medicine, not a target.</p>"},
-     {k:"rec",pill:"Rest",t:"Downregulate",s:"Daily · 10 min",detail:"<p>10 min of something downregulating &mdash; breathwork, yoga nidra, or legs-up-the-wall. Protect your nervous system first; there are no targets this week.</p>"}]
- },
- {ph:"Foundation",focus:"Ease & absorb · deload",dates:"Week 8 · 31 Aug-6 Sep",start:new Date(2026,7,31),wknote:"Deload. Let the block land.",
-  A:[{k:"run",pill:"Run",t:"Mon · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 8 &mdash; DELOAD. Very easy Zone 1&ndash;2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Deload",s:"~45 min",detail:"<p>WEEK 8 &mdash; DELOAD (70&ndash;80% of Week 7 loads, RPE 6)</p><p>Bench 2 x 8 • incline DB 2 x 10 • shoulder press 2 x 10 • lateral raise 2 x 15 • band pushdown 2 x 15. Finish: 10 min mobility.</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 8 &mdash; DELOAD. Very easy, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"HYROX",t:"Tue · PM HYROX Circuit &mdash; Light",s:"~35 min",detail:"<p>WEEK 8 &mdash; DELOAD</p><p>3 easy rounds: 500 m run • 10 wall balls light • 15 bodyweight lunges • 20 kettlebell swings. Movement quality only.</p>"},
-     {k:"run",pill:"Run",t:"Wed · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 8 &mdash; DELOAD. Very easy, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Wed · PM Lower Body &mdash; Deload",s:"~45 min",detail:"<p>WEEK 8 &mdash; DELOAD (RPE 6)</p><p>Squat 2 x 8 light • Box step-ups 2 x 10/leg • Eccentric box step-downs 2 x 8/leg • RDL 2 x 10 • hip thrust 2 x 10 • calf raise 3 x 15 • 2 x 45 sec plank. 10 min hip mobility.</p>"},
-     {k:"rec",pill:"Yoga",t:"Thu &middot; Yoga &amp; Breathwork",s:"~45 min",detail:"<p>WEEK 8 &mdash; THURSDAY RESET. 30&ndash;35 min runner&rsquo;s yoga + 10 min breathwork. Deload week &mdash; extra gentle, yin pace.</p><ul><li>Flow &mdash; long holds, no forcing: downward dog with calf pedals &middot; low lunge &amp; half splits (hamstrings) &middot; pigeon (glutes) &middot; couch stretch (hip flexors) &middot; thoracic twists &middot; finish legs-up-the-wall</li><li>Breathwork: 5 min exhale-focused cyclic sighing (double inhale through the nose, long slow sigh out) &mdash; the best-tested protocol for mood and downregulation (Balban 2023) &mdash; then ~6 breaths/min slow nasal breathing for 5 min</li></ul><p>This is recovery, not another workout &mdash; leave looser and calmer than you arrived.</p>"},
-     {k:"run",pill:"Run",t:"Fri · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 8 &mdash; DELOAD. Very easy, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"HYROX",t:"Fri · PM HYROX Circuit &mdash; Light",s:"~35 min",detail:"<p>WEEK 8 &mdash; DELOAD</p><p>3 easy rounds: 500 m run • sled push 3 x 12.5 m light • farmers carry 2 x 30 m • 45 sec plank. 800 m flush.</p>"},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 13 km (8 mi)",s:"13 km · ~75 min",detail:"<p>WEEK 8 &mdash; DELOAD. Minimum long run, easy throughout. Finish feeling like you could keep going.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true},
-     {k:"rec",pill:"Rest",t:"Sun · Rest Day",s:"rest day",detail:"<p>Full rest. End of Build I &mdash; review energy/sleep/legs scores across the block.</p>"}],
-  B:[{k:"run",pill:"Run",t:"Mon · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 8 &mdash; DELOAD. Very easy Zone 1&ndash;2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Deload",s:"~45 min",detail:"<p>WEEK 8 &mdash; DELOAD (70&ndash;80% of Week 7 loads, RPE 6)</p><p>Bench 2 x 8 • incline DB 2 x 10 • shoulder press 2 x 10 • lateral raise 2 x 15 • band pushdown 2 x 15. Finish: 10 min mobility.</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 8 &mdash; DELOAD. Very easy, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 13 km (8 mi)",s:"13 km · ~75 min",detail:"<p>WEEK 8 &mdash; DELOAD. Minimum long run, easy throughout. Finish feeling like you could keep going.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true}],
-  C:[{k:"rec",pill:"Rest",t:"Walk / run-walk",s:"15-20 min · 1-2 times",detail:"<p>A gentle walk or run-walk, only as energy allows. Movement is medicine, not a target.</p>"},
-     {k:"rec",pill:"Rest",t:"Downregulate",s:"Daily · 10 min",detail:"<p>10 min of something downregulating &mdash; breathwork, yoga nidra, or legs-up-the-wall. Protect your nervous system first; there are no targets this week.</p>"}]
- },
- {ph:"Build",focus:"Run/walk begins",dates:"Week 9 · 7-13 Sep",start:new Date(2026,8,7),wknote:"From this week the long run uses run/walk rhythm — that's expedition pacing, not weakness.",
-  A:[{k:"run",pill:"Run",t:"Mon · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 9 &mdash; BUILD II. Easy Zone 2. 4 x 20 sec strides.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Chest, Triceps, Shoulders",s:"~65 min",detail:"<p>WEEK 9 &mdash; BUILD II (reset just above Week 6 loads, RPE 7&ndash;8)</p><p>Bench 4 x 6&ndash;8 • incline DB 3 x 8&ndash;10 • shoulder press 4 x 8 • lateral raise 3 x 15 • band fly 3 x 12 • band OH triceps 3 x 12 • band pushdown 3 x 15</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 9 &mdash; BUILD II. Easy Zone 2, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"HYROX",t:"Tue · PM HYROX Circuit A &mdash; Engine",s:"~55 min",detail:"<p>WEEK 9 &mdash; BUILD II</p><p>4 rounds: 800 m run • 15 wall balls • 20 lunges • 10 burpee broad jumps • 40 kettlebell swings. Rest 2 min.</p>"},
-     {k:"run",pill:"Run",t:"Wed · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 9 &mdash; BUILD II. Easy Zone 2, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Wed · PM Lower Body Strength",s:"~65 min",detail:"<p>WEEK 9 &mdash; BUILD II (RPE 7&ndash;8)</p><p>Squat 4 x 6&ndash;8 • Box jumps 4 x 4 • Box step-ups 3 x 10/leg • RDL 3 x 8&ndash;10 • Bulgarian split squat 3 x 8/leg • hip thrust 3 x 10 • calf raise 4 x 15 • core 3 x 60 sec plank</p>"},
-     {k:"rec",pill:"Yoga",t:"Thu &middot; Yoga &amp; Breathwork",s:"~45 min",detail:"<p>WEEK 9 &mdash; THURSDAY RESET. 30&ndash;35 min runner&rsquo;s yoga + 10 min breathwork.</p><ul><li>Flow &mdash; long holds, no forcing: downward dog with calf pedals &middot; low lunge &amp; half splits (hamstrings) &middot; pigeon (glutes) &middot; couch stretch (hip flexors) &middot; thoracic twists &middot; finish legs-up-the-wall</li><li>Breathwork: 5 min exhale-focused cyclic sighing (double inhale through the nose, long slow sigh out) &mdash; the best-tested protocol for mood and downregulation (Balban 2023) &mdash; then ~6 breaths/min slow nasal breathing for 5 min</li></ul><p>This is recovery, not another workout &mdash; leave looser and calmer than you arrived.</p>"},
-     {k:"run",pill:"Run",t:"Fri · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 9 &mdash; BUILD II. Easy Zone 2, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"HYROX",t:"Fri · PM HYROX Circuit B &mdash; Stations",s:"~55 min",detail:"<p>WEEK 9 &mdash; BUILD II</p><p>4 rounds: 500 m run • sled push 4 x 12.5 m • sled pull 4 x 12.5 m • farmers carry 2 x 40 m • 60 sec plank. 1 km flush.</p>"},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 22 km (13.7 mi)",s:"22 km · ~126 min",detail:"<p>WEEK 9 &mdash; BUILD II. Easy aerobic. From this week: practise run/walk rhythm on long runs (25 min run / 5 min brisk walk) &mdash; this is expedition pacing, not weakness. Fuel 60 g carbs/hr.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true},
-     {k:"rec",pill:"Rest",t:"Sun · Rest Day",s:"rest day",detail:"<p>Full rest.</p>"}],
-  B:[{k:"run",pill:"Run",t:"Mon · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 9 &mdash; BUILD II. Easy Zone 2. 4 x 20 sec strides.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Chest, Triceps, Shoulders",s:"~65 min",detail:"<p>WEEK 9 &mdash; BUILD II (reset just above Week 6 loads, RPE 7&ndash;8)</p><p>Bench 4 x 6&ndash;8 • incline DB 3 x 8&ndash;10 • shoulder press 4 x 8 • lateral raise 3 x 15 • band fly 3 x 12 • band OH triceps 3 x 12 • band pushdown 3 x 15</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 9 &mdash; BUILD II. Easy Zone 2, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 22 km (13.7 mi)",s:"22 km · ~126 min",detail:"<p>WEEK 9 &mdash; BUILD II. Easy aerobic. From this week: practise run/walk rhythm on long runs (25 min run / 5 min brisk walk) &mdash; this is expedition pacing, not weakness. Fuel 60 g carbs/hr.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true}],
-  C:[{k:"rec",pill:"Rest",t:"Walk / run-walk",s:"15-20 min · 1-2 times",detail:"<p>A gentle walk or run-walk, only as energy allows. Movement is medicine, not a target.</p>"},
-     {k:"rec",pill:"Rest",t:"Downregulate",s:"Daily · 10 min",detail:"<p>10 min of something downregulating &mdash; breathwork, yoga nidra, or legs-up-the-wall. Protect your nervous system first; there are no targets this week.</p>"}]
- },
- {ph:"Build",focus:"Test the kit",dates:"Week 10 · 14-20 Sep",start:new Date(2026,8,14),wknote:"24 km — test expedition shoes and socks. Fuel 60 g carbs per hour.",
-  A:[{k:"run",pill:"Run",t:"Mon · AM Run &mdash; Easy 9.5 km (6 mi)",s:"9.5 km · ~54 min",detail:"<p>WEEK 10 &mdash; BUILD II. Easy Zone 2. 4 x 20 sec strides.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Chest, Triceps, Shoulders",s:"~65 min",detail:"<p>WEEK 10 &mdash; BUILD II (RPE 8)</p><p>Same structure &mdash; add load where Week 9 felt strong. Bench 4 x 6&ndash;8 • incline DB 3 x 8&ndash;10 • shoulder press 4 x 8 • lateral raise 3 x 15 • band fly 3 x 12 • triceps work 3 x 12&ndash;15</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 9.5 km (6 mi)",s:"9.5 km · ~54 min",detail:"<p>WEEK 10 &mdash; BUILD II. Easy Zone 2, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"HYROX",t:"Tue · PM HYROX Circuit A &mdash; Engine",s:"~60 min",detail:"<p>WEEK 10 &mdash; BUILD II</p><p>5 rounds: 800 m run • 15 wall balls • 20 lunges • 10 burpee broad jumps • 40 kettlebell swings. Rest 2 min.</p>"},
-     {k:"run",pill:"Run",t:"Wed · AM Run &mdash; Easy 9.5 km (6 mi)",s:"9.5 km · ~54 min",detail:"<p>WEEK 10 &mdash; BUILD II. Easy Zone 2, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Wed · PM Lower Body Strength",s:"~65 min",detail:"<p>WEEK 10 &mdash; BUILD II (RPE 8)</p><p>Squat 4 x 6&ndash;8 • Box jumps 4 x 4 • Box step-ups 3 x 10/leg • RDL 3 x 8&ndash;10 • Bulgarian split squat 3 x 8/leg • hip thrust 3 x 10 • calf raise 4 x 15 • core</p>"},
-     {k:"rec",pill:"Yoga",t:"Thu &middot; Yoga &amp; Breathwork",s:"~45 min",detail:"<p>WEEK 10 &mdash; THURSDAY RESET. 30&ndash;35 min runner&rsquo;s yoga + 10 min breathwork.</p><ul><li>Flow &mdash; long holds, no forcing: downward dog with calf pedals &middot; low lunge &amp; half splits (hamstrings) &middot; pigeon (glutes) &middot; couch stretch (hip flexors) &middot; thoracic twists &middot; finish legs-up-the-wall</li><li>Breathwork: 5 min exhale-focused cyclic sighing (double inhale through the nose, long slow sigh out) &mdash; the best-tested protocol for mood and downregulation (Balban 2023) &mdash; then ~6 breaths/min slow nasal breathing for 5 min</li></ul><p>This is recovery, not another workout &mdash; leave looser and calmer than you arrived.</p>"},
-     {k:"run",pill:"Run",t:"Fri · AM Run &mdash; Easy 9.5 km (6 mi)",s:"9.5 km · ~54 min",detail:"<p>WEEK 10 &mdash; BUILD II. Easy Zone 2, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"HYROX",t:"Fri · PM HYROX Circuit B &mdash; Stations",s:"~60 min",detail:"<p>WEEK 10 &mdash; BUILD II</p><p>4 rounds: 500 m run • sled push 5 x 12.5 m • sled pull 5 x 12.5 m • farmers carry 2 x 50 m • 15 sandbag squats • 60 sec plank.</p>"},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 24 km (15 mi)",s:"24 km · ~138 min",detail:"<p>WEEK 10 &mdash; BUILD II. Easy aerobic with run/walk rhythm. Test expedition shoes + socks combination. Fuel 60 g carbs/hr, electrolytes hourly.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true},
-     {k:"rec",pill:"Rest",t:"Sun · Rest Day",s:"rest day",detail:"<p>Full rest.</p>"}],
-  B:[{k:"run",pill:"Run",t:"Mon · AM Run &mdash; Easy 9.5 km (6 mi)",s:"9.5 km · ~54 min",detail:"<p>WEEK 10 &mdash; BUILD II. Easy Zone 2. 4 x 20 sec strides.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Chest, Triceps, Shoulders",s:"~65 min",detail:"<p>WEEK 10 &mdash; BUILD II (RPE 8)</p><p>Same structure &mdash; add load where Week 9 felt strong. Bench 4 x 6&ndash;8 • incline DB 3 x 8&ndash;10 • shoulder press 4 x 8 • lateral raise 3 x 15 • band fly 3 x 12 • triceps work 3 x 12&ndash;15</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 9.5 km (6 mi)",s:"9.5 km · ~54 min",detail:"<p>WEEK 10 &mdash; BUILD II. Easy Zone 2, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 24 km (15 mi)",s:"24 km · ~138 min",detail:"<p>WEEK 10 &mdash; BUILD II. Easy aerobic with run/walk rhythm. Test expedition shoes + socks combination. Fuel 60 g carbs/hr, electrolytes hourly.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true}],
-  C:[{k:"rec",pill:"Rest",t:"Walk / run-walk",s:"15-20 min · 1-2 times",detail:"<p>A gentle walk or run-walk, only as energy allows. Movement is medicine, not a target.</p>"},
-     {k:"rec",pill:"Rest",t:"Downregulate",s:"Daily · 10 min",detail:"<p>10 min of something downregulating &mdash; breathwork, yoga nidra, or legs-up-the-wall. Protect your nervous system first; there are no targets this week.</p>"}]
- },
- {ph:"Build",focus:"Biggest of the block",dates:"Week 11 · 21-27 Sep",start:new Date(2026,8,21),wknote:"26 km — 2.5 hrs on feet in full kit. This is the data that matters.",
-  A:[{k:"run",pill:"Run",t:"Mon · AM Run &mdash; Easy 9.5 km (6 mi)",s:"9.5 km · ~54 min",detail:"<p>WEEK 11 &mdash; PEAK OF BLOCK. Easy Zone 2. 4 x 20 sec strides.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Chest, Triceps, Shoulders",s:"~65 min",detail:"<p>WEEK 11 &mdash; PEAK (top sets RPE 8&ndash;9)</p><p>Bench 4 x 6 heavy • incline DB 4 x 8 • shoulder press 4 x 8 • lateral raise 4 x 12&ndash;15 • band fly 3 x 12 • triceps 3 x 10&ndash;12</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 9.5 km (6 mi)",s:"9.5 km · ~54 min",detail:"<p>WEEK 11 &mdash; PEAK. Easy Zone 2, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"HYROX",t:"Tue · PM HYROX Circuit A &mdash; Engine",s:"~60 min",detail:"<p>WEEK 11 &mdash; PEAK</p><p>5 rounds, 90 sec rest: 1000 m run • 20 wall balls • 20 lunges • 10 burpee broad jumps • 40 kettlebell swings.</p>"},
-     {k:"run",pill:"Run",t:"Wed · AM Run &mdash; Easy 9.5 km (6 mi)",s:"9.5 km · ~54 min",detail:"<p>WEEK 11 &mdash; PEAK. Easy Zone 2, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Wed · PM Lower Body Strength",s:"~65 min",detail:"<p>WEEK 11 &mdash; PEAK (top sets RPE 8&ndash;9)</p><p>Squat 4 x 5&ndash;6 heavy • Box jumps 4 x 4 • Box step-ups 3 x 10/leg • RDL 4 x 8 • Bulgarian split squat 3 x 8/leg • hip thrust 3 x 8 heavy • calf raise 4 x 15 • core</p>"},
-     {k:"rec",pill:"Yoga",t:"Thu &middot; Yoga &amp; Breathwork",s:"~45 min",detail:"<p>WEEK 11 &mdash; THURSDAY RESET. 30&ndash;35 min runner&rsquo;s yoga + 10 min breathwork.</p><ul><li>Flow &mdash; long holds, no forcing: downward dog with calf pedals &middot; low lunge &amp; half splits (hamstrings) &middot; pigeon (glutes) &middot; couch stretch (hip flexors) &middot; thoracic twists &middot; finish legs-up-the-wall</li><li>Breathwork: 5 min exhale-focused cyclic sighing (double inhale through the nose, long slow sigh out) &mdash; the best-tested protocol for mood and downregulation (Balban 2023) &mdash; then ~6 breaths/min slow nasal breathing for 5 min</li></ul><p>This is recovery, not another workout &mdash; leave looser and calmer than you arrived.</p>"},
-     {k:"run",pill:"Run",t:"Fri · AM Run &mdash; Easy 9.5 km (6 mi)",s:"9.5 km · ~54 min",detail:"<p>WEEK 11 &mdash; PEAK. Easy Zone 2, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"HYROX",t:"Fri · PM HYROX Circuit B &mdash; Stations",s:"~60 min",detail:"<p>WEEK 11 &mdash; PEAK</p><p>4 rounds: 500 m run • sled push 5 x 12.5 m heaviest • sled pull 5 x 12.5 m • farmers carry 2 x 50 m • 15 sandbag squats • 60 sec plank.</p>"},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 26 km (16 mi)",s:"26 km · ~150 min",detail:"<p>WEEK 11 &mdash; PEAK. 2.5 hrs on feet &mdash; longest yet. Run/walk rhythm throughout. Full expedition kit rehearsal: vest, fuel, sunscreen, anti-chafe. This is the data that matters.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true},
-     {k:"rec",pill:"Rest",t:"Sun · Rest Day",s:"rest day",detail:"<p>Full rest after the biggest week of Build II.</p>"}],
-  B:[{k:"run",pill:"Run",t:"Mon · AM Run &mdash; Easy 9.5 km (6 mi)",s:"9.5 km · ~54 min",detail:"<p>WEEK 11 &mdash; PEAK OF BLOCK. Easy Zone 2. 4 x 20 sec strides.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Chest, Triceps, Shoulders",s:"~65 min",detail:"<p>WEEK 11 &mdash; PEAK (top sets RPE 8&ndash;9)</p><p>Bench 4 x 6 heavy • incline DB 4 x 8 • shoulder press 4 x 8 • lateral raise 4 x 12&ndash;15 • band fly 3 x 12 • triceps 3 x 10&ndash;12</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 9.5 km (6 mi)",s:"9.5 km · ~54 min",detail:"<p>WEEK 11 &mdash; PEAK. Easy Zone 2, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 26 km (16 mi)",s:"26 km · ~150 min",detail:"<p>WEEK 11 &mdash; PEAK. 2.5 hrs on feet &mdash; longest yet. Run/walk rhythm throughout. Full expedition kit rehearsal: vest, fuel, sunscreen, anti-chafe. This is the data that matters.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true}],
-  C:[{k:"rec",pill:"Rest",t:"Walk / run-walk",s:"15-20 min · 1-2 times",detail:"<p>A gentle walk or run-walk, only as energy allows. Movement is medicine, not a target.</p>"},
-     {k:"rec",pill:"Rest",t:"Downregulate",s:"Daily · 10 min",detail:"<p>10 min of something downregulating &mdash; breathwork, yoga nidra, or legs-up-the-wall. Protect your nervous system first; there are no targets this week.</p>"}]
- },
- {ph:"Build",focus:"Ease & absorb · deload",dates:"Week 12 · 28 Sep-4 Oct",start:new Date(2026,8,28),wknote:"Deload. From Monday the week changes shape: Monday morning becomes recovery, Sunday becomes a second run.",
-  A:[{k:"run",pill:"Run",t:"Mon · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 12 &mdash; DELOAD. Very easy Zone 1&ndash;2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Deload",s:"~45 min",detail:"<p>WEEK 12 &mdash; DELOAD (70&ndash;80% loads, RPE 6)</p><p>Bench 2 x 8 • shoulder press 2 x 10 • lateral raise 2 x 15 • band pushdown 2 x 15. 10 min mobility.</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 12 &mdash; DELOAD. Very easy, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"HYROX",t:"Tue · PM HYROX Circuit &mdash; Light",s:"~35 min",detail:"<p>WEEK 12 &mdash; DELOAD</p><p>3 easy rounds: 500 m run • 10 wall balls light • 15 bodyweight lunges • 20 kettlebell swings.</p>"},
-     {k:"run",pill:"Run",t:"Wed · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 12 &mdash; DELOAD. Very easy, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Wed · PM Lower Body &mdash; Deload",s:"~45 min",detail:"<p>WEEK 12 &mdash; DELOAD (RPE 6)</p><p>Squat 2 x 8 light • Box step-ups 2 x 10/leg • Eccentric box step-downs 2 x 8/leg • RDL 2 x 10 • hip thrust 2 x 10 • calf raise 3 x 15 • core. 10 min hip mobility.</p>"},
-     {k:"rec",pill:"Yoga",t:"Thu &middot; Yoga &amp; Breathwork",s:"~45 min",detail:"<p>WEEK 12 &mdash; THURSDAY RESET. 30&ndash;35 min runner&rsquo;s yoga + 10 min breathwork. Deload week &mdash; extra gentle, yin pace.</p><ul><li>Flow &mdash; long holds, no forcing: downward dog with calf pedals &middot; low lunge &amp; half splits (hamstrings) &middot; pigeon (glutes) &middot; couch stretch (hip flexors) &middot; thoracic twists &middot; finish legs-up-the-wall</li><li>Breathwork: 5 min exhale-focused cyclic sighing (double inhale through the nose, long slow sigh out) &mdash; the best-tested protocol for mood and downregulation (Balban 2023) &mdash; then ~6 breaths/min slow nasal breathing for 5 min</li></ul><p>This is recovery, not another workout &mdash; leave looser and calmer than you arrived.</p>"},
-     {k:"run",pill:"Run",t:"Fri · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 12 &mdash; DELOAD. Very easy, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"HYROX",t:"Fri · PM HYROX Circuit &mdash; Light",s:"~35 min",detail:"<p>WEEK 12 &mdash; DELOAD</p><p>3 easy rounds: 500 m run • sled push light • farmers carry moderate • 45 sec plank.</p>"},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 14 km (8.7 mi)",s:"14 km · ~80 min",detail:"<p>WEEK 12 &mdash; DELOAD. Easy throughout. Next week the expedition phase begins &mdash; back-to-back weekend runs start.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true},
-     {k:"rec",pill:"Rest",t:"Sun · Rest Day",s:"rest day",detail:"<p>Full rest. End of Build II. From Monday the week changes shape: Monday morning becomes recovery, Sunday becomes a second run.</p>"}],
-  B:[{k:"run",pill:"Run",t:"Mon · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 12 &mdash; DELOAD. Very easy Zone 1&ndash;2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Deload",s:"~45 min",detail:"<p>WEEK 12 &mdash; DELOAD (70&ndash;80% loads, RPE 6)</p><p>Bench 2 x 8 • shoulder press 2 x 10 • lateral raise 2 x 15 • band pushdown 2 x 15. 10 min mobility.</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 12 &mdash; DELOAD. Very easy, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 14 km (8.7 mi)",s:"14 km · ~80 min",detail:"<p>WEEK 12 &mdash; DELOAD. Easy throughout. Next week the expedition phase begins &mdash; back-to-back weekend runs start.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true}],
-  C:[{k:"rec",pill:"Rest",t:"Walk / run-walk",s:"15-20 min · 1-2 times",detail:"<p>A gentle walk or run-walk, only as energy allows. Movement is medicine, not a target.</p>"},
-     {k:"rec",pill:"Rest",t:"Downregulate",s:"Daily · 10 min",detail:"<p>10 min of something downregulating &mdash; breathwork, yoga nidra, or legs-up-the-wall. Protect your nervous system first; there are no targets this week.</p>"}]
- },
- {ph:"Peak",focus:"Back-to-backs begin",dates:"Week 13 · 5-11 Oct",start:new Date(2026,9,5),wknote:"New shape: Sat long + Sun on tired legs. The second day is the whole point — it's what the 500 asks of you.",
-  A:[{k:"rec",pill:"Mobility",t:"Mon · AM Mobility &amp; Reset",s:"~30 min",detail:"<p>WEEK 13 &mdash; EXPEDITION PHASE begins. No morning run Mondays now &mdash; 30 min mobility, breath and a walk. The weekend back-to-backs are the priority; this is where they get absorbed.</p>"},
-     {k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Maintenance",s:"~45 min",detail:"<p>WEEK 13 &mdash; EXPEDITION PHASE (strength moves to maintenance: RPE 7, nothing to failure)</p><p>Bench 3 x 8 • shoulder press 3 x 10 • lateral raise 2 x 15 • band pushdown 2 x 12 • 5 min mobility</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 13 &mdash; EXPEDITION PHASE. Easy Zone 2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"HYROX",t:"Tue · PM HYROX Circuit &mdash; Moderate",s:"~45 min",detail:"<p>WEEK 13 &mdash; EXPEDITION PHASE</p><p>4 rounds: 600 m run • 12 wall balls • 15 lunges • 30 kettlebell swings. Moderate effort &mdash; engine maintenance, not a beasting.</p>"},
-     {k:"run",pill:"Run",t:"Wed · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 13 &mdash; EXPEDITION PHASE. Easy Zone 2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Wed · PM Lower Body &mdash; Maintenance",s:"~40 min",detail:"<p>WEEK 13 &mdash; EXPEDITION PHASE (RPE 7 &mdash; legs stay fresh for the weekend)</p><p>Squat 3 x 8 moderate • Box step-ups 3 x 10/leg • Eccentric box step-downs 3 x 8/leg • RDL 2 x 10 • calf raise 3 x 15 • core 3 x 45 sec</p>"},
-     {k:"rec",pill:"Yoga",t:"Thu &middot; Yoga &amp; Breathwork",s:"~45 min",detail:"<p>WEEK 13 &mdash; THURSDAY RESET. 30&ndash;35 min runner&rsquo;s yoga + 10 min breathwork.</p><ul><li>Flow &mdash; long holds, no forcing: downward dog with calf pedals &middot; low lunge &amp; half splits (hamstrings) &middot; pigeon (glutes) &middot; couch stretch (hip flexors) &middot; thoracic twists &middot; finish legs-up-the-wall</li><li>Breathwork: 5 min exhale-focused cyclic sighing (double inhale through the nose, long slow sigh out) &mdash; the best-tested protocol for mood and downregulation (Balban 2023) &mdash; then ~6 breaths/min slow nasal breathing for 5 min</li></ul><p>This is recovery, not another workout &mdash; leave looser and calmer than you arrived.</p>"},
-     {k:"run",pill:"Run",t:"Fri · AM Run &mdash; Easy 6.5 km (4 mi)",s:"6.5 km · ~38 min",detail:"<p>WEEK 13 &mdash; EXPEDITION PHASE. Short and very easy &mdash; save the legs.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"rec",pill:"Mobility",t:"Fri · PM Mobility &mdash; Weekend Prep",s:"~30 min",detail:"<p>WEEK 13 &mdash; 30 min: hips, calves, feet. Lay out weekend kit and fuel tonight.</p>"},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 28 km (17.4 mi)",s:"28 km · ~161 min",detail:"<p>WEEK 13 &mdash; BACK-TO-BACK DAY 1. Easy with run/walk rhythm (25/5). Full vest + fuel: 60 g carbs/hr. Finish with legs that could do tomorrow &mdash; because they will.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true},
-     {k:"run",pill:"B2B",t:"Sun · Back-to-Back Run &mdash; 16 km (10 mi)",s:"16 km · ~95 min",detail:"<p>WEEK 13 &mdash; BACK-TO-BACK DAY 2. On tired legs &mdash; this IS the expedition rehearsal. Very easy, walk breaks whenever needed. The win is starting, not the pace.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true}],
-  B:[{k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Maintenance",s:"~45 min",detail:"<p>WEEK 13 &mdash; EXPEDITION PHASE (strength moves to maintenance: RPE 7, nothing to failure)</p><p>Bench 3 x 8 • shoulder press 3 x 10 • lateral raise 2 x 15 • band pushdown 2 x 12 • 5 min mobility</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 13 &mdash; EXPEDITION PHASE. Easy Zone 2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Run",t:"Wed · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 13 &mdash; EXPEDITION PHASE. Easy Zone 2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 28 km (17.4 mi)",s:"28 km · ~161 min",detail:"<p>WEEK 13 &mdash; BACK-TO-BACK DAY 1. Easy with run/walk rhythm (25/5). Full vest + fuel: 60 g carbs/hr. Finish with legs that could do tomorrow &mdash; because they will.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true},
-     {k:"run",pill:"B2B",t:"Sun · Back-to-Back Run &mdash; 16 km (10 mi)",s:"16 km · ~95 min",detail:"<p>WEEK 13 &mdash; BACK-TO-BACK DAY 2. On tired legs &mdash; this IS the expedition rehearsal. Very easy, walk breaks whenever needed. The win is starting, not the pace.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true}],
-  C:[{k:"rec",pill:"Rest",t:"Walk / run-walk",s:"15-20 min · 1-2 times",detail:"<p>A gentle walk or run-walk, only as energy allows. Movement is medicine, not a target.</p>"},
-     {k:"rec",pill:"Rest",t:"Downregulate",s:"Daily · 10 min",detail:"<p>10 min of something downregulating &mdash; breathwork, yoga nidra, or legs-up-the-wall. Protect your nervous system first; there are no targets this week.</p>"}]
- },
- {ph:"Peak",focus:"Grow the weekend",dates:"Week 14 · 12-18 Oct",start:new Date(2026,9,12),wknote:"30 km then 18 km. Practise eating real food mid-run — what the crew will hand you.",
-  A:[{k:"rec",pill:"Mobility",t:"Mon · AM Mobility &amp; Reset",s:"~30 min",detail:"<p>WEEK 14 &mdash; EXPEDITION PHASE. 30 min mobility + walk. Note legs/energy scores after the first back-to-back weekend.</p>"},
-     {k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Maintenance",s:"~45 min",detail:"<p>WEEK 14 (RPE 7)</p><p>Bench 3 x 8 • shoulder press 3 x 10 • lateral raise 2 x 15 • band pushdown 2 x 12</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 14 &mdash; EXPEDITION PHASE. Easy Zone 2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"HYROX",t:"Tue · PM HYROX Circuit &mdash; Moderate",s:"~45 min",detail:"<p>WEEK 14</p><p>4 rounds: 600 m run • 12 wall balls • 15 lunges • 30 kettlebell swings. Moderate.</p>"},
-     {k:"run",pill:"Run",t:"Wed · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 14 &mdash; EXPEDITION PHASE. Easy Zone 2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Wed · PM Lower Body &mdash; Maintenance",s:"~40 min",detail:"<p>WEEK 14 (RPE 7)</p><p>Squat 3 x 8 • Box step-ups 3 x 10/leg • Eccentric box step-downs 3 x 8/leg • RDL 2 x 10 • calf raise 3 x 15 • core</p>"},
-     {k:"rec",pill:"Yoga",t:"Thu &middot; Yoga &amp; Breathwork",s:"~45 min",detail:"<p>WEEK 14 &mdash; THURSDAY RESET. 30&ndash;35 min runner&rsquo;s yoga + 10 min breathwork.</p><ul><li>Flow &mdash; long holds, no forcing: downward dog with calf pedals &middot; low lunge &amp; half splits (hamstrings) &middot; pigeon (glutes) &middot; couch stretch (hip flexors) &middot; thoracic twists &middot; finish legs-up-the-wall</li><li>Breathwork: 5 min exhale-focused cyclic sighing (double inhale through the nose, long slow sigh out) &mdash; the best-tested protocol for mood and downregulation (Balban 2023) &mdash; then ~6 breaths/min slow nasal breathing for 5 min</li></ul><p>This is recovery, not another workout &mdash; leave looser and calmer than you arrived.</p>"},
-     {k:"run",pill:"Run",t:"Fri · AM Run &mdash; Easy 6.5 km (4 mi)",s:"6.5 km · ~38 min",detail:"<p>WEEK 14 &mdash; Short and very easy.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"rec",pill:"Mobility",t:"Fri · PM Mobility &mdash; Weekend Prep",s:"~30 min",detail:"<p>WEEK 14 &mdash; Hips, calves, feet. Kit and fuel ready tonight.</p>"},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 30 km (18.6 mi)",s:"30 km · ~172 min",detail:"<p>WEEK 14 &mdash; BACK-TO-BACK DAY 1. Run/walk rhythm. 60&ndash;90 g carbs/hr &mdash; train the gut. Practise eating real food mid-run (what the crew will hand you).</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true},
-     {k:"run",pill:"B2B",t:"Sun · Back-to-Back Run &mdash; 18 km (11 mi)",s:"18 km · ~107 min",detail:"<p>WEEK 14 &mdash; BACK-TO-BACK DAY 2. Very easy on tired legs. Notice where the body complains &mdash; that list becomes your expedition care plan.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true}],
-  B:[{k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Maintenance",s:"~45 min",detail:"<p>WEEK 14 (RPE 7)</p><p>Bench 3 x 8 • shoulder press 3 x 10 • lateral raise 2 x 15 • band pushdown 2 x 12</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 14 &mdash; EXPEDITION PHASE. Easy Zone 2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Run",t:"Wed · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 14 &mdash; EXPEDITION PHASE. Easy Zone 2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 30 km (18.6 mi)",s:"30 km · ~172 min",detail:"<p>WEEK 14 &mdash; BACK-TO-BACK DAY 1. Run/walk rhythm. 60&ndash;90 g carbs/hr &mdash; train the gut. Practise eating real food mid-run (what the crew will hand you).</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true},
-     {k:"run",pill:"B2B",t:"Sun · Back-to-Back Run &mdash; 18 km (11 mi)",s:"18 km · ~107 min",detail:"<p>WEEK 14 &mdash; BACK-TO-BACK DAY 2. Very easy on tired legs. Notice where the body complains &mdash; that list becomes your expedition care plan.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true}],
-  C:[{k:"rec",pill:"Rest",t:"Walk / run-walk",s:"15-20 min · 1-2 times",detail:"<p>A gentle walk or run-walk, only as energy allows. Movement is medicine, not a target.</p>"},
-     {k:"rec",pill:"Rest",t:"Downregulate",s:"Daily · 10 min",detail:"<p>10 min of something downregulating &mdash; breathwork, yoga nidra, or legs-up-the-wall. Protect your nervous system first; there are no targets this week.</p>"}]
- },
- {ph:"Peak",focus:"Sharpen for the 45",dates:"Week 15 · 19-25 Oct",start:new Date(2026,9,19),wknote:"Volume drops — freshness rises. Final kit shake-down on Saturday.",
-  A:[{k:"rec",pill:"Mobility",t:"Mon · AM Mobility &amp; Reset",s:"~30 min",detail:"<p>WEEK 15 &mdash; SHARPEN. The 45 km rehearsal is in 2 weeks. Volume drops from here &mdash; freshness is the goal now. 30 min mobility + walk.</p>"},
-     {k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Maintenance",s:"~45 min",detail:"<p>WEEK 15 &mdash; SHARPEN (RPE 7, nothing to failure)</p><p>Bench 3 x 8 • shoulder press 3 x 10 • lateral raise 2 x 15 • band pushdown 2 x 12</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 15 &mdash; SHARPEN. Easy Zone 2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"HYROX",t:"Tue · PM HYROX Circuit &mdash; Moderate",s:"~45 min",detail:"<p>WEEK 15 &mdash; SHARPEN</p><p>4 rounds: 600 m run • 12 wall balls • 15 lunges • 30 kettlebell swings. Moderate &mdash; last proper circuit before the rehearsal.</p>"},
-     {k:"run",pill:"Run",t:"Wed · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 15 &mdash; SHARPEN. Easy Zone 2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Wed · PM Lower Body &mdash; Light",s:"~40 min",detail:"<p>WEEK 15 &mdash; SHARPEN (RPE 6&ndash;7, legs must arrive fresh)</p><p>Squat 2 x 8 moderate • Box step-ups 2 x 10/leg • Eccentric box step-downs 2 x 8/leg • RDL 2 x 10 • calf raise 3 x 15 • core</p>"},
-     {k:"rec",pill:"Yoga",t:"Thu &middot; Yoga &amp; Breathwork",s:"~45 min",detail:"<p>WEEK 15 &mdash; THURSDAY RESET. 30&ndash;35 min runner&rsquo;s yoga + 10 min breathwork. Deload week &mdash; extra gentle, yin pace.</p><ul><li>Flow &mdash; long holds, no forcing: downward dog with calf pedals &middot; low lunge &amp; half splits (hamstrings) &middot; pigeon (glutes) &middot; couch stretch (hip flexors) &middot; thoracic twists &middot; finish legs-up-the-wall</li><li>Breathwork: 5 min exhale-focused cyclic sighing (double inhale through the nose, long slow sigh out) &mdash; the best-tested protocol for mood and downregulation (Balban 2023) &mdash; then ~6 breaths/min slow nasal breathing for 5 min</li></ul><p>This is recovery, not another workout &mdash; leave looser and calmer than you arrived.</p>"},
-     {k:"run",pill:"Run",t:"Fri · AM Run &mdash; Easy 6.5 km (4 mi)",s:"6.5 km · ~38 min",detail:"<p>WEEK 15 &mdash; SHARPEN. Short and very easy.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"rec",pill:"Mobility",t:"Fri · PM Mobility &mdash; 30 min",s:"~30 min",detail:"<p>WEEK 15 &mdash; Hips, calves, feet.</p>"},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 12 km (7.5 mi) in full kit",s:"12 km · ~70 min",detail:"<p>WEEK 15 &mdash; SHARPEN. Easy, wearing the exact vest + shoes + socks you'll use on 1 Nov. Final kit shake-down.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Run",t:"Sun · Easy Run &mdash; 8 km (5 mi)",s:"8 km · ~48 min",detail:"<p>WEEK 15 &mdash; SHARPEN. Gentle Sunday run. One week to the rehearsal.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."}],
-  B:[{k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Maintenance",s:"~45 min",detail:"<p>WEEK 15 &mdash; SHARPEN (RPE 7, nothing to failure)</p><p>Bench 3 x 8 • shoulder press 3 x 10 • lateral raise 2 x 15 • band pushdown 2 x 12</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 15 &mdash; SHARPEN. Easy Zone 2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Run",t:"Wed · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 15 &mdash; SHARPEN. Easy Zone 2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 12 km (7.5 mi) in full kit",s:"12 km · ~70 min",detail:"<p>WEEK 15 &mdash; SHARPEN. Easy, wearing the exact vest + shoes + socks you'll use on 1 Nov. Final kit shake-down.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."}],
-  C:[{k:"rec",pill:"Rest",t:"Walk / run-walk",s:"15-20 min · 1-2 times",detail:"<p>A gentle walk or run-walk, only as energy allows. Movement is medicine, not a target.</p>"},
-     {k:"rec",pill:"Rest",t:"Downregulate",s:"Daily · 10 min",detail:"<p>10 min of something downregulating &mdash; breathwork, yoga nidra, or legs-up-the-wall. Protect your nervous system first; there are no targets this week.</p>"}]
- },
- {ph:"Peak",focus:"Rehearsal week · the 45",dates:"Week 16 · 26 Oct-1 Nov",start:new Date(2026,9,26),wknote:"Nothing this week makes you fitter, but too much makes you tired. Sunday: the 45 km Attunga loop.",
-  A:[{k:"rec",pill:"Mobility",t:"Mon · AM Mobility &amp; Reset",s:"~30 min",detail:"<p>WEEK 16 &mdash; REHEARSAL WEEK. Everything this week serves Sunday's 45 km. Gentle mobility + walk.</p>"},
-     {k:"str",pill:"Strength",t:"Mon · PM Full-Body &mdash; Light",s:"~35 min",detail:"<p>WEEK 16 &mdash; REHEARSAL WEEK (RPE 6, last strength before the 45)</p><p>Bench 2 x 8 light • band row 2 x 10 • core 2 x 45 sec plank</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 6.5 km (4 mi)",s:"6.5 km · ~38 min",detail:"<p>WEEK 16 &mdash; REHEARSAL WEEK. Very easy.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"rec",pill:"Mobility",t:"Tue · PM Mobility &mdash; 30 min",s:"~30 min",detail:"<p>WEEK 16 &mdash; Hips, calves, feet.</p>"},
-     {k:"run",pill:"Run",t:"Wed · AM Run &mdash; Easy 6.5 km (4 mi)",s:"6.5 km · ~38 min",detail:"<p>WEEK 16 &mdash; REHEARSAL WEEK. Very easy.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"rec",pill:"Yoga",t:"Thu &middot; Yoga &amp; Breathwork",s:"~45 min",detail:"<p>WEEK 16 &mdash; THURSDAY RESET. 30&ndash;35 min runner&rsquo;s yoga + 10 min breathwork. Rehearsal week &mdash; extra gentle. Optional: 4 x 20 sec relaxed strides on the grass afterwards if the legs feel flat.</p><ul><li>Flow &mdash; long holds, no forcing: downward dog with calf pedals &middot; low lunge &amp; half splits (hamstrings) &middot; pigeon (glutes) &middot; couch stretch (hip flexors) &middot; thoracic twists &middot; finish legs-up-the-wall</li><li>Breathwork: 5 min exhale-focused cyclic sighing (double inhale through the nose, long slow sigh out) &mdash; the best-tested protocol for mood and downregulation (Balban 2023) &mdash; then ~6 breaths/min slow nasal breathing for 5 min</li></ul><p>This is recovery, not another workout &mdash; leave looser and calmer than you arrived.</p>"},
-     {k:"rec",pill:"Rest",t:"Fri · Rest &mdash; Carb Load Begins",s:"rest day",detail:"<p>WEEK 16 &mdash; Full rest. Extra carbs at each meal today and tomorrow, hydrate well.</p>"},
-     {k:"rec",pill:"Rest",t:"Sat · Rest &mdash; Gear &amp; Crew Prep",s:"rest day",detail:"<p>WEEK 16 &mdash; Full rest. Lay out the full expedition kit, plan aid/meeting points, brief the crew, early night. Tomorrow is the dress rehearsal.</p>"},
-     {k:"race",pill:"The 45",t:"Sun · 45 KM PRACTICE RUN &mdash; Attunga Loop",s:"45 km · ~285 min",detail:"<p>THE 45 &mdash; Sunday 1 Nov. Treat it exactly like an expedition stage:</p><ul><li>Dawn start, expedition kit head to toe</li><li>Run/walk from km 1 (e.g. 9 min run / 1 min walk) &mdash; walk every hill from the first</li><li>Fuel 200&ndash;300 cal/hr of tested food + electrolytes hourly</li><li>Crew/aid points planned &mdash; rehearse the whole system</li><li>Sunscreen, anti-chafe, hat, spare socks at halfway</li><li>Sort hot spots the moment you feel them</li></ul><p>Afterwards, write down EVERYTHING: what hurt, what worked, what the crew needs to change. A calm call to shorten is wise, never a failure. This is a stepping stone to the 500, not the finish line.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true}],
-  B:[{k:"str",pill:"Strength",t:"Mon · PM Full-Body &mdash; Light",s:"~35 min",detail:"<p>WEEK 16 &mdash; REHEARSAL WEEK (RPE 6, last strength before the 45)</p><p>Bench 2 x 8 light • band row 2 x 10 • core 2 x 45 sec plank</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 6.5 km (4 mi)",s:"6.5 km · ~38 min",detail:"<p>WEEK 16 &mdash; REHEARSAL WEEK. Very easy.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Run",t:"Wed · AM Run &mdash; Easy 6.5 km (4 mi)",s:"6.5 km · ~38 min",detail:"<p>WEEK 16 &mdash; REHEARSAL WEEK. Very easy.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"race",pill:"The 45",t:"Sun · 45 KM PRACTICE RUN &mdash; Attunga Loop",s:"45 km · ~285 min",detail:"<p>THE 45 &mdash; Sunday 1 Nov. Treat it exactly like an expedition stage:</p><ul><li>Dawn start, expedition kit head to toe</li><li>Run/walk from km 1 (e.g. 9 min run / 1 min walk) &mdash; walk every hill from the first</li><li>Fuel 200&ndash;300 cal/hr of tested food + electrolytes hourly</li><li>Crew/aid points planned &mdash; rehearse the whole system</li><li>Sunscreen, anti-chafe, hat, spare socks at halfway</li><li>Sort hot spots the moment you feel them</li></ul><p>Afterwards, write down EVERYTHING: what hurt, what worked, what the crew needs to change. A calm call to shorten is wise, never a failure. This is a stepping stone to the 500, not the finish line.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true}],
-  C:[{k:"rec",pill:"Rest",t:"Walk / run-walk",s:"15-20 min · 1-2 times",detail:"<p>A gentle walk or run-walk, only as energy allows. Movement is medicine, not a target.</p>"},
-     {k:"rec",pill:"Rest",t:"Downregulate",s:"Daily · 10 min",detail:"<p>10 min of something downregulating &mdash; breathwork, yoga nidra, or legs-up-the-wall. Protect your nervous system first; there are no targets this week.</p>"},
-     {k:"race",pill:"The 45",t:"Sun · 45 KM PRACTICE RUN &mdash; Attunga Loop",s:"45 km · ~285 min",detail:"<p>THE 45 &mdash; Sunday 1 Nov. Treat it exactly like an expedition stage:</p><ul><li>Dawn start, expedition kit head to toe</li><li>Run/walk from km 1 (e.g. 9 min run / 1 min walk) &mdash; walk every hill from the first</li><li>Fuel 200&ndash;300 cal/hr of tested food + electrolytes hourly</li><li>Crew/aid points planned &mdash; rehearse the whole system</li><li>Sunscreen, anti-chafe, hat, spare socks at halfway</li><li>Sort hot spots the moment you feel them</li></ul><p>Afterwards, write down EVERYTHING: what hurt, what worked, what the crew needs to change. A calm call to shorten is wise, never a failure. This is a stepping stone to the 500, not the finish line.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true}]
- },
- {ph:"Recover",focus:"Recover & absorb",dates:"Week 17 · 2-8 Nov",start:new Date(2026,10,2),wknote:"The 45 is still landing — let it. Front half: rest. Back half rebuilds gently, so the 500 block doesn't arrive as a load spike.",
-  A:[{k:"rec",pill:"Rest",t:"Mon · Rest Day",s:"rest day",detail:"<p>WEEK 17 &mdash; RECOVERY WEEK. Full rest. The 45 km is still landing &mdash; let it.</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 5 km (3 mi)",s:"5 km · ~29 min",detail:"<p>WEEK 17 &mdash; RECOVERY WEEK. Very easy shuffle, walk breaks welcome.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"rec",pill:"Mobility",t:"Wed · Mobility &mdash; 30 min",s:"~30 min",detail:"<p>WEEK 17 &mdash; RECOVERY WEEK. Gentle full-body mobility + breath.</p>"},
-     {k:"rec",pill:"Yoga",t:"Thu &middot; Yoga &amp; Breathwork",s:"~45 min",detail:"<p>WEEK 17 &mdash; THURSDAY RESET. 30&ndash;35 min runner&rsquo;s yoga + 10 min breathwork.</p><ul><li>Flow &mdash; long holds, no forcing: downward dog with calf pedals &middot; low lunge &amp; half splits (hamstrings) &middot; pigeon (glutes) &middot; couch stretch (hip flexors) &middot; thoracic twists &middot; finish legs-up-the-wall</li><li>Breathwork: 5 min exhale-focused cyclic sighing (double inhale through the nose, long slow sigh out) &mdash; the best-tested protocol for mood and downregulation (Balban 2023) &mdash; then ~6 breaths/min slow nasal breathing for 5 min</li></ul><p>This is recovery, not another workout &mdash; leave looser and calmer than you arrived.</p>"},
-     {k:"run",pill:"Run",t:"Fri · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~67 min",detail:"<p>WEEK 17 &mdash; RECOVERY WEEK. Very easy.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 18 km (11 mi)",s:"18 km · ~150 min",detail:"<p>WEEK 17 &mdash; RECOVERY WEEK. Easy only. Review the 45 km lessons list with the crew this weekend.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"rec",pill:"Rest",t:"Sun · Rest Day",s:"rest day",detail:"<p>WEEK 17 &mdash; Full rest. The 500 block starts Monday: 7 weeks to Attunga.</p>"}],
-  B:[{k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 5 km (3 mi)",s:"5 km · ~29 min",detail:"<p>WEEK 17 &mdash; RECOVERY WEEK. Very easy shuffle, walk breaks welcome.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"rec",pill:"Yoga",t:"Thu &middot; Yoga &amp; Breathwork",s:"~45 min",detail:"<p>WEEK 17 &mdash; THURSDAY RESET. 30&ndash;35 min runner&rsquo;s yoga + 10 min breathwork.</p><ul><li>Flow &mdash; long holds, no forcing: downward dog with calf pedals &middot; low lunge &amp; half splits (hamstrings) &middot; pigeon (glutes) &middot; couch stretch (hip flexors) &middot; thoracic twists &middot; finish legs-up-the-wall</li><li>Breathwork: 5 min exhale-focused cyclic sighing (double inhale through the nose, long slow sigh out) &mdash; the best-tested protocol for mood and downregulation (Balban 2023) &mdash; then ~6 breaths/min slow nasal breathing for 5 min</li></ul><p>This is recovery, not another workout &mdash; leave looser and calmer than you arrived.</p>"},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 12 km (7.5 mi)",s:"12 km · ~70 min",detail:"<p>WEEK 17 &mdash; RECOVERY WEEK. Easy only. Review the 45 km lessons list with the crew this weekend.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."}],
-  C:[{k:"rec",pill:"Rest",t:"Walk / run-walk",s:"15-20 min · 1-2 times",detail:"<p>A gentle walk or run-walk, only as energy allows. Movement is medicine, not a target.</p>"},
-     {k:"rec",pill:"Rest",t:"Downregulate",s:"Daily · 10 min",detail:"<p>10 min of something downregulating &mdash; breathwork, yoga nidra, or legs-up-the-wall. Protect your nervous system first; there are no targets this week.</p>"}]
- },
- {ph:"The415",focus:"The 500 block begins",dates:"Week 18 · 9-15 Nov",start:new Date(2026,10,9),wknote:"Seven weeks to Attunga. Back-to-back weekends return and grow from here — and Monday is now a full rest day, every week of this block.",
-  A:[{k:"rec",pill:"Rest",t:"Mon · Rest Day",s:"rest day",detail:"<p>WEEK 18 &mdash; Full passive rest. The overtraining-prevention consensus (ECSS/ACSM) calls for at least one passive rest day every week &mdash; in the biggest block, Monday is it. A gentle walk is fine; nothing loaded.</p>"},
-          {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 10.5 km (6.5 mi)",s:"10.5 km · ~87 min",detail:"<p>WEEK 18 &mdash; THE 500 BLOCK. Easy Zone 2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Tue · PM Push &mdash; Maintenance",s:"~45 min",detail:"<p>WEEK 18 &mdash; THE 500 BLOCK (RPE 7)</p><p>Bench 3 x 8 • shoulder press 3 x 10 • lateral raise 2 x 15 • band pushdown 2 x 12</p>"},
-     {k:"run",pill:"Run",t:"Wed · AM Run &mdash; Easy 10.5 km (6.5 mi)",s:"10.5 km · ~87 min",detail:"<p>WEEK 18 &mdash; THE 500 BLOCK. Easy Zone 2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Wed · PM Lower Body &mdash; Maintenance",s:"~40 min",detail:"<p>WEEK 18 (RPE 7 &mdash; legs stay fresh for the weekend)</p><p>Squat 3 x 8 • Box step-ups 3 x 10/leg • Eccentric box step-downs 3 x 8/leg • RDL 2 x 10 • calf raise 3 x 15 • core</p>"},
-     {k:"rec",pill:"Yoga",t:"Thu &middot; Yoga &amp; Breathwork",s:"~45 min",detail:"<p>WEEK 18 &mdash; THURSDAY RESET. 30&ndash;35 min runner&rsquo;s yoga + 10 min breathwork.</p><ul><li>Flow &mdash; long holds, no forcing: downward dog with calf pedals &middot; low lunge &amp; half splits (hamstrings) &middot; pigeon (glutes) &middot; couch stretch (hip flexors) &middot; thoracic twists &middot; finish legs-up-the-wall</li><li>Breathwork: 5 min exhale-focused cyclic sighing (double inhale through the nose, long slow sigh out) &mdash; the best-tested protocol for mood and downregulation (Balban 2023) &mdash; then ~6 breaths/min slow nasal breathing for 5 min</li></ul><p>This is recovery, not another workout &mdash; leave looser and calmer than you arrived.</p>"},
-     {k:"run",pill:"Run",t:"Fri · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~67 min",detail:"<p>WEEK 18 &mdash; Short and very easy.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"rec",pill:"Mobility",t:"Fri · PM Mobility &mdash; Weekend Prep",s:"~30 min",detail:"<p>WEEK 18 &mdash; Hips, calves, feet. Kit and fuel ready tonight.</p>"},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 24 km (15 mi)",s:"24 km · ~138 min",detail:"<p>WEEK 18 &mdash; BACK-TO-BACK DAY 1. Run/walk rhythm, full kit, 60 g carbs/hr. Apply every lesson from the 45.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true},
-     {k:"run",pill:"B2B",t:"Sun · Back-to-Back Run &mdash; 14 km (8.7 mi)",s:"14 km · ~84 min",detail:"<p>WEEK 18 &mdash; BACK-TO-BACK DAY 2. Very easy on tired legs. This is expedition rehearsal.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true}],
-  B:[{k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Maintenance",s:"~45 min",detail:"<p>WEEK 18 &mdash; THE 500 BLOCK (RPE 7)</p><p>Bench 3 x 8 • shoulder press 3 x 10 • lateral raise 2 x 15 • band pushdown 2 x 12</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 18 &mdash; THE 500 BLOCK. Easy Zone 2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Run",t:"Wed · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 18 &mdash; THE 500 BLOCK. Easy Zone 2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 24 km (15 mi)",s:"24 km · ~138 min",detail:"<p>WEEK 18 &mdash; BACK-TO-BACK DAY 1. Run/walk rhythm, full kit, 60 g carbs/hr. Apply every lesson from the 45.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true},
-     {k:"run",pill:"B2B",t:"Sun · Back-to-Back Run &mdash; 14 km (8.7 mi)",s:"14 km · ~84 min",detail:"<p>WEEK 18 &mdash; BACK-TO-BACK DAY 2. Very easy on tired legs. This is expedition rehearsal.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true}],
-  C:[{k:"rec",pill:"Rest",t:"Walk / run-walk",s:"15-20 min · 1-2 times",detail:"<p>A gentle walk or run-walk, only as energy allows. Movement is medicine, not a target.</p>"},
-     {k:"rec",pill:"Rest",t:"Downregulate",s:"Daily · 10 min",detail:"<p>10 min of something downregulating &mdash; breathwork, yoga nidra, or legs-up-the-wall. Protect your nervous system first; there are no targets this week.</p>"}]
- },
- {ph:"The415",focus:"Peak I · 52 km weekend",dates:"Week 19 · 16-22 Nov",start:new Date(2026,10,16),wknote:"32 km + 20 km. Midweek stays short on purpose — the weekend is the work. Heat is arriving: dawn starts, sun protection, extra electrolytes.",
-  A:[{k:"rec",pill:"Rest",t:"Mon · Rest Day",s:"rest day",detail:"<p>WEEK 19 &mdash; Full passive rest. The overtraining-prevention consensus (ECSS/ACSM) calls for at least one passive rest day every week &mdash; in the biggest block, Monday is it. A gentle walk is fine; nothing loaded.</p>"},
-          {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 19 &mdash; PEAK I. Easy Zone 2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Tue · PM Push &mdash; Maintenance",s:"~45 min",detail:"<p>WEEK 19 (RPE 7)</p><p>Bench 3 x 8 • shoulder press 3 x 10 • lateral raise 2 x 15 • band pushdown 2 x 12</p>"},
-     {k:"run",pill:"Run",t:"Wed · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 19 &mdash; PEAK I. Easy Zone 2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Wed · PM Lower Body &mdash; Maintenance",s:"~40 min",detail:"<p>WEEK 19 (RPE 7)</p><p>Squat 3 x 8 • Box step-ups 3 x 10/leg • Eccentric box step-downs 3 x 8/leg • RDL 2 x 10 • calf raise 3 x 15 • core</p>"},
-     {k:"rec",pill:"Yoga",t:"Thu &middot; Yoga &amp; Breathwork",s:"~45 min",detail:"<p>WEEK 19 &mdash; THURSDAY RESET. 30&ndash;35 min runner&rsquo;s yoga + 10 min breathwork.</p><ul><li>Flow &mdash; long holds, no forcing: downward dog with calf pedals &middot; low lunge &amp; half splits (hamstrings) &middot; pigeon (glutes) &middot; couch stretch (hip flexors) &middot; thoracic twists &middot; finish legs-up-the-wall</li><li>Breathwork: 5 min exhale-focused cyclic sighing (double inhale through the nose, long slow sigh out) &mdash; the best-tested protocol for mood and downregulation (Balban 2023) &mdash; then ~6 breaths/min slow nasal breathing for 5 min</li></ul><p>This is recovery, not another workout &mdash; leave looser and calmer than you arrived.</p>"},
-     {k:"run",pill:"Run",t:"Fri · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~67 min",detail:"<p>WEEK 19 &mdash; Short and very easy.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"rec",pill:"Mobility",t:"Fri · PM Mobility &mdash; Weekend Prep",s:"~30 min",detail:"<p>WEEK 19 &mdash; Hips, calves, feet. Kit and fuel ready tonight.</p>"},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 32 km (20 mi)",s:"32 km · ~184 min",detail:"<p>WEEK 19 &mdash; BACK-TO-BACK DAY 1. 3 hrs on feet. Run/walk from km 1. Heat is arriving &mdash; dawn start, sun protection, extra electrolytes. Practise eating real food from the crew.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true},
-     {k:"run",pill:"B2B",t:"Sun · Back-to-Back Run &mdash; 20 km (12.5 mi)",s:"20 km · ~119 min",detail:"<p>WEEK 19 &mdash; BACK-TO-BACK DAY 2. 52 km weekend. Very easy on tired legs.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true}],
-  B:[{k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Maintenance",s:"~45 min",detail:"<p>WEEK 19 (RPE 7)</p><p>Bench 3 x 8 • shoulder press 3 x 10 • lateral raise 2 x 15 • band pushdown 2 x 12</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 19 &mdash; PEAK I. Easy Zone 2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Run",t:"Wed · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 19 &mdash; PEAK I. Easy Zone 2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 32 km (20 mi)",s:"32 km · ~184 min",detail:"<p>WEEK 19 &mdash; BACK-TO-BACK DAY 1. 3 hrs on feet. Run/walk from km 1. Heat is arriving &mdash; dawn start, sun protection, extra electrolytes. Practise eating real food from the crew.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true},
-     {k:"run",pill:"B2B",t:"Sun · Back-to-Back Run &mdash; 20 km (12.5 mi)",s:"20 km · ~119 min",detail:"<p>WEEK 19 &mdash; BACK-TO-BACK DAY 2. 52 km weekend. Very easy on tired legs.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true}],
-  C:[{k:"rec",pill:"Rest",t:"Walk / run-walk",s:"15-20 min · 1-2 times",detail:"<p>A gentle walk or run-walk, only as energy allows. Movement is medicine, not a target.</p>"},
-     {k:"rec",pill:"Rest",t:"Downregulate",s:"Daily · 10 min",detail:"<p>10 min of something downregulating &mdash; breathwork, yoga nidra, or legs-up-the-wall. Protect your nervous system first; there are no targets this week.</p>"}]
- },
- {ph:"The415",focus:"Peak II · 60 km weekend",dates:"Week 20 · 23-29 Nov",start:new Date(2026,10,23),wknote:"The biggest week of the whole plan. After this weekend, nothing in December will be unfamiliar.",
-  A:[{k:"rec",pill:"Rest",t:"Mon · Rest Day",s:"rest day",detail:"<p>WEEK 20 &mdash; Full passive rest. The overtraining-prevention consensus (ECSS/ACSM) calls for at least one passive rest day every week &mdash; in the biggest block, Monday is it. A gentle walk is fine; nothing loaded.</p>"},
-          {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 20 &mdash; PEAK II. Easy Zone 2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Tue · PM Push &mdash; Maintenance",s:"~45 min",detail:"<p>WEEK 20 (RPE 7)</p><p>Bench 3 x 8 • shoulder press 3 x 10 • lateral raise 2 x 15 • band pushdown 2 x 12</p>"},
-     {k:"run",pill:"Run",t:"Wed · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 20 &mdash; PEAK II. Easy Zone 2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Wed · PM Lower Body &mdash; Maintenance",s:"~40 min",detail:"<p>WEEK 20 (RPE 7)</p><p>Squat 3 x 8 • Box step-ups 3 x 10/leg • Eccentric box step-downs 3 x 8/leg • RDL 2 x 10 • calf raise 3 x 15 • core</p>"},
-     {k:"rec",pill:"Yoga",t:"Thu &middot; Yoga &amp; Breathwork",s:"~45 min",detail:"<p>WEEK 20 &mdash; THURSDAY RESET. 30&ndash;35 min runner&rsquo;s yoga + 10 min breathwork.</p><ul><li>Flow &mdash; long holds, no forcing: downward dog with calf pedals &middot; low lunge &amp; half splits (hamstrings) &middot; pigeon (glutes) &middot; couch stretch (hip flexors) &middot; thoracic twists &middot; finish legs-up-the-wall</li><li>Breathwork: 5 min exhale-focused cyclic sighing (double inhale through the nose, long slow sigh out) &mdash; the best-tested protocol for mood and downregulation (Balban 2023) &mdash; then ~6 breaths/min slow nasal breathing for 5 min</li></ul><p>This is recovery, not another workout &mdash; leave looser and calmer than you arrived.</p>"},
-     {k:"run",pill:"Run",t:"Fri · AM Run &mdash; Easy 6.5 km (4 mi)",s:"6.5 km · ~38 min",detail:"<p>WEEK 20 &mdash; Short and very easy.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"rec",pill:"Mobility",t:"Fri · PM Mobility &mdash; Weekend Prep",s:"~30 min",detail:"<p>WEEK 20 &mdash; Biggest training weekend of the whole plan tomorrow: 60 km over two days. Everything ready tonight.</p>"},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 36 km (22.4 mi)",s:"36 km · ~207 min",detail:"<p>WEEK 20 &mdash; BACK-TO-BACK DAY 1. Longest training run of the plan. Run/walk, fuel 60&ndash;90 g carbs/hr, crew support if possible. Four weeks out &mdash; after this weekend, nothing in December will be unfamiliar.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true},
-     {k:"run",pill:"B2B",t:"Sun · Back-to-Back Run &mdash; 24 km (15 mi)",s:"24 km · ~143 min",detail:"<p>WEEK 20 &mdash; BACK-TO-BACK DAY 2. 60 km weekend &mdash; a full expedition stage plus. Taper starts Monday.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true}],
-  B:[{k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Maintenance",s:"~45 min",detail:"<p>WEEK 20 (RPE 7)</p><p>Bench 3 x 8 • shoulder press 3 x 10 • lateral raise 2 x 15 • band pushdown 2 x 12</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 20 &mdash; PEAK II. Easy Zone 2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Run",t:"Wed · AM Run &mdash; Easy 9 km (5.5 mi)",s:"8.9 km · ~51 min",detail:"<p>WEEK 20 &mdash; PEAK II. Easy Zone 2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 36 km (22.4 mi)",s:"36 km · ~207 min",detail:"<p>WEEK 20 &mdash; BACK-TO-BACK DAY 1. Longest training run of the plan. Run/walk, fuel 60&ndash;90 g carbs/hr, crew support if possible. Four weeks out &mdash; after this weekend, nothing in December will be unfamiliar.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true},
-     {k:"run",pill:"B2B",t:"Sun · Back-to-Back Run &mdash; 24 km (15 mi)",s:"24 km · ~143 min",detail:"<p>WEEK 20 &mdash; BACK-TO-BACK DAY 2. 60 km weekend &mdash; a full expedition stage plus. Taper starts Monday.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true}],
-  C:[{k:"rec",pill:"Rest",t:"Walk / run-walk",s:"15-20 min · 1-2 times",detail:"<p>A gentle walk or run-walk, only as energy allows. Movement is medicine, not a target.</p>"},
-     {k:"rec",pill:"Rest",t:"Downregulate",s:"Daily · 10 min",detail:"<p>10 min of something downregulating &mdash; breathwork, yoga nidra, or legs-up-the-wall. Protect your nervous system first; there are no targets this week.</p>"}]
- },
- {ph:"Taper",focus:"Taper 1 · last big weekend",dates:"Week 21 · 30 Nov-6 Dec",start:new Date(2026,10,30),wknote:"Volume starts down. 26 km + 14 km — everything on autopilot now.",
-  A:[{k:"rec",pill:"Rest",t:"Mon · Rest Day",s:"rest day",detail:"<p>WEEK 21 &mdash; Full passive rest. The overtraining-prevention consensus (ECSS/ACSM) calls for at least one passive rest day every week &mdash; in the biggest block, Monday is it. A gentle walk is fine; nothing loaded.</p>"},
-          {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 21 &mdash; TAPER 1. Easy Zone 2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Tue · PM Push &mdash; Light",s:"~40 min",detail:"<p>WEEK 21 &mdash; TAPER 1 (RPE 6&ndash;7, keep the pattern, drop the grind)</p><p>Bench 3 x 8 light-moderate • shoulder press 2 x 10 • lateral raise 2 x 15 • band pushdown 2 x 12</p>"},
-     {k:"run",pill:"Run",t:"Wed · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 21 &mdash; TAPER 1. Easy Zone 2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Wed · PM Lower Body &mdash; Light",s:"~40 min",detail:"<p>WEEK 21 &mdash; TAPER 1 (RPE 6&ndash;7)</p><p>Squat 2 x 8 moderate • Box step-ups 2 x 10/leg • Eccentric box step-downs 2 x 8/leg • RDL 2 x 10 • calf raise 3 x 15 • core</p>"},
-     {k:"rec",pill:"Yoga",t:"Thu &middot; Yoga &amp; Breathwork",s:"~45 min",detail:"<p>WEEK 21 &mdash; THURSDAY RESET. 30&ndash;35 min runner&rsquo;s yoga + 10 min breathwork.</p><ul><li>Flow &mdash; long holds, no forcing: downward dog with calf pedals &middot; low lunge &amp; half splits (hamstrings) &middot; pigeon (glutes) &middot; couch stretch (hip flexors) &middot; thoracic twists &middot; finish legs-up-the-wall</li><li>Breathwork: 5 min exhale-focused cyclic sighing (double inhale through the nose, long slow sigh out) &mdash; the best-tested protocol for mood and downregulation (Balban 2023) &mdash; then ~6 breaths/min slow nasal breathing for 5 min</li></ul><p>This is recovery, not another workout &mdash; leave looser and calmer than you arrived.</p>"},
-     {k:"run",pill:"Run",t:"Fri · AM Run &mdash; Easy 6.5 km (4 mi)",s:"6.5 km · ~38 min",detail:"<p>WEEK 21 &mdash; TAPER 1. Short and easy.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 26 km (16 mi)",s:"26 km · ~150 min",detail:"<p>WEEK 21 &mdash; TAPER 1. Last big long run. Run/walk rhythm, full kit &mdash; everything on autopilot now.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true},
-     {k:"run",pill:"B2B",t:"Sun · Back-to-Back Run &mdash; 14 km (8.7 mi)",s:"14 km · ~84 min",detail:"<p>WEEK 21 &mdash; TAPER 1. Last real back-to-back before the expedition. Easy.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true}],
-  B:[{k:"run",pill:"Run",t:"Mon · AM Run &mdash; Easy 6.5 km (4 mi)",s:"6.5 km · ~38 min",detail:"<p>WEEK 21 &mdash; TAPER 1. Easy, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Mon · PM Push &mdash; Light",s:"~40 min",detail:"<p>WEEK 21 &mdash; TAPER 1 (RPE 6&ndash;7, keep the pattern, drop the grind)</p><p>Bench 3 x 8 light-moderate • shoulder press 2 x 10 • lateral raise 2 x 15 • band pushdown 2 x 12</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 21 &mdash; TAPER 1. Easy Zone 2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 26 km (16 mi)",s:"26 km · ~150 min",detail:"<p>WEEK 21 &mdash; TAPER 1. Last big long run. Run/walk rhythm, full kit &mdash; everything on autopilot now.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true},
-     {k:"run",pill:"B2B",t:"Sun · Back-to-Back Run &mdash; 14 km (8.7 mi)",s:"14 km · ~84 min",detail:"<p>WEEK 21 &mdash; TAPER 1. Last real back-to-back before the expedition. Easy.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true}],
-  C:[{k:"rec",pill:"Rest",t:"Walk / run-walk",s:"15-20 min · 1-2 times",detail:"<p>A gentle walk or run-walk, only as energy allows. Movement is medicine, not a target.</p>"},
-     {k:"rec",pill:"Rest",t:"Downregulate",s:"Daily · 10 min",detail:"<p>10 min of something downregulating &mdash; breathwork, yoga nidra, or legs-up-the-wall. Protect your nervous system first; there are no targets this week.</p>"}]
- },
- {ph:"Taper",focus:"Taper 2",dates:"Week 22 · 7-13 Dec",start:new Date(2026,11,7),wknote:"Fresh beats fit from here. Strength goes maintenance-only.",
-  A:[{k:"run",pill:"Run",t:"Mon · AM Run &mdash; Easy 6.5 km (4 mi)",s:"6.5 km · ~38 min",detail:"<p>WEEK 22 &mdash; TAPER 2. Easy, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Mon · PM Full-Body &mdash; Light",s:"~40 min",detail:"<p>WEEK 22 &mdash; TAPER 2 (RPE 6)</p><p>Bench 2 x 8 • squat 2 x 8 light • band row 2 x 10 • core. Strength is maintenance-only from here.</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 22 &mdash; TAPER 2. Easy Zone 2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Run",t:"Wed · AM Run &mdash; Easy 6.5 km (4 mi)",s:"6.5 km · ~38 min",detail:"<p>WEEK 22 &mdash; TAPER 2. Easy.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"rec",pill:"Mobility",t:"Wed · PM Mobility &mdash; 30 min",s:"~30 min",detail:"<p>WEEK 22 &mdash; Hips, calves, feet. Start finalising expedition logistics with the crew.</p>"},
-     {k:"rec",pill:"Yoga",t:"Thu &middot; Yoga &amp; Breathwork",s:"~45 min",detail:"<p>WEEK 22 &mdash; THURSDAY RESET. 30&ndash;35 min runner&rsquo;s yoga + 10 min breathwork. Deload week &mdash; extra gentle, yin pace.</p><ul><li>Flow &mdash; long holds, no forcing: downward dog with calf pedals &middot; low lunge &amp; half splits (hamstrings) &middot; pigeon (glutes) &middot; couch stretch (hip flexors) &middot; thoracic twists &middot; finish legs-up-the-wall</li><li>Breathwork: 5 min exhale-focused cyclic sighing (double inhale through the nose, long slow sigh out) &mdash; the best-tested protocol for mood and downregulation (Balban 2023) &mdash; then ~6 breaths/min slow nasal breathing for 5 min</li></ul><p>This is recovery, not another workout &mdash; leave looser and calmer than you arrived.</p>"},
-     {k:"rec",pill:"Rest",t:"Fri · Rest Day",s:"rest day",detail:"<p>WEEK 22 &mdash; Full rest.</p>"},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 18 km (11 mi)",s:"18 km · ~104 min",detail:"<p>WEEK 22 &mdash; TAPER 2. Easy, full kit, no heroics.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true},
-     {k:"run",pill:"B2B",t:"Sun · Back-to-Back Run &mdash; 10 km (6 mi)",s:"10 km · ~60 min",detail:"<p>WEEK 22 &mdash; TAPER 2. Short and easy.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."}],
-  B:[{k:"run",pill:"Run",t:"Mon · AM Run &mdash; Easy 6.5 km (4 mi)",s:"6.5 km · ~38 min",detail:"<p>WEEK 22 &mdash; TAPER 2. Easy, conversational.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Mon · PM Full-Body &mdash; Light",s:"~40 min",detail:"<p>WEEK 22 &mdash; TAPER 2 (RPE 6)</p><p>Bench 2 x 8 • squat 2 x 8 light • band row 2 x 10 • core. Strength is maintenance-only from here.</p>"},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 8 km (5 mi)",s:"8 km · ~46 min",detail:"<p>WEEK 22 &mdash; TAPER 2. Easy Zone 2.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 18 km (11 mi)",s:"18 km · ~104 min",detail:"<p>WEEK 22 &mdash; TAPER 2. Easy, full kit, no heroics.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true},
-     {k:"run",pill:"B2B",t:"Sun · Back-to-Back Run &mdash; 10 km (6 mi)",s:"10 km · ~60 min",detail:"<p>WEEK 22 &mdash; TAPER 2. Short and easy.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."}],
-  C:[{k:"rec",pill:"Rest",t:"Walk / run-walk",s:"15-20 min · 1-2 times",detail:"<p>A gentle walk or run-walk, only as energy allows. Movement is medicine, not a target.</p>"},
-     {k:"rec",pill:"Rest",t:"Downregulate",s:"Daily · 10 min",detail:"<p>10 min of something downregulating &mdash; breathwork, yoga nidra, or legs-up-the-wall. Protect your nervous system first; there are no targets this week.</p>"}]
- },
- {ph:"Taper",focus:"Taper 3 · getting springy",dates:"Week 23 · 14-20 Dec",start:new Date(2026,11,14),wknote:"Legs should be starting to feel springy. Confirm crew, accommodation, support vehicle.",
-  A:[{k:"run",pill:"Run",t:"Mon · AM Run &mdash; Easy 6.5 km (4 mi)",s:"6.5 km · ~38 min",detail:"<p>WEEK 23 &mdash; TAPER 3. Easy + 4 x 20 sec strides. Legs should be starting to feel springy.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 5 km (3 mi)",s:"5 km · ~29 min",detail:"<p>WEEK 23 &mdash; TAPER 3. Very easy.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"rec",pill:"Mobility",t:"Tue · PM Mobility &mdash; 30 min",s:"~30 min",detail:"<p>WEEK 23 &mdash; Gentle full-body. Confirm crew roster, accommodation and support vehicle this week.</p>"},
-     {k:"rec",pill:"Rest",t:"Wed · Rest Day",s:"rest day",detail:"<p>WEEK 23 &mdash; Full rest.</p>"},
-     {k:"rec",pill:"Yoga",t:"Thu &middot; Yoga &amp; Breathwork",s:"~45 min",detail:"<p>WEEK 23 &mdash; THURSDAY RESET. 30&ndash;35 min runner&rsquo;s yoga + 10 min breathwork. Deep taper &mdash; extra gentle.</p><ul><li>Flow &mdash; long holds, no forcing: downward dog with calf pedals &middot; low lunge &amp; half splits (hamstrings) &middot; pigeon (glutes) &middot; couch stretch (hip flexors) &middot; thoracic twists &middot; finish legs-up-the-wall</li><li>Breathwork: 5 min exhale-focused cyclic sighing (double inhale through the nose, long slow sigh out) &mdash; the best-tested protocol for mood and downregulation (Balban 2023) &mdash; then ~6 breaths/min slow nasal breathing for 5 min</li></ul><p>This is recovery, not another workout &mdash; leave looser and calmer than you arrived.</p>"},
-     {k:"str",pill:"Strength",t:"Fri · Full-Body &mdash; Very Light",s:"~30 min",detail:"<p>WEEK 23 &mdash; TAPER 3 (RPE 5&ndash;6, last gym session before the run)</p><p>Goblet squat 2 x 10 • push-ups 2 x 12 • band row 2 x 15 • core. Just keeping the body switched on.</p>"},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 13 km (8 mi)",s:"13 km · ~75 min",detail:"<p>WEEK 23 &mdash; TAPER 3. Final long run &mdash; minimum distance, maximum ease. Visualise Stage 1 while you run.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true},
-     {k:"rec",pill:"Rest",t:"Sun · Rest Day",s:"rest day",detail:"<p>WEEK 23 &mdash; Full rest. Race week begins tomorrow.</p>"}],
-  B:[{k:"run",pill:"Run",t:"Mon · AM Run &mdash; Easy 6.5 km (4 mi)",s:"6.5 km · ~38 min",detail:"<p>WEEK 23 &mdash; TAPER 3. Easy + 4 x 20 sec strides. Legs should be starting to feel springy.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Run",t:"Tue · AM Run &mdash; Easy 5 km (3 mi)",s:"5 km · ~29 min",detail:"<p>WEEK 23 &mdash; TAPER 3. Very easy.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"str",pill:"Strength",t:"Fri · Full-Body &mdash; Very Light",s:"~30 min",detail:"<p>WEEK 23 &mdash; TAPER 3 (RPE 5&ndash;6, last gym session before the run)</p><p>Goblet squat 2 x 10 • push-ups 2 x 12 • band row 2 x 15 • core. Just keeping the body switched on.</p>"},
-     {k:"run",pill:"Long",t:"Sat · Long Run &mdash; 13 km (8 mi)",s:"13 km · ~75 min",detail:"<p>WEEK 23 &mdash; TAPER 3. Final long run &mdash; minimum distance, maximum ease. Visualise Stage 1 while you run.</p>",fuel:"Over ~90 min: sip water regularly and eat every 20-30 min, building toward 60-90 g carbs (~200-300 cal) per hour, plus electrolytes. This rehearses the fuelling you'll live on across the 500.",long:true}],
-  C:[{k:"rec",pill:"Rest",t:"Walk / run-walk",s:"15-20 min · 1-2 times",detail:"<p>A gentle walk or run-walk, only as energy allows. Movement is medicine, not a target.</p>"},
-     {k:"rec",pill:"Rest",t:"Downregulate",s:"Daily · 10 min",detail:"<p>10 min of something downregulating &mdash; breathwork, yoga nidra, or legs-up-the-wall. Protect your nervous system first; there are no targets this week.</p>"}]
- },
- {ph:"Taper",focus:"Race week · Attunga awaits",dates:"Week 24 · 21-27 Dec",start:new Date(2026,11,21),wknote:"Nothing this week makes you fitter — arrive fresh. Stage 1 begins &mdash; Attunga to Sydney.",
-  A:[{k:"run",pill:"Run",t:"Mon · AM Run &mdash; Easy 6 km + Strides",s:"6 km · ~35 min",detail:"<p>RACE WEEK. Very easy + 4 x 20 sec strides. Pack the support vehicle this week, one system per day &mdash; nothing left to the night before.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"rec",pill:"Mobility",t:"Tue · Mobility + Breath &mdash; 30 min",s:"~30 min",detail:"<p>RACE WEEK. Gentle mobility, slow breath. Hydrate well all week; extra carbs at each meal from Wednesday.</p>"},
-     {k:"run",pill:"Run",t:"Wed · AM Run &mdash; Easy 5 km (3 mi)",s:"5 km · ~29 min",detail:"<p>RACE WEEK. Very easy, just keeping the legs ticking over.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"rec",pill:"Rest",t:"Thu · Rest &mdash; Pack &amp; Brief",s:"rest day",detail:"<p>RACE WEEK. Full rest. Final crew briefing, kit check, phone/GPS/battery charging, early night.</p>"},
-     {k:"run",pill:"Run",t:"Tue 22 Dec · Shakeout &mdash; 3 km + Gear Check",s:"3 km · ~18 min",detail:"<p>RACE WEEK. Final shakeout the day before (Tue 22 Dec) &mdash; 3 km very easy in tomorrow's full kit. Family, food, feet up, early night. Tomorrow: Attunga → Tamworth, Stage 1 of 13. Turn kilometres into care.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"race",pill:"Stage 1",t:"Wed 23 Dec · Stage 1 — Attunga &rarr; Tamworth",s:"~20 km · the 500 begins",detail:"<p>The gentle launch stage &mdash; ~20 km from Attunga into Tamworth. Dawn start, run/walk from kilometre one, crew in position. Thirteen days, Attunga to Sydney, finishing at the SCG on 4 January.</p><p>Every kilometre is a way of saying <b>I love you</b>. Turn kilometres into care.</p>"}],
-  B:[{k:"run",pill:"Run",t:"Mon · AM Run &mdash; Easy 6 km + Strides",s:"6 km · ~35 min",detail:"<p>RACE WEEK. Very easy + 4 x 20 sec strides. Pack the support vehicle this week, one system per day &mdash; nothing left to the night before.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"run",pill:"Run",t:"Wed · AM Run &mdash; Easy 5 km (3 mi)",s:"5 km · ~29 min",detail:"<p>RACE WEEK. Very easy, just keeping the legs ticking over.</p>",fuel:"Under ~90 min, water is enough. Eat normally before and after."},
-     {k:"race",pill:"Stage 1",t:"Wed 23 Dec · Stage 1 — Attunga &rarr; Tamworth",s:"~20 km · the 500 begins",detail:"<p>The gentle launch stage &mdash; ~20 km from Attunga into Tamworth. Dawn start, run/walk from kilometre one, crew in position. Thirteen days, Attunga to Sydney, finishing at the SCG on 4 January.</p><p>Every kilometre is a way of saying <b>I love you</b>. Turn kilometres into care.</p>"}],
-  C:[{k:"rec",pill:"Rest",t:"Walk / run-walk",s:"15-20 min · 1-2 times",detail:"<p>A gentle walk or run-walk, only as energy allows. Movement is medicine, not a target.</p>"},
-     {k:"rec",pill:"Rest",t:"Downregulate",s:"Daily · 10 min",detail:"<p>10 min of something downregulating &mdash; breathwork, yoga nidra, or legs-up-the-wall. Protect your nervous system first; there are no targets this week.</p>"},
-     {k:"race",pill:"Stage 1",t:"Wed 23 Dec · Stage 1 — Attunga &rarr; Tamworth",s:"~20 km · the 500 begins",detail:"<p>The gentle launch stage &mdash; ~20 km from Attunga into Tamworth. Dawn start, run/walk from kilometre one, crew in position. Thirteen days, Attunga to Sydney, finishing at the SCG on 4 January.</p><p>Every kilometre is a way of saying <b>I love you</b>. Turn kilometres into care.</p>"}]
- },
+ {focus:"Settle back in",dates:"Week 1 · 6-9 Aug",start:new Date(2026,7,6),src:"coopah",
+  vol:"Coopah: 15 km · 2h 05 · part week",
+  A:[E("Thu 6","Easy Run: 6 km","~41 min","First run back after a few weeks off - let it be slower than you think."),
+     MO("Fri 7","Mobility: Hips &amp; Back","~20 min"),
+     R("Sat 8"),
+     L("Sun 9","Long Run: 9 km","~1 h 01","Ease into it. There is no hurry in week one.")],
+  B:[E("Thu 6","Easy Run: 5-6 km","~40 min"),L("Sun 9","Long Run: 8 km","~55 min"),MO("Fri 7","Mobility","~15 min")],
+  C:planC()},
+
+ {focus:"Rebuild the frame",dates:"Week 2 · 10-16 Aug",start:new Date(2026,7,10),src:"coopah",
+  vol:"Coopah: 33 km · 4h 35",
+  A:[E("Mon 10","Easy Run: 8 km","~55 min"),
+     SA("Tue 11","Strength: Base 40","~25 min"),
+     E("Wed 12","Easy Run: 40 min","~5.9 km"),
+     R("Thu 13"),
+     SB("Fri 14","Strength: Base 50","~25 min"),
+     E("Sat 15","Easy Run: 8 km","~55 min"),
+     L("Sun 16","Long Run: 11 km","~1 h 15")],
+  B:[E("Mon 10","Easy Run: 6 km","~40 min"),E("Wed 12","Easy Run: 5 km","~35 min"),
+     SA("Fri 14","Strength (one session)","~20 min"),L("Sun 16","Long Run: 10 km","~1 h 10")],
+  C:planC()},
+
+ {focus:"First quality work",dates:"Week 3 · 17-23 Aug",start:new Date(2026,7,17),src:"coopah",
+  vol:"Coopah: 36 km · 4h 30",
+  A:[E("Mon 17","Easy Run: 8 km","~55 min"),
+     SA("Tue 18","Strength: Build Sets","~20 min"),
+     SP("Wed 19","The Albufeira","~49 min · 7.5 km · 1&times;4 min, 2&times;3 min"),
+     R("Thu 20"),
+     MO("Fri 21","Mobility: Lower Body","~20 min"),
+     ST("Sat 22","Steady Run","~40 min · 6.5 km · 5 min easy, then 5 km steady"),
+     L("Sun 23","Long Run","~1 h 24 · 14 km · 2 km easy, 10 km at target")],
+  B:[E("Mon 17","Easy Run: 6 km","~40 min"),E("Wed 19","Easy Run: 6 km","~40 min"),
+     SA("Fri 21","Strength (one session)","~20 min"),L("Sun 23","Long Run: 12 km","~1 h 25")],
+  C:planC()},
+
+ {focus:"Long run steps up",dates:"Week 4 · 24-30 Aug",start:new Date(2026,7,24),src:"coopah",
+  vol:"Coopah: ~44 km",
+  A:[E("Mon 24","Easy Run: 10 km","~1 h 08"),
+     SA("Tue 25","Strength: Build Circuit","~10 min"),
+     SP("Wed 26","The Belfast","~56 min · 8.5 km · 15 min tempo + 10&times;"),
+     R("Thu 27"),
+     SB("Fri 28","Strength: Build Supersets","~20 min"),
+     ST("Sat 29","Steady Run","~46 min · 7.5 km · 5 min easy, then 6 km steady"),
+     L("Sun 30","Long Run: 18 km","~2 h 03","Biggest run since early June - fuel it properly.")],
+  B:[E("Mon 24","Easy Run: 8 km","~55 min"),E("Wed 26","Easy Run: 6 km","~40 min"),
+     SA("Fri 28","Strength (one session)","~20 min"),L("Sun 30","Long Run: 15 km","~1 h 45")],
+  C:planC()},
+
+ {focus:"Absorb, then reach 20",dates:"Week 5 · 31 Aug-6 Sep",start:new Date(2026,7,31),src:"coopah",
+  vol:"Coopah: 41 km · 5h 15",
+  A:[E("Mon 31","Easy Run: 6 km","~41 min"),
+     SA("Tue 1","Strength: Build S&amp;C","~30 min"),
+     SP("Wed 2","Tempo Run: 3 &times; 8 min","~53 min · 8.6 km"),
+     R("Thu 3"),
+     MO("Fri 4","Mobility: Full Body","~20 min"),
+     E("Sat 5","Easy Run: 6 km","~41 min"),
+     L("Sun 6","Long Run","~2 h 07 · 20 km · 3 km easy, 14 km steady")],
+  B:[E("Mon 31","Easy Run: 6 km","~41 min"),E("Wed 2","Easy Run: 6 km","~40 min"),
+     SA("Fri 4","Strength (one session)","~20 min"),L("Sun 6","Long Run: 16 km","~1 h 50")],
+  C:planC()},
+
+ {focus:"Biggest week yet",dates:"Week 6 · 7-13 Sep",start:new Date(2026,8,7),src:"coopah",
+  vol:"Coopah: 54 km · 6h 35 · peak so far",
+  A:[E("Mon 7","Easy Run: 8 km","~55 min"),
+     SA("Tue 8","Strength: Build 40","~25 min"),
+     SP("Wed 9","The Boulder: Pyramid Session","~1 h 03 · 9.8 km"),
+     R("Thu 10"),
+     SB("Fri 11","Strength: Build 50","~25 min"),
+     E("Sat 12","Easy Run: 10 km","~1 h 08"),
+     L("Sun 13","Long Run","~2 h 39 · 26 km · 5 km easy, 2&times;8 km at target","A big one. If the week has been heavy, cut this to 20 km without hesitation.")],
+  B:[E("Mon 7","Easy Run: 8 km","~55 min"),E("Wed 9","Easy Run: 6 km","~40 min"),
+     SA("Fri 11","Strength (one session)","~20 min"),L("Sun 13","Long Run: 18 km","~2 h 05")],
+  C:planC()},
+
+ {focus:"Hold the volume",dates:"Week 7 · 14-20 Sep",start:new Date(2026,8,14),src:"coopah",
+  vol:"Coopah: 52 km · 6h 25",
+  A:[E("Mon 14","Easy Run: 11 km","~1 h 15"),
+     SA("Tue 15","Strength: Boost Sets","~20 min"),
+     SP("Wed 16","The Chicago: 3 miles at target","~1 h 05 · 10.6 km"),
+     R("Thu 17"),
+     MO("Fri 18","Mobility: Full Body 2","~20 min"),
+     ST("Sat 19","Steady Run","~57 min · 9.5 km · 5 min easy, then 8 km steady"),
+     L("Sun 20","Long Run: 21 km","~2 h 23","Half-marathon distance. Practise your fuelling exactly as you would on the road.")],
+  B:[E("Mon 14","Easy Run: 8 km","~55 min"),E("Wed 16","Easy Run: 6 km","~40 min"),
+     SA("Fri 18","Strength (one session)","~20 min"),L("Sun 20","Long Run: 16 km","~1 h 50")],
+  C:planC()},
+
+ {focus:"Carry it forward",dates:"Week 8 · 21-27 Sep",start:new Date(2026,8,21),src:"coopah",
+  vol:"Coopah: 56 km · 6h 45",
+  A:[E("Mon 21","Easy Run: 11 km","~1 h 15"),
+     SA("Tue 22","Strength: Boost Circuit","~10 min"),
+     SP("Wed 23","The Auckland: 25 min Fartlek","~45 min · 7.4 km"),
+     R("Thu 24"),
+     SB("Fri 25","Strength: Boost Supersets","~20 min"),
+     SP("Sat 26","Tempo Run: 4 &times; 6 min","~56 min · 9 km"),
+     L("Sun 27","Long Run: 29 km","~3 h 18","Longest run of your year so far. Treat it as a fuelling rehearsal from the first kilometre.")],
+  B:[E("Mon 21","Easy Run: 8 km","~55 min"),E("Wed 23","Easy Run: 6 km","~40 min"),
+     SA("Fri 25","Strength (one session)","~20 min"),L("Sun 27","Long Run: 22 km","~2 h 30")],
+  C:planC()},
+
+ {focus:"Steady through",dates:"Week 9 · 28 Sep-4 Oct",start:new Date(2026,8,28),src:"coopah",
+  vol:"Coopah: ~47 km",
+  A:[E("Mon 28","Easy Run: 6 km","~41 min"),
+     SA("Tue 29","Strength: Boost S&amp;C","~30 min"),
+     SP("Wed 30","Tempo Run: 60 min","~1 h · 9.5 km · 20 min at tempo"),
+     R("Thu 1"),
+     MO("Fri 2","Mobility: Full Body 3","~20 min"),
+     E("Sat 3","Easy Run: 8 km","~55 min"),
+     L("Sun 4","Long Run","~2 h 32 · 24 km · 3 km easy, 18 km steady")],
+  B:[E("Mon 28","Easy Run: 6 km","~41 min"),E("Wed 30","Easy Run: 6 km","~40 min"),
+     SA("Fri 2","Strength (one session)","~20 min"),L("Sun 4","Long Run: 18 km","~2 h 05")],
+  C:planC()},
+
+ {focus:"Peak week",dates:"Week 10 · 5-11 Oct · peak",start:new Date(2026,9,5),src:"coopah",
+  vol:"Coopah: 60 km · 7h 35 · biggest week of the block",
+  A:[E("Mon 5","Easy Run: 8 km","~55 min"),
+     SA("Tue 6","Strength: Boost 40","~25 min"),
+     SP("Wed 7","The Eilish: 5 &times; 1 km","~56 min · 8.9 km"),
+     R("Thu 8"),
+     SB("Fri 9","Strength: Boost 50","~25 min"),
+     E("Sat 10","Easy Run: 11 km","~1 h 15"),
+     L("Sun 11","Long Run: 32 km","~3 h 38","The peak. Everything you will need on the road gets tested here - shoes, socks, pack, food, start time.")],
+  B:[E("Mon 5","Easy Run: 8 km","~55 min"),E("Wed 7","Easy Run: 6 km","~40 min"),
+     SA("Fri 9","Strength (one session)","~20 min"),L("Sun 11","Long Run: 24 km","~2 h 45")],
+  C:planC()},
+
+ {focus:"Ease off the volume",dates:"Week 11 · 12-18 Oct",start:new Date(2026,9,12),src:"coopah",
+  vol:"Coopah: 45 km · 5h 30",
+  A:[E("Mon 12","Easy Run: 8 km","~55 min"),
+     SA("Tue 13","Strength: Edge Sets","~20 min"),
+     SP("Wed 14","The Potchefstroom: 10 &times; 2 min","~51 min · 7.9 km"),
+     R("Thu 15"),
+     MO("Fri 16","Mobility: Back &amp; Shoulders","~20 min"),
+     SP("Sat 17","The Stockholm: 30 min Fartlek","~50 min · 8.4 km"),
+     L("Sun 18","Long Run","~2 h 14 · 21 km · 5 km easy, 8 km at target")],
+  B:[E("Mon 12","Easy Run: 8 km","~55 min"),E("Wed 14","Easy Run: 6 km","~40 min"),
+     SA("Fri 16","Strength (one session)","~20 min"),L("Sun 18","Long Run: 16 km","~1 h 50")],
+  C:planC()},
+
+ {focus:"Coopah taper begins",dates:"Week 12 · 19-25 Oct",start:new Date(2026,9,19),src:"coopah",
+  vol:"Coopah: 35 km · 4h 35 · taper",
+  A:[E("Mon 19","Easy Run: 5 km + strides","~37 min"),
+     SA("Tue 20","Strength: Peak Sets","~20 min"),
+     SP("Wed 21","Taper Run","~51 min · 8 km · 2 km easy, 3 km at target"),
+     R("Thu 22"),
+     SB("Fri 23","Strength: Power Supersets","~20 min"),
+     E("Sat 24","Easy Run: 5 km + strides","~37 min"),
+     L("Sun 25","Long Run: 16 km","~1 h 49")],
+  B:[E("Mon 19","Easy Run: 5 km","~37 min"),E("Wed 21","Easy Run: 6 km","~40 min"),
+     L("Sun 25","Long Run: 14 km","~1 h 40")],
+  C:planC()},
+
+ {focus:"Coopah race week",dates:"Week 13 · 26 Oct-1 Nov",start:new Date(2026,9,26),src:"coopah",
+  vol:"Coopah: ~13 km + Sun 1 Nov · see Coach notes",
+  A:[E("Mon 26","Easy Run: 5 km + strides","~37 min"),
+     MO("Tue 27","Mobility: Pre-Race","~10 min"),
+     R("Wed 28"),
+     E("Thu 29","Easy Run: 30 min + strides","~4.7 km"),
+     R("Fri 30"),
+     E("Sat 31","Easy Run: 20 min + strides","~3.3 km","Shake-out. Short and light."),
+     RC("Sun 1 Nov","Marathon day","42.2 km - the dress rehearsal","Confirmed: this is your marathon. Trust the taper, fuel from the first hour, and bank every lesson - kit, food, pacing, nerves - for December. This race is the rehearsal the road needed. See Coach notes.")],
+  B:[E("Mon 26","Easy Run: 5 km","~37 min"),E("Thu 29","Easy Run: 30 min","~4.7 km"),
+     RC("Sun 1 Nov","Marathon day","See Plan A")],
+  C:planC()},
+
+/* ============================================================
+   PHASE 2 - THE ULTRA BLOCK (Love in Motion, not Coopah)
+   Coopah's plan stops ~1 Nov. This is the specific work it never covers.
+   ============================================================ */
+ {focus:"Marathon recovery",dates:"Week 14 · 2-8 Nov · recover",start:new Date(2026,10,2),src:"lim",
+  vol:"~16 km · recovery only · no long run",
+  A:[RC("Mon 2","Full rest","Nothing at all","You raced a marathon yesterday. Your legs have micro-damage that takes real time to repair. Rest is the session."),
+     RC("Tue 3","Walk","20-30 min gentle","Blood flow, nothing more. If you feel like running, don't."),
+     RC("Wed 4","Walk","30-40 min gentle"),
+     E("Thu 5","Very easy jog: 4 km","~30 min","First jog back. If anything hurts or your gait changes, walk home - no cost."),
+     RC("Fri 6","Mobility + nidra","~20 min","Gentle. Legs up the wall to finish."),
+     E("Sat 7","Very easy jog: 5 km","~38 min"),
+     E("Sun 8","Easy Run: 7 km","~50 min","No long run this week. Resist the urge - this is the week that protects December.")],
+  B:[RC("Mon-Wed","Rest and walk","As you feel"),E("Sat 7","Very easy jog: 4 km","~30 min"),E("Sun 8","Easy Run: 6 km","~43 min")],
+  C:planC()},
+
+ {focus:"Rebuild the base",dates:"Week 15 · 9-15 Nov · LIM",start:new Date(2026,10,9),src:"lim",
+  vol:"~36 km · easy running only, no quality",
+  A:[E("Mon 9","Easy Run: 8 km","~55 min"),
+     SA("Tue 10","Strength A (light)","~20 min","First strength back. Half your usual load."),
+     E("Wed 11","Easy Run: 8 km","~55 min"),
+     R("Thu 12"),
+     MO("Fri 13","Mobility: Full Body","~20 min"),
+     E("Sat 14","Easy Run: 6 km","~43 min"),
+     L("Sun 15","Long Run: 14 km","~1 h 40","First long run since the marathon. Comfortable throughout - this is a check-in, not a test.")],
+  B:[E("Mon 9","Easy Run: 6 km","~43 min"),E("Wed 11","Easy Run: 6 km","~43 min"),
+     L("Sun 15","Long Run: 12 km","~1 h 25")],
+  C:planC()},
+
+ {focus:"Back-to-back begins",dates:"Week 16 · 16-22 Nov · LIM",start:new Date(2026,10,16),src:"lim",
+  vol:"~48 km · first true back-to-back weekend",
+  A:[E("Mon 16","Easy Run: 8 km","~55 min"),
+     SA("Tue 17","Strength A","~25 min"),
+     E("Wed 18","Easy Run: 8 km","~55 min"),
+     R("Thu 19"),
+     MO("Fri 20","Mobility: Full Body","~20 min"),
+     BB("Sat 21","Back-to-back: day 1","~2 h 20 · 20 km easy","Deliberately slower than your Coopah long runs. You are not chasing pace from here on."),
+     BB("Sun 22","Back-to-back: day 2","~1 h 50 · 15 km easy","Legs will feel heavy in the first 3 km. That is exactly the point - keep going, gently.")],
+  B:[E("Mon 16","Easy Run: 6 km","~43 min"),SA("Wed 18","Strength A","~20 min"),
+     BB("Sat 21","Back-to-back: day 1","~1 h 50 · 15 km"),BB("Sun 22","Back-to-back: day 2","~1 h 20 · 11 km")],
+  C:planC()},
+
+ {focus:"Extend the weekend",dates:"Week 17 · 23-29 Nov · LIM",start:new Date(2026,10,23),src:"lim",
+  vol:"~58 km",
+  A:[E("Mon 23","Easy Run: 10 km","~1 h 08"),
+     SA("Tue 24","Strength A","~25 min"),
+     E("Wed 25","Easy Run: 8 km","~55 min"),
+     R("Thu 26"),
+     SB("Fri 27","Strength B","~20 min"),
+     BB("Sat 28","Back-to-back: day 1","~2 h 55 · 25 km easy","Carry everything you would carry on the road. Test the pack, the shoes, the socks."),
+     BB("Sun 29","Back-to-back: day 2","~2 h 10 · 18 km easy")],
+  B:[E("Mon 23","Easy Run: 8 km","~55 min"),SA("Wed 25","Strength A","~20 min"),
+     BB("Sat 28","Back-to-back: day 1","~2 h 20 · 20 km"),BB("Sun 29","Back-to-back: day 2","~1 h 40 · 14 km")],
+  C:planC()},
+
+ {focus:"Peak weekend",dates:"Week 18 · 30 Nov-6 Dec · peak",start:new Date(2026,10,30),src:"lim",
+  vol:"~70 km · biggest weekend of the build",
+  A:[E("Mon 30","Easy Run: 10 km","~1 h 08"),
+     SA("Tue 1","Strength A","~25 min"),
+     E("Wed 2","Easy Run: 8 km","~55 min"),
+     R("Thu 3"),
+     MO("Fri 4","Mobility: Full Body","~20 min"),
+     BB("Sat 5","Back-to-back: day 1","~3 h 30 · 30 km easy","Full expedition rehearsal: same food, same kit, same start time you expect on the road. Crew practises here too."),
+     BB("Sun 6","Back-to-back: day 2","~2 h 50 · 24 km easy","Finishing this tired is the proof of concept.")],
+  B:[E("Mon 30","Easy Run: 8 km","~55 min"),SA("Wed 2","Strength A","~20 min"),
+     BB("Sat 5","Back-to-back: day 1","~2 h 55 · 25 km"),BB("Sun 6","Back-to-back: day 2","~2 h 20 · 20 km")],
+  C:planC()},
+
+ {focus:"Three-day dress rehearsal",dates:"Week 19 · 7-13 Dec · LIM",start:new Date(2026,11,7),src:"lim",
+  vol:"~85 km · three consecutive days",
+  A:[RC("Mon 7","Walk or very easy","30-40 min","Shake out. Nothing more."),
+     SA("Tue 8","Strength A (light)","~20 min"),
+     E("Wed 9","Easy Run: 8 km","~55 min"),
+     R("Thu 10"),
+     BB("Fri 11","Rehearsal: day 1","~3 h 00 · 26 km","Three days in a row. This is the closest thing to Love in Motion you will run before the road."),
+     BB("Sat 12","Rehearsal: day 2","~3 h 30 · 30 km","Sleep, food and feet between days matter more than the running."),
+     BB("Sun 13","Rehearsal: day 3","~3 h 25 · 29 km","Day three is where you learn what the run will actually ask of you.")],
+  B:[E("Wed 9","Easy Run: 6 km","~40 min"),
+     BB("Fri 11","Rehearsal: day 1","~2 h 20 · 20 km"),BB("Sat 12","Rehearsal: day 2","~2 h 40 · 23 km"),
+     BB("Sun 13","Rehearsal: day 3","~2 h 20 · 20 km")],
+  C:planC()},
+
+ {focus:"Come down",dates:"Week 20 · 14-20 Dec · taper",start:new Date(2026,11,14),src:"lim",
+  vol:"~38 km · taper begins",
+  A:[RC("Mon 14","Full rest","Sleep in if you can","After three days back-to-back, this is non-negotiable."),
+     RC("Tue 15","Walk","40-50 min gentle"),
+     E("Wed 16","Easy Run: 8 km","~55 min"),
+     MO("Thu 17","Mobility: Full Body","~20 min"),
+     R("Fri 18"),
+     L("Sat 19","Long Run: 18 km","~2 h 05","Last meaningful long run. Comfortable throughout."),
+     RC("Sun 20","Restore","Yoga nidra + legs up the wall","Fitness is banked. From here the job is to arrive fresh.")],
+  B:[RC("Mon 14","Full rest","Sleep"),E("Wed 16","Easy Run: 6 km","~40 min"),L("Sat 19","Long Run: 14 km","~1 h 40")],
+  C:planC()},
+
+ {focus:"Sharpen &amp; pack",dates:"Week 21 · 21-22 Dec · final taper",start:new Date(2026,11,21),src:"lim",
+  vol:"~10 km · legs fresh, logistics locked",
+  A:[E("Mon 21","Easy Run: 8 km","~55 min","Legs should feel springy and under-used. That is correct."),
+     RC("Tue 22","Shake-out + kit check","20-30 min very easy","Short and light, every item laid out - nothing new on day one, not shoes, not socks, not food. Then eat well and sleep early. Tomorrow: Attunga.")],
+  B:[E("Mon 21","Easy Run: 6 km","~40 min"),RC("Tue 22","Shake-out + kit check","20 min very easy")],
+  C:[RC("Daily","Walk + downregulate","20 min",DOWNREG)]},
+
+ {focus:"Love in Motion",dates:"23 Dec - 4 Jan · Attunga &rarr; SCG",start:new Date(2026,11,23),src:"lim",
+  vol:"~484 km · The 500 · 13 stages",
+  A:[RC("Each morning","Move early","Start before the heat","Break each day into segments between crew meets, never think about the whole distance."),
+     RC("Every 20-30 min","Eat and drink","Before you feel like it",FUEL_B2B),
+     RC("Each evening","Feet, food, sleep","The real work between days","Feet checked and dry, a proper meal within 30 min of stopping, legs elevated, lights out early. Recovery between days is what gets you to the SCG."),
+     RC("Daily","Regulate","10 min breathwork or nidra","You know this work better than any coach. Use it - the nervous system load of 13 days on the road is as real as the physical load."),
+     RC("Anytime","Walk without guilt","Walking is part of the plan","Every multi-day runner walks. Walking early and often is what makes day nine possible.")],
+  B:[RC("&mdash;","See Plan A","The run itself","Plan B and C do not apply once you are on the road - the daily distances flex instead. The stage plan lives on The 500 page.")],
+  C:[RC("&mdash;","See Plan A","The run itself","Plan B and C do not apply once you are on the road - the daily distances flex instead.")]}
 ];
 
-var THE45=new Date(2026,10,1);   /* 45 km Attunga loop · Sun 1 Nov */
-var THE415=new Date(2026,11,23); /* the 500 · Attunga \u2192 Sydney · Wed 23 Dec */
+/* optional yoga & breathwork on Thursday rest days (kept from the old plan) */
+var YOPT="Runner's flow with long holds &mdash; downward dog with calf pedals, low lunge &amp; half splits, pigeon, couch stretch, thoracic twists, legs-up-the-wall &mdash; then 5 min exhale-focused cyclic sighing (the best-tested breathwork protocol for mood and downregulation &mdash; Balban 2023) and 5 min of slow ~6 breaths/min nasal breathing. Recovery, not a workout: leave looser and calmer than you arrived.";
+WEEKS.forEach(function(wk){["A","B"].forEach(function(pl){(wk[pl]||[]).forEach(function(s){
+  if(s.k==="rec"&&/^Rest$/.test(s.t)&&/^Thu/.test(s.d||"")){
+    s.t="Rest &middot; Yoga &amp; Breathwork";s.s="rest day &middot; optional ~30&ndash;45 min";s.yoga=true;
+  }});});});
 
-function currentWeek(){var now=new Date();var idx=0;for(var i=0;i<WEEKS.length;i++){if(now>=WEEKS[i].start)idx=i;}return idx;}
+var MARA=new Date(2026,10,1);
+var EVENT=new Date(2026,11,23);
+var SCG=new Date(2027,0,4);
+
+function currentWeek(){var now=new Date();var idx=0;
+  for(var i=0;i<WEEKS.length;i++){if(now>=WEEKS[i].start)idx=i;}
+  return idx;}
 var state={week:currentWeek(),plan:store.get("limn_plan")||"A"};
 var nowWeek=currentWeek();
 
-function doneKey(){return "limn_train2_done_w"+state.week+"_"+state.plan;}
+function doneKey(){return "limn_train3_done_w"+state.week+"_"+state.plan;}
 function getDone(){return store.get(doneKey())||{};}
 function setDone(o){store.set(doneKey(),o);}
 function sessions(){return WEEKS[state.week][state.plan]||[];}
 
-function noteKey(){return "limn_train2_note_w"+state.week+"_"+state.plan;}
-
-function renderCount(){var now=new Date(),cd=document.getElementById("cd"),cdl=document.getElementById("cdl");
-  var d45=Math.ceil((THE45-now)/86400000),d415=Math.max(0,Math.ceil((THE415-now)/86400000));
-  if(d45>0){cd.textContent=d45;cdl.innerHTML="days to <b>Attunga 45 km loop</b><br>rehearsal &middot; Sun 1 Nov &middot; then the 500 on 23 Dec";}
-  else if(d45===0){cd.textContent=0;cdl.innerHTML="<b>Today is the day</b><br>The Attunga 45 km loop";}
-  else if(d415>0){cd.textContent=d415;cdl.innerHTML="days to <b>The Love in Motion Run</b><br>Attunga &rarr; Sydney &middot; 23 Dec 2026";}
-  else{cd.textContent=0;cdl.innerHTML="<b>Today is the day</b><br>Attunga &rarr; Sydney &middot; because love keeps moving";}}
-function renderWeeks(){var w=document.getElementById("weeks");w.innerHTML="";
-  WEEKS.forEach(function(wk,i){var b=document.createElement("button");
-    b.className="wk"+(i===nowWeek?" is-now":"");b.setAttribute("aria-selected",i===state.week);
-    var p=wk.dates.split(" · ");b.innerHTML=p[0]+"<span class='wd'>"+p[1]+"</span>";
-    b.onclick=function(){state.week=i;render();window.scrollTo({top:0,behavior:'smooth'});};w.appendChild(b);});}
-function renderPlans(){document.querySelectorAll(".plan").forEach(function(p){
-    p.setAttribute("aria-selected",p.dataset.p===state.plan);
-    p.onclick=function(){state.plan=p.dataset.p;store.set("limn_plan",state.plan);render();};});}
-function phName(p){return p==="The415"?"The 500":p;}
-function renderWeek(){var wk=WEEKS[state.week];
-  document.getElementById("tag").textContent=phName(wk.ph)+" phase";
-  document.getElementById("focus").textContent=wk.focus;
-  var ph=document.getElementById("phase");ph.textContent=phName(wk.ph);ph.className="phase pf-"+wk.ph;
-  document.getElementById("dates").textContent=wk.dates;
-  document.getElementById("wknote").textContent=wk.wknote||"";
-  var ss=sessions(),done=getDone(),n=ss.length,c=0;for(var i=0;i<n;i++){if(done[i])c++;}
-  document.getElementById("bar").style.width=n?(c/n*100)+"%":"0%";
-  document.getElementById("pt").textContent=c+" of "+n+" done";}
-function pillClass(s){if(s.pill==="B2B")return "b2b";if(s.pill==="Strength"||s.pill==="HYROX")return "str";if(s.pill==="The 45"||s.pill==="Stage 1")return "race";if(s.k==="rec")return "rec";return "run";}
-function renderList(){var list=document.getElementById("list");list.innerHTML="";
-  var ss=sessions(),done=getDone();
-  ss.forEach(function(s,i){var card=document.createElement("div");
-    card.className="card"+(done[i]?" done":"")+(s.k==="race"?" race":"");
-    card.style.animationDelay=(i*50)+"ms";
-    card.innerHTML="<div class='check'><svg viewBox='0 0 24 24'><polyline points='4 12 10 18 20 6'/></svg></div>"+
-      "<div class='meta'><div class='t'>"+s.t+"</div><div class='s'>"+s.s+"</div></div>"+
-      "<span class='pill "+pillClass(s)+"'>"+s.pill+"</span><span class='chev'>&rsaquo;</span>";
-    card.querySelector(".check").onclick=function(e){e.stopPropagation();toggle(i);};
-    card.onclick=function(){openSheet(i);};list.appendChild(card);});
-  var cn=document.getElementById("cnote");
-  if(state.plan==="C")cn.textContent="Plan C is for the hard weeks - when the caring load is heavy. Movement is medicine, not a target. Sleep and your nervous system come first; we adjust the following week.";
-  else if(state.plan==="B")cn.textContent="Plan B protects the key long run and your sleep when life is full. That's the strategy working.";
-  else cn.textContent="Tap a session for the detail. Tap the circle to tick it off.";}
-function toggle(i){var d=getDone();d[i]=!d[i];setDone(d);renderWeek();renderList();}
-
-/* ---- per-week training notes ---- */
-var noteEl=document.getElementById("wknoteInput"),savedEl=document.getElementById("savedNote"),noteTimer=null;
-function loadNote(){noteEl.value=store.get(noteKey())||"";}
-noteEl.addEventListener("input",function(){
-  if(noteTimer)clearTimeout(noteTimer);
-  noteTimer=setTimeout(function(){
-    store.set(noteKey(),noteEl.value);
-    savedEl.classList.add("on");setTimeout(function(){savedEl.classList.remove("on");},1200);
-  },500);
-});
-
-/* ---- bodyweight / travel versions for strength sessions ----
-   Built from studied strength protocols for runners:
-   strength work improves running economy 2-8% (Blagrove 2018 review;
-   Balsalobre-Fernandez 2016 meta); light loads only build strength when
-   sets go near failure (Schoenfeld 2017 meta) - hence the RPE 8-9 rule;
-   plyometrics alone improved running economy in 6 weeks (Spurrs 2003);
-   band-at-ankle walks & single-leg work top glute-med EMG (DiStefano 2009). */
-var BW_RULES="<p><b>Make it count:</b> with no weights, strength only builds when sets finish hard &mdash; take each set to <b>RPE 8&ndash;9</b> (about 2 reps left in the tank), lower for <b>3 seconds</b>, and pick the single-leg / single-arm version over the two-limb one. Kit: booty band + long resistance band, a sturdy chair, a wall.</p>";
-var BW_WHY="<p class='bwwhy'>Why it's built this way: strength work improves running economy 2&ndash;8% (Blagrove 2018; Balsalobre-Fern&aacute;ndez 2016). Light loads only build strength taken close to failure &mdash; hence RPE&nbsp;8&ndash;9 (Schoenfeld 2017). Plyometric hops improved running economy in 6 weeks with zero equipment (Spurrs 2003). Band-at-the-<i>ankles</i> walks and single-leg work top the glute-medius EMG charts (DiStefano 2009). And the calves drive more propulsion than any other muscle group in running, so single-leg heel raises get their own slot.</p>";
-var BW={
- push:{time:"~30 min",ex:[
-   ["Push-ups &mdash; progress: feet on chair, then band across the back","4 x 8&ndash;15"],
-   ["Pike push-up (shoulders) &mdash; feet on chair to progress","3 x 8&ndash;12"],
-   ["Band overhead press &mdash; stand on the band","3 x 12"],
-   ["Band lateral raise","3 x 15&ndash;20"],
-   ["Band overhead triceps extension","3 x 12"],
-   ["Band triceps pushdown &mdash; band over a door","3 x 15"]],
-  end:"Finish: 5 min shoulder + thoracic mobility, same as the gym version."},
- pull:{time:"~30 min",ex:[
-   ["Inverted row under a sturdy table &mdash; or band bent-over row","4 x 8&ndash;12"],
-   ["Band lat pulldown &mdash; anchor the band high over a door","3 x 12&ndash;15"],
-   ["Single-arm band row &mdash; slow 3-sec return","3 x 12 each side"],
-   ["Band face pull","3 x 15&ndash;20"],
-   ["Band pull-apart","2 x 20"],
-   ["Prone Y-T-W raises &mdash; chest on the floor, thumbs up","3 x 8 each letter"],
-   ["Band good morning (hinge &mdash; posterior chain)","3 x 12&ndash;15"],
-   ["Band curl &mdash; slow lower","3 x 15"]]},
- lower:{time:"~40 min",ex:[
-   ["Pogo hops &mdash; first, while fresh: stiff ankles, quiet springy landings","3 x 20"],
-   ["Squat jumps &mdash; soft, silent landings; quality over count","3 x 6"],
-   ["Bulgarian split squat &mdash; rear foot on chair or bed, 3-sec lower","3 x 8&ndash;12 each leg"],
-   ["Step-ups on a sturdy chair &mdash; drive through mid-foot","3 x 10 each leg"],
-   ["Single-leg Romanian deadlift &mdash; slow, long hamstrings","3 x 10 each leg"],
-   ["Band good morning","3 x 12"],
-   ["Single-leg hip thrust &mdash; shoulders on couch or bed","3 x 10&ndash;12 each leg"],
-   ["Booty band lateral walk &mdash; band at the ankles, stay low","3 x 12 steps each way"],
-   ["Booty band monster walk","2 x 12 steps"],
-   ["Single-leg calf raise &mdash; straight knee, slow, full range","3 x 15&ndash;20 each leg"],
-   ["Single-leg calf raise &mdash; bent knee (soleus, running's engine)","2 x 12&ndash;15 each leg"],
-   ["Side plank","2 x 30&ndash;45 sec each side"]],
-  end:"Same rule as the gym session: keep the next morning's run genuinely easy."},
- full:{time:"~25 min",ex:[
-   ["2 easy rounds, RPE 6: push-ups","x 10"],
-   ["Band row","x 12"],
-   ["Split squat &mdash; slow","x 10 each leg"],
-   ["Single-leg calf raise","x 12 each leg"],
-   ["Band good morning","x 12"],
-   ["Booty band lateral walk","x 10 steps each way"],
-   ["Side plank","30 sec each side"]],
-  end:"This is a light day &mdash; move well, finish fresher than you started."},
- hyrox:{time:"~35 min",ex:[
-   ["3&ndash;4 rounds for quality, 60&ndash;90 sec rest between rounds:",""],
-   ["Run 400 m &mdash; or 2 min brisk stair / step-ups","&nbsp;"],
-   ["Burpees","x 10"],
-   ["Jump lunges &mdash; soft landings","x 12"],
-   ["Band bent-over row","x 15"],
-   ["Push-ups","x 12"],
-   ["Band good morning","x 15"],
-   ["Pogo hops","x 20"]],
-  end:"Finish: 5 min easy walk. Keep every round crisp &mdash; stop a round early rather than getting sloppy."}
-};
-function bwBlock(s){
-  if(s.k!=="str")return "";
-  var t=s.t,key=/HYROX/.test(t)?"hyrox":/Push/.test(t)?"push":/Pull/.test(t)?"pull":/Lower/.test(t)?"lower":/Full-Body/.test(t)?"full":null;
-  if(!key)return "";
-  var b=BW[key],easy=/Deload|Light|Maintenance/.test(t);
-  var h="<details class='sub bwd'><summary>&#9992;&#65039; Travelling or no gym? Bodyweight version &middot; "+b.time+"<span class='x'>&rsaquo;</span></summary><div class='body'>";
-  h+=BW_RULES;
-  if(easy&&key!=="full")h+="<p><b>Easy week:</b> cap it at 2 sets per exercise, everything at RPE 6, ~25 min &mdash; crisp, never grinding. Skip the jumps; keep pogo hops light and springy.</p>";
-  h+="<ul class='exlist'>";
-  b.ex.forEach(function(e){h+="<li><span class='nm'>"+e[0]+"</span><span class='rp'>"+e[1]+"</span></li>";});
-  h+="</ul>";
-  if(b.end)h+="<p>"+b.end+"</p>";
-  h+=BW_WHY+"</div></details>";
-  return h;
-}
-
-/* ---- skip-rope substitutes for run sessions ----
-   Jump-rope work 2-4x/wk improved 3-km time-trial performance,
-   lower-limb reactivity and foot-arch stiffness in endurance runners
-   (Garcia-Pinillos 2020). Moderate skipping costs ~20-40% more energy
-   per minute than easy running, and the limiter is calf/Achilles load
-   - so skip totals run ~40-45% of the scheduled run minutes, in
-   3-min-on / 1-min-walk intervals. */
-var SKIP_WHY="<p class='bwwhy'>Why this works: jump-rope training improved 3-km time-trial performance, lower-limb reactivity and foot-arch stiffness in endurance runners (Garc&iacute;a-Pinillos 2020) &mdash; the same spring-stiffness stimulus as the pogo hops in the travel strength plan. Moderate skipping burns ~20&ndash;40% more energy per minute than your easy pace, so the shorter skip total matches the run's aerobic dose while sparing the calves. And a few days off-plan loses no fitness &mdash; aerobic fitness holds for ~2 weeks &mdash; so this is about ticking over, not rescue.</p>";
-var SKIP_FORM="<p><b>Form:</b> alternate-foot &ldquo;boxer step&rdquo; (like running on the spot &mdash; not two-foot bouncing) &middot; rope ~120&ndash;140 turns/min &middot; effort conversational &middot; soft midfoot landings, low hops, just clearing the rope.</p><p><b>First time in a while?</b> Cap day one at 12&ndash;15 min of skipping (4&ndash;5 rounds) and see how the calves pull up tomorrow before building.</p>";
-function skipBlock(s){
-  if(s.k!=="run")return "";
-  var t=s.t,m=parseInt((s.s.match(/~(\d+)\s*min/)||[])[1]||"45",10);
-  var h="<details class='sub bwd'><summary>&#129698; No track? Skip-rope version<span class='x'>&rsaquo;</span></summary><div class='body'>";
-  if(/Long Run/.test(t)){
-    h+="<p><b>Don't replicate a long run with the rope</b> &mdash; "+Math.round(m*0.45)+"+ min of skipping is injury bait. In order of preference:</p>"+
-       "<ul class='exlist'><li><span class='nm'>Brisk hike / walk, hills if you have them &mdash; long aerobic time-on-feet is the point</span><span class='rp'>~"+m+" min</span></li>"+
-       "<li><span class='nm'>Or shift the long run to the day you're back &mdash; sliding it a day or two costs nothing</span><span class='rp'>&nbsp;</span></li>"+
-       "<li><span class='nm'>Last resort: 10 min skip + 10 min walk, repeated &mdash; stop if the calves bark</span><span class='rp'>3 rounds</span></li></ul>";
-  }else if(/Back-to-Back/.test(t)){
-    h+="<p><b>The goal of this session is time on tired legs</b> &mdash; walking counts. Best substitute: a brisk hike (~"+m+" min) the morning after yesterday's session. If the rope is all you have, cap it:</p>"+
-       "<ul class='exlist'><li><span class='nm'>Brisk walk warm-up</span><span class='rp'>5 min</span></li>"+
-       "<li><span class='nm'>Skip 3 min / walk 1 min &mdash; then keep walking to fill the session</span><span class='rp'>5 rounds</span></li>"+
-       "<li><span class='nm'>Walk down</span><span class='rp'>5 min</span></li></ul>"+SKIP_FORM;
-  }else if(/Shakeout/.test(t)){
-    h+="<p>Shakeout only &mdash; keep it tiny:</p>"+
-       "<ul class='exlist'><li><span class='nm'>Easy skip / walk, springy and relaxed</span><span class='rp'>8&ndash;10 min</span></li></ul>"+SKIP_FORM;
-  }else{ // easy runs
-    var rounds=Math.max(4,Math.min(7,Math.round(m/9))),skip=rounds*3,total=5+rounds*4-1+5;
-    h+="<ul class='exlist'>"+
-       "<li><span class='nm'>Brisk walk warm-up</span><span class='rp'>5 min</span></li>"+
-       "<li><span class='nm'>Skip 3 min / walk 1 min</span><span class='rp'>"+rounds+" rounds</span></li>"+
-       "<li><span class='nm'>Walk down + calf stretch</span><span class='rp'>5 min</span></li></ul>"+
-       "<p>That's <b>~"+skip+" min of skipping</b> in a ~"+total+"-min session &mdash; the substitute dose for this "+m+"-min easy run. Don't match it time-for-time: skipping is denser work and a big calf load.</p>"+SKIP_FORM;
-  }
-  h+=SKIP_WHY+"</div></details>";
-  return h;
-}
-
-function openSheet(i){var s=sessions()[i],done=getDone();
-  var h="<div class='st'>"+s.t+"</div><div class='ss'>"+s.s+"</div>";
-  h+="<div class='blk'><h4>"+(s.k==="race"?"On the day":s.k==="rec"?"How to approach it":"How to run this")+"</h4><p>"+s.detail+"</p></div>";
-  h+=bwBlock(s)+skipBlock(s);
-  if(s.long)h+="<div class='blk'><h4>Fuelling</h4><div class='callout'><p>"+s.fuel+"</p></div></div>";
-  else if(s.k==="run")h+="<div class='blk'><h4>Fuelling</h4><p>"+s.fuel+"</p></div>";
-  if(s.ex){h+="<div class='blk'><h4>"+s.exlab+" · exercises</h4><ul class='exlist'>";
-    s.ex.forEach(function(e){h+="<li><span class='nm'>"+e[0]+"</span><span class='rp'>"+e[1]+"</span></li>";});h+="</ul></div>";}
-  h+="<button class='dobtn"+(done[i]?" is-done":"")+"' id='dobtn'>"+(done[i]?"&#10003; Done — tap to undo":(s.k==="race"?"I ran it &#10084;":"Mark as done"))+"</button>";
-  document.getElementById("sheetbody").innerHTML=h;
-  document.getElementById("dobtn").onclick=function(){toggle(i);openSheet(i);};
-  document.getElementById("scrim").classList.add("on");document.getElementById("sheet").classList.add("on");}
-function closeSheet(){document.getElementById("scrim").classList.remove("on");document.getElementById("sheet").classList.remove("on");}
-document.getElementById("scrim").onclick=closeSheet;
-
-function note(t,html){return "<details class='sub'><summary>"+t+"<span class='x'>&rsaquo;</span></summary><div class='body'>"+html+"</div></details>";}
-document.getElementById("notesbody").innerHTML=
- note("How the 24 weeks flow","<p><b>Base</b> (Jul) sets the double-day rhythm: easy morning runs, gym strength and HYROX circuits. <b>Foundation</b> and <b>Build</b> (Aug-Sep) grow the long run to 26 km and add run/walk rhythm and full-kit rehearsals. <b>Peak</b> (Oct) brings back-to-back weekends and sharpens into the <b>45 km Attunga loop on Sun 1 Nov</b>. A recovery week follows, then <b>The 500 block</b> (Nov) stacks the biggest back-to-backs \u2014 up to 60 km across a weekend \u2014 before a 3.5-week <b>Taper</b> lands you fresh in Attunga on <b>23 December</b>.</p><p>Deloads arrive every fourth week. They are deliberate \u2014 that is where you get fitter.</p>")+
- note("The weekly shape","<p><b>Mon-Fri mornings:</b> easy runs (5-6 miles). <b>Afternoons:</b> Push (chest, triceps, shoulders) \u00b7 HYROX circuit \u00b7 Lower body \u00b7 Pull (back &amp; biceps) \u00b7 HYROX circuit. <b>Saturday:</b> the long run. <b>Sunday:</b> rest \u2014 until the expedition phase, when it becomes the back-to-back second run and Monday morning becomes mobility instead.</p><p>From October, strength drops to maintenance (RPE 7, nothing to failure). The weekend back-to-backs become the main event \u2014 the gym keeps you durable, the stacked long days make the 500 possible.</p>")+
- note("Strength approach \u00b7 why this works","<p>The gym work is built to make you a <b>more economical, more durable</b> runner \u2014 not a bigger one. The strongest evidence for endurance runners points to two things done together: <b>heavy, quality strength</b> (squats, deadlifts, hip thrusts, single-leg work) <b>plus box plyometrics</b>. Combined, they improve running economy and \u2014 the part that matters most for ten days back-to-back \u2014 how well that economy <b>holds up once you're already fatigued</b>.</p><ul><li><b>Box jumps</b> (early blocks, when legs are fresh) build spring and power. Do them <b>first in the session</b>, explosive, soft landings, and always <b>step down</b> \u2014 never jump down.</li><li><b>Box step-ups</b> and <b>eccentric step-downs</b> are your <b>downhill armour</b>: the slow lower trains the exact eccentric strength that saves your quads and knees on every descent to Sydney.</li><li><b>Calf raises</b> stay on every lower day \u2014 calf, foot and Achilles strength is a proven driver of economy and the most common ultra-running injury site.</li><li><b>Kettlebell swings</b> replace the rower / ski-erg: same engine, plus posterior-chain power, and no machine needed.</li><li>Upper body is now <b>bands and bodyweight</b> (band chest fly, band pushdowns and rows, push-up patterns) \u2014 enough to stay balanced and robust without stealing recovery from your legs.</li></ul><p>As running volume climbs (from October) the jumps drop away and strength moves to maintenance \u2014 the weekend back-to-backs become the main event. In the final weeks before the 45 and before the 500, <b>strength stops entirely</b>: the adaptation is banked and you arrive fresh. Trust that.</p>")+
- note("Back-to-back runs \u00b7 why","<p>A long run followed by another run the next morning teaches your body and mind to keep moving on tired legs \u2014 exactly what the <a href='../the-500/index.html'>500 km to Sydney</a> asks of you, ten days in a row.</p><p>Keep the second day genuinely easy; the fatigue is the training.</p>")+
- note("The 45 km rehearsal \u00b7 Sun 1 Nov","<p>Treat it as a full dress rehearsal. Start slower than feels right; walk every hill from the first. Eat and drink before you're hungry or thirsty \u2014 60-90 g carbs (~200-300 cal) per hour of tested food plus water with electrolytes.</p><p>Run it crewed as you will to Sydney: plan meeting points, rehearse the exact food, gear and crew routine. Fix hot spots the instant you feel them. A calm call to shorten or stop is wise, never a failure.</p>")+
- note("Heat &amp; conditions","<p>The 45 km is early summer; the <b>500 in late December is peak heat</b>, so heat practice pays off twice.</p><ul><li>Dawn starts on long runs from November \u2014 expedition days start at first light.</li><li>Slow down in the heat \u2014 effort, not pace, is the gauge.</li><li>Electrolytes, sodium especially, on long or hot efforts.</li><li>Sunscreen and anti-chafe are training kit, not race-day extras.</li></ul>")+
- note("How to gauge easy","<p>Easy means a full-sentence conversation (the talk test), effort 3-4 out of 10. If you can't talk, slow down or walk. Run/walk is the strategy, not a compromise.</p><p><b>On hills, walk the climbs from the very first one.</b> Time on your feet matters more than pace.</p>")+
- note("Weekly check-in","<p>Before choosing the week's plan, rate each <b>1-5</b>:</p><ul><li>Sleep</li><li>Stress / mental load</li><li>Body &amp; niggles</li><li>Mood &amp; energy</li><li>Family + caregiving load</li></ul><p>Two or more low &rarr; choose <b>Plan B or C</b>. No guilt \u2014 that's the system doing its job.</p>")+
- note("When to back off","<ul><li>A niggle sharpens <b>during</b> a run, or changes how you move &rarr; stop, walk home.</li><li>Pain alters your gait or lingers &rarr; rest, see a physio.</li><li>Soreness hasn't eased after 48 hrs, resting heart rate is up, or the emotional tank is empty &rarr; drop to Plan B or C.</li></ul>")+
- note("Practical notes","<ul><li><b>Never debut new shoes</b> on a long run or run day \u2014 rotate and retire early.</li><li><b>Carry water</b> and practise drinking on every long run.</li><li>Pair training with the <a href='../nutrition-meal-planner/index.html'>Fuel</a> and <a href='../meals/index.html'>Meals</a> tabs \u2014 under-fuelling is the quiet saboteur of a big build.</li><li><b>Log every week</b> in the notes box above \u2014 it's what shapes the next block.</li></ul>")+
- note("Beyond the 45 \u2014 the 500","<p>The 45 km is the stepping stone. The weeks after it are the point: The 500 block stacks the biggest back-to-backs of the plan, then the taper delivers you to <a href='../the-500/index.html'>Attunga &rarr; Sydney</a> fresh. Thirteen days down the New England Highway, through the Hunter and along the coast, finishing at the SCG on 4 January.</p>");
-
-function render(){renderWeeks();renderPlans();renderWeek();renderList();loadNote();}
-/* ---- easy-pace calibration: rewrite run ~time estimates to your pace ----
-   The plan's distances are the prescription; the ~min figures were estimates
-   at an assumed pace. Easy is defined by effort (conversational), so the
-   clock adapts to you - not the other way round. */
+/* ---- easy-pace calibration (easy / long / b2b only; Coopah sessions keep their targets) ---- */
 var PACE_MIN=5.0,PACE_MAX=12.0,PACE_DEF=7.2;
 function getPace(){var p=parseFloat(store.get("limn_pace"));return (p>=PACE_MIN&&p<=PACE_MAX)?p:PACE_DEF;}
+function fmtDur(min){min=Math.round(min);
+  return min<60?"~"+min+" min":"~"+Math.floor(min/60)+" h "+((min%60)<10?"0":"")+(min%60);}
+var TIME_RE=/~\d+\s*h\s*\d+|~\d+(?:\.\d+)?\s*min/;
 function paceApply(){
   var kmh=getPace();
   WEEKS.forEach(function(wk){["A","B","C"].forEach(function(pl){(wk[pl]||[]).forEach(function(s){
-    if((s.k==="run"||s.k==="race")&&/[\d.]+\s*km\s*·\s*~\d+\s*min/.test(s.s)){
-      var km=parseFloat(s.s.match(/([\d.]+)\s*km/)[1]);
-      s.s=s.s.replace(/~\d+\s*min/,"~"+Math.round(km*60/kmh)+" min");
-    }});});});
+    if(!(s.pill==="Easy"||s.pill==="Long"||s.pill==="B2B"))return;
+    var tk=(s.t.match(/([\d.]+)\s*km/)||[])[1];
+    if(tk){var m=parseFloat(tk)*60/kmh;
+      s.s=TIME_RE.test(s.s)?s.s.replace(TIME_RE,fmtDur(m)):fmtDur(m)+(s.s?" &middot; "+s.s:"");
+    }else{
+      var tm=(s.t.match(/(\d+)\s*min/)||[])[1];
+      if(tm&&/[\d.]+\s*km/.test(s.s)){s.s=s.s.replace(/[\d.]+\s*km/,(Math.round(parseFloat(tm)*kmh/60*10)/10)+" km");}
+      else{var sk=(s.s.match(/([\d.]+)\s*km/)||[])[1];
+        if(sk&&TIME_RE.test(s.s)&&!/at target|tempo|steady/i.test(s.s)){s.s=s.s.replace(TIME_RE,fmtDur(parseFloat(sk)*60/kmh));}}
+    }
+  });});});
   var lab=document.getElementById("pacelab");
   if(lab){var mpk=60/kmh,mm=Math.floor(mpk),ss=Math.round((mpk-mm)*60);
     if(ss===60){mm++;ss=0;}
     lab.textContent=kmh.toFixed(1)+" km/h · "+mm+":"+(ss<10?"0":"")+ss+" min/km";}
 }
-function paceNudge(d){
-  var p=Math.round((getPace()+d)*10)/10;
+function paceNudge(d){var p=Math.round((getPace()+d)*10)/10;
   p=Math.max(PACE_MIN,Math.min(PACE_MAX,p));
-  store.set("limn_pace",String(p));paceApply();render();
-}
+  store.set("limn_pace",String(p));paceApply();render();}
 document.getElementById("pminus").onclick=function(){paceNudge(-0.1);};
 document.getElementById("pplus").onclick=function(){paceNudge(0.1);};
 
+/* ---- skip-rope substitutes (jump-rope training improved 3-km TT, reactivity and
+   foot-arch stiffness in runners - Garcia-Pinillos 2020) ---- */
+var SKIP_WHY="<p class='bwwhy'>Why this works: jump-rope training improved 3-km time-trial performance, lower-limb reactivity and foot-arch stiffness in endurance runners (Garc&iacute;a-Pinillos 2020). Moderate skipping burns ~20&ndash;40% more energy per minute than easy running, so the shorter skip total matches the run's aerobic dose while sparing the calves. A few days off-plan loses no fitness &mdash; this is about ticking over, not rescue.</p>";
+var SKIP_FORM="<p><b>Form:</b> alternate-foot &ldquo;boxer step&rdquo; &middot; rope ~120&ndash;140 turns/min &middot; conversational effort &middot; soft midfoot landings, low hops.</p><p><b>First time in a while?</b> Cap day one at 12&ndash;15 min of skipping and see how the calves pull up tomorrow.</p>";
+function skipBlock(s){
+  if(s.k!=="run"&&s.k!=="long")return "";
+  var t=s.t,key=/Back-to-back|Rehearsal/.test(t)?"b2b":/Long Run/.test(t)?"long":/Easy Run|easy jog/i.test(t)?"easy":null;
+  if(!key)return "";
+  var tmt=(s.s.match(/~(\d+)\s*h\s*(\d+)/)),m;
+  if(tmt)m=parseInt(tmt[1],10)*60+parseInt(tmt[2],10);
+  else m=parseInt((s.s.match(/~(\d+)\s*min/)||s.t.match(/(\d+)\s*min/)||[,"45"])[1],10);
+  var h="<details class='sub bwd'><summary>&#129698; No track? Skip-rope version<span class='x'>&rsaquo;</span></summary><div class='body'>";
+  if(key==="long"||key==="b2b"){
+    h+="<p><b>Don't replicate a "+(key==="b2b"?"back-to-back":"long run")+" with the rope</b> &mdash; that much skipping is injury bait. Best substitute: a brisk hike or walk of about the same duration &mdash; long aerobic time-on-feet"+(key==="b2b"?" on tired legs (walking counts &mdash; that's the adaptation)":"")+" is the point. If the rope is all you have: 10 min skip + 10 min walk, up to 3 rounds, stop if the calves bark.</p>"+SKIP_FORM;
+  }else{
+    var rounds=Math.max(2,Math.min(7,Math.round(m/9))),skip=rounds*3,total=5+rounds*4-1+5;
+    h+="<ul class='exlist'>"+
+      "<li><span class='nm'>Brisk walk warm-up</span><span class='rp'>5 min</span></li>"+
+      "<li><span class='nm'>Skip 3 min / walk 1 min</span><span class='rp'>"+rounds+" rounds</span></li>"+
+      "<li><span class='nm'>Walk down + calf stretch</span><span class='rp'>5 min</span></li></ul>"+
+      "<p>That's <b>~"+skip+" min of skipping</b> in a ~"+total+"-min session &mdash; the substitute dose for this "+m+"-min easy run. Don't match it time-for-time: skipping is denser work and a big calf load.</p>"+SKIP_FORM;
+  }
+  h+=SKIP_WHY+"</div></details>";
+  return h;
+}
+
+function renderCount(){
+  var now=new Date(),cd=document.getElementById("cd"),cdl=document.getElementById("cdl");
+  var dm=Math.ceil((MARA-now)/864e5),dr=Math.ceil((EVENT-now)/864e5),ds=Math.ceil((SCG-now)/864e5);
+  if(dm>0){cd.textContent=dm;cdl.innerHTML="days to <b>the marathon</b><br>dress rehearsal &middot; Sun 1 Nov &middot; then the 500 on 23 Dec";}
+  else if(dm===0){cd.textContent=0;cdl.innerHTML="<b>Marathon day</b><br>Trust the taper. Bank every lesson.";}
+  else if(dr>0){cd.textContent=dr;cdl.innerHTML="days to <b>The Love in Motion Run</b><br>Attunga &rarr; SCG &middot; 23 Dec 2026";}
+  else if(ds>0){cd.textContent=ds;cdl.innerHTML="<b>On the road</b><br>SCG &middot; Pink Test &middot; Mon 4 Jan 2027";}
+  else{cd.textContent=0;cdl.innerHTML="<b>The SCG.</b><br>Because love keeps moving.";}
+}
+function renderWeeks(){
+  var w=document.getElementById("weeks");w.innerHTML="";
+  WEEKS.forEach(function(wk,i){
+    var b=document.createElement("button");
+    b.className="wk"+(i===nowWeek?" is-now":"");
+    b.setAttribute("aria-selected",i===state.week);
+    var parts=wk.dates.split(" · ");
+    b.innerHTML=parts[0]+"<span class='wd'>"+(parts[1]||"")+"</span>";
+    b.onclick=function(){state.week=i;render();};
+    w.appendChild(b);
+  });
+}
+function renderPlans(){
+  document.querySelectorAll(".plan").forEach(function(p){
+    p.setAttribute("aria-selected",p.dataset.p===state.plan);
+    p.onclick=function(){state.plan=p.dataset.p;store.set("limn_plan",state.plan);render();};
+  });
+}
+var SRCLAB={coopah:"From Coopah",lim:"Love in Motion block"};
+function renderWeek(){
+  var wk=WEEKS[state.week];
+  document.getElementById("focus").innerHTML=wk.focus;
+  document.getElementById("dates").textContent=wk.dates;
+  document.getElementById("srcwrap").innerHTML="<span class='src "+wk.src+"'>"+(SRCLAB[wk.src]||"")+"</span>";
+  document.getElementById("vol").textContent=wk.vol||"";
+  var ss=sessions(),done=getDone();
+  var n=ss.length,c=0;for(var i=0;i<n;i++){if(done[i])c++;}
+  document.getElementById("bar").style.width=n?(c/n*100)+"%":"0%";
+  document.getElementById("pt").textContent=c+" of "+n+" done";
+  var ph=wk.src==="coopah"?"Base &middot; Coopah block":
+    state.week>=WEEKS.length-1?"The run &middot; Attunga &rarr; SCG":"Ultra block &middot; Love in Motion";
+  document.getElementById("phase").innerHTML=ph;
+}
+function pillClass(k){return k==="long"?"long":k==="spd"?"spd":k==="run"?"run":k==="str"?"str":"rec";}
+function renderList(){
+  var list=document.getElementById("list");list.innerHTML="";
+  var ss=sessions(),done=getDone();
+  ss.forEach(function(s,i){
+    var card=document.createElement("div");
+    card.className="card"+(done[i]?" done":"");
+    card.style.animationDelay=(i*55)+"ms";
+    card.innerHTML=
+      "<div class='check'><svg viewBox='0 0 24 24'><polyline points='4 12 10 18 20 6'/></svg></div>"+
+      "<div class='meta'>"+(s.d?"<div class='d'>"+s.d+"</div>":"")+
+        "<div class='t'>"+s.t+"</div><div class='s'>"+s.s+"</div></div>"+
+      "<span class='pill "+pillClass(s.k)+"'>"+s.pill+"</span>"+
+      "<span class='chev'>&rsaquo;</span>";
+    card.querySelector(".check").onclick=function(e){e.stopPropagation();toggle(i);};
+    card.onclick=function(){openSheet(i);};
+    list.appendChild(card);
+  });
+  var cn=document.getElementById("cnote");
+  if(state.plan==="C")cn.textContent="Plan C is for the hard weeks. Movement is medicine, not a target. Sleep and your nervous system come first.";
+  else if(state.plan==="B")cn.textContent="Plan B protects the long run and your sleep when life is full. That's the system working, not you falling behind.";
+  else cn.textContent="Tap a session for the detail. Tap the circle to tick it off.";
+}
+function toggle(i){var d=getDone();d[i]=!d[i];setDone(d);renderWeek();renderList();}
+
+function openSheet(i){
+  var s=sessions()[i],done=getDone();
+  var h="<div class='st'>"+s.t+"</div><div class='ss'>"+(s.d?s.d+" &middot; ":"")+s.s+"</div>";
+  h+="<div class='blk'><h4>How to run this</h4><p>"+s.detail+"</p></div>";
+  if(s.yoga)h+="<div class='blk'><h4>Optional &middot; yoga &amp; breathwork</h4><div class='callout'><p>"+YOPT+"</p></div></div>";
+  h+=skipBlock(s);
+  if(s.long)h+="<div class='blk'><h4>Fuelling</h4><div class='callout'><p>"+s.fuel+"</p></div></div>";
+  else if(s.fuel)h+="<div class='blk'><h4>Fuelling</h4><p>"+s.fuel+"</p></div>";
+  if(s.ex){h+="<div class='blk'><h4>"+s.exlab+" &middot; exercises</h4><ul class='exlist'>";
+    s.ex.forEach(function(e){h+="<li><span class='nm'>"+e[0]+"</span><span class='rp'>"+e[1]+"</span></li>";});
+    h+="</ul></div>";}
+  h+="<button class='dobtn"+(done[i]?" is-done":"")+"' id='dobtn'>"+(done[i]?"&#10003; Done &mdash; tap to undo":"Mark as done")+"</button>";
+  document.getElementById("sheetbody").innerHTML=h;
+  document.getElementById("dobtn").onclick=function(){toggle(i);openSheet(i);};
+  document.getElementById("scrim").classList.add("on");
+  document.getElementById("sheet").classList.add("on");
+}
+function closeSheet(){document.getElementById("scrim").classList.remove("on");
+  document.getElementById("sheet").classList.remove("on");}
+document.getElementById("scrim").onclick=closeSheet;
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeSheet();});
+
+function note(title,html,cls){return "<details class='sub"+(cls?" "+cls:"")+"'><summary>"+title+"<span class='x'>&rsaquo;</span></summary><div class='body'>"+html+"</div></details>";}
+document.getElementById("notesbody").innerHTML=
+ note("The marathon changes the shape of November","<p><b>Confirmed: marathon on Sunday 1 November.</b> That settles it - the Coopah block runs exactly as written, all thirteen weeks, no edits. Follow the app through to race day.</p><p>It is also good news for Love in Motion. That marathon is the dress rehearsal K2PD was going to be, and better in one way: crowds, timing, nerves, and a real forced taper. You will arrive at November with genuine marathon fitness in the bank.</p><p><b>But it costs you a week, and I have rebuilt November around that.</b> A marathon leaves real muscle damage - running hard on it too soon is how people arrive at the start line already broken. So:</p><ul><li><b>Week 14 (2-8 Nov) is recovery only.</b> Walks, two short jogs, no long run. Resist it - this is the week that protects December.</li><li><b>Week 15 (9-15 Nov)</b> rebuilds easy volume with one 14 km long run. No quality work at all.</li><li><b>Back-to-backs now start 21-22 November</b>, a fortnight later than my first draft, and the block is tighter for it.</li></ul><p>Because the window is compressed, the December sessions matter more than ever. The peak weekend and the three-day rehearsal are the two things worth protecting above everything else in the calendar.</p><p>One practical question: <b>where is the marathon?</b> If it is interstate, travel and a night in a strange bed add to the recovery cost, and week 14 may need to be gentler still.</p>")+
+
+ note("From marathon fitness to multi-day durability","<p>Worth being clear about what the November and December block is actually for, because it is not more fitness.</p><p>The marathon on 1 November <b>is</b> your fitness peak. Everything after it converts that engine into something different: the ability to run ~38 km, sleep, eat, and get up and do it again. That is a separate skill, and it is trained at a much lower intensity than anything Coopah has you doing.</p><p>So from 9 November onward: <b>no tempo, no intervals, no target pace.</b> Every run is easy. What increases is time on your feet and how often you run on tired legs. If you find yourself checking pace on a back-to-back weekend, you have misunderstood the session.</p>")+
+
+ note("&#9888; The decision still open &middot; the run falls over Christmas","<p>The Pink Test is confirmed: <b>4-8 January 2027, Australia v New Zealand at the SCG</b>. To arrive for day one, the audited route (~484 km - hence The 500) gives:</p><ul><li>The audited stage plan: <b>13 days, ~38 km/day</b> &rarr; start <b>Wed 23 December</b>, arrive <b>Mon 4 January</b> for day one of the Test.</li></ul><p>Either way you are on the road across <b>Christmas and New Year</b>, with a six-year-old at home and Kel still recovering. That is a family conversation before it is a logistics one, and it shapes crew availability, accommodation and costs across the busiest week of the Australian year.</p><p>If Christmas on the road is not workable, the alternative is finishing <b>into</b> the Test rather than before it - arriving on day three or four, 6-7 January, and starting around 28-29 December.</p>","warn")+
+
+ note("Kuranda &rarr; Port Douglas is off - what that changes","<p><b>K2PD is not going ahead.</b> The August block is now clean, uninterrupted Coopah - no taper needed around 23 August, no race week to build around. That is simpler and it is good.</p><p>But it removes something too. K2PD would have been your one full dress rehearsal under real conditions: a long day on tired legs, with crew, kit and fuelling all tested for real before the road.</p><p>Without it, <b>two weekends in this plan carry that weight instead</b> - and they are no longer optional:</p><ul><li><b>Sat 5 &amp; Sun 6 December</b> - the 35 km / 28 km peak weekend. Full kit, full fuelling, crew practising alongside you.</li><li><b>Fri 11 - Sun 13 December</b> - the three-day rehearsal. This is the closest thing to Love in Motion you will run before Attunga.</li></ul><p>If life forces a choice later in the year, protect these two weekends over everything else in the block.</p>")+
+
+ note("Why the Coopah plan alone won't get you there","<p>Coopah is building you a very good <b>marathon</b>. Love in Motion is not a marathon.</p><p>Across the full thirteen weeks, the peak is <b>60 km in a week</b> with a 32 km long run, and <b>every single long run is preceded by a rest or easy day</b>. There is not one back-to-back long weekend anywhere in the block.</p><p>The run asks you to cover roughly <b>38 km a day for thirteen days</b>. The adaptation that makes that possible - running on legs that already ran yesterday, eating and sleeping well enough to go again - is exactly what a marathon plan never trains.</p><p><b>So: keep Coopah through October.</b> It builds the aerobic engine and the durability honestly, and the named sessions are good. Then from early November the Love in Motion block takes over and does the specific work. That is the merge you are looking at.</p>")+
+
+ note("Where you actually are right now","<p>Straight from Strava, not from the plan:</p><ul><li><b>Last logged run: 13 July.</b> Twenty-three days ago.</li><li>2026 has been light - roughly 17 runs since April.</li><li>Longest run this year: <b>20.8 km on 7 June</b>.</li><li>Easy pace sits around <b>7:00-7:30/km</b>, which is a sensible all-day effort.</li></ul><p>Coopah's week 1 at 15 km is a fair re-entry. <b>Week 2 at 33 km is a big jump</b> off a three-week break. If the first week feels harder than it should, repeat week 1 rather than pushing into week 2. Nothing is lost.</p><p>One thing worth remembering: between <b>28 December 2023 and 5 January 2024 you ran roughly 21 km a day, nine days straight</b>. About 190 km in nine days. You have done a version of this before. Your body has the file.</p>")+
+
+ note("How to gauge easy","<p>"+EASY+"</p><p><b>On the back-to-back weekends, walk the climbs from the very first one.</b> Time on your feet matters far more than pace in the November block.</p>")+
+
+ note("Weekly check-in","<p>Before choosing the week's plan, rate each <b>1-5</b>:</p><ul><li>Sleep</li><li>Stress / mental load</li><li>Body &amp; niggles</li><li>Mood &amp; energy</li><li>Family + caregiving load</li></ul><p>Two or more low &rarr; choose <b>Plan B or C</b>. No guilt - that's the system doing its job.</p>")+
+
+ note("When to back off","<ul><li>A niggle sharpens <b>during</b> a run, or changes how you move &rarr; stop, walk home.</li><li>Pain alters your gait or lingers &rarr; rest, see a physio.</li><li>Soreness hasn't eased after 48 hrs, resting heart rate is up, or the emotional tank is empty.</li><li><b>Never</b> run a back-to-back weekend on a bad week. Move it. There is always another weekend.</li></ul>")+
+
+ note("Strength A &middot; exercises","<ul class='ex'>"+STR_A.map(function(e){return "<li>"+e[0]+" — <b>"+e[1]+"</b></li>";}).join("")+"</ul>")+
+ note("Strength B &middot; exercises","<ul class='ex'>"+STR_B.map(function(e){return "<li>"+e[0]+" — <b>"+e[1]+"</b></li>";}).join("")+"</ul>")+
+ note("Mobility &middot; exercises","<ul class='ex'>"+MOB.map(function(e){return "<li>"+e[0]+" — <b>"+e[1]+"</b></li>";}).join("")+"</ul>");
+
+function render(){renderWeeks();renderPlans();renderWeek();renderList();}
 paceApply();renderCount();render();
 
+/* offline support */
 if("serviceWorker" in navigator){addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){});});}
 </script>
 </body>

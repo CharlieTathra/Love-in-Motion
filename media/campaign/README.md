@@ -1,8 +1,8 @@
 # Love in Motion — campaign hero graphics
 
-Hero graphics for the Run to Sydney campaign, built on the locked
+Hero graphics for The Run Home campaign (SCG → Tamworth), built on the locked
 `love-in-motion-design` system (Fraunces + Archivo; terracotta / ochre / ink
-palette; *Love* **IN MOTION** lockup; ochre → pink route motif; colour strip).
+palette; *Love* **IN MOTION** lockup; ochre → pink route motif — the pink heart now sits at Tamworth, home; colour strip).
 
 | File | Size | Use |
 | --- | --- | --- |
@@ -30,7 +30,7 @@ partner-logo chip in place of the reserved slot.
 - The **McGrath Foundation logo slot is reserved** (dashed placeholder) — the
   official logo is not reproduced here. It drops in only after partnership /
   brand approval.
-- **No event dates** are shown (none confirmed — not invented).
+- **No event dates** are shown on the tiles (route: Sydney → Tamworth, the run home).
 - The pink is the campaign **placeholder**, not the official McGrath pink;
   swap when their brand pack lands and re-render.
 - CTA: charlieabra.com (Follow · Donate).

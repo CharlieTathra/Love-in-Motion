@@ -266,8 +266,10 @@
 
 <div class="alert">
   <span class="lbl">The run, as it now stands</span>
-  Start at the <b>SCG on 6 January</b>, mid Pink Test. Home to <b>Tamworth by 19 January</b>.
-  About <b>430 km over 14 days &mdash; roughly 31 km a day</b>. Christmas is yours.
+  A hamstring injury has brought the run all the way home: <b>laps of Tamworth during the
+  Country Music Festival, 15&ndash;24 January 2027</b>. The kilometres are <b>not decided &mdash;
+  recovery leads</b>, and the November&ndash;December block below flexes with the hamstring.
+  Plans B and C exist for exactly this; walking always counts.
 </div>
 
 <a class="dl" href="../Love-in-Motion-Training-Plan.docx" download>
@@ -676,24 +678,25 @@ var WEEKS=[
   B:[E("Mon 28","Easy Run: 6 km","~43 min"),E("Sat 2","Easy Run: 5 km","~36 min"),RC("Sun 3","Crew briefing","Roles and meeting points")],
   C:[RC("Daily","Walk + downregulate","20 min",DOWNREG)]},
 
- {focus:"Travel &amp; the Test",dates:"Week 23 · 4-5 Jan · Sydney",start:new Date(2027,0,4),src:"lim",
-  vol:"Travel down · shake-out only",
-  A:[RC("Mon 4","Travel to Sydney","Pink Test day 1","Arrive early enough to sleep properly. Media and McGrath Foundation contact happens here, not on the morning you leave."),
-     E("Tue 5","Shake-out: 20-30 min","Very easy","Short and light on unfamiliar ground. Then eat well and sleep early.")],
-  B:[RC("Mon 4","Travel to Sydney","Pink Test day 1"),E("Tue 5","Shake-out: 20 min","Very easy")],
-  C:[RC("Both days","Travel + rest","Downregulate",DOWNREG)]},
+ {focus:"Festival lead-in",dates:"Week 23 · 4-14 Jan · lead-in",start:new Date(2027,0,4),src:"lim",
+  vol:"recovery-led · details lock with physio guidance",
+  A:[RC("This window","Move as the hamstring allows","Easy running or walking, no targets","The lead-in is written by recovery, not by a plan. Keep the thread - easy laps of the eventual course are perfect if the body says yes."),
+     RC("One day","Recce the lap course","Walk it with the crew","Choose the loop together: shade, water, toilets, a crew table spot, and the sight-lines that make it feel like an event."),
+     RC("One evening","Crew briefing","Roles, laps, the daily rhythm","Everyone knows the format, the daily window, and who calls a rest day. The hamstring has the final vote."),
+     RC("Before day one","Physio green-light","The only gate that matters","The festival starts 15 Jan. The laps start when the hamstring is ready - those can be different days, and that is fine.")],
+  B:[RC("&mdash;","See Plan A","Recovery-led lead-in")],
+  C:[RC("Daily","Walk + downregulate","20 min",DOWNREG)]},
 
- {focus:"Love in Motion",dates:"6-19 Jan · SCG &rarr; Tamworth",start:new Date(2027,0,6),src:"lim",
-  vol:"~430 km · 14 days · ~31 km a day",
-  A:[RC("Day 1 · 6 Jan","Leave the SCG","Mid Pink Test, pink everywhere","You start inside the biggest breast cancer moment on the Australian calendar. Take the send-off - it is the campaign's loudest day."),
-     RC("Each morning","Move early","Start before the heat","January on the New England Highway is hot. Break each day into segments between crew meets and never think about the whole distance."),
-     RC("Every 20-30 min","Eat and drink","Before you feel like it",FUEL_B2B),
-     RC("Each evening","Feet, food, sleep","The real work between days","Feet checked and dry, a proper meal within 30 min of stopping, legs elevated, lights out early. Recovery between days is what gets you home."),
-     RC("Daily","Regulate","10 min breathwork or nidra","You know this work better than any coach. The nervous system load of fourteen days on the road is as real as the physical load."),
-     RC("Anytime","Walk without guilt","Walking is part of the plan","At ~31 km a day you have room. Every multi-day runner walks - walking early and often is what makes day twelve possible."),
-     RC("Day 14 · 19 Jan","Home","Into Tamworth","Finishing on Country, in your own community. Plan this arrival properly - it is the shot the whole documentary builds toward.")],
-  B:[RC("&mdash;","See Plan A","The run itself","Plan B and C do not apply once you are on the road - the daily distances flex instead. We will build the stage plan separately.")],
-  C:[RC("&mdash;","See Plan A","The run itself","Plan B and C do not apply once you are on the road - the daily distances flex instead.")]}
+ {focus:"Love in Motion",dates:"15-24 Jan · Festival laps · Tamworth",start:new Date(2027,0,15),src:"lim",
+  vol:"distance TBC · laps of Tamworth · recovery-led",
+  A:[RC("15-24 Jan","Laps of Tamworth","During the Country Music Festival","The run has come home. Lap after lap while the town is at its fullest - daily distance set by the hamstring, not the calendar. Every lap is for the McGrath Foundation."),
+     RC("Each morning","Start early","Beat the January heat","Laps in the cool of the morning, rest through the peak, more laps late if the body says yes. The crew table is aid station, shade and home base."),
+     RC("Every lap","Eat and drink","Little and often, before you feel like it",FUEL_B2B),
+     RC("Each evening","Feet, food, sleep","Recovery between days","Feet checked, a proper meal within 30 min of stopping, legs elevated, lights out early. Recovery between days is what makes tomorrow's laps possible."),
+     RC("Daily","Regulate","10 min breathwork or nidra","You know this work better than any coach. Festival noise and crowds are their own load - downregulate daily."),
+     RC("Always","The hamstring decides","Walking counts. Stopping counts.","Every lap is a gift, not a debt. The distance that matters is the one that keeps you healthy - and anyone can join you for a lap.")],
+  B:[RC("&mdash;","See Plan A","The laps themselves","Plans flex day by day on the course - the daily distance is the variable, not the structure.")],
+  C:[RC("&mdash;","See Plan A","The laps themselves","Plans flex day by day on the course.")]}
 ];
 
 /* optional yoga & breathwork on Thursday rest days (kept from the old plan) */
@@ -736,8 +739,8 @@ function hyroxTravel(s){
 }
 
 var MARA=new Date(2026,10,1);
-var EVENT=new Date(2027,0,6);
-var HOME=new Date(2027,0,19);
+var EVENT=new Date(2027,0,15);
+var HOME=new Date(2027,0,24);
 
 
 function currentWeek(){var now=new Date();var idx=0;
@@ -811,10 +814,10 @@ function skipBlock(s){
 function renderCount(){
   var now=new Date(),cd=document.getElementById("cd"),cdl=document.getElementById("cdl");
   var dm=Math.ceil((MARA-now)/864e5),dr=Math.ceil((EVENT-now)/864e5),dh=Math.ceil((HOME-now)/864e5);
-  if(dm>0){cd.textContent=dm;cdl.innerHTML="days to <b>the marathon</b><br>dress rehearsal &middot; Sun 1 Nov &middot; then SCG &rarr; Tamworth from 6 Jan";}
+  if(dm>0){cd.textContent=dm;cdl.innerHTML="days to <b>the marathon</b><br>dress rehearsal &middot; Sun 1 Nov &middot; then the festival laps from 15 Jan";}
   else if(dm===0){cd.textContent=0;cdl.innerHTML="<b>Marathon day</b><br>Trust the taper. Bank every lesson.";}
-  else if(dr>0){cd.textContent=dr;cdl.innerHTML="days to <b>the start line at the SCG</b><br>Sydney &rarr; Tamworth &middot; 6&ndash;19 Jan 2027";}
-  else if(dh>=0){cd.textContent=Math.max(0,dh);cdl.innerHTML="<b>On the road</b><br>Sydney &rarr; Tamworth &middot; home 19 Jan";}
+  else if(dr>0){cd.textContent=dr;cdl.innerHTML="days to <b>the festival laps</b><br>Tamworth &middot; 15&ndash;24 Jan 2027";}
+  else if(dh>=0){cd.textContent=Math.max(0,dh);cdl.innerHTML="<b>Lap by lap</b><br>Tamworth &middot; festival week";}
   else{cd.textContent=0;cdl.innerHTML="<b>Home.</b><br>Because love keeps moving.";}
 }
 function renderWeeks(){
@@ -847,7 +850,7 @@ function renderWeek(){
   document.getElementById("bar").style.width=n?(c/n*100)+"%":"0%";
   document.getElementById("pt").textContent=c+" of "+n+" done";
   var ph=wk.src==="coopah"?"Marathon block &middot; Coopah":
-    state.week>=WEEKS.length-1?"SCG &rarr; Tamworth":"Ultra block &middot; Love in Motion";
+    state.week>=WEEKS.length-1?"Festival laps &middot; Tamworth":"Ultra block &middot; Love in Motion";
   document.getElementById("phase").innerHTML=ph;
 }
 function pillClass(k){return k==="long"?"long":k==="spd"?"spd":k==="run"?"run":k==="str"?"str":"rec";}
@@ -903,7 +906,7 @@ document.getElementById("notesbody").innerHTML=
 
  note("From marathon fitness to multi-day durability","<p>Worth being clear about what the November and December block is actually for, because it is not more fitness.</p><p>The marathon on 1 November <b>is</b> your fitness peak. Everything after it converts that engine into something different: the ability to run 40-50 km, sleep, eat, and get up and do it again. That is a separate skill, and it is trained at a much lower intensity than anything Coopah has you doing.</p><p>So from 9 November onward: <b>no tempo, no intervals, no target pace.</b> Every run is easy. What increases is time on your feet and how often you run on tired legs. If you find yourself checking pace on a back-to-back weekend, you have misunderstood the session.</p>")+
 
- note("The route flipped - and it is a better campaign","<p><b>Sydney to Tamworth, not Attunga to Sydney.</b> Start at the SCG on 6 January, mid Pink Test, and run home. Fourteen days, roughly 430 km, about <b>31 km a day</b>.</p><p>Three things this fixes at once:</p><ul><li><b>You launch inside the Pink Test.</b> The one week of the year the McGrath Foundation has the country's attention, with media already assembled and pink everywhere. You leave as part of that moment rather than arriving to compete with it.</li><li><b>Christmas is yours.</b> No running on 24 December. You are home with Kel and your girl, you travel down after New Year, and you start fresh.</li><li><b>You finish on Country.</b> Into Tamworth, in your own community, with people who know you. A far stronger final scene than a stadium full of strangers - for the documentary, for the fundraising push, and for you.</li></ul><p>It also drops the daily load meaningfully. The old plan needed 40-50 km a day; this needs about 31, with room to walk. That is a far kinder ask of a body that will have run a marathon nine weeks earlier.</p><p><b>Still to confirm:</b> the 6th versus the 7th for the send-off, and whether 19 January is a hard deadline or your best guess. A fifteenth day would bring the daily average under 29 km.</p>")+
+ note("The run comes home - laps of Tamworth","<p><b>A hamstring injury has rewritten the plan - and the plan listened.</b> Instead of the road from Sydney, Love in Motion becomes <b>laps around Tamworth during the Toyota Country Music Festival, 15-24 January 2027</b> - the days the town is at its absolute fullest.</p><ul><li><b>The kilometres are not decided.</b> They will be set by recovery, not ambition - the format locks with physio guidance as January approaches.</li><li><b>The festival is the stage.</b> The campaign runs lap after lap through the middle of Tamworth's biggest week, for the McGrath Foundation.</li><li><b>Community can join.</b> A lap course means anyone can run or walk a lap alongside - something no highway route could offer.</li><li><b>Recovery leads the training.</b> Every session from here flexes around the hamstring. Plan B and C exist for exactly this, and walking always counts.</li></ul><p>Still to decide: daily distance, which festival days, and the lap course itself.</p>")+
 
  note("Why the Coopah plan alone won't get you there","<p>Coopah is building you a very good <b>marathon</b>. Love in Motion is not a marathon.</p><p>Across the full thirteen weeks, the peak is <b>60 km in a week</b> with a 32 km long run, and <b>every single long run is preceded by a rest or easy day</b>. There is not one back-to-back long weekend anywhere in the block.</p><p>The run asks you to cover roughly <b>31 km a day for fourteen days straight</b>. The adaptation that makes that possible - running on legs that already ran yesterday, eating and sleeping well enough to go again, fourteen times over - is exactly what a marathon plan never trains. Single-day distance is not the problem here; <b>consecutive days are</b>.</p><p><b>So: keep Coopah through October.</b> It builds the aerobic engine and the durability honestly, and the named sessions are good. Then from early November the Love in Motion block takes over and does the specific work. That is the merge you are looking at.</p>")+
 

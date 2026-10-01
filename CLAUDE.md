@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A static, no-build PWA hub for the **Love in Motion** endurance campaign (a 45 km practice run on 1 Nov 2026 and the 500 km Attunga → Sydney run on 23 Dec 2026, fundraising for the McGrath Foundation). Live at https://charlietathra.github.io/Love-in-Motion/.
+A static, no-build PWA hub for the **Love in Motion** endurance campaign (a marathon dress rehearsal on 1 Nov 2026, then the Festival Laps — laps of Tamworth during the Country Music Festival, 15–24 Jan 2027, distance TBC and led by hamstring recovery — fundraising for the McGrath Foundation). Live at https://charlietathra.github.io/Love-in-Motion/.
 
 There is **no build step, no package.json, no tests, and no linter**. Every page is a fully self-contained `index.html` (inline CSS + inline ES5-style JavaScript) that works opened directly in a browser and offline. To verify a change, open the file in a browser (e.g. `python3 -m http.server` from the repo root — a server is needed for the service worker, not for the pages themselves).
 
@@ -20,9 +20,9 @@ Every push to `main` deploys the **repo root** to GitHub Pages via `.github/work
 | `nutrition-meal-planner/` | "Fuel" — daily fuelling protocol across Plans A/B/C |
 | `meals/` | Serve-based meal builder |
 | `training/` | 24-week training plan with week tabs, session check-offs, notes |
-| `the-500/` | The Attunga → Sydney campaign (route, crew camps, multi-day plan) |
+| `the-500/` | The Festival Laps campaign (format, window, how to join a lap) — path kept for history |
 | `donate/` | Fundraiser page |
-| `the-415/` | Redirect stub only — the event grew from 415 km to 500 km; it meta-refreshes to `../the-500/`. Don't add content here. |
+| `the-415/` | Redirect stub only — kept from an earlier version of the event; it meta-refreshes to `../the-500/`. Don't add content here. |
 
 ## Architecture
 

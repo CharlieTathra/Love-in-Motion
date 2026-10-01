@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Love in Motion">
 <title>Love in Motion</title>
-<meta name="description" content="An endurance journey for the McGrath Foundation — training, fuelling and fundraising for a marathon dress rehearsal and the run home — SCG to Tamworth, 6–19 January.">
+<meta name="description" content="An endurance journey for the McGrath Foundation — training, fuelling and fundraising for laps of Tamworth during the Country Music Festival, January 2027.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Love in Motion">
 <meta property="og:title" content="Love in Motion">
@@ -215,7 +215,7 @@
   <div class="tag">Because Love Keeps Moving</div>
 </header>
 
-<section class="imh" aria-label="The run home — for the McGrath Foundation">
+<section class="imh" aria-label="The festival laps — for the McGrath Foundation">
   <svg class="imh-arcs" viewBox="0 0 300 300" preserveAspectRatio="xMaxYMin meet" aria-hidden="true">
     <g fill="none" stroke="#d89a4e" stroke-width="2">
       <circle cx="300" cy="0" r="118" stroke-opacity=".16"/>
@@ -225,13 +225,13 @@
     </g>
   </svg>
   <div class="imh-in">
-    <div class="imh-kick">The Run Home &nbsp;&middot;&nbsp; <b>For the McGrath Foundation</b></div>
+    <div class="imh-kick">The Festival Laps &nbsp;&middot;&nbsp; <b>For the McGrath Foundation</b></div>
     <div class="imh-slot has-logo"><img src="media/mcgrath-foundation-logo.png" alt="McGrath Foundation" width="357" height="144"></div>
     <div class="imh-love">Love</div>
     <div class="imh-motion">IN MOTION</div>
     <div class="imh-through">Every kilometre turned into care.</div>
     <div class="imh-route">
-      <div class="imh-rlab"><span class="a">Sydney</span><span class="s">Tamworth</span></div>
+      <div class="imh-rlab"><span class="a">Lap one</span><span class="s">Home straight</span></div>
       <svg class="imh-path" viewBox="0 0 320 54" aria-hidden="true">
         <path d="M20,27 C 80,-6 104,60 160,27 S 250,-6 300,27" fill="none"
           stroke="#d89a4e" stroke-width="3" stroke-linecap="round" stroke-dasharray="0.5 13" opacity=".95"/>
@@ -252,12 +252,12 @@
 <section class="hero">
   <div class="ey">In support of the McGrath Foundation</div>
   <h2>Every kilometre is a way of saying <em>I love you</em>.</h2>
-  <p>An endurance journey raising support for the McGrath Foundation &mdash; a marathon dress rehearsal on 1&nbsp;November, then the long road home &mdash; SCG to Tamworth &mdash; in January. This is the home for the training, the fuelling, and the why.</p>
+  <p>An endurance journey raising support for the McGrath Foundation &mdash; the long game has come home: laps of Tamworth during the Country Music Festival in January, with distance led by recovery. This is the home for the training, the fuelling, and the why.</p>
 </section>
 
 <div class="count">
   <div class="n" id="cd">&mdash;</div>
-  <div class="lab" id="cdl">days to <b>the marathon</b><br>dress rehearsal &middot; Sun 1 Nov &middot; then SCG &rarr; Tamworth in Jan</div>
+  <div class="lab" id="cdl">days to <b>the marathon</b><br>dress rehearsal &middot; Sun 1 Nov &middot; then the festival laps in Jan</div>
 </div>
 
 <div class="install" id="install" hidden>
@@ -302,8 +302,8 @@
   <a class="navcard" href="the-500/index.html">
     <div class="ico epic">&#127937;</div>
     <div class="nmeta">
-      <div class="t">The Run Home <span class="badge">Goal</span></div>
-      <div class="s">The SCG &rarr; Tamworth campaign: launch mid-Pink Test, 14 days on the road, and the finish on Country.</div>
+      <div class="t">The Festival Laps <span class="badge">Goal</span></div>
+      <div class="s">Laps of Tamworth during the Country Music Festival (15&ndash;24 Jan) &mdash; distance led by recovery, every lap for the McGrath Foundation.</div>
     </div>
     <span class="chev">&rsaquo;</span>
   </a>
@@ -331,9 +331,9 @@
   <div class="leg future">
     <div class="rail"><div class="dot"></div><div class="line"></div></div>
     <div class="lcon">
-      <div class="lt">SCG &rarr; Tamworth</div>
-      <div class="ld">430+ km &middot; 6&ndash;19 Jan 2027 &middot; the run home</div>
-      <div class="lp">The long road, and the reason for all of it. Days on feet, crew-cooked meals, recovery each night. Leave the SCG mid-Pink Test, finish on Country in Tamworth. The 1&nbsp;November marathon is the stepping stone &mdash; every long run between now and then is quiet preparation.</div>
+      <div class="lt">Laps of Tamworth</div>
+      <div class="ld">km TBC &middot; 15&ndash;24 Jan 2027 &middot; during the festival</div>
+      <div class="lp">The long road, and the reason for all of it. Days on feet, crew-cooked meals, recovery each night. Lap after lap around Tamworth while the town is at its festival fullest, with distance set by recovery &mdash; on home turf, in community, every lap for the cause.</div>
     </div>
   </div>
 </div>
@@ -356,14 +356,14 @@
 <script>
 "use strict";
 /* live countdown — marathon first, then the run home */
-var MARA=new Date(2026,10,1),EVENT=new Date(2027,0,6),HOME=new Date(2027,0,19);
+var MARA=new Date(2026,10,1),EVENT=new Date(2027,0,15),HOME=new Date(2027,0,24);
 (function(){
   var now=new Date(),cd=document.getElementById("cd"),cdl=document.getElementById("cdl");
   var dm=Math.ceil((MARA-now)/864e5),dr=Math.ceil((EVENT-now)/864e5),dh=Math.ceil((HOME-now)/864e5);
   if(dm>0){cd.textContent=dm;}
   else if(dm===0){cd.textContent=0;cdl.innerHTML="<b>Marathon day</b><br>Trust the taper. Bank every lesson.";}
-  else if(dr>0){cd.textContent=dr;cdl.innerHTML="days to <b>The Love in Motion Run</b><br>SCG &rarr; Tamworth &middot; 6 Jan 2027";}
-  else if(dh>=0){cd.textContent=Math.max(0,dh);cdl.innerHTML="<b>On the road</b><br>Sydney &rarr; Tamworth &middot; home 19 Jan";}
+  else if(dr>0){cd.textContent=dr;cdl.innerHTML="days to <b>the festival laps</b><br>Tamworth &middot; 15&ndash;24 Jan 2027";}
+  else if(dh>=0){cd.textContent=Math.max(0,dh);cdl.innerHTML="<b>Lap by lap</b><br>Tamworth &middot; festival week";}
   else{cd.textContent=0;cdl.innerHTML="<b>Home.</b><br>Because love keeps moving.";}
 })();
 

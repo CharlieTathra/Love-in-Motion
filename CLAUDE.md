@@ -19,7 +19,7 @@ Every push to `main` deploys the **repo root** to GitHub Pages via `.github/work
 | `index.html` | Home — countdown, timeline, links |
 | `nutrition-meal-planner/` | "Fuel" — daily fuelling protocol across Plans A/B/C |
 | `meals/` | Serve-based meal builder |
-| `training/` | 24-week training plan with week tabs, session check-offs, notes |
+| `training/` | Training plan (starts at the current block — 5 Oct 2026 — through the festival laps) with week tabs and session check-offs |
 | `the-500/` | The Festival Laps campaign (format, window, how to join a lap) — path kept for history |
 | `donate/` | Fundraiser page |
 | `the-415/` | Redirect stub only — kept from an earlier version of the event; it meta-refreshes to `../the-500/`. Don't add content here. |
@@ -37,7 +37,7 @@ The only shared JS file. It exposes `window.LIMStorage.create(scopeName, onRemot
 - reads/writes localStorage keys prefixed **`limn_`**, with an in-memory fallback when storage is unavailable;
 - optionally syncs the whole `limn_*` snapshot to a Supabase table `lim_app_state` (upsert keyed by `scope`, debounced 700 ms) **only if** the page defines `window.LIM_SUPABASE_URL` / `LIM_SUPABASE_ANON_KEY` before loading `supabase-sync.js`. Without them it is purely local — never make Supabase required.
 
-Key conventions: `limn_plan` holds the Plan A/B/C selection and is **shared between the Fuel and Train apps** (changing it in one changes the other); `limn_train2_done_w*` / `limn_train2_note_w*` hold training progress/notes; `limn_eaten_d*` holds meals eaten; `meals/` uses `limn_meal_plan`. New persisted state must use the `limn_` prefix or it won't sync or survive the snapshot logic.
+Key conventions: `limn_plan` holds the Plan A/B/C selection and is **shared between the Fuel and Train apps** (changing it in one changes the other); `limn_train4_done_w*` holds training progress (the `w` number is the week's array index, so renumbering weeks means bumping the key prefix); `limn_eaten_d*` holds meals eaten; `meals/` uses `limn_meal_plan`. New persisted state must use the `limn_` prefix or it won't sync or survive the snapshot logic.
 
 ### Service worker (`sw.js`)
 

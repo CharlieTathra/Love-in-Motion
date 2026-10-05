@@ -1,8 +1,12 @@
 # Love in Motion — campaign hero graphics
 
-Hero graphics for The Run Home campaign (SCG → Tamworth), built on the locked
-`love-in-motion-design` system (Fraunces + Archivo; terracotta / ochre / ink
-palette; *Love* **IN MOTION** lockup; ochre → pink route motif — the pink heart now sits at Tamworth, home; colour strip).
+Hero graphics for The Festival Laps campaign (a multi-day ultra as laps of
+Tamworth during the Country Music Festival, finishing with the McGrath
+Foundation on Tue 19 Jan 2027), built on the locked `love-in-motion-design`
+system (Fraunces + Archivo; terracotta / ochre / ink palette; *Love*
+**IN MOTION** lockup; colour strip). The route motif is now the **lap
+motif** — dotted loops circling a pink heart at home (LAP ONE → TAMWORTH ·
+HOME).
 
 | File | Size | Use |
 | --- | --- | --- |
@@ -30,7 +34,8 @@ partner-logo chip in place of the reserved slot.
 - The **McGrath Foundation logo slot is reserved** (dashed placeholder) — the
   official logo is not reproduced here. It drops in only after partnership /
   brand approval.
-- **No event dates** are shown on the tiles (route: Sydney → Tamworth, the run home).
+- The one date shown — **Finish Tue 19 Jan 2027** — is confirmed by Charlie.
+  Distance and day count stay off the tiles (decided 14 Dec, recovery-led).
 - The pink is the campaign **placeholder**, not the official McGrath pink;
   swap when their brand pack lands and re-render.
 - CTA: charlieabra.com (Follow · Donate).

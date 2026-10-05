@@ -177,7 +177,7 @@
   <div class="tag">Nourish &middot; build by serves</div>
   <div class="count">
     <div class="n" id="cd">&mdash;</div>
-    <div class="lab" id="cdl">days to <b>the start line at the SCG</b><br>Love in Motion run &middot; SCG &rarr; Tamworth &middot; 6 Jan 2027</div>
+    <div class="lab" id="cdl">days to <b>the festival laps</b><br>Love in Motion &middot; Tamworth &middot; 15&ndash;24 Jan 2027</div>
   </div>
 </header>
 
@@ -242,10 +242,10 @@ var store=window.LIMStorage.create("meals",function(){
 });
 
 /* countdown to the 500 (matches sibling pages) */
-var EVENT=new Date(2027,0,6);
+var EVENT=new Date(2027,0,15);
 (function(){var d=Math.max(0,Math.ceil((EVENT-new Date())/86400000));
   document.getElementById('cd').textContent=d;
-  if(d===0)document.getElementById('cdl').innerHTML="<b>Today is the day</b><br>SCG &rarr; Tamworth &mdash; the run home begins";})();
+  if(d===0)document.getElementById('cdl').innerHTML="<b>Today is the day</b><br>Laps of Tamworth &mdash; the festival is on";})();
 
 /* ---- per-serve nutrition (Nutrition Protocol Meal Builder) ---- */
 var G={protein:24,carbs:25,veg:5,fat:9};

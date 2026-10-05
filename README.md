@@ -5,8 +5,9 @@
 **🌐 Live site:** https://charlietathra.github.io/Love-in-Motion/
 
 A small hub of self-contained web apps supporting the training and fuelling for
-a **marathon dress rehearsal** (1 Nov 2026) and the **Love in Motion Run** —
-home from the SCG to Tamworth, 6–19 January 2027, launched mid-Pink Test.
+a **marathon dress rehearsal** (1 Nov 2026) and the **Love in Motion Festival
+Laps** — laps of Tamworth during the Country Music Festival, 15–24 January 2027,
+with the distance set by hamstring recovery (kilometres TBC).
 
 ## Pages
 
@@ -15,8 +16,8 @@ home from the SCG to Tamworth, 6–19 January 2027, launched mid-Pink Test.
 | **Home** | https://charlietathra.github.io/Love-in-Motion/ | Countdown, journey timeline, and links to everything below |
 | **Fuel** | https://charlietathra.github.io/Love-in-Motion/nutrition-meal-planner/ | Daily fuelling protocol — meals with measured serves and macros, snacks, on-run fuel and recovery, across Plan A/B/C |
 | **Meals** | https://charlietathra.github.io/Love-in-Motion/meals/ | Serve-based meal builder — tap foods into breakfast/lunch/dinner/snack and track serves + macros against the daily targets |
-| **Train** | https://charlietathra.github.io/Love-in-Motion/training/ | The build to the 1 Nov marathon and the run home (6–19 Jan) — the Coopah block, then the Love in Motion ultra block (back-to-backs, three-day rehearsal, taper) — with week tabs, saved progress and coach notes |
-| **The 500** | https://charlietathra.github.io/Love-in-Motion/the-500/ | The SCG → Tamworth campaign — launch mid-Pink Test, 14 days, the finish on Country, plus the planned route and crew camps |
+| **Train** | https://charlietathra.github.io/Love-in-Motion/training/ | The build to the 1 Nov marathon and the festival laps (15–24 Jan) — the Coopah block, then a recovery-led block that flexes with the hamstring — with week tabs, saved progress and coach notes |
+| **The Festival Laps** | https://charlietathra.github.io/Love-in-Motion/the-500/ | The campaign — laps of Tamworth during the Country Music Festival, distance set by recovery, everyone welcome to join a lap |
 | **Donate** | https://charlietathra.github.io/Love-in-Motion/donate/ | The fundraiser, in support of the McGrath Foundation |
 
 ## How it works

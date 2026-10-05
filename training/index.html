@@ -9,16 +9,16 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Train">
 <title>Love in Motion — Train</title>
-<meta name="description" content="The rebuild from the hamstring tear to the multi-day ultra at home in Tamworth, finishing 19 January 2027 — criteria-led rehab, run-walk, back-to-backs and the run itself, with saved progress and coach notes.">
+<meta name="description" content="The hamstring-smart rebuild to a multi-day ultra at home in Tamworth — strength phases, run-walk return, back-to-back weekends and the run window, with saved progress and coach notes.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Love in Motion">
 <meta property="og:title" content="Love in Motion — Train">
-<meta property="og:description" content="The rebuild from the hamstring tear to the multi-day ultra at home in Tamworth, finishing 19 January 2027.">
+<meta property="og:description" content="The hamstring-smart rebuild to a multi-day ultra at home in Tamworth — every session prescribed, with saved progress.">
 <meta property="og:image" content="https://charlietathra.github.io/Love-in-Motion/icon-512.png">
 <meta property="og:url" content="https://charlietathra.github.io/Love-in-Motion/training/">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Love in Motion — Train">
-<meta name="twitter:description" content="The rebuild from the hamstring tear to the multi-day ultra at home in Tamworth, finishing 19 January 2027.">
+<meta name="twitter:description" content="The hamstring-smart rebuild to a multi-day ultra at home in Tamworth.">
 <meta name="twitter:image" content="https://charlietathra.github.io/Love-in-Motion/icon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,7 +31,7 @@
     --ink:#312824; --ink-soft:#6d5f57; --ink-faint:#9c8d83;
     --rose:#b9536a; --rose-deep:#8f3a50; --rose-wash:#f4e3e4;
     --euc:#74866d; --euc-wash:#e7ecdf;
-    --amber:#a8762f; --amber-wash:#f6ecd9;
+    --clay:#bf7a4e; --clay-wash:#f1e4d6; --clay-deep:#9a5a2e;
     --line:#e8ddd0; --line-soft:#efe6da;
     --shadow:0 1px 2px rgba(49,40,36,.04),0 8px 24px rgba(49,40,36,.06);
     --shadow-lg:0 10px 40px rgba(49,40,36,.16);
@@ -42,172 +42,179 @@
   html,body{background:var(--cream);color:var(--ink);font-family:var(--sans);
     -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
   body{max-width:520px;margin:0 auto;min-height:100vh;
-    background:
-      radial-gradient(120% 60% at 100% 0%, var(--cream-2) 0%, transparent 60%),
-      var(--cream);
+    background:radial-gradient(120% 60% at 100% 0%, var(--cream-2) 0%, transparent 60%),var(--cream);
     padding:0 18px calc(88px + env(safe-area-inset-bottom));position:relative}
   ::selection{background:var(--rose-wash)}
-  a{color:inherit;text-decoration:none}
+  a{color:inherit}
 
-  header{padding:calc(30px + env(safe-area-inset-top,0px)) 4px 14px;position:sticky;top:0;z-index:5;
+  header{padding:30px 4px 14px;position:sticky;top:0;z-index:5;
     background:linear-gradient(var(--cream) 72%, transparent);}
-  .back{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;
-    color:var(--ink-faint);margin-bottom:12px}
-  .back .a{font-size:16px;line-height:1}
   .brand{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
-  .brand h1{font-family:var(--serif);font-weight:500;font-size:25px;
-    letter-spacing:-.01em;line-height:1}
+  .brand h1{font-family:var(--serif);font-weight:500;font-size:25px;letter-spacing:-.01em;line-height:1}
   .brand .heart{color:var(--rose);font-size:20px;transform:translateY(1px)}
-  .tag{font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;
-    color:var(--ink-faint);margin-top:7px;font-weight:500}
-
-  .count{margin-top:16px;background:var(--surface);border:1px solid var(--line);
-    border-radius:16px;padding:15px 17px;display:flex;align-items:center;
-    gap:14px;box-shadow:var(--shadow);position:relative;overflow:hidden}
-  .count::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;
-    background:linear-gradient(var(--rose),var(--euc))}
-  .count .n{font-family:var(--serif);font-size:34px;font-weight:600;
-    color:var(--rose-deep);line-height:.9;font-variant-numeric:tabular-nums}
+  .tag{font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-faint);margin-top:7px;font-weight:600}
+  .count{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:16px;
+    padding:15px 17px;display:flex;align-items:center;gap:14px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .count::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(var(--rose),var(--euc))}
+  .count .n{font-family:var(--serif);font-size:34px;font-weight:600;color:var(--rose-deep);line-height:.9;font-variant-numeric:tabular-nums}
   .count .lab{font-size:12.5px;color:var(--ink-soft);line-height:1.35}
   .count .lab b{color:var(--ink);font-weight:600}
 
-  .alert{margin-top:12px;background:var(--amber-wash);border:1px solid #e6d4b4;
-    border-radius:14px;padding:13px 15px;font-size:12.5px;line-height:1.55;
-    color:#6b4d1c}
-  .alert b{color:#4d3712;font-weight:600}
-  .alert .lbl{color:#4d3712;font-weight:600;display:block;margin-bottom:3px;
-    font-size:11px;letter-spacing:.1em;text-transform:uppercase}
-
   .controls{margin-top:20px}
-  .weeks{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;
-    scrollbar-width:none;-ms-overflow-style:none}
+  .weeks{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;-ms-overflow-style:none}
   .weeks::-webkit-scrollbar{display:none}
-  .wk{flex:0 0 auto;border:1px solid var(--line);background:var(--surface);
-    border-radius:11px;padding:9px 13px;font-size:13px;font-weight:600;
-    color:var(--ink-soft);cursor:pointer;transition:.18s;white-space:nowrap}
-  .wk .wd{display:block;font-size:10px;font-weight:500;color:var(--ink-faint);
-    margin-top:2px;letter-spacing:.02em}
+  .wk{flex:0 0 auto;border:1px solid var(--line);background:var(--surface);border-radius:11px;
+    padding:9px 13px;font-size:13px;font-weight:600;color:var(--ink-soft);cursor:pointer;transition:.18s;white-space:nowrap}
+  .wk .wd{display:block;font-size:10px;font-weight:500;color:var(--ink-faint);margin-top:2px;letter-spacing:.02em}
   .wk[aria-selected="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
   .wk[aria-selected="true"] .wd{color:rgba(255,255,255,.6)}
   .wk.is-now::after{content:"·";color:var(--rose);font-weight:900;margin-left:5px}
 
-  .plans{display:flex;gap:5px;margin-top:14px;background:var(--cream-2);
-    border-radius:13px;padding:4px}
-  .plan{flex:1;border:0;background:transparent;border-radius:10px;padding:9px 6px;
-    cursor:pointer;font-family:var(--sans);font-size:12.5px;font-weight:600;
-    color:var(--ink-soft);transition:.18s;text-align:center}
+  .plans{display:flex;gap:5px;margin-top:14px;background:var(--cream-2);border-radius:13px;padding:4px}
+  .plan{flex:1;border:0;background:transparent;border-radius:10px;padding:9px 6px;cursor:pointer;
+    font-family:var(--sans);font-size:12.5px;font-weight:600;color:var(--ink-soft);transition:.18s;text-align:center}
   .plan span{display:block;font-size:10px;font-weight:500;color:var(--ink-faint);margin-top:1px}
   .plan[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
   .plan[aria-selected="true"] span{color:var(--rose-deep)}
 
   .whead{margin:24px 2px 4px}
   .whead .focus{font-family:var(--serif);font-size:21px;font-weight:500;letter-spacing:-.01em}
-  .whead .dates{font-size:12.5px;color:var(--ink-faint);margin-top:3px;letter-spacing:.02em}
-  .src{display:inline-block;font-size:9.5px;font-weight:600;letter-spacing:.08em;
-    text-transform:uppercase;padding:3px 7px;border-radius:99px;margin-top:8px}
-  .src.coopah{background:#e4e9f5;color:#3d4d78}
-  .src.lim{background:var(--rose-wash);color:var(--rose-deep)}
-  .src.rehab{background:var(--amber-wash);color:#6b4d1c}
-  .pill.xt{background:#e2ecef;color:#3f6670}
-  .src.pend{background:var(--cream-2);color:var(--ink-faint)}
+  .phase{display:inline-block;font-size:9.5px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;
+    padding:3px 9px;border-radius:99px;margin:8px 8px 0 0;vertical-align:middle}
+  .pf-Base{background:var(--cream-2);color:var(--ink-soft)}
+  .pf-Foundation{background:var(--euc-wash);color:var(--euc)}
+  .pf-Build{background:var(--rose-wash);color:var(--rose-deep)}
+  .pf-Peak{background:var(--rose-deep);color:#fff}
+  .pf-Taper{background:var(--clay-wash);color:var(--clay-deep)}
+  .pf-Recover{background:var(--euc-wash);color:var(--euc)}
+  .pf-The415{background:var(--clay-deep);color:#fff}
+  .whead .dates{font-size:12.5px;color:var(--ink-faint);margin-top:6px;letter-spacing:.02em}
+  .wknote{font-size:12px;color:var(--ink-soft);margin-top:9px;font-style:italic;line-height:1.45}
   .prog{margin-top:14px;display:flex;align-items:center;gap:11px}
   .bar{flex:1;height:7px;background:var(--cream-2);border-radius:99px;overflow:hidden}
-  .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--euc),var(--rose));
-    border-radius:99px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--euc),var(--rose));border-radius:99px;transition:width .5s cubic-bezier(.4,0,.2,1)}
   .prog .pt{font-size:11.5px;color:var(--ink-soft);font-weight:600;white-space:nowrap}
-  .vol{font-size:11.5px;color:var(--ink-faint);margin-top:9px;letter-spacing:.02em}
 
   .list{margin-top:16px;display:flex;flex-direction:column;gap:10px}
-  .card{background:var(--surface);border:1px solid var(--line);border-radius:15px;
-    padding:14px 15px;display:flex;align-items:center;gap:13px;cursor:pointer;
-    box-shadow:var(--shadow);transition:.16s;
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:14px 15px;
+    display:flex;align-items:center;gap:13px;cursor:pointer;box-shadow:var(--shadow);transition:.16s;
     animation:rise .5s cubic-bezier(.2,.7,.2,1) both}
   @keyframes rise{from{opacity:0;transform:translateY(9px)}}
   .card:active{transform:scale(.985)}
   .card.done{background:var(--cream);border-color:var(--line-soft)}
-  .check{flex:0 0 auto;width:26px;height:26px;border-radius:50%;
-    border:1.6px solid var(--line);display:grid;place-items:center;
-    transition:.18s;background:#fff}
-  .check svg{width:13px;height:13px;stroke:#fff;stroke-width:2.6;fill:none;
-    stroke-linecap:round;stroke-linejoin:round;opacity:0;transform:scale(.4);transition:.18s}
+  .check{flex:0 0 auto;width:26px;height:26px;border-radius:50%;border:1.6px solid var(--line);
+    display:grid;place-items:center;transition:.18s;background:#fff}
+  .check svg{width:13px;height:13px;stroke:#fff;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:0;transform:scale(.4);transition:.18s}
   .card.done .check{background:var(--euc);border-color:var(--euc)}
   .card.done .check svg{opacity:1;transform:scale(1)}
   .meta{flex:1;min-width:0}
   .meta .t{font-size:14.5px;font-weight:600;letter-spacing:-.01em}
   .card.done .meta .t{color:var(--ink-soft);text-decoration:line-through;text-decoration-color:var(--line)}
   .meta .s{font-size:12.5px;color:var(--ink-soft);margin-top:2px}
-  .meta .d{font-size:10.5px;color:var(--ink-faint);margin-top:3px;
-    letter-spacing:.06em;text-transform:uppercase;font-weight:600}
-  .pill{flex:0 0 auto;font-size:9.5px;font-weight:600;letter-spacing:.08em;
-    text-transform:uppercase;padding:4px 8px;border-radius:99px}
+  .pill{flex:0 0 auto;font-size:9.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:4px 8px;border-radius:99px}
   .pill.run{background:var(--rose-wash);color:var(--rose-deep)}
-  .pill.long{background:#ece4f0;color:#6b4a7d}
-  .pill.spd{background:#dfe4f2;color:#3d4d78}
+  .pill.b2b{background:var(--clay-wash);color:var(--clay-deep)}
   .pill.str{background:var(--euc-wash);color:var(--euc)}
   .pill.rec{background:var(--cream-2);color:var(--ink-soft)}
+  .pill.race{background:var(--rose-deep);color:#fff}
   .chev{flex:0 0 auto;color:var(--ink-faint);font-size:18px;line-height:1}
+  .card.race{border-color:var(--rose);background:linear-gradient(180deg,var(--rose-wash),var(--surface))}
 
-  .cnote{margin-top:13px;font-size:12px;color:var(--ink-faint);text-align:center;
-    line-height:1.5;padding:0 10px}
+  .cnote{margin-top:13px;font-size:12px;color:var(--ink-faint);text-align:center;line-height:1.5;padding:0 10px}
 
+  /* week training-notes card */
+  .tnote{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:14px 15px;box-shadow:var(--shadow)}
+  .tnote label{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--rose-deep);font-weight:600;display:block}
+  .tnote textarea{width:100%;margin-top:8px;border:1px solid var(--line);border-radius:11px;background:var(--cream);
+    font-family:var(--sans);font-size:13px;color:var(--ink);padding:10px 12px;min-height:66px;resize:vertical;line-height:1.5}
+  .tnote textarea:focus{outline:none;border-color:var(--euc)}
+  .savednote{font-size:11px;color:var(--euc);font-weight:600;letter-spacing:.02em;margin-top:6px;opacity:0;transition:.3s}
+  .savednote.on{opacity:1}
+
+  .dl{margin-top:18px;display:flex;align-items:center;gap:13px;background:var(--surface);
+    border:1px solid var(--line);border-radius:15px;padding:14px 16px;box-shadow:var(--shadow);
+    transition:.16s}
+  .dl:active{transform:scale(.99)}
+  .dlic{font-size:22px;line-height:1}
+  .dltx{flex:1;min-width:0;display:flex;flex-direction:column}
+  .dltx b{font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
+  .dltx span{font-size:11.5px;color:var(--ink-faint);margin-top:2px}
+  .dlar{flex:0 0 auto;font-size:17px;color:var(--rose-deep);font-weight:700}
+  /* easy-pace calibration */
+  .pacebar{margin-top:14px;background:var(--surface);border:1px solid var(--line);
+    border-radius:15px;padding:13px 16px;box-shadow:var(--shadow)}
+  .pacerow{display:flex;align-items:center;gap:12px}
+  .ptx{flex:1;min-width:0;display:flex;flex-direction:column}
+  .ptx b{font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
+  .ptx span{font-size:12.5px;color:var(--rose-deep);font-weight:600;margin-top:2px;
+    font-variant-numeric:tabular-nums}
+  .pbtn{flex:0 0 auto;width:38px;height:38px;border-radius:12px;border:1px solid var(--line);
+    background:var(--cream);color:var(--ink);font-size:20px;line-height:1;cursor:pointer;
+    font-family:var(--sans);font-weight:600;transition:.15s}
+  .pbtn:active{transform:scale(.94);background:var(--cream-2)}
+  .pnote{font-size:11px;color:var(--ink-faint);margin-top:8px;line-height:1.45}
   .notes{margin-top:30px;border-top:1px solid var(--line);padding-top:8px}
-  .notes>summary{font-family:var(--serif);font-size:17px;font-weight:500;
-    padding:14px 2px;cursor:pointer;list-style:none;display:flex;
-    align-items:center;justify-content:space-between}
+  .notes>summary{font-family:var(--serif);font-size:17px;font-weight:500;padding:14px 2px;cursor:pointer;
+    list-style:none;display:flex;align-items:center;justify-content:space-between}
   .notes>summary::-webkit-details-marker{display:none}
   .notes>summary .x{color:var(--ink-faint);font-size:20px;transition:.2s}
   .notes[open]>summary .x{transform:rotate(45deg)}
-  details.sub{border:1px solid var(--line);border-radius:13px;background:var(--surface);
-    margin-bottom:9px;overflow:hidden}
-  details.sub>summary{padding:13px 15px;cursor:pointer;font-size:13.5px;font-weight:600;
-    list-style:none;display:flex;align-items:center;justify-content:space-between;gap:10px}
+  details.sub{border:1px solid var(--line);border-radius:13px;background:var(--surface);margin-bottom:9px;overflow:hidden}
+  details.sub>summary{padding:13px 15px;cursor:pointer;font-size:13.5px;font-weight:600;list-style:none;display:flex;align-items:center;justify-content:space-between}
   details.sub>summary::-webkit-details-marker{display:none}
-  details.sub>summary .x{color:var(--ink-faint);transition:.2s;flex:0 0 auto}
+  details.sub>summary .x{color:var(--ink-faint);transition:.2s}
   details.sub[open]>summary .x{transform:rotate(90deg)}
   details.sub[open]>summary{border-bottom:1px solid var(--line-soft)}
-  details.sub.warn>summary{color:var(--rose-deep)}
   .body{padding:13px 15px;font-size:13px;line-height:1.62;color:var(--ink-soft)}
   .body p+p{margin-top:9px}
   .body b{color:var(--ink);font-weight:600}
+  .body a{color:var(--rose-deep);font-weight:600}
   .body ul{list-style:none;margin-top:4px}
   .body li{padding:5px 0 5px 17px;position:relative}
-  .body li::before{content:"";position:absolute;left:0;top:12px;width:5px;height:5px;
-    border-radius:50%;background:var(--rose)}
+  .body li::before{content:"";position:absolute;left:0;top:12px;width:5px;height:5px;border-radius:50%;background:var(--rose)}
   .ex li::before{background:var(--euc)}
 
   footer{text-align:center;margin-top:34px;padding-top:18px;border-top:1px solid var(--line)}
   footer .fm{font-family:var(--serif);font-style:italic;font-size:14.5px;color:var(--rose-deep)}
   footer .fs{font-size:11px;color:var(--ink-faint);margin-top:6px;letter-spacing:.04em}
+  .sig{margin-top:17px;display:flex;align-items:center;justify-content:center;gap:11px}
+  .sig::before,.sig::after{content:"";height:1px;width:30px;background:var(--line)}
+  .sig-mark{font-family:var(--serif);font-weight:500;font-size:15px;letter-spacing:.34em;
+    text-transform:uppercase;color:var(--ink);padding-left:.34em}
 
-  .scrim{position:fixed;inset:0;background:rgba(49,40,36,.34);opacity:0;
-    pointer-events:none;transition:.25s;z-index:20;backdrop-filter:blur(2px)}
+  .scrim{position:fixed;inset:0;background:rgba(49,40,36,.34);opacity:0;pointer-events:none;transition:.25s;z-index:20;backdrop-filter:blur(2px)}
   .scrim.on{opacity:1;pointer-events:auto}
-  .sheet{position:fixed;left:0;right:0;bottom:0;z-index:21;max-width:520px;margin:0 auto;
-    background:var(--surface);border-radius:24px 24px 0 0;padding:8px 20px
-    calc(26px + env(safe-area-inset-bottom));transform:translateY(102%);
-    transition:transform .3s cubic-bezier(.3,.8,.3,1);box-shadow:var(--shadow-lg);
-    max-height:86vh;overflow-y:auto}
+  .sheet{position:fixed;left:0;right:0;bottom:0;z-index:21;max-width:520px;margin:0 auto;background:var(--surface);
+    border-radius:24px 24px 0 0;padding:8px 20px calc(26px + env(safe-area-inset-bottom));transform:translateY(102%);
+    transition:transform .3s cubic-bezier(.3,.8,.3,1);box-shadow:var(--shadow-lg);max-height:86vh;overflow-y:auto}
   .sheet.on{transform:translateY(0)}
   .grab{width:38px;height:4px;border-radius:99px;background:var(--line);margin:8px auto 16px}
   .sheet .st{font-family:var(--serif);font-size:22px;font-weight:500;letter-spacing:-.01em}
   .sheet .ss{font-size:13px;color:var(--ink-soft);margin-top:4px}
   .blk{margin-top:18px}
-  .blk h4{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
-    color:var(--rose-deep);font-weight:600;margin-bottom:7px}
+  .blk h4{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--rose-deep);font-weight:600;margin-bottom:7px}
   .blk p{font-size:13.5px;line-height:1.6;color:var(--ink-soft)}
   .blk p b{color:var(--ink)}
   .callout{background:var(--euc-wash);border-radius:13px;padding:13px 15px;margin-top:6px}
   .callout p{color:#4f5a48}
   .exlist{list-style:none}
-  .exlist li{display:flex;justify-content:space-between;gap:12px;padding:9px 0;
-    border-bottom:1px solid var(--line-soft);font-size:13.5px}
+  .exlist li{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line-soft);font-size:13.5px}
   .exlist li:last-child{border-bottom:0}
   .exlist .nm{color:var(--ink)}
-  .exlist .rp{color:var(--ink-faint);font-weight:600;white-space:nowrap;
-    font-variant-numeric:tabular-nums;font-size:12.5px}
-  .dobtn{margin-top:22px;width:100%;border:0;border-radius:14px;padding:15px;
-    font-family:var(--sans);font-size:14.5px;font-weight:600;cursor:pointer;
-    background:var(--ink);color:#fff;transition:.18s}
+  .exlist .rp{color:var(--ink-faint);font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums;font-size:12.5px}
+  /* bodyweight travel version */
+  .bwd{margin-top:16px;border-color:var(--euc)!important;background:var(--euc-wash)!important}
+  .bwd>summary{color:#4f5a48}
+  .bwd .body{background:var(--surface)}
+  .bwd .body p{margin-bottom:9px}
+  .bwd .body p:last-child{margin-bottom:0}
+  .bwd .exlist{margin:2px 0 10px}
+  .bwd .exlist li{align-items:baseline;padding:9px 0}
+  .bwd .exlist li::before{display:none}
+  .bwd .exlist .nm{font-size:13px}
+  .bwwhy{font-size:11.5px;color:var(--ink-faint);border-top:1px solid var(--line-soft);
+    padding-top:9px;line-height:1.55}
+  .dobtn{margin-top:22px;width:100%;border:0;border-radius:14px;padding:15px;font-family:var(--sans);font-size:14.5px;font-weight:600;cursor:pointer;background:var(--ink);color:#fff;transition:.18s}
   .dobtn.is-done{background:var(--euc-wash);color:var(--euc)}
   .dobtn:active{transform:scale(.99)}
 
@@ -222,6 +229,29 @@
   .tabbar .tab .ic{font-size:17px;line-height:1}
   .tabbar .tab:active{background:var(--cream-2)}
   .tabbar .tab[aria-current="page"]{color:var(--rose-deep)}
+
+  /* merged-plan additions */
+  .alert{margin-top:12px;background:#f6ecd9;border:1px solid #e6d4b4;border-radius:14px;
+    padding:13px 15px;font-size:12.5px;line-height:1.55;color:#6b4d1c}
+  .alert b{color:#4d3712;font-weight:600}
+  .alert .lbl{color:#4d3712;font-weight:600;display:block;margin-bottom:3px;
+    font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+  .src{display:inline-block;font-size:9.5px;font-weight:600;letter-spacing:.08em;
+    text-transform:uppercase;padding:3px 7px;border-radius:99px;margin-top:8px}
+  .src.rehab{background:#f6ecd9;color:#6b4d1c}
+  .pill.xt{background:#e2ecef;color:#3f6670}
+  .src.lim{background:var(--rose-wash);color:var(--rose-deep)}
+  .prog{margin-top:14px;display:flex;align-items:center;gap:11px}
+  .bar{flex:1;height:7px;background:var(--cream-2);border-radius:99px;overflow:hidden}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--euc),var(--rose));
+    border-radius:99px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+  .prog .pt{font-size:11.5px;color:var(--ink-soft);font-weight:600;white-space:nowrap}
+  .vol{font-size:11.5px;color:var(--ink-faint);margin-top:9px;letter-spacing:.02em}
+  .meta .d{font-size:10.5px;color:var(--ink-faint);margin-top:3px;
+    letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+  .pill.long{background:#ece4f0;color:#6b4a7d}
+  .pill.spd{background:#dfe4f2;color:#3d4d78}
+  .wk.is-now::after{content:"·";color:var(--rose);font-weight:900;margin-left:5px}
 </style>
 </head>
 <body>
@@ -233,19 +263,31 @@
     <div class="n" id="cd">&mdash;</div>
     <div class="lab" id="cdl">days to <b>the finish with the McGrath Foundation</b><br>Tamworth &middot; Tue 19 Jan 2027</div>
   </div>
-  <div class="alert">
-    <span class="lbl">Reset &middot; 5 Oct</span>
-    Rebuilding from a <b>grade 1 upper hamstring tear and glute med</b>. Criteria lead, not the calendar.
-    A <b>multi-day ultra at home in Tamworth</b>, finishing with the McGrath Foundation on <b>Tue 19 Jan</b>. Days and distance decided <b>14 Dec</b>, after the rehearsal.
-  </div>
 </header>
+
+<div class="alert">
+  <span class="lbl">Reset &middot; 5 Oct</span>
+  Rebuilding from a <b>grade 1 upper hamstring tear and glute med</b>. Criteria lead, not the calendar.
+  A multi-day ultra as <b>laps of Tamworth during the Country Music Festival</b>, finishing with the McGrath Foundation on <b>Tue 19 Jan</b>. Days and distance decided <b>14 Dec</b>, after the rehearsal.
+</div>
+
+<div class="pacebar" style="display:none">
+  <div class="pacerow">
+    <div class="ptx"><b>Your easy pace</b><span id="pacelab">&mdash;</span></div>
+    <button class="pbtn" id="pminus" aria-label="Slower">&minus;</button>
+    <button class="pbtn" id="pplus" aria-label="Faster">+</button>
+  </div>
+  <div class="pnote">Sets the ~time estimates on easy, long and back-to-back runs. The distance is
+    the target &mdash; easy means conversational (full sentences), whatever the treadmill says.
+    Coopah&rsquo;s named sessions keep their own targets. Nudge this up as fitness builds.</div>
+</div>
 
 <div class="controls">
   <div class="weeks" id="weeks" role="tablist"></div>
   <div class="plans" id="plans" role="tablist">
     <button class="plan" data-p="A">Plan A<span>ideal</span></button>
     <button class="plan" data-p="B">Plan B<span>busy</span></button>
-    <button class="plan" data-p="C">Plan C<span>hospital</span></button>
+    <button class="plan" data-p="C">Plan C<span>caring load</span></button>
   </div>
 </div>
 
@@ -268,19 +310,20 @@
 <footer>
   <div class="fm">Because Love Keeps Moving</div>
   <div class="fs">in support of the McGrath Foundation</div>
+  <div class="sig" aria-label="Tathra"><span class="sig-mark">Tathra</span></div>
 </footer>
+
+<div class="scrim" id="scrim"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true"><div class="grab"></div><div id="sheetbody"></div></div>
 
 <nav class="tabbar" aria-label="Sections">
   <a class="tab" href="../index.html"><span class="ic">&#127968;</span>Home</a>
   <a class="tab" href="../nutrition-meal-planner/index.html"><span class="ic">&#127869;</span>Fuel</a>
   <a class="tab" href="../meals/index.html"><span class="ic">&#129367;</span>Meals</a>
   <a class="tab" href="index.html" aria-current="page"><span class="ic">&#128694;</span>Train</a>
-  <a class="tab" href="../the-500/index.html"><span class="ic">&#127937;</span>500</a>
+  <a class="tab" href="../the-500/index.html"><span class="ic">&#127937;</span>Laps</a>
   <a class="tab" href="../donate/index.html"><span class="ic">&#129655;</span>Donate</a>
 </nav>
-
-<div class="scrim" id="scrim"></div>
-<div class="sheet" id="sheet" role="dialog" aria-modal="true"><div class="grab"></div><div id="sheetbody"></div></div>
 
 <script src="../supabase-sync.js"></script>
 <script>
@@ -288,6 +331,7 @@
 
 var store=window.LIMStorage.create("train",function(){
   state.plan=store.get("limn_plan")||state.plan;
+  if(typeof paceApply==="function")paceApply();
   render();
 });
 
@@ -523,7 +567,7 @@ var WEEKS=[
      E("Wed 30","Easy run","35 min"),
      RC("Thu 31","Rest","New Year's Eve"),
      RC("Fri 1 Jan","Rest or walk","New Year's Day"),
-     BB("Sat 2","Back-to-back: day 1","2 h run-walk","Run it on the actual home loops if you can - same start point, same crew meets."),
+     BB("Sat 2","Back-to-back: day 1","2 h run-walk","Run it on the actual lap course if you can - same start point, same crew table."),
      BB("Sun 3","Back-to-back: day 2","1 h 30 run-walk","Last long effort before the run.")],
   B:[E("Mon 28","Easy run","30 min"),BB("Sat 2","Back-to-back: day 1","1 h 30"),BB("Sun 3","Back-to-back: day 2","1 h")],
   C:planC()},
@@ -536,26 +580,33 @@ var WEEKS=[
      E("Thu 7","Easy run","30 min","The Pink Test is on in Sydney (4-8 Jan) - a strong week to start the public countdown."),
      RC("Fri 8","Kit lay-out","~45 min","Every item on the floor. Nothing new on run days - not shoes, socks, food or pack."),
      E("Sat 9","Easy run","25 min","Legs should feel springy and under-used. That's correct."),
-     RC("Sun 10","Crew briefing + rest","Roles, meets, comms","Everyone knows the day-one plan, the loops and the escalation rules.")],
+     RC("Sun 10","Crew briefing + rest","Roles, meets, comms","Everyone knows the day-one plan, the lap course and the escalation rules.")],
   B:[E("Tue 5","Easy run","25 min"),E("Sat 9","Easy run","20 min"),RC("Sun 10","Crew briefing","Roles and meets")],
   C:[RC("Daily","Walk + downregulate","20 min",DOWNREG)]},
 
  {focus:"Love in Motion",dates:"11-19 Jan · run window · Tamworth",start:new Date(2027,0,11),src:"lim",
-  vol:"Consecutive days · format set by 14 Dec · finish Tue 19 Jan",
-  A:[RC("If 7 days","Start Wed 13 Jan","Shake-out Mon 11, rest Tue 12","Only if the December rehearsal was clean and the hamstring has been quiet for weeks."),
-     RC("If 5 days","Start Fri 15 Jan","Shake-outs Mon 11 + Wed 13","The middle option - room to grow the daily distance without stacking risk."),
+  vol:"Laps of Tamworth · consecutive days · format set by 14 Dec · finish Tue 19 Jan",
+  A:[RC("If 7 days","Start Wed 13 Jan","Shake-out Mon 11, rest Tue 12","Only if the December rehearsal was clean and the hamstring has been quiet for weeks. Starts two days before the festival opens."),
+     RC("If 5 days","Start Fri 15 Jan","Shake-outs Mon 11 + Wed 13","Festival opening day to the finish. Room to grow the daily distance without stacking risk."),
      RC("If 3 days","Start Sun 17 Jan","Easy runs Mon 11 + Thu 14","Still an ultra over consecutive days. The safest choice if the hamstring is still talking in December."),
      RC("Each morning","Hip primer, then move early","Start before the heat","Five minutes of primer before every day. January in Tamworth is hot - be off early."),
-     RC("Every day","Run-walk-hike","Walking is the plan","Short stride, quick feet, walk every climb. Steady run-walk, not runs with forced walks."),
+     RC("Every day","Run-walk-hike laps","Walking is the plan","Short stride, quick feet, walk every climb. Steady run-walk, not runs with forced walks. People joining a lap set no pace - you do."),
+     RC("Every lap","Crew table","Shade, water, food, feet","A lap course turns the crew into a home-straight aid station. Drink and eat something every lap or two."),
      RC("Every 20-30 min","Eat and drink","Before you feel like it",FUEL_B2B),
      RC("Each evening","Home: feet, food, holds, sleep","Your own bed is an advantage","Feet dry and checked, a proper meal within 30 min, 5 min of bridge and heel-dig holds, early lights out."),
-     RC("If the hamstring talks","Escalate early","Pain above 3/10 or changing your gait","Walk the rest of the loop, tell the crew, and shorten tomorrow if needed. A shorter day beats a lost day."),
+     RC("If the hamstring talks","Escalate early","Pain above 3/10 or changing your gait","Walk the rest of the lap, tell the crew, and shorten tomorrow if needed. A shorter day beats a lost day."),
      RC("Tue 19 Jan","Finish with the McGrath Foundation","Tamworth","Plan the finish into the McGrath Foundation meeting - the moment the whole campaign builds toward.")],
   B:[RC("&mdash;","See Plan A","The run itself","On run days the daily distance flexes instead.")],
   C:[RC("&mdash;","See Plan A","The run itself","On run days the daily distance flexes instead.")]}
 ];
 
 var EVENT=new Date(2027,0,19);
+var HOME=EVENT;
+var YOPT="";
+function hyroxTravel(s){return "";}
+function skipBlock(s){return "";}
+
+
 
 function currentWeek(){var now=new Date();var idx=0;
   for(var i=0;i<WEEKS.length;i++){if(now>=WEEKS[i].start)idx=i;}
@@ -563,16 +614,74 @@ function currentWeek(){var now=new Date();var idx=0;
 var state={week:currentWeek(),plan:store.get("limn_plan")||"A"};
 var nowWeek=currentWeek();
 
-function doneKey(){return "limn_train5_done_w"+state.week+"_"+state.plan;}
+function doneKey(){return "limn_train4_done_w"+state.week+"_"+state.plan;}
 function getDone(){return store.get(doneKey())||{};}
 function setDone(o){store.set(doneKey(),o);}
-
 function sessions(){return WEEKS[state.week][state.plan]||[];}
 
+/* ---- easy-pace calibration (easy / long / b2b only; Coopah sessions keep their targets) ---- */
+var PACE_MIN=5.0,PACE_MAX=12.0,PACE_DEF=7.2;
+function getPace(){var p=parseFloat(store.get("limn_pace"));return (p>=PACE_MIN&&p<=PACE_MAX)?p:PACE_DEF;}
+function fmtDur(min){min=Math.round(min);
+  return min<60?"~"+min+" min":"~"+Math.floor(min/60)+" h "+((min%60)<10?"0":"")+(min%60);}
+var TIME_RE=/~\d+\s*h\s*\d+|~\d+(?:\.\d+)?\s*min/;
+function paceApply(){
+  var kmh=getPace();
+  WEEKS.forEach(function(wk){["A","B","C"].forEach(function(pl){(wk[pl]||[]).forEach(function(s){
+    if(!(s.pill==="Easy"||s.pill==="Long"||s.pill==="B2B"))return;
+    var tk=(s.t.match(/([\d.]+)\s*km/)||[])[1];
+    if(tk){var m=parseFloat(tk)*60/kmh;
+      s.s=TIME_RE.test(s.s)?s.s.replace(TIME_RE,fmtDur(m)):fmtDur(m)+(s.s?" &middot; "+s.s:"");
+    }else{
+      var tm=(s.t.match(/(\d+)\s*min/)||[])[1];
+      if(tm&&/[\d.]+\s*km/.test(s.s)){s.s=s.s.replace(/[\d.]+\s*km/,(Math.round(parseFloat(tm)*kmh/60*10)/10)+" km");}
+      else{var sk=(s.s.match(/([\d.]+)\s*km/)||[])[1];
+        if(sk&&TIME_RE.test(s.s)&&!/at target|tempo|steady/i.test(s.s)){s.s=s.s.replace(TIME_RE,fmtDur(parseFloat(sk)*60/kmh));}}
+    }
+  });});});
+  var lab=document.getElementById("pacelab");
+  if(lab){var mpk=60/kmh,mm=Math.floor(mpk),ss=Math.round((mpk-mm)*60);
+    if(ss===60){mm++;ss=0;}
+    lab.textContent=kmh.toFixed(1)+" km/h · "+mm+":"+(ss<10?"0":"")+ss+" min/km";}
+}
+function paceNudge(d){var p=Math.round((getPace()+d)*10)/10;
+  p=Math.max(PACE_MIN,Math.min(PACE_MAX,p));
+  store.set("limn_pace",String(p));paceApply();render();}
+document.getElementById("pminus").onclick=function(){paceNudge(-0.1);};
+document.getElementById("pplus").onclick=function(){paceNudge(0.1);};
+
+/* ---- skip-rope substitutes (jump-rope training improved 3-km TT, reactivity and
+   foot-arch stiffness in runners - Garcia-Pinillos 2020) ---- */
+var SKIP_WHY="<p class='bwwhy'>Why this works: jump-rope training improved 3-km time-trial performance, lower-limb reactivity and foot-arch stiffness in endurance runners (Garc&iacute;a-Pinillos 2020). Moderate skipping burns ~20&ndash;40% more energy per minute than easy running, so the shorter skip total matches the run's aerobic dose while sparing the calves. A few days off-plan loses no fitness &mdash; this is about ticking over, not rescue.</p>";
+var SKIP_FORM="<p><b>Form:</b> alternate-foot &ldquo;boxer step&rdquo; &middot; rope ~120&ndash;140 turns/min &middot; conversational effort &middot; soft midfoot landings, low hops.</p><p><b>First time in a while?</b> Cap day one at 12&ndash;15 min of skipping and see how the calves pull up tomorrow.</p>";
+function skipBlock(s){
+  if(s.k!=="run"&&s.k!=="long")return "";
+  var t=s.t,key=/Back-to-back|Rehearsal/.test(t)?"b2b":/Long Run/.test(t)?"long":/Easy Run|easy jog/i.test(t)?"easy":null;
+  if(!key)return "";
+  var tmt=(s.s.match(/~(\d+)\s*h\s*(\d+)/)),m;
+  if(tmt)m=parseInt(tmt[1],10)*60+parseInt(tmt[2],10);
+  else m=parseInt((s.s.match(/~(\d+)\s*min/)||s.t.match(/(\d+)\s*min/)||[,"45"])[1],10);
+  var h="<details class='sub bwd'><summary>&#129698; No track? Skip-rope version<span class='x'>&rsaquo;</span></summary><div class='body'>";
+  if(key==="long"||key==="b2b"){
+    h+="<p><b>Don't replicate a "+(key==="b2b"?"back-to-back":"long run")+" with the rope</b> &mdash; that much skipping is injury bait. Best substitute: a brisk hike or walk of about the same duration &mdash; long aerobic time-on-feet"+(key==="b2b"?" on tired legs (walking counts &mdash; that's the adaptation)":"")+" is the point. If the rope is all you have: 10 min skip + 10 min walk, up to 3 rounds, stop if the calves bark.</p>"+SKIP_FORM;
+  }else{
+    var rounds=Math.max(2,Math.min(7,Math.round(m/9))),skip=rounds*3,total=5+rounds*4-1+5;
+    h+="<ul class='exlist'>"+
+      "<li><span class='nm'>Brisk walk warm-up</span><span class='rp'>5 min</span></li>"+
+      "<li><span class='nm'>Skip 3 min / walk 1 min</span><span class='rp'>"+rounds+" rounds</span></li>"+
+      "<li><span class='nm'>Walk down + calf stretch</span><span class='rp'>5 min</span></li></ul>"+
+      "<p>That's <b>~"+skip+" min of skipping</b> in a ~"+total+"-min session &mdash; the substitute dose for this "+m+"-min easy run. Don't match it time-for-time: skipping is denser work and a big calf load.</p>"+SKIP_FORM;
+  }
+  h+=SKIP_WHY+"</div></details>";
+  return h;
+}
+
 function renderCount(){
-  var ms=EVENT-new Date();var d=Math.max(0,Math.ceil(ms/86400000));
-  document.getElementById("cd").textContent=d;
-  if(d===0)document.getElementById("cdl").innerHTML="<b>Finish day.</b><br>Tamworth &middot; 19 Jan 2027";
+  var now=new Date(),cd=document.getElementById("cd"),cdl=document.getElementById("cdl");
+  var dh=Math.ceil((HOME-now)/864e5);
+  if(dh>0){cd.textContent=dh;cdl.innerHTML="days to <b>the finish with the McGrath Foundation</b><br>Tamworth &middot; Tue 19 Jan 2027";}
+  else if(dh===0){cd.textContent=0;cdl.innerHTML="<b>Finish day.</b><br>Tamworth &middot; 19 Jan 2027";}
+  else{cd.textContent=0;cdl.innerHTML="<b>Home.</b><br>Because love keeps moving.";}
 }
 function renderWeeks(){
   var w=document.getElementById("weeks");w.innerHTML="";
@@ -597,7 +706,7 @@ function renderWeek(){
   var wk=WEEKS[state.week];
   document.getElementById("focus").innerHTML=wk.focus;
   document.getElementById("dates").textContent=wk.dates;
-  document.getElementById("srcwrap").innerHTML="<span class='src "+wk.src+"'>"+SRCLAB[wk.src]+"</span>";
+  document.getElementById("srcwrap").innerHTML="<span class='src "+wk.src+"'>"+(SRCLAB[wk.src]||"")+"</span>";
   document.getElementById("vol").textContent=wk.vol||"";
   var ss=sessions(),done=getDone();
   var n=ss.length,c=0;for(var i=0;i<n;i++){if(done[i])c++;}
@@ -636,12 +745,14 @@ function openSheet(i){
   var s=sessions()[i],done=getDone();
   var h="<div class='st'>"+s.t+"</div><div class='ss'>"+(s.d?s.d+" &middot; ":"")+s.s+"</div>";
   h+="<div class='blk'><h4>How to run this</h4><p>"+s.detail+"</p></div>";
+  if(s.yoga)h+="<div class='blk'><h4>Optional &middot; yoga &amp; breathwork</h4><div class='callout'><p>"+YOPT+"</p></div></div>";
+  h+=skipBlock(s)+hyroxTravel(s);
   if(s.long)h+="<div class='blk'><h4>Fuelling</h4><div class='callout'><p>"+s.fuel+"</p></div></div>";
   else if(s.fuel)h+="<div class='blk'><h4>Fuelling</h4><p>"+s.fuel+"</p></div>";
   if(s.ex){h+="<div class='blk'><h4>"+s.exlab+" &middot; exercises</h4><ul class='exlist'>";
     s.ex.forEach(function(e){h+="<li><span class='nm'>"+e[0]+"</span><span class='rp'>"+e[1]+"</span></li>";});
     h+="</ul></div>";}
-  h+="<button class='dobtn"+(done[i]?" is-done":"")+"' id='dobtn'>"+(done[i]?"&#10003; Done — tap to undo":"Mark as done")+"</button>";
+  h+="<button class='dobtn"+(done[i]?" is-done":"")+"' id='dobtn'>"+(done[i]?"&#10003; Done &mdash; tap to undo":"Mark as done")+"</button>";
   document.getElementById("sheetbody").innerHTML=h;
   document.getElementById("dobtn").onclick=function(){toggle(i);openSheet(i);};
   document.getElementById("scrim").classList.add("on");
@@ -650,6 +761,7 @@ function openSheet(i){
 function closeSheet(){document.getElementById("scrim").classList.remove("on");
   document.getElementById("sheet").classList.remove("on");}
 document.getElementById("scrim").onclick=closeSheet;
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeSheet();});
 
 function note(title,html,cls){return "<details class='sub"+(cls?" "+cls:"")+"'><summary>"+title+"<span class='x'>&rsaquo;</span></summary><div class='body'>"+html+"</div></details>";}
 function exl(set){return "<ul class='ex'>"+set.map(function(e){return "<li>"+e[0]+" — <b>"+e[1]+"</b></li>";}).join("")+"</ul>";}
@@ -659,7 +771,7 @@ document.getElementById("notesbody").innerHTML=
  note("The pain rules","<p>"+PAIN+"</p><p>Muscle soreness the day after strength is normal. <b>Sharp or deep pain at the sit bone</b> is the one to respect.</p>")+
  note("Protecting the top of the hamstring","<ul><li><b>No hamstring stretching</b> for now - it compresses the tendon where it's sore.</li><li><b>Sitting</b> is a hidden load. Break it up every 30-45 min, sit on a cushion, don't perch on hard chairs.</li><li><b>Hills, speedwork and long strides</b> stay out until the durability block. Walk every climb.</li><li><b>The bike</b> only if the saddle doesn't press on the sit bone.</li><li>Glute med is the hamstring's ally - the side-lying work and step-downs matter as much as the curls.</li></ul>")+
  note("1 November &mdash; Attunga day","<p>The <b>45 km practice run is off as a run</b>. Four weeks after a tear is too soon for that distance. Keep the date and use it as a <b>crew and kit rehearsal</b>: a walk on the loop, real meets, real food, real comms. You'll still learn most of what the day was for.</p><p>The three-day rehearsal on <b>11-13 December</b> becomes your true dress rehearsal - and it decides the format. Protect it.</p>")+
- note("The run, as it now stands","<p><b>A multi-day ultra at home in Tamworth</b>, on consecutive days, finishing on <b>Tue 19 January</b> with the McGrath Foundation. Distance and number of days are deliberately open until the hamstring has shown you what it can do.</p><p>Running from home is a real advantage for this rebuild: your own bed, your own kitchen, loops you know, short crew distances, an easy bail-out if a day goes wrong, and family close by.</p><p><b>Three formats, all ending on the 19th:</b></p><ul><li><b>3 days</b> &middot; 17-19 Jan</li><li><b>5 days</b> &middot; 15-19 Jan</li><li><b>7 days</b> &middot; 13-19 Jan</li></ul><p>The plan trains you for all three. The choice is made on <b>Mon 14 Dec</b>, after the three-day rehearsal. Daily distances get set then, with the crew.</p>")+
+ note("The run, as it now stands","<p><b>A multi-day ultra as laps of Tamworth during the Country Music Festival (15-24 Jan)</b>, on consecutive days, finishing on <b>Tue 19 January</b> with the McGrath Foundation. Distance and number of days are deliberately open until the hamstring has shown you what it can do.</p><p>Running from home is a real advantage for this rebuild: your own bed, your own kitchen, a lap course you know, one crew table, an easy bail-out if a day goes wrong, and family close by.</p><p><b>Three formats, all ending on the 19th:</b></p><ul><li><b>3 days</b> &middot; 17-19 Jan &middot; mid-festival</li><li><b>5 days</b> &middot; 15-19 Jan &middot; festival opening to the finish</li><li><b>7 days</b> &middot; 13-19 Jan &middot; starts two days before the festival</li></ul><p>The plan trains you for all three. The choice is made on <b>Mon 14 Dec</b>, after the three-day rehearsal. Daily distances get set then, with the crew.</p>")+
  note("Choosing the format","<ul><li><b>7 days</b> &mdash; rehearsal clean, hamstring at or under 2/10 and settled overnight, strength progressing.</li><li><b>5 days</b> &mdash; mostly clean, the odd flare that settled by morning.</li><li><b>3 days</b> &mdash; it talked on day two or three, or family and work load is high.</li></ul><p>Any of the three is a genuine ultra over consecutive days. The story is the same: love keeps moving.</p>")+
  note("Weekly check-in","<p>Before choosing the week's plan, rate each <b>1-5</b>:</p><ul><li>Sleep</li><li>Stress / mental load</li><li>Hamstring &amp; glute</li><li>Mood &amp; energy</li><li>Family + caregiving load</li></ul><p>Two or more low &rarr; choose <b>Plan B or C</b>. No guilt - that's the system doing its job.</p>")+
  note("When to stop and see the physio","<ul><li>Pain sharpens <b>during</b> a run or changes how you move &rarr; stop, walk home.</li><li>Pain is worse the next morning two sessions in a row.</li><li>A sudden pull, bruising, or pain sitting that's getting worse, not better.</li><li>Pins and needles or pain travelling down the leg.</li></ul>")+
@@ -671,8 +783,9 @@ document.getElementById("notesbody").innerHTML=
  note("Mobility",exl(MOB))+
  note("Sources","<p style='font-size:12px'>Heiderscheit et al., JOSPT 2010 &middot; Campos-Villegas et al., IJSPT 2024 &middot; Kilcoyne et al., Sports Health 2011 &middot; Sanford Health proximal/mid hamstring guideline. This plan isn't a diagnosis - your physio's assessment overrides it.</p>");
 
+
 function render(){renderWeeks();renderPlans();renderWeek();renderList();}
-renderCount();render();
+paceApply();renderCount();render();
 
 /* offline support */
 if("serviceWorker" in navigator){addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){});});}

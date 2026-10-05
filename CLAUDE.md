@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A static, no-build PWA hub for the **Love in Motion** endurance campaign (a marathon dress rehearsal on 1 Nov 2026, then the Festival Laps — laps of Tamworth during the Country Music Festival, 15–24 Jan 2027, distance TBC and led by hamstring recovery — fundraising for the McGrath Foundation). Live at https://charlietathra.github.io/Love-in-Motion/.
+A static, no-build PWA hub for the **Love in Motion** endurance campaign (as of 5 Oct 2026: the Festival Laps — a multi-day ultra of 3, 5 or 7 consecutive days, decided 14 Dec 2026, as laps of Tamworth during the Country Music Festival, finishing with the McGrath Foundation on Tue 19 Jan 2027; Charlie is rebuilding from a grade 1 upper hamstring tear + glute med). Live at https://charlietathra.github.io/Love-in-Motion/.
 
 There is **no build step, no package.json, no tests, and no linter**. Every page is a fully self-contained `index.html` (inline CSS + inline ES5-style JavaScript) that works opened directly in a browser and offline. To verify a change, open the file in a browser (e.g. `python3 -m http.server` from the repo root — a server is needed for the service worker, not for the pages themselves).
 
@@ -19,7 +19,7 @@ Every push to `main` deploys the **repo root** to GitHub Pages via `.github/work
 | `index.html` | Home — countdown, timeline, links |
 | `nutrition-meal-planner/` | "Fuel" — daily fuelling protocol across Plans A/B/C |
 | `meals/` | Serve-based meal builder |
-| `training/` | Hamstring-rebuild plan (5 Oct 2026 → the run window, finishing 19 Jan 2027) with week tabs and session check-offs |
+| `training/` | Hamstring-smart rebuild plan (5 Oct 2026 → 19 Jan 2027) with week tabs, session check-offs, notes. Progress key `limn_train4_done_w*`. |
 | `the-500/` | The Festival Laps campaign (format, window, how to join a lap) — path kept for history |
 | `donate/` | Fundraiser page |
 | `the-415/` | Redirect stub only — kept from an earlier version of the event; it meta-refreshes to `../the-500/`. Don't add content here. |
@@ -37,7 +37,7 @@ The only shared JS file. It exposes `window.LIMStorage.create(scopeName, onRemot
 - reads/writes localStorage keys prefixed **`limn_`**, with an in-memory fallback when storage is unavailable;
 - optionally syncs the whole `limn_*` snapshot to a Supabase table `lim_app_state` (upsert keyed by `scope`, debounced 700 ms) **only if** the page defines `window.LIM_SUPABASE_URL` / `LIM_SUPABASE_ANON_KEY` before loading `supabase-sync.js`. Without them it is purely local — never make Supabase required.
 
-Key conventions: `limn_plan` holds the Plan A/B/C selection and is **shared between the Fuel and Train apps** (changing it in one changes the other); `limn_train5_done_w*` holds training progress (the `w` number is the week's array index, so renumbering weeks means bumping the key prefix); `limn_eaten_d*` holds meals eaten; `meals/` uses `limn_meal_plan`. New persisted state must use the `limn_` prefix or it won't sync or survive the snapshot logic.
+Key conventions: `limn_plan` holds the Plan A/B/C selection and is **shared between the Fuel and Train apps** (changing it in one changes the other); `limn_train4_done_w*` holds training progress (the `w` number is the week's array index, so renumbering weeks means bumping the key prefix); `limn_eaten_d*` holds meals eaten; `meals/` uses `limn_meal_plan`. New persisted state must use the `limn_` prefix or it won't sync or survive the snapshot logic.
 
 ### Service worker (`sw.js`)
 

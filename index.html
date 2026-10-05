@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Love in Motion">
 <title>Love in Motion</title>
-<meta name="description" content="An endurance journey for the McGrath Foundation — training, fuelling and fundraising for laps of Tamworth during the Country Music Festival, January 2027.">
+<meta name="description" content="An endurance journey for the McGrath Foundation — training, fuelling and fundraising for a multi-day ultra — laps of Tamworth during the Country Music Festival, finishing with the McGrath Foundation on 19 January 2027.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Love in Motion">
 <meta property="og:title" content="Love in Motion">
@@ -252,12 +252,12 @@
 <section class="hero">
   <div class="ey">In support of the McGrath Foundation</div>
   <h2>Every kilometre is a way of saying <em>I love you</em>.</h2>
-  <p>An endurance journey raising support for the McGrath Foundation &mdash; the long game has come home: laps of Tamworth during the Country Music Festival in January, with distance led by recovery. This is the home for the training, the fuelling, and the why.</p>
+  <p>An endurance journey raising support for the McGrath Foundation &mdash; the long game has come home: a multi-day ultra over consecutive days &mdash; laps of Tamworth during the Country Music Festival, finishing with the McGrath Foundation on Tue 19 Jan&nbsp;&mdash; with distance led by recovery. This is the home for the training, the fuelling, and the why.</p>
 </section>
 
 <div class="count">
   <div class="n" id="cd">&mdash;</div>
-  <div class="lab" id="cdl">days to <b>the marathon</b><br>dress rehearsal &middot; Sun 1 Nov &middot; then the festival laps in Jan</div>
+  <div class="lab" id="cdl">days to <b>the finish with the McGrath Foundation</b><br>Tamworth &middot; Tue 19 Jan 2027</div>
 </div>
 
 <div class="install" id="install" hidden>
@@ -294,7 +294,7 @@
     <div class="ico train">&#128694;</div>
     <div class="nmeta">
       <div class="t">Training <span class="badge">Live</span></div>
-      <div class="s">The build to the 1&nbsp;Nov marathon and the 500: the Coopah block, back-to-back weekends, the three-day rehearsal and the rest that makes it count.</div>
+      <div class="s">The hamstring-smart rebuild: strength phases, a run-walk return, back-to-back weekends, the three-day rehearsal and the rest that makes it count.</div>
     </div>
     <span class="chev">&rsaquo;</span>
   </a>
@@ -303,7 +303,7 @@
     <div class="ico epic">&#127937;</div>
     <div class="nmeta">
       <div class="t">The Festival Laps <span class="badge">Goal</span></div>
-      <div class="s">Laps of Tamworth during the Country Music Festival (15&ndash;24 Jan) &mdash; distance led by recovery, every lap for the McGrath Foundation.</div>
+      <div class="s">Laps of Tamworth during the Country Music Festival &mdash; 3, 5 or 7 days in a row, finishing with the McGrath Foundation on Tue 19 Jan.</div>
     </div>
     <span class="chev">&rsaquo;</span>
   </a>
@@ -323,17 +323,25 @@
   <div class="leg next">
     <div class="rail"><div class="dot"></div><div class="line"></div></div>
     <div class="lcon">
-      <div class="lt">Marathon day</div>
-      <div class="ld">practice run &middot; 1 Nov 2026</div>
-      <div class="lp">The dress rehearsal &mdash; a full marathon with crowds, timing and nerves. A real test of legs, fuelling and pacing before the main event, with genuine marathon fitness banked for December.</div>
+      <div class="lt">The rebuild</div>
+      <div class="ld">October &ndash; November 2026</div>
+      <div class="lp">Healing a hamstring injury the right way &mdash; strength first, then a gentle return to running. Criteria lead, not the calendar.</div>
     </div>
   </div>
   <div class="leg future">
     <div class="rail"><div class="dot"></div><div class="line"></div></div>
     <div class="lcon">
-      <div class="lt">Laps of Tamworth</div>
-      <div class="ld">km TBC &middot; 15&ndash;24 Jan 2027 &middot; during the festival</div>
-      <div class="lp">The long road, and the reason for all of it. Days on feet, crew-cooked meals, recovery each night. Lap after lap around Tamworth while the town is at its festival fullest, with distance set by recovery &mdash; on home turf, in community, every lap for the cause.</div>
+      <div class="lt">The three-day rehearsal</div>
+      <div class="ld">11&ndash;13 Dec 2026</div>
+      <div class="lp">Three days on feet in a row. How the body answers decides the shape of January.</div>
+    </div>
+  </div>
+  <div class="leg future">
+    <div class="rail"><div class="dot"></div><div class="line"></div></div>
+    <div class="lcon">
+      <div class="lt">The Festival Laps</div>
+      <div class="ld">Consecutive days &middot; finish Tue 19 Jan 2027</div>
+      <div class="lp">Lap after lap of Tamworth while the town is at its festival fullest, finishing with the McGrath Foundation. Come and run or walk a lap alongside.</div>
     </div>
   </div>
 </div>
@@ -349,21 +357,19 @@
   <a class="tab" href="nutrition-meal-planner/index.html"><span class="ic">&#127869;</span>Fuel</a>
   <a class="tab" href="meals/index.html"><span class="ic">&#129367;</span>Meals</a>
   <a class="tab" href="training/index.html"><span class="ic">&#128694;</span>Train</a>
-  <a class="tab" href="the-500/index.html"><span class="ic">&#127937;</span>500</a>
+  <a class="tab" href="the-500/index.html"><span class="ic">&#127937;</span>Laps</a>
   <a class="tab" href="donate/index.html"><span class="ic">&#129655;</span>Donate</a>
 </nav>
 
 <script>
 "use strict";
-/* live countdown — marathon first, then the run home */
-var MARA=new Date(2026,10,1),EVENT=new Date(2027,0,15),HOME=new Date(2027,0,24);
+/* live countdown — to the finish with the McGrath Foundation */
+var HOME=new Date(2027,0,19);
 (function(){
   var now=new Date(),cd=document.getElementById("cd"),cdl=document.getElementById("cdl");
-  var dm=Math.ceil((MARA-now)/864e5),dr=Math.ceil((EVENT-now)/864e5),dh=Math.ceil((HOME-now)/864e5);
-  if(dm>0){cd.textContent=dm;}
-  else if(dm===0){cd.textContent=0;cdl.innerHTML="<b>Marathon day</b><br>Trust the taper. Bank every lesson.";}
-  else if(dr>0){cd.textContent=dr;cdl.innerHTML="days to <b>the festival laps</b><br>Tamworth &middot; 15&ndash;24 Jan 2027";}
-  else if(dh>=0){cd.textContent=Math.max(0,dh);cdl.innerHTML="<b>Lap by lap</b><br>Tamworth &middot; festival week";}
+  var dh=Math.ceil((HOME-now)/864e5);
+  if(dh>0){cd.textContent=dh;}
+  else if(dh===0){cd.textContent=0;cdl.innerHTML="<b>Finish day.</b><br>Laps of Tamworth &middot; with the McGrath Foundation";}
   else{cd.textContent=0;cdl.innerHTML="<b>Home.</b><br>Because love keeps moving.";}
 })();
 

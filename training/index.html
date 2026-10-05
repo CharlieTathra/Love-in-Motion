@@ -9,16 +9,16 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Train">
 <title>Love in Motion — Train</title>
-<meta name="description" content="The build to the 1 November marathon and the 500 km to Sydney — the Coopah block, the ultra block, back-to-back weekends and the run itself, with saved progress and coach notes.">
+<meta name="description" content="The hamstring-smart rebuild to a multi-day ultra at home in Tamworth — strength phases, run-walk return, back-to-back weekends and the run window, with saved progress and coach notes.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Love in Motion">
 <meta property="og:title" content="Love in Motion — Train">
-<meta property="og:description" content="The 24-week build to the 45 km rehearsal and the 500 km to Sydney — every session prescribed, with saved notes.">
+<meta property="og:description" content="The hamstring-smart rebuild to a multi-day ultra at home in Tamworth — every session prescribed, with saved progress.">
 <meta property="og:image" content="https://charlietathra.github.io/Love-in-Motion/icon-512.png">
 <meta property="og:url" content="https://charlietathra.github.io/Love-in-Motion/training/">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Love in Motion — Train">
-<meta name="twitter:description" content="The 24-week build to the 45 km rehearsal and the 500 km to Sydney.">
+<meta name="twitter:description" content="The hamstring-smart rebuild to a multi-day ultra at home in Tamworth.">
 <meta name="twitter:image" content="https://charlietathra.github.io/Love-in-Motion/icon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -238,7 +238,8 @@
     font-size:11px;letter-spacing:.1em;text-transform:uppercase}
   .src{display:inline-block;font-size:9.5px;font-weight:600;letter-spacing:.08em;
     text-transform:uppercase;padding:3px 7px;border-radius:99px;margin-top:8px}
-  .src.coopah{background:#e4e9f5;color:#3d4d78}
+  .src.rehab{background:#f6ecd9;color:#6b4d1c}
+  .pill.xt{background:#e2ecef;color:#3f6670}
   .src.lim{background:var(--rose-wash);color:var(--rose-deep)}
   .prog{margin-top:14px;display:flex;align-items:center;gap:11px}
   .bar{flex:1;height:7px;background:var(--cream-2);border-radius:99px;overflow:hidden}
@@ -257,34 +258,20 @@
 <header>
   <a class="back" href="../index.html"><span class="a">&lsaquo;</span> Love in Motion</a>
   <div class="brand"><span class="heart">&#10084;</span><h1>Love in Motion &middot; Train</h1></div>
-  <div class="tag" id="phase">Base &middot; Coopah block</div>
+  <div class="tag" id="phase">Rebuild &middot; hamstring-smart</div>
   <div class="count">
     <div class="n" id="cd">&mdash;</div>
-    <div class="lab" id="cdl">days to <b>the marathon</b><br>dress rehearsal &middot; Sun 1 Nov</div>
+    <div class="lab" id="cdl">days to <b>the finish with the McGrath Foundation</b><br>Tamworth &middot; Tue 19 Jan 2027</div>
   </div>
 </header>
 
 <div class="alert">
-  <span class="lbl">The run, as it now stands</span>
-  A hamstring injury has brought the run all the way home: <b>laps of Tamworth during the
-  Country Music Festival, 15&ndash;24 January 2027</b>. The kilometres are <b>not decided &mdash;
-  recovery leads</b>, and the November&ndash;December block below flexes with the hamstring.
-  Plans B and C exist for exactly this; walking always counts.
+  <span class="lbl">Reset &middot; 5 Oct</span>
+  Rebuilding from a <b>grade 1 upper hamstring tear and glute med</b>. Criteria lead, not the calendar.
+  A multi-day ultra as <b>laps of Tamworth during the Country Music Festival</b>, finishing with the McGrath Foundation on <b>Tue 19 Jan</b>. Days and distance decided <b>14 Dec</b>, after the rehearsal.
 </div>
 
-<a class="dl" href="../Love-in-Motion-Training-Plan.docx" download>
-  <span class="dlic">&#128196;</span>
-  <span class="dltx"><b>Download the full plan</b><span>Word document &middot; Coopah block + ultra block &amp; coach notes</span></span>
-  <span class="dlar">&#8595;</span>
-</a>
-
-<a class="dl" href="../Love-in-Motion-Travel-Strength.pdf" download>
-  <span class="dlic">&#9992;&#65039;</span>
-  <span class="dltx"><b>Travel strength &mdash; printable one-pager</b><span>PDF &middot; all five bodyweight + band sessions on one A4</span></span>
-  <span class="dlar">&#8595;</span>
-</a>
-
-<div class="pacebar">
+<div class="pacebar" style="display:none">
   <div class="pacerow">
     <div class="ptx"><b>Your easy pace</b><span id="pacelab">&mdash;</span></div>
     <button class="pbtn" id="pminus" aria-label="Slower">&minus;</button>
@@ -334,7 +321,7 @@
   <a class="tab" href="../nutrition-meal-planner/index.html"><span class="ic">&#127869;</span>Fuel</a>
   <a class="tab" href="../meals/index.html"><span class="ic">&#129367;</span>Meals</a>
   <a class="tab" href="index.html" aria-current="page"><span class="ic">&#128694;</span>Train</a>
-  <a class="tab" href="../the-500/index.html"><span class="ic">&#127937;</span>500</a>
+  <a class="tab" href="../the-500/index.html"><span class="ic">&#127937;</span>Laps</a>
   <a class="tab" href="../donate/index.html"><span class="ic">&#129655;</span>Donate</a>
 </nav>
 
@@ -348,399 +335,277 @@ var store=window.LIMStorage.create("train",function(){
   render();
 });
 
-var EASY="Easy means a full-sentence conversation - the talk test. Effort 3-4 out of 10, breathable through your nose. If you can't talk, slow down or walk. Run/walk is the strategy, not a compromise.";
-var STEADY="Steady is comfortably hard but still controlled - effort 5-6 out of 10, short sentences only. You should finish feeling you could have done a bit more.";
-var SPEED="Coopah's named sessions are threshold and interval work. Warm up properly, and treat the target pace as a ceiling not a floor. If your legs or your nervous system say no on the day, run this as an easy run instead - you lose almost nothing.";
-var B2B="This is the session that actually prepares you for Love in Motion. Running tired, on legs that already ran yesterday, is the specific adaptation a marathon plan never builds. Go slower than feels necessary. Walk the hills from the first one.";
-var FUEL_SHORT="Under ~90 min, water is enough. Eat normally before and after.";
-var FUEL_LONG="Past 90 min: sip water regularly and take a few bites of real food - banana, dates, a bar - every 20-30 min. This rehearses expedition fuelling.";
-var FUEL_B2B="Fuel as you would on the road: eat early, eat often, don't wait for hunger. Then eat again within 30 min of finishing. Recovery between days is the whole skill.";
+var EASY="Easy means a full-sentence conversation - effort 3-4 out of 10, breathable through your nose. Short, quick steps. If the upper hamstring speaks up, walk. Run-walk is the strategy, not a compromise.";
+var RW_NOTE="Flat ground only for now. Shorter stride, slightly quicker cadence - this keeps your hip out of deep flexion and spares the top of the hamstring. Walk every hill. Pain rule: no more than 3/10 during, settled by the next morning.";
+var XT_NOTE="Your aerobic engine stays alive here while the hamstring heals. Brisk flat walking, upright elliptical, swimming or deep-water running are all good. The bike only if the saddle doesn't press on the sit bone - raise the seat, stay upright, stop if it aches.";
+var WALK_NOTE="Walking is the most specific training you can do right now. Love in Motion will be run-walk-hike, and every hour on your feet builds the durability you need - with a fraction of the hamstring load. Flat to gently rolling. Practise eating on the move.";
+var B2B="Running on legs that already worked yesterday is the specific skill of a multi-day run. Run-walk from the first minute. Walk every climb - uphills load the top of the hamstring more. Slower than feels necessary.";
+var FUEL_SHORT="Under ~90 min, water is enough. Eat normally before and after - protein at each meal supports tissue repair.";
+var FUEL_LONG="Past 90 min: sip water and take a few bites of real food every 20-30 min. This rehearses expedition fuelling.";
+var FUEL_B2B="Fuel as you will on run days: eat early, eat often, don't wait for hunger. Then eat again within 30 min of finishing. Recovery between days is the whole skill.";
+var PAIN="Pain rules: up to 3/10 during is acceptable. It must settle by the next morning and not be creeping up week to week. If any of those fail, drop back a step for 2-3 days - not a setback, just the system working.";
 
-var STR_A=[["Glute bridge &rarr; single-leg when ready","2-3 &times; 8-12 /side"],
-  ["Slow tempo reverse lunge / split squat (3s down)","2-3 &times; 6-10 /side"],
-  ["Calf raises, double &rarr; single leg","2-3 &times; 12-15"],
-  ["Side-lying hip abduction / clamshell","2 &times; 12-15 /side"],
-  ["Bird-dog","2 &times; 8 /side"],
-  ["Single-leg balance","30-45s /side &times;2"]];
-var STR_B=[["Single-leg Romanian deadlift (bodyweight)","2-3 &times; 8 /side"],
-  ["Step-down off a low step, slow &amp; controlled","2 &times; 8 /side"],
-  ["Dead bug","2-3 &times; 8 /side"],
-  ["Side plank","2 &times; 20-40s /side"],
-  ["Heel walks + toe walks","2 &times; 20 steps"],
-  ["Plank","2 &times; 20-40s"]];
-var MOB=[["Couch stretch / hip flexor","60-90s /side"],
-  ["Figure-4 glute stretch","60s /side"],
+/* Phase 1 - isometric, protect the tendon */
+var R1=[["Double-leg bridge hold - hips only a little off the floor","4 &times; 30-45s"],
+  ["Heel-dig hold - on your back, knee bent, heel pressing down into a step","4 &times; 30-45s /side"],
+  ["Prone hip lift hold - face down, knee straight, leg up 2-3 cm","3 &times; 30s /side"],
+  ["Side-lying hip abduction (glute med) - toes slightly down, slow","3 &times; 10-12 /side"],
+  ["Standing wall press - outside of knee pushes into wall, stand on other leg","3 &times; 30s /side"],
+  ["Dead bug","2 &times; 8 /side"],
+  ["Calf raises, double leg","3 &times; 15"]];
+/* Phase 2 - moving load, low hip flexion */
+var R2=[["Bridge, double &rarr; single leg (3s down)","3 &times; 8-12"],
+  ["Slider hamstring curl from bridge, short range","3 &times; 6-8"],
+  ["Prone hamstring curl with band","3 &times; 10-12 /side"],
+  ["Standing banded hip extension, trunk upright","3 &times; 12 /side"],
+  ["Side plank (knees &rarr; feet) + top-leg lift","3 &times; 20-30s /side"],
+  ["Lateral band walk, mini squat","3 &times; 10 steps each way"],
+  ["Low step-up (15-20 cm), drive through the heel","3 &times; 8 /side"],
+  ["Single-leg calf raise","3 &times; 12-15 /side"]];
+/* Phase 3 - into hip flexion, add eccentric */
+var R3=[["Single-leg RDL, light - hinge only as far as pain-free","3 &times; 8 /side"],
+  ["Assisted Nordic (band or hands to couch), slow lower","3 &times; 4-6"],
+  ["Hip thrust, shoulders on couch - add load when easy","3 &times; 8-10"],
+  ["Long-lever slider curl &rarr; single-leg","3 &times; 6 /side"],
+  ["Rear-foot-elevated split squat","3 &times; 6-8 /side"],
+  ["Slow step-down, knee tracking over toes (glute med)","3 &times; 8 /side"],
+  ["Copenhagen plank, short lever","2 &times; 15-20s /side"],
+  ["Single-leg calf raise, straight + bent knee","3 &times; 12 /side"]];
+/* Phase 4 - durability, heavier, less volume */
+var R4=[["Single-leg RDL, loaded","2-3 &times; 6 /side"],
+  ["Assisted Nordic","2 &times; 4-5"],
+  ["Hip thrust, heavier","3 &times; 6-8"],
+  ["Rear-foot-elevated split squat","2 &times; 6 /side"],
+  ["Slow step-down","2 &times; 8 /side"],
+  ["Side plank + abduction","2 &times; 30s /side"],
+  ["Single-leg calf raise","2 &times; 15 /side"]];
+var PRIMER=[["Glute bridge","10"],["Side-lying abduction","10 /side"],["Standing march, tall","20"],["Lateral band walk","10 each way"],["Easy walk","3-5 min, then begin"]];
+var MOB=[["Couch stretch / hip flexor","60s /side"],
+  ["Glute med release - ball against a wall, standing","60s /side"],
   ["Calf &amp; soleus on a step","45-60s /side"],
   ["Thoracic rotation, side-lying","8 /side"],
-  ["Hamstring float, gentle","45s /side"],
-  ["Legs up the wall to finish","3-5 min"]];
+  ["90/90 hip switches, slow","6 /side"],
+  ["Constructive rest - on back, knees bent, feet down","3-5 min"]];
 
-function E(d,t,s,note){return{d:d,k:"run",pill:"Easy",t:t,s:s,detail:EASY+(note?" "+note:""),fuel:FUEL_SHORT};}
-function L(d,t,s,note){return{d:d,k:"long",pill:"Long",t:t,s:s,detail:EASY+(note?" "+note:""),fuel:FUEL_LONG,long:true};}
-function BB(d,t,s,note){return{d:d,k:"long",pill:"B2B",t:t,s:s,detail:B2B+(note?" "+note:""),fuel:FUEL_B2B,long:true};}
-function SP(d,t,s,note){return{d:d,k:"spd",pill:"Session",t:t,s:s,detail:SPEED+(note?" "+note:""),fuel:FUEL_SHORT};}
-function ST(d,t,s,note){return{d:d,k:"run",pill:"Steady",t:t,s:s,detail:STEADY+(note?" "+note:""),fuel:FUEL_SHORT};}
-function SA(d,t,s){return{d:d,k:"str",pill:"Strength",t:t,s:s||"~25 min",ex:STR_A,exlab:"Session A",detail:"Controlled and light. This is insurance against injury, not a workout to survive. Lean into the slow lowering - that's what protects your knees on long descents."};}
-function SB(d,t,s){return{d:d,k:"str",pill:"Strength",t:t,s:s||"~25 min",ex:STR_B,exlab:"Session B",detail:"Controlled and light. Strong feet, ankles and core keep you steady on tired legs late in a long day."};}
-function MO(d,t,s){return{d:d,k:"rec",pill:"Mobility",t:t,s:s||"~20 min",ex:MOB,exlab:"Mobility",detail:"Slow and unhurried. Breathe out into each position rather than forcing it."};}
-function R(d,note){return{d:d,k:"rec",pill:"Rest",t:"Rest",s:"Full rest day",detail:note||"A real rest day. Not a walk you turn into a run. This is where the training lands."};}
+function STR(d,set,lab,s,note){return{d:d,k:"str",pill:"Strength",t:lab,s:s||"~25-30 min",ex:set,exlab:lab,
+  detail:"Slow and controlled. "+PAIN+(note?" "+note:"")};}
+function S1(d,s,n){return STR(d,R1,"Rebuild 1 &middot; holds",s||"~20 min","Holds can also calm pain - you can do the bridge and heel-dig holds most days.");}
+function S2(d,s,n){return STR(d,R2,"Rebuild 2 &middot; movement",s,n);}
+function S3(d,s,n){return STR(d,R3,"Rebuild 3 &middot; hinge &amp; eccentric",s,"Nordics and single-leg RDLs are where re-injury protection is built. Start very light and expect next-day muscle soreness for the first fortnight - soreness is fine, sit-bone pain is not.");}
+function S4(d,s,n){return STR(d,R4,"Durability",s||"~25 min",n||"Heavier and shorter. This keeps the hamstring and glute med strong under fatigue.");}
+function XT(d,t,s,n){return{d:d,k:"xt",pill:"Cross",t:t,s:s,detail:XT_NOTE+(n?" "+n:""),fuel:FUEL_SHORT};}
+function WK(d,t,s,n){return{d:d,k:"long",pill:"Walk",t:t,s:s,detail:WALK_NOTE+(n?" "+n:""),fuel:FUEL_LONG,long:true};}
+function RW(d,t,s,n){return{d:d,k:"run",pill:"Run-walk",t:t,s:s,ex:PRIMER,exlab:"Hip primer (before)",detail:RW_NOTE+(n?" "+n:""),fuel:FUEL_SHORT};}
+function E(d,t,s,n){return{d:d,k:"run",pill:"Easy",t:t,s:s,ex:PRIMER,exlab:"Hip primer (before)",detail:EASY+" "+PAIN+(n?" "+n:""),fuel:FUEL_SHORT};}
+function L(d,t,s,n){return{d:d,k:"long",pill:"Long",t:t,s:s,ex:PRIMER,exlab:"Hip primer (before)",detail:EASY+(n?" "+n:""),fuel:FUEL_LONG,long:true};}
+function BB(d,t,s,n){return{d:d,k:"long",pill:"B2B",t:t,s:s,ex:PRIMER,exlab:"Hip primer (before)",detail:B2B+(n?" "+n:""),fuel:FUEL_B2B,long:true};}
+function MO(d,t,s){return{d:d,k:"rec",pill:"Mobility",t:t||"Mobility",s:s||"~15 min",ex:MOB,exlab:"Mobility",detail:"Slow and unhurried. No hamstring stretching while the top of the hamstring heals - stretching compresses the tendon at the sit bone."};}
+function R(d,note){return{d:d,k:"rec",pill:"Rest",t:"Rest",s:"Full rest day",detail:note||"A real rest day. This is where the healing and the training land."};}
 function RC(d,t,s,note){return{d:d,k:"rec",pill:"Recover",t:t,s:s,detail:note};}
+function GATE(d,s){return{d:d,k:"spd",pill:"Check",t:"Return-to-run check",s:s||"10 min test",detail:"Pass all of these before running: <b>1)</b> 60 min brisk walk with no pain, and fine next morning. <b>2)</b> Single-leg bridge - 15 reps each side, injured side close to the other. <b>3)</b> 10 gentle hops on the spot each leg, pain-free. <b>4)</b> Sitting 30 min doesn't flare the sit bone. <b>5)</b> Your physio agrees. Miss one? Repeat this week. You lose nothing."};}
 
-var DOWNREG="10 min of something downregulating - breathwork, yoga nidra, or legs-up-the-wall. Protect your nervous system first; there are no targets this week.";
-function planC(){return[RC("Most days","Walk or run-walk","15-25 min, as energy allows","Movement is medicine this week, not a target. If a walk is all there is, a walk is enough."),
+var DOWNREG="10 min of something downregulating - breathwork, yoga nidra, or constructive rest. Protect your nervous system first; there are no targets this week.";
+function planC(){return[RC("Most days","Walk","20-30 min, as energy allows","Movement is medicine this week, not a target. If a walk is all there is, a walk is enough."),
+  RC("Most days","Bridge + heel-dig holds","5-10 min","Two holds keep the hamstring loaded and often ease pain. Do them on the floor beside the bed if that's what the day allows."),
   RC("Daily","Downregulate","10 min",DOWNREG)];}
 
 /* ============================================================
-   PHASE 1 - COOPAH BLOCK (transcribed from the app, 6 Aug - 27 Sep)
-   Weekly totals cross-checked against Coopah's own week headers.
+   RESET 5 Oct 2026 - grade 1 upper hamstring + glute med.
+   Criteria-led rebuild to the Tamworth finish, Tue 19 Jan 2027.
    ============================================================ */
 var WEEKS=[
- {focus:"Settle back in",dates:"Week 1 · 6-9 Aug",start:new Date(2026,7,6),src:"coopah",
-  vol:"Coopah: 15 km · 2h 05 · part week",
-  A:[E("Thu 6","Easy Run: 6 km","~41 min","First run back after a few weeks off - let it be slower than you think."),
-     MO("Fri 7","Mobility: Hips &amp; Back","~20 min"),
-     R("Sat 8"),
-     L("Sun 9","Long Run: 9 km","~1 h 01","Ease into it. There is no hurry in week one.")],
-  B:[E("Thu 6","Easy Run: 5-6 km","~40 min"),L("Sun 9","Long Run: 8 km","~55 min"),MO("Fri 7","Mobility","~15 min")],
+ {focus:"Settle &amp; load gently",dates:"Week 1 · 5-11 Oct · rebuild",start:new Date(2026,9,5),src:"rehab",
+  vol:"No running · holds + walking + cross-training",
+  A:[RC("Mon 5","Book the physio","This week - it gates everything","Confirm the grade, the exact site (muscle vs tendon at the sit bone) and the glute med picture. A tendon-involved injury runs a slower timeline - we adjust if so."),
+     S1("Mon 5"),
+     WK("Tue 6","Brisk flat walk","40-50 min · effort 4"),
+     S1("Wed 7"),
+     XT("Thu 8","Cross-train","35-45 min · effort 4-5"),
+     S1("Fri 9"),
+     WK("Sat 10","Long walk","75-90 min flat","Carry a small pack with water and snacks."),
+     RC("Sun 11","Restore","Nidra + constructive rest",DOWNREG)],
+  B:[S1("Mon 5"),WK("Tue 6","Walk","40 min"),S1("Thu 8"),WK("Sat 10","Long walk","60 min")],
   C:planC()},
 
- {focus:"Rebuild the frame",dates:"Week 2 · 10-16 Aug",start:new Date(2026,7,10),src:"coopah",
-  vol:"Coopah: 33 km · 4h 35",
-  A:[E("Mon 10","Easy Run: 8 km","~55 min"),
-     SA("Tue 11","Strength: Base 40","~25 min"),
-     E("Wed 12","Easy Run: 40 min","~5.9 km"),
-     R("Thu 13"),
-     SB("Fri 14","Strength: Base 50","~25 min"),
-     E("Sat 15","Easy Run: 8 km","~55 min"),
-     L("Sun 16","Long Run: 11 km","~1 h 15")],
-  B:[E("Mon 10","Easy Run: 6 km","~40 min"),E("Wed 12","Easy Run: 5 km","~35 min"),
-     SA("Fri 14","Strength (one session)","~20 min"),L("Sun 16","Long Run: 10 km","~1 h 10")],
+ {focus:"From holds to movement",dates:"Week 2 · 12-18 Oct · rebuild",start:new Date(2026,9,12),src:"rehab",
+  vol:"No running yet · first moving strength · check on Sunday",
+  A:[S1("Mon 12"),
+     XT("Tue 13","Cross-train","40-45 min · effort 4-5"),
+     WK("Wed 14","Brisk walk","50-60 min"),
+     S2("Thu 15","~25 min","First moving session. Light, slow, short range. Keep the bridge holds on the in-between days."),
+     XT("Fri 16","Cross-train","40 min"),
+     WK("Sat 17","Long walk","90-105 min","Rolling ground is fine. Shorten your step on any climb."),
+     GATE("Sun 18")],
+  B:[S1("Mon 12"),WK("Wed 14","Walk","45 min"),S2("Thu 15"),WK("Sat 17","Long walk","75 min"),GATE("Sun 18")],
   C:planC()},
 
- {focus:"First quality work",dates:"Week 3 · 17-23 Aug",start:new Date(2026,7,17),src:"coopah",
-  vol:"Coopah: 36 km · 4h 30",
-  A:[E("Mon 17","Easy Run: 8 km","~55 min"),
-     SA("Tue 18","Strength: Build Sets","~20 min"),
-     SP("Wed 19","The Albufeira","~49 min · 7.5 km · 1&times;4 min, 2&times;3 min"),
-     R("Thu 20"),
-     MO("Fri 21","Mobility: Lower Body","~20 min"),
-     ST("Sat 22","Steady Run","~40 min · 6.5 km · 5 min easy, then 5 km steady"),
-     L("Sun 23","Long Run","~1 h 24 · 14 km · 2 km easy, 10 km at target")],
-  B:[E("Mon 17","Easy Run: 6 km","~40 min"),E("Wed 19","Easy Run: 6 km","~40 min"),
-     SA("Fri 21","Strength (one session)","~20 min"),L("Sun 23","Long Run: 12 km","~1 h 25")],
+ {focus:"First steps back",dates:"Week 3 · 19-25 Oct · rebuild",start:new Date(2026,9,19),src:"rehab",
+  vol:"Only if Sunday's check passed · otherwise repeat week 2",
+  A:[S2("Mon 19"),
+     RW("Tue 20","Run-walk","1 min run / 2 min walk &times; 8 · ~25 min","Your first run back. It will feel strange and slow - that is exactly right."),
+     XT("Wed 21","Cross-train","40 min"),
+     RW("Thu 22","Run-walk","2 min run / 2 min walk &times; 6"),
+     S2("Fri 23"),
+     RW("Sat 24","Run-walk","3 min run / 1 min walk &times; 6"),
+     WK("Sun 25","Long walk","90 min")],
+  B:[S2("Mon 19"),RW("Tue 20","Run-walk","1 / 2 &times; 8"),RW("Thu 22","Run-walk","2 / 2 &times; 6"),WK("Sun 25","Long walk","75 min")],
   C:planC()},
 
- {focus:"Long run steps up",dates:"Week 4 · 24-30 Aug",start:new Date(2026,7,24),src:"coopah",
-  vol:"Coopah: ~44 km",
-  A:[E("Mon 24","Easy Run: 10 km","~1 h 08"),
-     SA("Tue 25","Strength: Build Circuit","~10 min"),
-     SP("Wed 26","The Belfast","~56 min · 8.5 km · 15 min tempo + 10&times;"),
-     R("Thu 27"),
-     SB("Fri 28","Strength: Build Supersets","~20 min"),
-     ST("Sat 29","Steady Run","~46 min · 7.5 km · 5 min easy, then 6 km steady"),
-     L("Sun 30","Long Run: 18 km","~2 h 03","Biggest run since early June - fuel it properly.")],
-  B:[E("Mon 24","Easy Run: 8 km","~55 min"),E("Wed 26","Easy Run: 6 km","~40 min"),
-     SA("Fri 28","Strength (one session)","~20 min"),L("Sun 30","Long Run: 15 km","~1 h 45")],
+ {focus:"Run-walk builds",dates:"Week 4 · 26 Oct-1 Nov · rebuild",start:new Date(2026,9,26),src:"rehab",
+  vol:"Three run-walks · Attunga day becomes a walk",
+  A:[S2("Mon 26"),
+     RW("Tue 27","Run-walk","4 min run / 1 min walk &times; 6"),
+     XT("Wed 28","Cross-train","40 min"),
+     RW("Thu 29","Run-walk","5 min run / 1 min walk &times; 5"),
+     S2("Fri 30"),
+     E("Sat 31","Easy continuous","20-25 min flat","Only if Thursday felt clean the next morning. Otherwise run-walk again."),
+     WK("Sun 1 Nov","Attunga day - walk it","~2 h hike + crew practice","The 45 km practice run is off as a run. Use the day as a crew and kit rehearsal: walk a section of the loop, practise meets, food, comms. Optional flat run-walk segments only if pain-free.")],
+  B:[S2("Mon 26"),RW("Tue 27","Run-walk","4 / 1 &times; 6"),RW("Thu 29","Run-walk","5 / 1 &times; 5"),WK("Sun 1 Nov","Attunga day - walk it","~90 min + crew practice")],
   C:planC()},
 
- {focus:"Absorb, then reach 20",dates:"Week 5 · 31 Aug-6 Sep",start:new Date(2026,7,31),src:"coopah",
-  vol:"Coopah: 41 km · 5h 15",
-  A:[E("Mon 31","Easy Run: 6 km","~41 min"),
-     SA("Tue 1","Strength: Build S&amp;C","~30 min"),
-     SP("Wed 2","Tempo Run: 3 &times; 8 min","~53 min · 8.6 km"),
-     R("Thu 3"),
-     MO("Fri 4","Mobility: Full Body","~20 min"),
-     E("Sat 5","Easy Run: 6 km","~41 min"),
-     L("Sun 6","Long Run","~2 h 07 · 20 km · 3 km easy, 14 km steady")],
-  B:[E("Mon 31","Easy Run: 6 km","~41 min"),E("Wed 2","Easy Run: 6 km","~40 min"),
-     SA("Fri 4","Strength (one session)","~20 min"),L("Sun 6","Long Run: 16 km","~1 h 50")],
+ {focus:"Continuous easy",dates:"Week 5 · 2-8 Nov · rebuild",start:new Date(2026,10,2),src:"rehab",
+  vol:"Three easy runs · strength moves into hinge",
+  A:[S2("Mon 2"),
+     E("Tue 3","Easy run","30 min"),
+     S3("Wed 4","~30 min"),
+     E("Thu 5","Easy run","30-35 min"),
+     RC("Fri 6","Rest or gentle walk","20-30 min"),
+     WK("Sat 7","Walk","60 min"),
+     L("Sun 8","Long run-walk","60-70 min · run 8 / walk 2")],
+  B:[E("Tue 3","Easy run","25 min"),S3("Wed 4"),L("Sun 8","Long run-walk","50 min")],
   C:planC()},
 
- {focus:"Biggest week yet",dates:"Week 6 · 7-13 Sep",start:new Date(2026,8,7),src:"coopah",
-  vol:"Coopah: 54 km · 6h 35 · peak so far",
-  A:[E("Mon 7","Easy Run: 8 km","~55 min"),
-     SA("Tue 8","Strength: Build 40","~25 min"),
-     SP("Wed 9","The Boulder: Pyramid Session","~1 h 03 · 9.8 km"),
+ {focus:"Time on feet",dates:"Week 6 · 9-15 Nov · build",start:new Date(2026,10,9),src:"lim",
+  vol:"First weekend pairing - run then walk",
+  A:[S3("Mon 9"),
+     E("Tue 10","Easy run","35-40 min"),
+     XT("Wed 11","Cross-train","40 min"),
+     E("Thu 12","Easy run","35 min"),
+     S3("Fri 13","~25 min"),
+     L("Sat 14","Long run-walk","80-90 min"),
+     WK("Sun 15","Long walk","75-90 min","Walking on yesterday's legs. Gentle, and quietly very specific.")],
+  B:[E("Tue 10","Easy run","30 min"),S3("Wed 11"),L("Sat 14","Long run-walk","70 min"),WK("Sun 15","Walk","60 min")],
+  C:planC()},
+
+ {focus:"First back-to-back",dates:"Week 7 · 16-22 Nov · build",start:new Date(2026,10,16),src:"lim",
+  vol:"Two run-walk days in a row",
+  A:[S3("Mon 16"),
+     E("Tue 17","Easy run","40 min"),
+     XT("Wed 18","Cross-train","40 min"),
+     E("Thu 19","Easy run","40 min"),
+     S3("Fri 20","~25 min"),
+     BB("Sat 21","Back-to-back: day 1","1 h 45 run-walk"),
+     BB("Sun 22","Back-to-back: day 2","1 h 15 run-walk")],
+  B:[E("Tue 17","Easy run","35 min"),S3("Thu 19"),BB("Sat 21","Back-to-back: day 1","1 h 20"),BB("Sun 22","Back-to-back: day 2","1 h")],
+  C:planC()},
+
+ {focus:"Absorb",dates:"Week 8 · 23-29 Nov · deload",start:new Date(2026,10,23),src:"lim",
+  vol:"Lighter week - let it land",
+  A:[RC("Mon 23","Rest","Sleep in if you can"),
+     E("Tue 24","Easy run","30 min"),
+     S3("Wed 25","~20 min","Two sets of each, not three."),
+     E("Thu 26","Easy run","30 min"),
+     MO("Fri 27"),
+     L("Sat 28","Long run-walk","75 min"),
+     RC("Sun 29","Restore","Nidra + walk",DOWNREG)],
+  B:[E("Tue 24","Easy run","30 min"),S3("Wed 25","~20 min"),L("Sat 28","Long run-walk","60 min")],
+  C:planC()},
+
+ {focus:"Build the weekend",dates:"Week 9 · 30 Nov-6 Dec · build",start:new Date(2026,10,30),src:"lim",
+  vol:"Full kit · full fuelling · crew alongside",
+  A:[S4("Mon 30"),
+     E("Tue 1","Easy run","45 min"),
+     XT("Wed 2","Cross-train","40 min"),
+     E("Thu 3","Easy run","40 min"),
+     S4("Fri 4","~20 min"),
+     BB("Sat 5","Back-to-back: day 1","2 h 15 run-walk","Carry everything you'll carry on run days. Test pack, shoes, socks, food."),
+     BB("Sun 6","Back-to-back: day 2","1 h 45 run-walk")],
+  B:[E("Tue 1","Easy run","35 min"),S4("Thu 3"),BB("Sat 5","Back-to-back: day 1","1 h 45"),BB("Sun 6","Back-to-back: day 2","1 h 15")],
+  C:planC()},
+
+ {focus:"Three-day rehearsal",dates:"Week 10 · 7-13 Dec · peak",start:new Date(2026,11,7),src:"lim",
+  vol:"Three days in a row · the closest thing to the run",
+  A:[RC("Mon 7","Walk","30-40 min easy"),
+     S4("Tue 8","~20 min","Light. Two sets."),
+     E("Wed 9","Easy run","35 min"),
      R("Thu 10"),
-     SB("Fri 11","Strength: Build 50","~25 min"),
-     E("Sat 12","Easy Run: 10 km","~1 h 08"),
-     L("Sun 13","Long Run","~2 h 39 · 26 km · 5 km easy, 2&times;8 km at target","A big one. If the week has been heavy, cut this to 20 km without hesitation.")],
-  B:[E("Mon 7","Easy Run: 8 km","~55 min"),E("Wed 9","Easy Run: 6 km","~40 min"),
-     SA("Fri 11","Strength (one session)","~20 min"),L("Sun 13","Long Run: 18 km","~2 h 05")],
+     BB("Fri 11","Rehearsal: day 1","2 h 15 run-walk"),
+     BB("Sat 12","Rehearsal: day 2","~3 h · 2 h run-walk + 1 h walk","Built like a real stage: run-walk, then keep moving on foot. Crew meets every 45-60 min."),
+     BB("Sun 13","Rehearsal: day 3","2 h 15 run-walk","Day three is where you learn what the run will ask. Notice the hamstring, the glute, your mood - write it down after. This decides the format.")],
+  B:[E("Wed 9","Easy run","30 min"),BB("Fri 11","Rehearsal: day 1","1 h 45"),BB("Sat 12","Rehearsal: day 2","2 h 15"),BB("Sun 13","Rehearsal: day 3","1 h 45")],
   C:planC()},
 
- {focus:"Hold the volume",dates:"Week 7 · 14-20 Sep",start:new Date(2026,8,14),src:"coopah",
-  vol:"Coopah: 52 km · 6h 25",
-  A:[E("Mon 14","Easy Run: 11 km","~1 h 15"),
-     SA("Tue 15","Strength: Boost Sets","~20 min"),
-     SP("Wed 16","The Chicago: 3 miles at target","~1 h 05 · 10.6 km"),
-     R("Thu 17"),
-     MO("Fri 18","Mobility: Full Body 2","~20 min"),
-     ST("Sat 19","Steady Run","~57 min · 9.5 km · 5 min easy, then 8 km steady"),
-     L("Sun 20","Long Run: 21 km","~2 h 23","Half-marathon distance. Practise your fuelling exactly as you would on the road.")],
-  B:[E("Mon 14","Easy Run: 8 km","~55 min"),E("Wed 16","Easy Run: 6 km","~40 min"),
-     SA("Fri 18","Strength (one session)","~20 min"),L("Sun 20","Long Run: 16 km","~1 h 50")],
-  C:planC()},
-
- {focus:"Carry it forward",dates:"Week 8 · 21-27 Sep",start:new Date(2026,8,21),src:"coopah",
-  vol:"Coopah: 56 km · 6h 45",
-  A:[E("Mon 21","Easy Run: 11 km","~1 h 15"),
-     SA("Tue 22","Strength: Boost Circuit","~10 min"),
-     SP("Wed 23","The Auckland: 25 min Fartlek","~45 min · 7.4 km"),
-     R("Thu 24"),
-     SB("Fri 25","Strength: Boost Supersets","~20 min"),
-     SP("Sat 26","Tempo Run: 4 &times; 6 min","~56 min · 9 km"),
-     L("Sun 27","Long Run: 29 km","~3 h 18","Longest run of your year so far. Treat it as a fuelling rehearsal from the first kilometre.")],
-  B:[E("Mon 21","Easy Run: 8 km","~55 min"),E("Wed 23","Easy Run: 6 km","~40 min"),
-     SA("Fri 25","Strength (one session)","~20 min"),L("Sun 27","Long Run: 22 km","~2 h 30")],
-  C:planC()},
-
- {focus:"Steady through",dates:"Week 9 · 28 Sep-4 Oct",start:new Date(2026,8,28),src:"coopah",
-  vol:"Coopah: ~47 km",
-  A:[E("Mon 28","Easy Run: 6 km","~41 min"),
-     SA("Tue 29","Strength: Boost S&amp;C","~30 min"),
-     SP("Wed 30","Tempo Run: 60 min","~1 h · 9.5 km · 20 min at tempo"),
-     R("Thu 1"),
-     MO("Fri 2","Mobility: Full Body 3","~20 min"),
-     E("Sat 3","Easy Run: 8 km","~55 min"),
-     L("Sun 4","Long Run","~2 h 32 · 24 km · 3 km easy, 18 km steady")],
-  B:[E("Mon 28","Easy Run: 6 km","~41 min"),E("Wed 30","Easy Run: 6 km","~40 min"),
-     SA("Fri 2","Strength (one session)","~20 min"),L("Sun 4","Long Run: 18 km","~2 h 05")],
-  C:planC()},
-
- {focus:"Peak week",dates:"Week 10 · 5-11 Oct · peak",start:new Date(2026,9,5),src:"coopah",
-  vol:"Coopah: 60 km · 7h 35 · biggest week of the block",
-  A:[E("Mon 5","Easy Run: 8 km","~55 min"),
-     SA("Tue 6","Strength: Boost 40","~25 min"),
-     SP("Wed 7","The Eilish: 5 &times; 1 km","~56 min · 8.9 km"),
-     R("Thu 8"),
-     SB("Fri 9","Strength: Boost 50","~25 min"),
-     E("Sat 10","Easy Run: 11 km","~1 h 15"),
-     L("Sun 11","Long Run: 32 km","~3 h 38","The peak. Everything you will need on the road gets tested here - shoes, socks, pack, food, start time.")],
-  B:[E("Mon 5","Easy Run: 8 km","~55 min"),E("Wed 7","Easy Run: 6 km","~40 min"),
-     SA("Fri 9","Strength (one session)","~20 min"),L("Sun 11","Long Run: 24 km","~2 h 45")],
-  C:planC()},
-
- {focus:"Ease off the volume",dates:"Week 11 · 12-18 Oct",start:new Date(2026,9,12),src:"coopah",
-  vol:"Coopah: 45 km · 5h 30",
-  A:[E("Mon 12","Easy Run: 8 km","~55 min"),
-     SA("Tue 13","Strength: Edge Sets","~20 min"),
-     SP("Wed 14","The Potchefstroom: 10 &times; 2 min","~51 min · 7.9 km"),
-     R("Thu 15"),
-     MO("Fri 16","Mobility: Back &amp; Shoulders","~20 min"),
-     SP("Sat 17","The Stockholm: 30 min Fartlek","~50 min · 8.4 km"),
-     L("Sun 18","Long Run","~2 h 14 · 21 km · 5 km easy, 8 km at target")],
-  B:[E("Mon 12","Easy Run: 8 km","~55 min"),E("Wed 14","Easy Run: 6 km","~40 min"),
-     SA("Fri 16","Strength (one session)","~20 min"),L("Sun 18","Long Run: 16 km","~1 h 50")],
-  C:planC()},
-
- {focus:"Coopah taper begins",dates:"Week 12 · 19-25 Oct",start:new Date(2026,9,19),src:"coopah",
-  vol:"Coopah: 35 km · 4h 35 · taper",
-  A:[E("Mon 19","Easy Run: 5 km + strides","~37 min"),
-     SA("Tue 20","Strength: Peak Sets","~20 min"),
-     SP("Wed 21","Taper Run","~51 min · 8 km · 2 km easy, 3 km at target"),
-     R("Thu 22"),
-     SB("Fri 23","Strength: Power Supersets","~20 min"),
-     E("Sat 24","Easy Run: 5 km + strides","~37 min"),
-     L("Sun 25","Long Run: 16 km","~1 h 49")],
-  B:[E("Mon 19","Easy Run: 5 km","~37 min"),E("Wed 21","Easy Run: 6 km","~40 min"),
-     L("Sun 25","Long Run: 14 km","~1 h 40")],
-  C:planC()},
-
- {focus:"Coopah race week",dates:"Week 13 · 26 Oct-1 Nov",start:new Date(2026,9,26),src:"coopah",
-  vol:"Coopah: ~13 km + Sun 1 Nov · see Coach notes",
-  A:[E("Mon 26","Easy Run: 5 km + strides","~37 min"),
-     MO("Tue 27","Mobility: Pre-Race","~10 min"),
-     R("Wed 28"),
-     E("Thu 29","Easy Run: 30 min + strides","~4.7 km"),
-     R("Fri 30"),
-     E("Sat 31","Easy Run: 20 min + strides","~3.3 km","Shake-out. Short and light."),
-     RC("Sun 1 Nov","Coopah's target day","Race day, as the app has it","This is a textbook marathon race-week taper and it points at Sunday 1 November. Coopah has built the whole 87-day block toward this date. Do you have a race that day? It changes what happens next - see Coach notes.")],
-  B:[E("Mon 26","Easy Run: 5 km","~37 min"),E("Thu 29","Easy Run: 30 min","~4.7 km"),
-     RC("Sun 1 Nov","Coopah's target day","See Plan A")],
-  C:planC()},
-
-/* ============================================================
-   PHASE 2 - THE ULTRA BLOCK (Love in Motion, not Coopah)
-   Coopah's plan stops ~1 Nov. This is the specific work it never covers.
-   ============================================================ */
- {focus:"Marathon recovery",dates:"Week 14 · 2-8 Nov · recover",start:new Date(2026,10,2),src:"lim",
-  vol:"~16 km · recovery only · no long run",
-  A:[RC("Mon 2","Full rest","Nothing at all","You raced a marathon yesterday. Your legs have micro-damage that takes real time to repair. Rest is the session."),
-     RC("Tue 3","Walk","20-30 min gentle","Blood flow, nothing more. If you feel like running, don't."),
-     RC("Wed 4","Walk","30-40 min gentle"),
-     E("Thu 5","Very easy jog: 4 km","~30 min","First jog back. If anything hurts or your gait changes, walk home - no cost."),
-     RC("Fri 6","Mobility + nidra","~20 min","Gentle. Legs up the wall to finish."),
-     E("Sat 7","Very easy jog: 5 km","~38 min"),
-     E("Sun 8","Easy Run: 7 km","~50 min","No long run this week. Resist the urge - this is the week that protects December.")],
-  B:[RC("Mon-Wed","Rest and walk","As you feel"),E("Sat 7","Very easy jog: 4 km","~30 min"),E("Sun 8","Easy Run: 6 km","~43 min")],
-  C:planC()},
-
- {focus:"Rebuild the base",dates:"Week 15 · 9-15 Nov · LIM",start:new Date(2026,10,9),src:"lim",
-  vol:"~36 km · easy running only, no quality",
-  A:[E("Mon 9","Easy Run: 8 km","~55 min"),
-     SA("Tue 10","Strength A (light)","~20 min","First strength back. Half your usual load."),
-     E("Wed 11","Easy Run: 8 km","~55 min"),
-     R("Thu 12"),
-     MO("Fri 13","Mobility: Full Body","~20 min"),
-     E("Sat 14","Easy Run: 6 km","~43 min"),
-     L("Sun 15","Long Run: 14 km","~1 h 40","First long run since the marathon. Comfortable throughout - this is a check-in, not a test.")],
-  B:[E("Mon 9","Easy Run: 6 km","~43 min"),E("Wed 11","Easy Run: 6 km","~43 min"),
-     L("Sun 15","Long Run: 12 km","~1 h 25")],
-  C:planC()},
-
- {focus:"Back-to-back begins",dates:"Week 16 · 16-22 Nov · LIM",start:new Date(2026,10,16),src:"lim",
-  vol:"~48 km · first true back-to-back weekend",
-  A:[E("Mon 16","Easy Run: 8 km","~55 min"),
-     SA("Tue 17","Strength A","~25 min"),
-     E("Wed 18","Easy Run: 8 km","~55 min"),
-     R("Thu 19"),
-     MO("Fri 20","Mobility: Full Body","~20 min"),
-     BB("Sat 21","Back-to-back: day 1","~2 h 20 · 20 km easy","Deliberately slower than your Coopah long runs. You are not chasing pace from here on."),
-     BB("Sun 22","Back-to-back: day 2","~1 h 50 · 15 km easy","Legs will feel heavy in the first 3 km. That is exactly the point - keep going, gently.")],
-  B:[E("Mon 16","Easy Run: 6 km","~43 min"),SA("Wed 18","Strength A","~20 min"),
-     BB("Sat 21","Back-to-back: day 1","~1 h 50 · 15 km"),BB("Sun 22","Back-to-back: day 2","~1 h 20 · 11 km")],
-  C:planC()},
-
- {focus:"Extend the weekend",dates:"Week 17 · 23-29 Nov · LIM",start:new Date(2026,10,23),src:"lim",
-  vol:"~58 km",
-  A:[E("Mon 23","Easy Run: 10 km","~1 h 08"),
-     SA("Tue 24","Strength A","~25 min"),
-     E("Wed 25","Easy Run: 8 km","~55 min"),
-     R("Thu 26"),
-     SB("Fri 27","Strength B","~20 min"),
-     BB("Sat 28","Back-to-back: day 1","~2 h 55 · 25 km easy","Carry everything you would carry on the road. Test the pack, the shoes, the socks."),
-     BB("Sun 29","Back-to-back: day 2","~2 h 10 · 18 km easy")],
-  B:[E("Mon 23","Easy Run: 8 km","~55 min"),SA("Wed 25","Strength A","~20 min"),
-     BB("Sat 28","Back-to-back: day 1","~2 h 20 · 20 km"),BB("Sun 29","Back-to-back: day 2","~1 h 40 · 14 km")],
-  C:planC()},
-
- {focus:"Peak weekend",dates:"Week 18 · 30 Nov-6 Dec · peak",start:new Date(2026,10,30),src:"lim",
-  vol:"~70 km · biggest weekend of the build",
-  A:[E("Mon 30","Easy Run: 10 km","~1 h 08"),
-     SA("Tue 1","Strength A","~25 min"),
-     E("Wed 2","Easy Run: 8 km","~55 min"),
-     R("Thu 3"),
-     MO("Fri 4","Mobility: Full Body","~20 min"),
-     BB("Sat 5","Back-to-back: day 1","~3 h 30 · 30 km easy","Full expedition rehearsal: same food, same kit, same start time you expect on the road. Crew practises here too."),
-     BB("Sun 6","Back-to-back: day 2","~2 h 50 · 24 km easy","Finishing this tired is the proof of concept.")],
-  B:[E("Mon 30","Easy Run: 8 km","~55 min"),SA("Wed 2","Strength A","~20 min"),
-     BB("Sat 5","Back-to-back: day 1","~2 h 55 · 25 km"),BB("Sun 6","Back-to-back: day 2","~2 h 20 · 20 km")],
-  C:planC()},
-
- {focus:"Three-day dress rehearsal",dates:"Week 19 · 7-13 Dec · LIM",start:new Date(2026,11,7),src:"lim",
-  vol:"~85 km · three consecutive days",
-  A:[RC("Mon 7","Walk or very easy","30-40 min","Shake out. Nothing more."),
-     SA("Tue 8","Strength A (light)","~20 min"),
-     E("Wed 9","Easy Run: 8 km","~55 min"),
-     R("Thu 10"),
-     BB("Fri 11","Rehearsal: day 1","~3 h 00 · 26 km","Three days in a row. This is the closest thing to Love in Motion you will run before the road."),
-     BB("Sat 12","Rehearsal: day 2","~3 h 30 · 30 km","Sleep, food and feet between days matter more than the running."),
-     BB("Sun 13","Rehearsal: day 3","~3 h 25 · 29 km","Day three is where you learn what the run will actually ask of you.")],
-  B:[E("Wed 9","Easy Run: 6 km","~40 min"),
-     BB("Fri 11","Rehearsal: day 1","~2 h 20 · 20 km"),BB("Sat 12","Rehearsal: day 2","~2 h 40 · 23 km"),
-     BB("Sun 13","Rehearsal: day 3","~2 h 20 · 20 km")],
-  C:planC()},
-
-  {focus:"Absorb the block",dates:"Week 20 · 14-20 Dec · deload",start:new Date(2026,11,14),src:"lim",
-  vol:"~38 km · deload after the rehearsal",
-  A:[RC("Mon 14","Full rest","Sleep in if you can","After three days back-to-back, this is non-negotiable."),
-     RC("Tue 15","Walk","40-50 min gentle"),
-     E("Wed 16","Easy Run: 8 km","~55 min"),
-     MO("Thu 17","Mobility: Full Body","~20 min"),
+ {focus:"Absorb the rehearsal",dates:"Week 11 · 14-20 Dec · deload",start:new Date(2026,11,14),src:"lim",
+  vol:"Recover, then one comfortable long effort",
+  A:[RC("Mon 14","Full rest","Non-negotiable after three days"),
+     {d:"Mon 14",k:"spd",pill:"Decide",t:"Choose the format",s:"3, 5 or 7 days",detail:"Use the rehearsal, not hope. <b>7 days</b> if all three days were clean and the hamstring stayed at or under 2/10 and settled overnight. <b>5 days</b> if it was mostly clean with the odd flare that settled. <b>3 days</b> if it talked on day two or three, or life load is high. Then lock the daily distances with the crew and tell the McGrath Foundation."},
+     WK("Tue 15","Walk","45 min gentle"),
+     E("Wed 16","Easy run","40 min"),
+     S4("Thu 17","~20 min"),
      R("Fri 18"),
-     L("Sat 19","Long Run: 18 km","~2 h 05","Last long run of the build. Comfortable throughout."),
-     RC("Sun 20","Restore","Yoga nidra + legs up the wall","Fitness is banked from here. The rest of the job is arriving fresh.")],
-  B:[RC("Mon 14","Full rest","Sleep"),E("Wed 16","Easy Run: 6 km","~43 min"),L("Sat 19","Long Run: 14 km","~1 h 40")],
+     L("Sat 19","Long run-walk","1 h 45","Comfortable throughout. One more solid weekend comes after Christmas."),
+     RC("Sun 20","Restore","Nidra + constructive rest","Fitness is banked from here. The job now is arriving fresh.")],
+  B:[RC("Mon 14","Full rest","Sleep"),E("Wed 16","Easy run","30 min"),L("Sat 19","Long run-walk","1 h 20")],
   C:planC()},
 
- {focus:"Christmas &mdash; yours",dates:"Week 21 · 21-27 Dec · family",start:new Date(2026,11,21),src:"lim",
-  vol:"~28 km · deliberately light · family first",
-  A:[E("Mon 21","Easy Run: 8 km","~55 min"),
-     SA("Tue 22","Strength A (light)","~20 min"),
-     E("Wed 23","Easy Run: 6 km","~43 min"),
+ {focus:"Christmas &mdash; yours",dates:"Week 12 · 21-27 Dec · family",start:new Date(2026,11,21),src:"lim",
+  vol:"Deliberately light · family first",
+  A:[E("Mon 21","Easy run","40 min"),
+     S4("Tue 22","~20 min"),
+     E("Wed 23","Easy run","30 min"),
      RC("Thu 24","Rest","Christmas Eve","Nothing. Be where you are."),
-     RC("Fri 25","Rest","Christmas Day","This is the whole reason the route flipped. Enjoy it."),
-     E("Sat 26","Easy Run: 6 km","~43 min","Only if you want to. A walk is equally fine."),
-     L("Sun 27","Long Run: 14 km","~1 h 40","Gentle. Keeping the thread, nothing more.")],
-  B:[E("Mon 21","Easy Run: 6 km","~43 min"),E("Sat 26","Easy Run: 6 km","~43 min"),L("Sun 27","Long Run: 12 km","~1 h 25")],
+     RC("Fri 25","Rest","Christmas Day","Enjoy it."),
+     WK("Sat 26","Walk or easy jog","30-40 min","Only if you want to."),
+     L("Sun 27","Long run-walk","75 min","Gentle. Keeping the thread.")],
+  B:[E("Mon 21","Easy run","30 min"),WK("Sat 26","Walk","30 min"),L("Sun 27","Long run-walk","60 min")],
   C:planC()},
 
- {focus:"Taper &amp; pack",dates:"Week 22 · 28 Dec-3 Jan · taper",start:new Date(2026,11,28),src:"lim",
-  vol:"~26 km · legs fresh, logistics locked",
-  A:[E("Mon 28","Easy Run: 8 km","~55 min"),
-     RC("Tue 29","Kit lay-out","~45 min","Every item out on the floor. Nothing new on day one - not shoes, not socks, not food, not a pack."),
-     E("Wed 30","Easy Run: 6 km","~43 min"),
-     MO("Thu 31","Mobility: Full Body","~20 min"),
-     RC("Fri 1 Jan","Rest","New Year's Day"),
-     E("Sat 2","Easy Run: 6 km","~43 min","Legs should feel springy and under-used. That is correct."),
-     RC("Sun 3","Crew briefing + rest","Roles, meeting points, radios","Everyone who will be on the road knows the plan for day one before anyone travels.")],
-  B:[E("Mon 28","Easy Run: 6 km","~43 min"),E("Sat 2","Easy Run: 5 km","~36 min"),RC("Sun 3","Crew briefing","Roles and meeting points")],
+ {focus:"Last solid weekend",dates:"Week 13 · 28 Dec-3 Jan · build",start:new Date(2026,11,28),src:"lim",
+  vol:"One more back-to-back on the chosen format's loops",
+  A:[E("Mon 28","Easy run","40 min"),
+     S4("Tue 29","~20 min"),
+     E("Wed 30","Easy run","35 min"),
+     RC("Thu 31","Rest","New Year's Eve"),
+     RC("Fri 1 Jan","Rest or walk","New Year's Day"),
+     BB("Sat 2","Back-to-back: day 1","2 h run-walk","Run it on the actual lap course if you can - same start point, same crew table."),
+     BB("Sun 3","Back-to-back: day 2","1 h 30 run-walk","Last long effort before the run.")],
+  B:[E("Mon 28","Easy run","30 min"),BB("Sat 2","Back-to-back: day 1","1 h 30"),BB("Sun 3","Back-to-back: day 2","1 h")],
+  C:planC()},
+
+ {focus:"Taper &amp; pack",dates:"Week 14 · 4-10 Jan · taper",start:new Date(2027,0,4),src:"lim",
+  vol:"Legs fresh · logistics locked",
+  A:[RC("Mon 4","Rest","Sleep in if you can"),
+     E("Tue 5","Easy run","35 min"),
+     S4("Wed 6","~15 min","Last strength session. Two sets, lighter. Keep the primer going daily."),
+     E("Thu 7","Easy run","30 min","The Pink Test is on in Sydney (4-8 Jan) - a strong week to start the public countdown."),
+     RC("Fri 8","Kit lay-out","~45 min","Every item on the floor. Nothing new on run days - not shoes, socks, food or pack."),
+     E("Sat 9","Easy run","25 min","Legs should feel springy and under-used. That's correct."),
+     RC("Sun 10","Crew briefing + rest","Roles, meets, comms","Everyone knows the day-one plan, the lap course and the escalation rules.")],
+  B:[E("Tue 5","Easy run","25 min"),E("Sat 9","Easy run","20 min"),RC("Sun 10","Crew briefing","Roles and meets")],
   C:[RC("Daily","Walk + downregulate","20 min",DOWNREG)]},
 
- {focus:"Festival lead-in",dates:"Week 23 · 4-14 Jan · lead-in",start:new Date(2027,0,4),src:"lim",
-  vol:"recovery-led · details lock with physio guidance",
-  A:[RC("This window","Move as the hamstring allows","Easy running or walking, no targets","The lead-in is written by recovery, not by a plan. Keep the thread - easy laps of the eventual course are perfect if the body says yes."),
-     RC("One day","Recce the lap course","Walk it with the crew","Choose the loop together: shade, water, toilets, a crew table spot, and the sight-lines that make it feel like an event."),
-     RC("One evening","Crew briefing","Roles, laps, the daily rhythm","Everyone knows the format, the daily window, and who calls a rest day. The hamstring has the final vote."),
-     RC("Before day one","Physio green-light","The only gate that matters","The festival starts 15 Jan. The laps start when the hamstring is ready - those can be different days, and that is fine.")],
-  B:[RC("&mdash;","See Plan A","Recovery-led lead-in")],
-  C:[RC("Daily","Walk + downregulate","20 min",DOWNREG)]},
-
- {focus:"Love in Motion",dates:"15-24 Jan · Festival laps · Tamworth",start:new Date(2027,0,15),src:"lim",
-  vol:"distance TBC · laps of Tamworth · recovery-led",
-  A:[RC("15-24 Jan","Laps of Tamworth","During the Country Music Festival","The run has come home. Lap after lap while the town is at its fullest - daily distance set by the hamstring, not the calendar. Every lap is for the McGrath Foundation."),
-     RC("Each morning","Start early","Beat the January heat","Laps in the cool of the morning, rest through the peak, more laps late if the body says yes. The crew table is aid station, shade and home base."),
-     RC("Every lap","Eat and drink","Little and often, before you feel like it",FUEL_B2B),
-     RC("Each evening","Feet, food, sleep","Recovery between days","Feet checked, a proper meal within 30 min of stopping, legs elevated, lights out early. Recovery between days is what makes tomorrow's laps possible."),
-     RC("Daily","Regulate","10 min breathwork or nidra","You know this work better than any coach. Festival noise and crowds are their own load - downregulate daily."),
-     RC("Always","The hamstring decides","Walking counts. Stopping counts.","Every lap is a gift, not a debt. The distance that matters is the one that keeps you healthy - and anyone can join you for a lap.")],
-  B:[RC("&mdash;","See Plan A","The laps themselves","Plans flex day by day on the course - the daily distance is the variable, not the structure.")],
-  C:[RC("&mdash;","See Plan A","The laps themselves","Plans flex day by day on the course.")]}
+ {focus:"Love in Motion",dates:"11-19 Jan · run window · Tamworth",start:new Date(2027,0,11),src:"lim",
+  vol:"Laps of Tamworth · consecutive days · format set by 14 Dec · finish Tue 19 Jan",
+  A:[RC("If 7 days","Start Wed 13 Jan","Shake-out Mon 11, rest Tue 12","Only if the December rehearsal was clean and the hamstring has been quiet for weeks. Starts two days before the festival opens."),
+     RC("If 5 days","Start Fri 15 Jan","Shake-outs Mon 11 + Wed 13","Festival opening day to the finish. Room to grow the daily distance without stacking risk."),
+     RC("If 3 days","Start Sun 17 Jan","Easy runs Mon 11 + Thu 14","Still an ultra over consecutive days. The safest choice if the hamstring is still talking in December."),
+     RC("Each morning","Hip primer, then move early","Start before the heat","Five minutes of primer before every day. January in Tamworth is hot - be off early."),
+     RC("Every day","Run-walk-hike laps","Walking is the plan","Short stride, quick feet, walk every climb. Steady run-walk, not runs with forced walks. People joining a lap set no pace - you do."),
+     RC("Every lap","Crew table","Shade, water, food, feet","A lap course turns the crew into a home-straight aid station. Drink and eat something every lap or two."),
+     RC("Every 20-30 min","Eat and drink","Before you feel like it",FUEL_B2B),
+     RC("Each evening","Home: feet, food, holds, sleep","Your own bed is an advantage","Feet dry and checked, a proper meal within 30 min, 5 min of bridge and heel-dig holds, early lights out."),
+     RC("If the hamstring talks","Escalate early","Pain above 3/10 or changing your gait","Walk the rest of the lap, tell the crew, and shorten tomorrow if needed. A shorter day beats a lost day."),
+     RC("Tue 19 Jan","Finish with the McGrath Foundation","Tamworth","Plan the finish into the McGrath Foundation meeting - the moment the whole campaign builds toward.")],
+  B:[RC("&mdash;","See Plan A","The run itself","On run days the daily distance flexes instead.")],
+  C:[RC("&mdash;","See Plan A","The run itself","On run days the daily distance flexes instead.")]}
 ];
 
-/* optional yoga & breathwork on Thursday rest days (kept from the old plan) */
-var YOPT="Runner's flow with long holds &mdash; downward dog with calf pedals, low lunge &amp; half splits, pigeon, couch stretch, thoracic twists, legs-up-the-wall &mdash; then 5 min exhale-focused cyclic sighing (the best-tested breathwork protocol for mood and downregulation &mdash; Balban 2023) and 5 min of slow ~6 breaths/min nasal breathing. Recovery, not a workout: leave looser and calmer than you arrived.";
-WEEKS.forEach(function(wk){["A","B"].forEach(function(pl){(wk[pl]||[]).forEach(function(s){
-  if(s.k==="rec"&&/^Rest$/.test(s.t)&&/^Thu/.test(s.d||"")){
-    s.t="Rest &middot; Yoga &amp; Breathwork";s.s="rest day &middot; optional ~30&ndash;45 min";s.yoga=true;
-  }});});});
+var EVENT=new Date(2027,0,19);
+var HOME=EVENT;
+var YOPT="";
+function hyroxTravel(s){return "";}
+function skipBlock(s){return "";}
 
-
-/* ---- HYROX stays in the plan (user request): one circuit a week as intensity
-   cross-training, first session to drop on a heavy week ---- */
-var HYROX_NOTE=" This is the week's intensity cross-training. If the weekly check-in says the load is heavy, this is the FIRST session to drop - the runs and back-to-backs matter more for January.";
-var HYX_A="4 rounds, moderate: 600 m run &bull; 12 wall balls &bull; 15 walking lunges &bull; 30 kettlebell swings. Engine maintenance, not a beasting."+HYROX_NOTE;
-var HYX_B="4 rounds, moderate: 500 m run &bull; sled push (or heavy-backpack push) 3 x 12.5 m &bull; farmers carry 2 x 30 m &bull; 12 burpee broad jumps. Stations day."+HYROX_NOTE;
-var HYX_L="3 easy rounds: 500 m run &bull; 10 wall balls (light) &bull; 15 bodyweight lunges &bull; 20 kettlebell swings. Movement quality only."+HYROX_NOTE;
-function hyxCard(title,dur,detail){return {d:"Tue (PM)",k:"str",pill:"HYROX",t:title,s:dur,detail:detail};}
-WEEKS.forEach(function(wk,wi){
-  var card=null;
-  if(wi>=1&&wi<=9)card=hyxCard(wi%2?"HYROX Circuit A &mdash; Engine":"HYROX Circuit B &mdash; Stations","~45 min",wi%2?HYX_A:HYX_B);
-  else if(wi===10||wi===11)card=hyxCard("HYROX Circuit &mdash; Light","~35 min",HYX_L);
-  else if(wi>=14&&wi<=17)card=hyxCard("HYROX Circuit &mdash; Light","~35 min",HYX_L);
-  if(!card)return;
-  var A=wk.A||[],pos=-1;
-  for(var i=0;i<A.length;i++){if(/^Tue/.test(A[i].d||"")){pos=i;break;}}
-  if(pos>=0)A.splice(pos+1,0,card);else A.push(card);
-});
-function hyroxTravel(s){
-  if(s.pill!=="HYROX")return "";
-  return "<details class='sub bwd'><summary>&#9992;&#65039; No gym? Bodyweight circuit<span class='x'>&rsaquo;</span></summary><div class='body'>"+
-    "<ul class='exlist'><li><span class='nm'>3&ndash;4 rounds for quality &mdash; rest 60&ndash;90 s</span><span class='rp'>&nbsp;</span></li>"+
-    "<li><span class='nm'>Run 400 m &mdash; or 2 min brisk stairs</span><span class='rp'>&nbsp;</span></li>"+
-    "<li><span class='nm'>Burpees</span><span class='rp'>x 10</span></li>"+
-    "<li><span class='nm'>Jump lunges &mdash; soft landings</span><span class='rp'>x 12</span></li>"+
-    "<li><span class='nm'>Band bent-over row</span><span class='rp'>x 15</span></li>"+
-    "<li><span class='nm'>Push-ups</span><span class='rp'>x 12</span></li>"+
-    "<li><span class='nm'>Band good morning</span><span class='rp'>x 15</span></li>"+
-    "<li><span class='nm'>Pogo hops</span><span class='rp'>x 20</span></li></ul>"+
-    "<p>Stop a round early rather than getting sloppy. Finish: 5 min easy walk.</p></div></details>";
-}
-
-var MARA=new Date(2026,10,1);
-var EVENT=new Date(2027,0,15);
-var HOME=new Date(2027,0,24);
 
 
 function currentWeek(){var now=new Date();var idx=0;
@@ -749,7 +614,7 @@ function currentWeek(){var now=new Date();var idx=0;
 var state={week:currentWeek(),plan:store.get("limn_plan")||"A"};
 var nowWeek=currentWeek();
 
-function doneKey(){return "limn_train3_done_w"+state.week+"_"+state.plan;}
+function doneKey(){return "limn_train4_done_w"+state.week+"_"+state.plan;}
 function getDone(){return store.get(doneKey())||{};}
 function setDone(o){store.set(doneKey(),o);}
 function sessions(){return WEEKS[state.week][state.plan]||[];}
@@ -813,11 +678,9 @@ function skipBlock(s){
 
 function renderCount(){
   var now=new Date(),cd=document.getElementById("cd"),cdl=document.getElementById("cdl");
-  var dm=Math.ceil((MARA-now)/864e5),dr=Math.ceil((EVENT-now)/864e5),dh=Math.ceil((HOME-now)/864e5);
-  if(dm>0){cd.textContent=dm;cdl.innerHTML="days to <b>the marathon</b><br>dress rehearsal &middot; Sun 1 Nov &middot; then the festival laps from 15 Jan";}
-  else if(dm===0){cd.textContent=0;cdl.innerHTML="<b>Marathon day</b><br>Trust the taper. Bank every lesson.";}
-  else if(dr>0){cd.textContent=dr;cdl.innerHTML="days to <b>the festival laps</b><br>Tamworth &middot; 15&ndash;24 Jan 2027";}
-  else if(dh>=0){cd.textContent=Math.max(0,dh);cdl.innerHTML="<b>Lap by lap</b><br>Tamworth &middot; festival week";}
+  var dh=Math.ceil((HOME-now)/864e5);
+  if(dh>0){cd.textContent=dh;cdl.innerHTML="days to <b>the finish with the McGrath Foundation</b><br>Tamworth &middot; Tue 19 Jan 2027";}
+  else if(dh===0){cd.textContent=0;cdl.innerHTML="<b>Finish day.</b><br>Tamworth &middot; 19 Jan 2027";}
   else{cd.textContent=0;cdl.innerHTML="<b>Home.</b><br>Because love keeps moving.";}
 }
 function renderWeeks(){
@@ -838,7 +701,7 @@ function renderPlans(){
     p.onclick=function(){state.plan=p.dataset.p;store.set("limn_plan",state.plan);render();};
   });
 }
-var SRCLAB={coopah:"From Coopah",lim:"Love in Motion block"};
+var SRCLAB={rehab:"Rebuild",lim:"Love in Motion block"};
 function renderWeek(){
   var wk=WEEKS[state.week];
   document.getElementById("focus").innerHTML=wk.focus;
@@ -849,11 +712,11 @@ function renderWeek(){
   var n=ss.length,c=0;for(var i=0;i<n;i++){if(done[i])c++;}
   document.getElementById("bar").style.width=n?(c/n*100)+"%":"0%";
   document.getElementById("pt").textContent=c+" of "+n+" done";
-  var ph=wk.src==="coopah"?"Marathon block &middot; Coopah":
-    state.week>=WEEKS.length-1?"Festival laps &middot; Tamworth":"Ultra block &middot; Love in Motion";
+  var ph=wk.src==="rehab"?"Rebuild &middot; hamstring-smart":
+    state.week>=WEEKS.length-1?"Run window &middot; Tamworth":"Durability block &middot; Love in Motion";
   document.getElementById("phase").innerHTML=ph;
 }
-function pillClass(k){return k==="long"?"long":k==="spd"?"spd":k==="run"?"run":k==="str"?"str":"rec";}
+function pillClass(k){return k==="xt"?"xt":k==="long"?"long":k==="spd"?"spd":k==="run"?"run":k==="str"?"str":"rec";}
 function renderList(){
   var list=document.getElementById("list");list.innerHTML="";
   var ss=sessions(),done=getDone();
@@ -872,7 +735,7 @@ function renderList(){
     list.appendChild(card);
   });
   var cn=document.getElementById("cnote");
-  if(state.plan==="C")cn.textContent="Plan C is for the hard weeks. Movement is medicine, not a target. Sleep and your nervous system come first.";
+  if(state.plan==="C")cn.textContent="Plan C is for the hard weeks - hospital days, flare-ups, empty tanks. Walk, two holds, regulate. That still counts.";
   else if(state.plan==="B")cn.textContent="Plan B protects the long run and your sleep when life is full. That's the system working, not you falling behind.";
   else cn.textContent="Tap a session for the detail. Tap the circle to tick it off.";
 }
@@ -901,26 +764,25 @@ document.getElementById("scrim").onclick=closeSheet;
 document.addEventListener("keydown",function(e){if(e.key==="Escape")closeSheet();});
 
 function note(title,html,cls){return "<details class='sub"+(cls?" "+cls:"")+"'><summary>"+title+"<span class='x'>&rsaquo;</span></summary><div class='body'>"+html+"</div></details>";}
+function exl(set){return "<ul class='ex'>"+set.map(function(e){return "<li>"+e[0]+" — <b>"+e[1]+"</b></li>";}).join("")+"</ul>";}
 document.getElementById("notesbody").innerHTML=
- note("The marathon changes the shape of November","<p><b>Confirmed: marathon on Sunday 1 November.</b> That settles it - the Coopah block runs exactly as written, all thirteen weeks, no edits. Follow the app through to race day.</p><p>It is also good news for Love in Motion. That marathon is the full dress rehearsal, and a proper one: crowds, timing, nerves, and a real forced taper. You will arrive at November with genuine marathon fitness in the bank.</p><p><b>But it costs you a week, and I have rebuilt November around that.</b> A marathon leaves real muscle damage - running hard on it too soon is how people arrive at the start line already broken. So:</p><ul><li><b>Week 14 (2-8 Nov) is recovery only.</b> Walks, two short jogs, no long run. Resist it - this is the week that protects December.</li><li><b>Week 15 (9-15 Nov)</b> rebuilds easy volume with one 14 km long run. No quality work at all.</li><li><b>Back-to-backs now start 21-22 November</b>, a fortnight later than my first draft, and the block is tighter for it.</li></ul><p>Because the window is compressed, the December sessions matter more than ever. The peak weekend and the three-day rehearsal are the two things worth protecting above everything else in the calendar.</p><p>One practical question: <b>where is the marathon?</b> If it is interstate, travel and a night in a strange bed add to the recovery cost, and week 14 may need to be gentler still.</p>")+
+ note("Why the plan was reset","<p>A <b>grade 1 tear high in the hamstring</b>, plus the glute med, about five weeks in. The old Coopah marathon block no longer fits, so the schedule now runs from today to the finish in Tamworth on <b>19 January</b>.</p><p>Thirteen weeks is enough to get you running strong - if we let the tissue lead. The plan moves through four strength phases: <b>holds</b>, <b>movement in a short range</b>, <b>hinge and eccentric</b>, then <b>durability</b>. Running comes back as run-walk, then continuous easy, then back-to-backs.</p><p><b>The dates are a guide. The checks decide.</b> If a step isn't ready, repeat the week. There is buffer built in.</p>")+
+ note("What the research says","<ul><li><b>Grade 1 strains usually recover in weeks, not months</b> - but anything near the sit bone can involve the tendon, which heals more slowly. That's why the physio check in week 1 matters.</li><li><b>Rehab moves in a set order:</b> isometric holds, then strength with the hip fairly straight, then strength into deeper hip flexion. Deep hip bend squeezes the tendon at the sit bone, so it comes last.</li><li><b>Eccentric work (Nordics, single-leg RDLs)</b> plus trunk and hip control is what lowers the re-injury risk. It's in from week 5.</li><li><b>A slightly quicker cadence</b> shortens the stride, reduces hip flexion and gets the glutes working - kinder to the top of the hamstring.</li><li><b>Time-based return dates mislead.</b> Pain-free strength and function are better guides.</li></ul>")+
+ note("The pain rules","<p>"+PAIN+"</p><p>Muscle soreness the day after strength is normal. <b>Sharp or deep pain at the sit bone</b> is the one to respect.</p>")+
+ note("Protecting the top of the hamstring","<ul><li><b>No hamstring stretching</b> for now - it compresses the tendon where it's sore.</li><li><b>Sitting</b> is a hidden load. Break it up every 30-45 min, sit on a cushion, don't perch on hard chairs.</li><li><b>Hills, speedwork and long strides</b> stay out until the durability block. Walk every climb.</li><li><b>The bike</b> only if the saddle doesn't press on the sit bone.</li><li>Glute med is the hamstring's ally - the side-lying work and step-downs matter as much as the curls.</li></ul>")+
+ note("1 November &mdash; Attunga day","<p>The <b>45 km practice run is off as a run</b>. Four weeks after a tear is too soon for that distance. Keep the date and use it as a <b>crew and kit rehearsal</b>: a walk on the loop, real meets, real food, real comms. You'll still learn most of what the day was for.</p><p>The three-day rehearsal on <b>11-13 December</b> becomes your true dress rehearsal - and it decides the format. Protect it.</p>")+
+ note("The run, as it now stands","<p><b>A multi-day ultra as laps of Tamworth during the Country Music Festival (15-24 Jan)</b>, on consecutive days, finishing on <b>Tue 19 January</b> with the McGrath Foundation. Distance and number of days are deliberately open until the hamstring has shown you what it can do.</p><p>Running from home is a real advantage for this rebuild: your own bed, your own kitchen, a lap course you know, one crew table, an easy bail-out if a day goes wrong, and family close by.</p><p><b>Three formats, all ending on the 19th:</b></p><ul><li><b>3 days</b> &middot; 17-19 Jan &middot; mid-festival</li><li><b>5 days</b> &middot; 15-19 Jan &middot; festival opening to the finish</li><li><b>7 days</b> &middot; 13-19 Jan &middot; starts two days before the festival</li></ul><p>The plan trains you for all three. The choice is made on <b>Mon 14 Dec</b>, after the three-day rehearsal. Daily distances get set then, with the crew.</p>")+
+ note("Choosing the format","<ul><li><b>7 days</b> &mdash; rehearsal clean, hamstring at or under 2/10 and settled overnight, strength progressing.</li><li><b>5 days</b> &mdash; mostly clean, the odd flare that settled by morning.</li><li><b>3 days</b> &mdash; it talked on day two or three, or family and work load is high.</li></ul><p>Any of the three is a genuine ultra over consecutive days. The story is the same: love keeps moving.</p>")+
+ note("Weekly check-in","<p>Before choosing the week's plan, rate each <b>1-5</b>:</p><ul><li>Sleep</li><li>Stress / mental load</li><li>Hamstring &amp; glute</li><li>Mood &amp; energy</li><li>Family + caregiving load</li></ul><p>Two or more low &rarr; choose <b>Plan B or C</b>. No guilt - that's the system doing its job.</p>")+
+ note("When to stop and see the physio","<ul><li>Pain sharpens <b>during</b> a run or changes how you move &rarr; stop, walk home.</li><li>Pain is worse the next morning two sessions in a row.</li><li>A sudden pull, bruising, or pain sitting that's getting worse, not better.</li><li>Pins and needles or pain travelling down the leg.</li></ul>")+
+ note("Rebuild 1 &middot; holds",exl(R1))+
+ note("Rebuild 2 &middot; movement",exl(R2))+
+ note("Rebuild 3 &middot; hinge &amp; eccentric",exl(R3))+
+ note("Durability",exl(R4))+
+ note("Hip primer &middot; before every run",exl(PRIMER))+
+ note("Mobility",exl(MOB))+
+ note("Sources","<p style='font-size:12px'>Heiderscheit et al., JOSPT 2010 &middot; Campos-Villegas et al., IJSPT 2024 &middot; Kilcoyne et al., Sports Health 2011 &middot; Sanford Health proximal/mid hamstring guideline. This plan isn't a diagnosis - your physio's assessment overrides it.</p>");
 
- note("From marathon fitness to multi-day durability","<p>Worth being clear about what the November and December block is actually for, because it is not more fitness.</p><p>The marathon on 1 November <b>is</b> your fitness peak. Everything after it converts that engine into something different: the ability to run 40-50 km, sleep, eat, and get up and do it again. That is a separate skill, and it is trained at a much lower intensity than anything Coopah has you doing.</p><p>So from 9 November onward: <b>no tempo, no intervals, no target pace.</b> Every run is easy. What increases is time on your feet and how often you run on tired legs. If you find yourself checking pace on a back-to-back weekend, you have misunderstood the session.</p>")+
-
- note("The run comes home - laps of Tamworth","<p><b>A hamstring injury has rewritten the plan - and the plan listened.</b> Instead of the road from Sydney, Love in Motion becomes <b>laps around Tamworth during the Toyota Country Music Festival, 15-24 January 2027</b> - the days the town is at its absolute fullest.</p><ul><li><b>The kilometres are not decided.</b> They will be set by recovery, not ambition - the format locks with physio guidance as January approaches.</li><li><b>The festival is the stage.</b> The campaign runs lap after lap through the middle of Tamworth's biggest week, for the McGrath Foundation.</li><li><b>Community can join.</b> A lap course means anyone can run or walk a lap alongside - something no highway route could offer.</li><li><b>Recovery leads the training.</b> Every session from here flexes around the hamstring. Plan B and C exist for exactly this, and walking always counts.</li></ul><p>Still to decide: daily distance, which festival days, and the lap course itself.</p>")+
-
- note("Why the Coopah plan alone won't get you there","<p>Coopah is building you a very good <b>marathon</b>. Love in Motion is not a marathon.</p><p>Across the full thirteen weeks, the peak is <b>60 km in a week</b> with a 32 km long run, and <b>every single long run is preceded by a rest or easy day</b>. There is not one back-to-back long weekend anywhere in the block.</p><p>The run asks you to cover roughly <b>31 km a day for fourteen days straight</b>. The adaptation that makes that possible - running on legs that already ran yesterday, eating and sleeping well enough to go again, fourteen times over - is exactly what a marathon plan never trains. Single-day distance is not the problem here; <b>consecutive days are</b>.</p><p><b>So: keep Coopah through October.</b> It builds the aerobic engine and the durability honestly, and the named sessions are good. Then from early November the Love in Motion block takes over and does the specific work. That is the merge you are looking at.</p>")+
-
- note("Where you actually are right now","<p>Straight from Strava, not from the plan:</p><ul><li><b>Last logged run: 13 July.</b> Twenty-three days ago.</li><li>2026 has been light - roughly 17 runs since April.</li><li>Longest run this year: <b>20.8 km on 7 June</b>.</li><li>Easy pace sits around <b>7:00-7:30/km</b>, which is a sensible all-day effort.</li></ul><p>Coopah's week 1 at 15 km is a fair re-entry. <b>Week 2 at 33 km is a big jump</b> off a three-week break. If the first week feels harder than it should, repeat week 1 rather than pushing into week 2. Nothing is lost.</p><p>One thing worth remembering: between <b>28 December 2023 and 5 January 2024 you ran roughly 21 km a day, nine days straight</b>. About 190 km in nine days. You have done a version of this before. Your body has the file.</p>")+
-
- note("How to gauge easy","<p>"+EASY+"</p><p><b>On the back-to-back weekends, walk the climbs from the very first one.</b> Time on your feet matters far more than pace in the November block.</p>")+
-
- note("Weekly check-in","<p>Before choosing the week's plan, rate each <b>1-5</b>:</p><ul><li>Sleep</li><li>Stress / mental load</li><li>Body &amp; niggles</li><li>Mood &amp; energy</li><li>Family + caregiving load</li></ul><p>Two or more low &rarr; choose <b>Plan B or C</b>. No guilt - that's the system doing its job.</p>")+
-
- note("When to back off","<ul><li>A niggle sharpens <b>during</b> a run, or changes how you move &rarr; stop, walk home.</li><li>Pain alters your gait or lingers &rarr; rest, see a physio.</li><li>Soreness hasn't eased after 48 hrs, resting heart rate is up, or the emotional tank is empty.</li><li><b>Never</b> run a back-to-back weekend on a bad week. Move it. There is always another weekend.</li></ul>")+
-
- note("Strength A &middot; exercises","<ul class='ex'>"+STR_A.map(function(e){return "<li>"+e[0]+" — <b>"+e[1]+"</b></li>";}).join("")+"</ul>")+
- note("Strength B &middot; exercises","<ul class='ex'>"+STR_B.map(function(e){return "<li>"+e[0]+" — <b>"+e[1]+"</b></li>";}).join("")+"</ul>")+
- note("Mobility &middot; exercises","<ul class='ex'>"+MOB.map(function(e){return "<li>"+e[0]+" — <b>"+e[1]+"</b></li>";}).join("")+"</ul>");
 
 function render(){renderWeeks();renderPlans();renderWeek();renderList();}
 paceApply();renderCount();render();

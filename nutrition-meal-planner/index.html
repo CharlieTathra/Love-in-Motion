@@ -238,7 +238,7 @@
   <div class="tag">Nourish · Foundation</div>
   <div class="count">
     <div class="n" id="cd">—</div>
-    <div class="lab" id="cdl">days to <b>the festival laps</b><br>Love in Motion · Tamworth · 15&ndash;24 Jan 2027</div>
+    <div class="lab" id="cdl">days to <b>the finish with the McGrath Foundation</b><br>Love in Motion · Festival Laps · Tue 19 Jan 2027</div>
   </div>
 </header>
 
@@ -281,7 +281,7 @@
   <a class="tab" href="index.html" aria-current="page"><span class="ic">&#127869;</span>Fuel</a>
   <a class="tab" href="../meals/index.html"><span class="ic">&#129367;</span>Meals</a>
   <a class="tab" href="../training/index.html"><span class="ic">&#128694;</span>Train</a>
-  <a class="tab" href="../the-500/index.html"><span class="ic">&#127937;</span>500</a>
+  <a class="tab" href="../the-500/index.html"><span class="ic">&#127937;</span>Laps</a>
   <a class="tab" href="../donate/index.html"><span class="ic">&#129655;</span>Donate</a>
 </nav>
 
@@ -405,7 +405,7 @@ var DAYS=[
   ]}
 ];
 
-var EVENT=new Date(2027,0,15);
+var EVENT=new Date(2027,0,19);
 
 /* ---------- state ---------- */
 var state={day:0,plan:store.get("limn_plan")||"A"};
@@ -420,7 +420,7 @@ function cards(){return DAYS[state.day][state.plan]||[];}
 function renderCount(){
   var ms=EVENT-new Date();var d=Math.max(0,Math.ceil(ms/86400000));
   document.getElementById("cd").textContent=d;
-  if(d===0)document.getElementById("cdl").innerHTML="<b>Today is the day</b><br>Laps of Tamworth &mdash; the festival is on";
+  if(d===0)document.getElementById("cdl").innerHTML="<b>Finish day.</b><br>Laps of Tamworth &mdash; with the McGrath Foundation";
 }
 function renderDays(){
   var w=document.getElementById("days");w.innerHTML="";
@@ -547,7 +547,7 @@ document.getElementById("notesbody").innerHTML=
  note("Nervous system &amp; hormones","<ul><li>Regular meals steady blood sugar, mood and energy - the foundation of a settled nervous system.</li><li>Protein + slow carbs + healthy fats at each meal.</li><li>Omega-3s (oily fish, walnuts, flax) and magnesium (greens, nuts, seeds, dark chocolate) support recovery and sleep.</li><li>Go easy on caffeine late in the day to protect sleep - your most powerful recovery tool.</li></ul>")+
  note("Iron - worth watching","<p>Endurance training plus menstruation raises iron needs. Include red meat, legumes and leafy greens, paired with vitamin C (capsicum, citrus, tomato) to absorb it.</p><p>If you're persistently flat, breathless or heavy-legged, ask your GP for a <b>ferritin check</b> - low iron is common and very fixable.</p>")+
  note("Make it easy on yourself","<ul><li>Cook once, eat twice - always make extra dinner for lunch.</li><li>On a good week, prep for the hard one: a tub of cooked grains, a tray of roast veg, boiled eggs, pre-portioned trail mix.</li><li>Overnight oats remove all morning decisions.</li><li>Keep a grab-bag of snacks in the car and your work bag. Future-you is grateful.</li></ul>")+
- note("On the horizon - the 500 km","<p>For the Love in Motion festival laps, fuelling becomes the engine: frequent eating on the move, real food plus sports food, crew-cooked hot meals, and proper recovery each night.</p><p>We'll build a full <b>crew food list, daily fuelling plan and recovery routine</b> closer to the time - once the 1&nbsp;November marathon is behind you. For now, every long run is quietly teaching your gut what it'll need then.</p>");
+ note("On the horizon - the Festival Laps","<p>For the Love in Motion festival laps, fuelling becomes the engine: frequent eating on the move, real food plus sports food, a crew table every lap, hot meals at home each night, and proper recovery between days.</p><p>We'll build the <b>crew food list, daily fuelling plan and recovery routine</b> once the format is set on 14 December. While the hamstring heals, protein at every meal matters - it's what tissue repair is built from.</p>");
 
 /* ---------- go ---------- */
 function render(){renderDays();renderPlans();renderHead();renderList();}

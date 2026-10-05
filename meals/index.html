@@ -177,7 +177,7 @@
   <div class="tag">Nourish &middot; build by serves</div>
   <div class="count">
     <div class="n" id="cd">&mdash;</div>
-    <div class="lab" id="cdl">days to <b>the festival laps</b><br>Love in Motion &middot; Tamworth &middot; 15&ndash;24 Jan 2027</div>
+    <div class="lab" id="cdl">days to <b>the finish with the McGrath Foundation</b><br>Love in Motion &middot; Festival Laps &middot; Tue 19 Jan 2027</div>
   </div>
 </header>
 
@@ -221,7 +221,7 @@
   <a class="tab" href="../nutrition-meal-planner/index.html"><span class="ic">&#127869;</span>Fuel</a>
   <a class="tab" href="index.html" aria-current="page"><span class="ic">&#129367;</span>Meals</a>
   <a class="tab" href="../training/index.html"><span class="ic">&#128694;</span>Train</a>
-  <a class="tab" href="../the-500/index.html"><span class="ic">&#127937;</span>500</a>
+  <a class="tab" href="../the-500/index.html"><span class="ic">&#127937;</span>Laps</a>
   <a class="tab" href="../donate/index.html"><span class="ic">&#129655;</span>Donate</a>
 </nav>
 
@@ -242,10 +242,10 @@ var store=window.LIMStorage.create("meals",function(){
 });
 
 /* countdown to the 500 (matches sibling pages) */
-var EVENT=new Date(2027,0,15);
+var EVENT=new Date(2027,0,19);
 (function(){var d=Math.max(0,Math.ceil((EVENT-new Date())/86400000));
   document.getElementById('cd').textContent=d;
-  if(d===0)document.getElementById('cdl').innerHTML="<b>Today is the day</b><br>Laps of Tamworth &mdash; the festival is on";})();
+  if(d===0)document.getElementById('cdl').innerHTML="<b>Finish day.</b><br>Laps of Tamworth &mdash; with the McGrath Foundation";})();
 
 /* ---- per-serve nutrition (Nutrition Protocol Meal Builder) ---- */
 var G={protein:24,carbs:25,veg:5,fat:9};
